@@ -1,0 +1,22 @@
+{
+    "name": "unity-types",
+    "version": "6000.3.0",
+    "description": "TypeScript definitions for Unity 6000.3",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Singtaa/unity-types.git"
+    },
+    "keywords": [
+        "unity",
+        "typescript",
+        "types",
+        "onejs"
+    ],
+    "author": "Singtaa",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Singtaa/unity-types/issues"
+    },
+    "homepage": "https://github.com/Singtaa/unity-types#readme"
+}
