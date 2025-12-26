@@ -9,7 +9,7 @@ TypeScript definitions for Unity, designed for use with [OneJS](https://onejs.co
 Install the version matching your Unity version:
 
 ```bash
-npm install unity-types@6000.3.0
+npm install unity-types@~6000.3.0
 ```
 
 ## Usage
