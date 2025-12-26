@@ -2,16 +2,14 @@
 
 TypeScript definitions for Unity, designed for use with [OneJS](https://onejs.com).
 
+> **Note:** Only Unity 6000.3 and later versions are supported.
+
 ## Installation
 
 Install the version matching your Unity version:
 
 ```bash
-# Unity 6000.3
 npm install unity-types@6000.3.0
-
-# Unity 2022.3 LTS
-npm install unity-types@2022.3.0
 ```
 
 ## Usage
@@ -19,8 +17,6 @@ npm install unity-types@2022.3.0
 The types are automatically available after installation:
 
 ```typescript
-import { CS } from "onejs"
-
 const go = new CS.UnityEngine.GameObject("MyObject")
 const pos: CS.UnityEngine.Vector3 = go.transform.position
 ```
@@ -40,7 +36,6 @@ Package versions match Unity versions directly:
 | Package Version | Unity Version |
 |-----------------|---------------|
 | `6000.3.0` | Unity 6000.3 |
-| `2022.3.0` | Unity 2022.3 LTS |
 
 ## License
 
