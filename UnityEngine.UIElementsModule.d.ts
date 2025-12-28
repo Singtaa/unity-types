@@ -72,7 +72,8 @@ declare namespace CS {
                 public binding: UnityEngine.UIElements.IBinding;
                 public bindingPath: string;
                 constructor();
-
+            }
+            namespace BindableElement {
                 class UxmlSerializedData extends UnityEngine.UIElements.VisualElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -91,6 +92,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             enum BindingUpdateTrigger {
@@ -109,12 +111,14 @@ declare namespace CS {
                 public static GetPanelLogLevel($panel: UnityEngine.UIElements.IPanel): UnityEngine.UIElements.BindingLogLevel;
                 public static ResetPanelLogLevel($panel: UnityEngine.UIElements.IPanel): void;
                 public MarkDirty(): void;
-
+            }
+            namespace Binding {
                 class UxmlSerializedData extends UnityEngine.UIElements.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     public static Register(): void;
                     public Deserialize($obj: any): void;
                 }
+
             }
 
             class BindingActivationContext {
@@ -166,10 +170,12 @@ declare namespace CS {
 
             class CustomBinding extends UnityEngine.UIElements.Binding {
                 protected [__keep_incompatibility]: never;
-
+            }
+            namespace CustomBinding {
                 class UxmlSerializedData extends UnityEngine.UIElements.Binding.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                 }
+
             }
 
             enum BindingMode {
@@ -190,7 +196,8 @@ declare namespace CS {
                 constructor();
                 public ApplyConverterGroupToSource($group: UnityEngine.UIElements.ConverterGroup): void;
                 public ApplyConverterGroupToUI($group: UnityEngine.UIElements.ConverterGroup): void;
-
+            }
+            namespace DataBinding {
                 class UxmlSerializedData extends UnityEngine.UIElements.Binding.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -198,6 +205,7 @@ declare namespace CS {
                     public CreateInstance(): any;
                     public Deserialize($obj: any): void;
                 }
+
             }
 
             enum BindingLogLevel {
@@ -394,12 +402,14 @@ declare namespace CS {
                 public toggleOnLabelClick: boolean;
                 public text: string;
                 public SetValueWithoutNotify($newValue: boolean): void;
-
+            }
+            namespace BaseBoolField {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseField$1.UxmlSerializedData$1<boolean> {
                     protected [__keep_incompatibility]: never;
                     public static Register(): void;
                     public Deserialize($obj: any): void;
                 }
+
             }
 
             class BaseCompositeField<TValueType, TField extends UnityEngine.UIElements.TextValueField$1<TFieldValue>, TFieldValue> extends UnityEngine.UIElements.BaseField$1<TValueType> implements UnityEngine.UIElements.IDelayedField {
@@ -415,12 +425,14 @@ declare namespace CS {
                 public static readonly twoLinesVariantUssClassName: string;
                 public isDelayed: boolean;
                 public SetValueWithoutNotify($newValue: TValueType): void;
-
+            }
+            namespace BaseCompositeField {
                 class UxmlSerializedData<TValueType, TField extends UnityEngine.UIElements.TextValueField$1<TFieldValue>, TFieldValue> extends UnityEngine.UIElements.BaseField$1.UxmlSerializedData$1<TValueType> {
                     protected [__keep_incompatibility]: never;
                     public static Register(): void;
                     public Deserialize($obj: any): void;
                 }
+
             }
 
             enum ListViewReorderMode {
@@ -469,7 +481,8 @@ declare namespace CS {
                 public remove_itemsAdded(handler: System.Action$1<System.Collections.Generic.IEnumerable$1<number>>): void;
                 public add_itemsRemoved(handler: System.Action$1<System.Collections.Generic.IEnumerable$1<number>>): void;
                 public remove_itemsRemoved(handler: System.Action$1<System.Collections.Generic.IEnumerable$1<number>>): void;
-
+            }
+            namespace BaseListView {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseVerticalCollectionView.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     public static Register(): void;
@@ -481,6 +494,7 @@ declare namespace CS {
                     public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class BasePopupField<TValueType, TValueChoice> extends UnityEngine.UIElements.BaseField$1<TValueType> {
@@ -526,7 +540,8 @@ declare namespace CS {
                 public ApplyInputDeviceDelta($delta: UnityEngine.Vector3, $speed: UnityEngine.UIElements.DeltaSpeed, $startValue: TValueType): void;
                 public SetValueWithoutNotify($newValue: TValueType): void;
                 public AdjustDragElement($factor: number): void;
-
+            }
+            namespace BaseSlider {
                 class UxmlSerializedData<TValueType extends System.IComparable$1<TValueType>> extends UnityEngine.UIElements.BaseField$1.UxmlSerializedData$1<TValueType> {
                     protected [__keep_incompatibility]: never;
                     public static Register(): void;
@@ -542,6 +557,7 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
+
             }
 
             class TreeViewExpansionChangedArgs {
@@ -588,7 +604,8 @@ declare namespace CS {
                 public CollapseAll(): void;
                 public add_itemExpandedChanged(handler: System.Action$1<UnityEngine.UIElements.TreeViewExpansionChangedArgs>): void;
                 public remove_itemExpandedChanged(handler: System.Action$1<UnityEngine.UIElements.TreeViewExpansionChangedArgs>): void;
-
+            }
+            namespace BaseTreeView {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseVerticalCollectionView.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     public static Register(): void;
@@ -601,6 +618,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             enum AlternatingRowBackground {
@@ -692,7 +710,8 @@ declare namespace CS {
                 public remove_dragAndDropUpdate(handler: System.Func$2<UnityEngine.UIElements.HandleDragAndDropArgs, UnityEngine.UIElements.DragVisualMode>): void;
                 public add_handleDrop(handler: System.Func$2<UnityEngine.UIElements.HandleDragAndDropArgs, UnityEngine.UIElements.DragVisualMode>): void;
                 public remove_handleDrop(handler: System.Func$2<UnityEngine.UIElements.HandleDragAndDropArgs, UnityEngine.UIElements.DragVisualMode>): void;
-
+            }
+            namespace BaseVerticalCollectionView {
                 class UxmlSerializedData extends UnityEngine.UIElements.BindableElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     public static Register(): void;
@@ -705,6 +724,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             interface IBindable {
@@ -733,7 +753,8 @@ declare namespace CS {
                 constructor();
                 constructor($label: string);
                 public SetValueWithoutNotify($newValue: UnityEngine.Bounds): void;
-
+            }
+            namespace BoundsField {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseField$1.UxmlSerializedData$1<UnityEngine.Bounds> implements UnityEngine.UIElements.IUxmlSerializedDataCustomAttributeHandler {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -751,6 +772,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class BoundsIntField extends UnityEngine.UIElements.BaseField$1<UnityEngine.BoundsInt> {
@@ -763,7 +785,8 @@ declare namespace CS {
                 constructor();
                 constructor($label: string);
                 public SetValueWithoutNotify($newValue: UnityEngine.BoundsInt): void;
-
+            }
+            namespace BoundsIntField {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseField$1.UxmlSerializedData$1<UnityEngine.BoundsInt> implements UnityEngine.UIElements.IUxmlSerializedDataCustomAttributeHandler {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -781,13 +804,15 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class Box extends UnityEngine.UIElements.VisualElement {
                 protected [__keep_incompatibility]: never;
                 public static readonly ussClassName: string;
                 constructor();
-
+            }
+            namespace Box {
                 class UxmlSerializedData extends UnityEngine.UIElements.VisualElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -798,6 +823,7 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
+
             }
 
             class Button extends UnityEngine.UIElements.TextElement {
@@ -814,7 +840,8 @@ declare namespace CS {
                 constructor($clickEvent: System.Action);
                 public add_clicked(handler: System.Action): void;
                 public remove_clicked(handler: System.Action): void;
-
+            }
+            namespace Button {
                 class UxmlSerializedData extends UnityEngine.UIElements.TextElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -833,6 +860,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class RectField extends UnityEngine.UIElements.BaseCompositeField$3<UnityEngine.Rect, UnityEngine.UIElements.FloatField, number> {
@@ -842,7 +870,8 @@ declare namespace CS {
                 public static readonly inputUssClassName: string;
                 constructor();
                 constructor($label: string);
-
+            }
+            namespace RectField {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseCompositeField$3.UxmlSerializedData$3<UnityEngine.Rect, UnityEngine.UIElements.FloatField, number> implements UnityEngine.UIElements.IUxmlSerializedDataCustomAttributeHandler {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -860,6 +889,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class RectIntField extends UnityEngine.UIElements.BaseCompositeField$3<UnityEngine.RectInt, UnityEngine.UIElements.IntegerField, number> {
@@ -869,7 +899,8 @@ declare namespace CS {
                 public static readonly inputUssClassName: string;
                 constructor();
                 constructor($label: string);
-
+            }
+            namespace RectIntField {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseCompositeField$3.UxmlSerializedData$3<UnityEngine.RectInt, UnityEngine.UIElements.IntegerField, number> implements UnityEngine.UIElements.IUxmlSerializedDataCustomAttributeHandler {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -887,6 +918,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class Vector2Field extends UnityEngine.UIElements.BaseCompositeField$3<UnityEngine.Vector2, UnityEngine.UIElements.FloatField, number> {
@@ -896,7 +928,8 @@ declare namespace CS {
                 public static readonly inputUssClassName: string;
                 constructor();
                 constructor($label: string);
-
+            }
+            namespace Vector2Field {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseCompositeField$3.UxmlSerializedData$3<UnityEngine.Vector2, UnityEngine.UIElements.FloatField, number> implements UnityEngine.UIElements.IUxmlSerializedDataCustomAttributeHandler {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -914,6 +947,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class Vector3Field extends UnityEngine.UIElements.BaseCompositeField$3<UnityEngine.Vector3, UnityEngine.UIElements.FloatField, number> {
@@ -923,7 +957,8 @@ declare namespace CS {
                 public static readonly inputUssClassName: string;
                 constructor();
                 constructor($label: string);
-
+            }
+            namespace Vector3Field {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseCompositeField$3.UxmlSerializedData$3<UnityEngine.Vector3, UnityEngine.UIElements.FloatField, number> implements UnityEngine.UIElements.IUxmlSerializedDataCustomAttributeHandler {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -941,6 +976,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class Vector4Field extends UnityEngine.UIElements.BaseCompositeField$3<UnityEngine.Vector4, UnityEngine.UIElements.FloatField, number> {
@@ -950,7 +986,8 @@ declare namespace CS {
                 public static readonly inputUssClassName: string;
                 constructor();
                 constructor($label: string);
-
+            }
+            namespace Vector4Field {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseCompositeField$3.UxmlSerializedData$3<UnityEngine.Vector4, UnityEngine.UIElements.FloatField, number> implements UnityEngine.UIElements.IUxmlSerializedDataCustomAttributeHandler {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -968,6 +1005,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class Vector2IntField extends UnityEngine.UIElements.BaseCompositeField$3<UnityEngine.Vector2Int, UnityEngine.UIElements.IntegerField, number> {
@@ -977,7 +1015,8 @@ declare namespace CS {
                 public static readonly inputUssClassName: string;
                 constructor();
                 constructor($label: string);
-
+            }
+            namespace Vector2IntField {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseCompositeField$3.UxmlSerializedData$3<UnityEngine.Vector2Int, UnityEngine.UIElements.IntegerField, number> implements UnityEngine.UIElements.IUxmlSerializedDataCustomAttributeHandler {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -995,6 +1034,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class Vector3IntField extends UnityEngine.UIElements.BaseCompositeField$3<UnityEngine.Vector3Int, UnityEngine.UIElements.IntegerField, number> {
@@ -1004,7 +1044,8 @@ declare namespace CS {
                 public static readonly inputUssClassName: string;
                 constructor();
                 constructor($label: string);
-
+            }
+            namespace Vector3IntField {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseCompositeField$3.UxmlSerializedData$3<UnityEngine.Vector3Int, UnityEngine.UIElements.IntegerField, number> implements UnityEngine.UIElements.IUxmlSerializedDataCustomAttributeHandler {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1022,6 +1063,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class DoubleField extends UnityEngine.UIElements.TextValueField$1<number> {
@@ -1033,7 +1075,8 @@ declare namespace CS {
                 constructor($maxLength: number);
                 constructor($label: string, $maxLength?: number);
                 public ApplyInputDeviceDelta($delta: UnityEngine.Vector3, $speed: UnityEngine.UIElements.DeltaSpeed, $startValue: number): void;
-
+            }
+            namespace DoubleField {
                 class UxmlSerializedData extends UnityEngine.UIElements.TextValueField$1.UxmlSerializedData$1<number> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1050,6 +1093,7 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
+
             }
 
             class DropdownField extends UnityEngine.UIElements.PopupField$1<string> {
@@ -1060,7 +1104,8 @@ declare namespace CS {
                 constructor($label: string, $choices: System.Collections.Generic.List$1<string>, $defaultValue: string, $formatSelectedValueCallback?: System.Func$2<string, string>, $formatListItemCallback?: System.Func$2<string, string>);
                 constructor($choices: System.Collections.Generic.List$1<string>, $defaultIndex: number, $formatSelectedValueCallback?: System.Func$2<string, string>, $formatListItemCallback?: System.Func$2<string, string>);
                 constructor($label: string, $choices: System.Collections.Generic.List$1<string>, $defaultIndex: number, $formatSelectedValueCallback?: System.Func$2<string, string>, $formatListItemCallback?: System.Func$2<string, string>);
-
+            }
+            namespace DropdownField {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseField$1.UxmlSerializedData$1<string> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1079,6 +1124,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class EnumField extends UnityEngine.UIElements.BaseField$1<System.Enum> {
@@ -1095,7 +1141,8 @@ declare namespace CS {
                 public Init($defaultValue: System.Enum): void;
                 public Init($defaultValue: System.Enum, $includeObsoleteValues: boolean): void;
                 public SetValueWithoutNotify($newValue: System.Enum): void;
-
+            }
+            namespace EnumField {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseField$1.UxmlSerializedData$1<System.Enum> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1114,6 +1161,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class FloatField extends UnityEngine.UIElements.TextValueField$1<number> {
@@ -1125,7 +1173,8 @@ declare namespace CS {
                 constructor($maxLength: number);
                 constructor($label: string, $maxLength?: number);
                 public ApplyInputDeviceDelta($delta: UnityEngine.Vector3, $speed: UnityEngine.UIElements.DeltaSpeed, $startValue: number): void;
-
+            }
+            namespace FloatField {
                 class UxmlSerializedData extends UnityEngine.UIElements.TextValueField$1.UxmlSerializedData$1<number> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1142,6 +1191,7 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
+
             }
 
             class Foldout extends UnityEngine.UIElements.BindableElement implements UnityEngine.UIElements.INotifyValueChanged$1<boolean> {
@@ -1159,7 +1209,8 @@ declare namespace CS {
                 public value: boolean;
                 constructor();
                 public SetValueWithoutNotify($newValue: boolean): void;
-
+            }
+            namespace Foldout {
                 class UxmlSerializedData extends UnityEngine.UIElements.BindableElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1178,6 +1229,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             enum DropdownMenuSizeMode {
@@ -1230,7 +1282,8 @@ declare namespace CS {
                 public text: string;
                 constructor();
                 constructor($text: string);
-
+            }
+            namespace GroupBox {
                 class UxmlSerializedData extends UnityEngine.UIElements.BindableElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1249,6 +1302,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class Hash128Field extends UnityEngine.UIElements.TextInputBaseField$1<UnityEngine.Hash128> {
@@ -1261,7 +1315,8 @@ declare namespace CS {
                 constructor($maxLength: number);
                 constructor($label: string, $maxLength?: number);
                 public SetValueWithoutNotify($newValue: UnityEngine.Hash128): void;
-
+            }
+            namespace Hash128Field {
                 class UxmlSerializedData extends UnityEngine.UIElements.TextInputBaseField$1.UxmlSerializedData$1<UnityEngine.Hash128> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1278,6 +1333,7 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
+
             }
 
             enum HelpBoxMessageType {
@@ -1299,7 +1355,8 @@ declare namespace CS {
                 public messageType: UnityEngine.UIElements.HelpBoxMessageType;
                 constructor();
                 constructor($text: string, $messageType: UnityEngine.UIElements.HelpBoxMessageType);
-
+            }
+            namespace HelpBox {
                 class UxmlSerializedData extends UnityEngine.UIElements.VisualElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1318,6 +1375,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class Image extends UnityEngine.UIElements.VisualElement {
@@ -1331,7 +1389,8 @@ declare namespace CS {
                 public scaleMode: UnityEngine.ScaleMode;
                 public tintColor: UnityEngine.Color;
                 constructor();
-
+            }
+            namespace Image {
                 class UxmlSerializedData extends UnityEngine.UIElements.VisualElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1350,6 +1409,7 @@ declare namespace CS {
                     public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
                     constructor();
                 }
+
             }
 
             interface IMixedValueSupport {
@@ -1381,7 +1441,8 @@ declare namespace CS {
                 public label: string;
                 public showMixedValue: boolean;
                 public SetValueWithoutNotify($newValue: TValueType): void;
-
+            }
+            namespace BaseField {
                 class UxmlSerializedData<TValueType> extends UnityEngine.UIElements.BindableElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     public static Register(): void;
@@ -1393,6 +1454,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class BaseFieldTraits<TValueType, TValueUxmlAttributeType extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<TValueType>> extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<TValueType> {
@@ -1413,7 +1475,8 @@ declare namespace CS {
                 constructor($label: string);
                 constructor($label: string, $maxLength: number, $multiline: boolean, $isPasswordField: boolean, $maskChar: number);
                 public SetValueWithoutNotify($newValue: string): void;
-
+            }
+            namespace TextField {
                 class UxmlSerializedData extends UnityEngine.UIElements.TextInputBaseField$1.UxmlSerializedData$1<string> implements UnityEngine.UIElements.IUxmlSerializedDataCustomAttributeHandler {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1432,6 +1495,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class TextInputBaseField<TValueType> extends UnityEngine.UIElements.BaseField$1<TValueType> implements UnityEngine.UIElements.IDelayedField {
@@ -1471,7 +1535,8 @@ declare namespace CS {
                 public SelectRange($cursorIndex: number, $selectionIndex: number): void;
                 public SetVerticalScrollerVisibility($sv: UnityEngine.UIElements.ScrollerVisibility): boolean;
                 public MeasureTextSize($textToMeasure: string, $width: number, $widthMode: UnityEngine.UIElements.VisualElement.MeasureMode, $height: number, $heightMode: UnityEngine.UIElements.VisualElement.MeasureMode): UnityEngine.Vector2;
-
+            }
+            namespace TextInputBaseField {
                 class UxmlSerializedData<TValueType> extends UnityEngine.UIElements.BaseField$1.UxmlSerializedData$1<TValueType> {
                     protected [__keep_incompatibility]: never;
                     public static Register(): void;
@@ -1484,6 +1549,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class IntegerField extends UnityEngine.UIElements.TextValueField$1<number> {
@@ -1495,7 +1561,8 @@ declare namespace CS {
                 constructor($maxLength: number);
                 constructor($label: string, $maxLength?: number);
                 public ApplyInputDeviceDelta($delta: UnityEngine.Vector3, $speed: UnityEngine.UIElements.DeltaSpeed, $startValue: number): void;
-
+            }
+            namespace IntegerField {
                 class UxmlSerializedData extends UnityEngine.UIElements.TextValueField$1.UxmlSerializedData$1<number> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1512,6 +1579,7 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
+
             }
 
             class Label extends UnityEngine.UIElements.TextElement {
@@ -1519,7 +1587,8 @@ declare namespace CS {
                 public static readonly ussClassName: string;
                 constructor();
                 constructor($text: string);
-
+            }
+            namespace Label {
                 class UxmlSerializedData extends UnityEngine.UIElements.TextElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1535,6 +1604,7 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
+
             }
 
             class ListView extends UnityEngine.UIElements.BaseListView {
@@ -1546,7 +1616,8 @@ declare namespace CS {
                 public destroyItem: System.Action$1<UnityEngine.UIElements.VisualElement>;
                 constructor();
                 constructor($itemsSource: System.Collections.IList, $itemHeight?: number, $makeItem?: System.Func$1<UnityEngine.UIElements.VisualElement>, $bindItem?: System.Action$2<UnityEngine.UIElements.VisualElement, number>);
-
+            }
+            namespace ListView {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseListView.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1565,6 +1636,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class LongField extends UnityEngine.UIElements.TextValueField$1<bigint> {
@@ -1576,7 +1648,8 @@ declare namespace CS {
                 constructor($maxLength: number);
                 constructor($label: string, $maxLength?: number);
                 public ApplyInputDeviceDelta($delta: UnityEngine.Vector3, $speed: UnityEngine.UIElements.DeltaSpeed, $startValue: bigint): void;
-
+            }
+            namespace LongField {
                 class UxmlSerializedData extends UnityEngine.UIElements.TextValueField$1.UxmlSerializedData$1<bigint> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1593,6 +1666,7 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
+
             }
 
             class MinMaxSlider extends UnityEngine.UIElements.BaseField$1<UnityEngine.Vector2> {
@@ -1615,7 +1689,8 @@ declare namespace CS {
                 constructor($minValue: number, $maxValue: number, $minLimit: number, $maxLimit: number);
                 constructor($label: string, $minValue?: number, $maxValue?: number, $minLimit?: number, $maxLimit?: number);
                 public SetValueWithoutNotify($newValue: UnityEngine.Vector2): void;
-
+            }
+            namespace MinMaxSlider {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseField$1.UxmlSerializedData$1<UnityEngine.Vector2> implements UnityEngine.UIElements.IUxmlSerializedDataCustomAttributeHandler {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1634,6 +1709,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class Column implements UnityEngine.UIElements.INotifyBindablePropertyChanged {
@@ -1665,7 +1741,8 @@ declare namespace CS {
                 constructor();
                 public add_propertyChanged(handler: System.EventHandler$1<UnityEngine.UIElements.BindablePropertyChangedEventArgs>): void;
                 public remove_propertyChanged(handler: System.EventHandler$1<UnityEngine.UIElements.BindablePropertyChangedEventArgs>): void;
-
+            }
+            namespace Column {
                 class UxmlSerializedData extends UnityEngine.UIElements.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1673,6 +1750,7 @@ declare namespace CS {
                     public CreateInstance(): any;
                     public Deserialize($obj: any): void;
                 }
+
             }
 
             class Columns implements System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.Column>, System.Collections.IEnumerable, UnityEngine.UIElements.INotifyBindablePropertyChanged, System.Collections.Generic.ICollection$1<UnityEngine.UIElements.Column> {
@@ -1701,7 +1779,8 @@ declare namespace CS {
                 public remove_propertyChanged(handler: System.EventHandler$1<UnityEngine.UIElements.BindablePropertyChangedEventArgs>): void;
                 public get_Item($index: number): UnityEngine.UIElements.Column;
                 public get_Item($name: string): UnityEngine.UIElements.Column;
-
+            }
+            namespace Columns {
                 enum StretchMode {
                     Grow = 0,
                     GrowAndFill = 1
@@ -1714,6 +1793,7 @@ declare namespace CS {
                     public CreateInstance(): any;
                     public Deserialize($obj: any): void;
                 }
+
             }
 
             enum ColumnSortingMode {
@@ -1756,7 +1836,8 @@ declare namespace CS {
                 public remove_columnSortingChanged(handler: System.Action): void;
                 public add_headerContextMenuPopulateEvent(handler: System.Action$2<UnityEngine.UIElements.ContextualMenuPopulateEvent, UnityEngine.UIElements.Column>): void;
                 public remove_headerContextMenuPopulateEvent(handler: System.Action$2<UnityEngine.UIElements.ContextualMenuPopulateEvent, UnityEngine.UIElements.Column>): void;
-
+            }
+            namespace MultiColumnListView {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseListView.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1775,6 +1856,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class MultiColumnTreeView extends UnityEngine.UIElements.BaseTreeView {
@@ -1792,7 +1874,8 @@ declare namespace CS {
                 public remove_columnSortingChanged(handler: System.Action): void;
                 public add_headerContextMenuPopulateEvent(handler: System.Action$2<UnityEngine.UIElements.ContextualMenuPopulateEvent, UnityEngine.UIElements.Column>): void;
                 public remove_headerContextMenuPopulateEvent(handler: System.Action$2<UnityEngine.UIElements.ContextualMenuPopulateEvent, UnityEngine.UIElements.Column>): void;
-
+            }
+            namespace MultiColumnTreeView {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseTreeView.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1811,6 +1894,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             enum SortDirection {
@@ -1829,7 +1913,8 @@ declare namespace CS {
                 constructor($columnName: string, $direction: UnityEngine.UIElements.SortDirection);
                 public add_propertyChanged(handler: System.EventHandler$1<UnityEngine.UIElements.BindablePropertyChangedEventArgs>): void;
                 public remove_propertyChanged(handler: System.EventHandler$1<UnityEngine.UIElements.BindablePropertyChangedEventArgs>): void;
-
+            }
+            namespace SortColumnDescription {
                 class UxmlSerializedData extends UnityEngine.UIElements.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1837,6 +1922,7 @@ declare namespace CS {
                     public CreateInstance(): any;
                     public Deserialize($obj: any): void;
                 }
+
             }
 
             class SortColumnDescriptions implements System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.SortColumnDescription>, System.Collections.IEnumerable, System.Collections.Generic.ICollection$1<UnityEngine.UIElements.SortColumnDescription> {
@@ -1854,7 +1940,8 @@ declare namespace CS {
                 public Insert($index: number, $desc: UnityEngine.UIElements.SortColumnDescription): void;
                 public RemoveAt($index: number): void;
                 public get_Item($index: number): UnityEngine.UIElements.SortColumnDescription;
-
+            }
+            namespace SortColumnDescriptions {
                 class UxmlSerializedData extends UnityEngine.UIElements.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1862,6 +1949,7 @@ declare namespace CS {
                     public CreateInstance(): any;
                     public Deserialize($obj: any): void;
                 }
+
             }
 
             class PopupField<T> extends UnityEngine.UIElements.BasePopupField$2<T, T> {
@@ -1888,7 +1976,8 @@ declare namespace CS {
                 public static readonly contentUssClassName: string;
                 public get contentContainer(): UnityEngine.UIElements.VisualElement;
                 constructor();
-
+            }
+            namespace PopupWindow {
                 class UxmlSerializedData extends UnityEngine.UIElements.TextElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1905,6 +1994,7 @@ declare namespace CS {
                     public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
                     constructor();
                 }
+
             }
 
             class AbstractProgressBar extends UnityEngine.UIElements.BindableElement implements UnityEngine.UIElements.INotifyValueChanged$1<number> {
@@ -1920,7 +2010,8 @@ declare namespace CS {
                 public highValue: number;
                 public value: number;
                 public SetValueWithoutNotify($newValue: number): void;
-
+            }
+            namespace AbstractProgressBar {
                 class UxmlSerializedData extends UnityEngine.UIElements.BindableElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1933,12 +2024,14 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class ProgressBar extends UnityEngine.UIElements.AbstractProgressBar {
                 protected [__keep_incompatibility]: never;
                 constructor();
-
+            }
+            namespace ProgressBar {
                 class UxmlSerializedData extends UnityEngine.UIElements.AbstractProgressBar.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1949,6 +2042,7 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
+
             }
 
             class RadioButton extends UnityEngine.UIElements.BaseBoolField implements UnityEngine.UIElements.IGroupBoxOption {
@@ -1964,7 +2058,8 @@ declare namespace CS {
                 constructor($label: string);
                 public SetSelected($selected: boolean): void;
                 public SetValueWithoutNotify($newValue: boolean): void;
-
+            }
+            namespace RadioButton {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseBoolField.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1983,6 +2078,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class RadioButtonGroup extends UnityEngine.UIElements.BaseField$1<number> implements UnityEngine.UIElements.IGroupBox {
@@ -1994,7 +2090,8 @@ declare namespace CS {
                 constructor();
                 constructor($label: string, $radioButtonChoices?: System.Collections.Generic.List$1<string>);
                 public SetValueWithoutNotify($newValue: number): void;
-
+            }
+            namespace RadioButtonGroup {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseField$1.UxmlSerializedData$1<number> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -2013,6 +2110,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class RepeatButton extends UnityEngine.UIElements.TextElement {
@@ -2021,7 +2119,8 @@ declare namespace CS {
                 constructor();
                 constructor($clickEvent: System.Action, $delay: bigint, $interval: bigint);
                 public SetAction($clickEvent: System.Action, $delay: bigint, $interval: bigint): void;
-
+            }
+            namespace RepeatButton {
                 class UxmlSerializedData extends UnityEngine.UIElements.TextElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -2040,6 +2139,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class Scroller extends UnityEngine.UIElements.VisualElement {
@@ -2066,7 +2166,8 @@ declare namespace CS {
                 public ScrollPageDown($factor: number): void;
                 public add_valueChanged(handler: System.Action$1<number>): void;
                 public remove_valueChanged(handler: System.Action$1<number>): void;
-
+            }
+            namespace Scroller {
                 class UxmlSerializedData extends UnityEngine.UIElements.VisualElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -2086,6 +2187,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             enum ScrollViewMode {
@@ -2139,7 +2241,8 @@ declare namespace CS {
                 constructor();
                 constructor($scrollViewMode: UnityEngine.UIElements.ScrollViewMode);
                 public ScrollTo($child: UnityEngine.UIElements.VisualElement): void;
-
+            }
+            namespace ScrollView {
                 class UxmlSerializedData extends UnityEngine.UIElements.VisualElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -2170,6 +2273,7 @@ declare namespace CS {
                     StopScrolling = 1,
                     ForwardScrolling = 2
                 }
+
             }
 
             class Slider extends UnityEngine.UIElements.BaseSlider$1<number> {
@@ -2181,7 +2285,8 @@ declare namespace CS {
                 constructor($start: number, $end: number, $direction?: UnityEngine.UIElements.SliderDirection, $pageSize?: number);
                 constructor($label: string, $start?: number, $end?: number, $direction?: UnityEngine.UIElements.SliderDirection, $pageSize?: number);
                 public ApplyInputDeviceDelta($delta: UnityEngine.Vector3, $speed: UnityEngine.UIElements.DeltaSpeed, $startValue: number): void;
-
+            }
+            namespace Slider {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseSlider$1.UxmlSerializedData$1<number> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -2200,6 +2305,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class SliderInt extends UnityEngine.UIElements.BaseSlider$1<number> {
@@ -2212,7 +2318,8 @@ declare namespace CS {
                 constructor($start: number, $end: number, $direction?: UnityEngine.UIElements.SliderDirection, $pageSize?: number);
                 constructor($label: string, $start?: number, $end?: number, $direction?: UnityEngine.UIElements.SliderDirection, $pageSize?: number);
                 public ApplyInputDeviceDelta($delta: UnityEngine.Vector3, $speed: UnityEngine.UIElements.DeltaSpeed, $startValue: number): void;
-
+            }
+            namespace SliderInt {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseSlider$1.UxmlSerializedData$1<number> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -2231,6 +2338,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class Tab extends UnityEngine.UIElements.VisualElement {
@@ -2265,7 +2373,8 @@ declare namespace CS {
                 public remove_closing(handler: System.Func$1<boolean>): void;
                 public add_closed(handler: System.Action$1<UnityEngine.UIElements.Tab>): void;
                 public remove_closed(handler: System.Action$1<UnityEngine.UIElements.Tab>): void;
-
+            }
+            namespace Tab {
                 class UxmlSerializedData extends UnityEngine.UIElements.VisualElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -2284,6 +2393,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class TabView extends UnityEngine.UIElements.VisualElement {
@@ -2311,7 +2421,8 @@ declare namespace CS {
                 public remove_tabReordered(handler: System.Action$2<number, number>): void;
                 public add_tabClosed(handler: System.Action$2<UnityEngine.UIElements.Tab, number>): void;
                 public remove_tabClosed(handler: System.Action$2<UnityEngine.UIElements.Tab, number>): void;
-
+            }
+            namespace TabView {
                 class UxmlSerializedData extends UnityEngine.UIElements.VisualElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -2330,6 +2441,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             enum DeltaSpeed {
@@ -2354,12 +2466,14 @@ declare namespace CS {
                 public StopDragging(): void;
                 public SetValueWithoutNotify($newValue: TValueType): void;
                 public ClearValue(): void;
-
+            }
+            namespace TextValueField {
                 class UxmlSerializedData<TValueType> extends UnityEngine.UIElements.TextInputBaseField$1.UxmlSerializedData$1<TValueType> {
                     protected [__keep_incompatibility]: never;
                     public static Register(): void;
                     public Deserialize($obj: any): void;
                 }
+
             }
 
             class TextValueFieldTraits<TValueType, TValueUxmlAttributeType extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<TValueType>> extends UnityEngine.UIElements.BaseFieldTraits$2<TValueType, TValueUxmlAttributeType> {
@@ -2379,7 +2493,8 @@ declare namespace CS {
                 public static readonly mixedValuesUssClassName: string;
                 constructor();
                 constructor($label: string);
-
+            }
+            namespace Toggle {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseBoolField.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -2398,6 +2513,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class ToggleButtonGroup extends UnityEngine.UIElements.BaseField$1<UnityEngine.UIElements.ToggleButtonGroupState> {
@@ -2420,7 +2536,8 @@ declare namespace CS {
                 constructor($label: string, $toggleButtonGroupState: UnityEngine.UIElements.ToggleButtonGroupState);
                 public SetValueWithoutNotify($newValue: UnityEngine.UIElements.ToggleButtonGroupState): void;
                 public GetButton($index: number): UnityEngine.UIElements.Button;
-
+            }
+            namespace ToggleButtonGroup {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseField$1.UxmlSerializedData$1<UnityEngine.UIElements.ToggleButtonGroupState> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -2439,6 +2556,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class ToggleButtonGroupState implements System.IEquatable$1<UnityEngine.UIElements.ToggleButtonGroupState>, System.IComparable$1<UnityEngine.UIElements.ToggleButtonGroupState> {
@@ -2482,7 +2600,8 @@ declare namespace CS {
                 constructor();
                 constructor($makeItem: System.Func$1<UnityEngine.UIElements.VisualElement>, $bindItem: System.Action$2<UnityEngine.UIElements.VisualElement, number>);
                 constructor($itemHeight: number, $makeItem: System.Func$1<UnityEngine.UIElements.VisualElement>, $bindItem: System.Action$2<UnityEngine.UIElements.VisualElement, number>);
-
+            }
+            namespace TreeView {
                 class UxmlSerializedData extends UnityEngine.UIElements.BaseTreeView.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -2501,6 +2620,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class TreeViewItemData<T> {
@@ -2524,7 +2644,8 @@ declare namespace CS {
                 constructor($fixedPaneIndex: number, $fixedPaneStartDimension: number, $orientation: UnityEngine.UIElements.TwoPaneSplitViewOrientation);
                 public CollapseChild($index: number): void;
                 public UnCollapse(): void;
-
+            }
+            namespace TwoPaneSplitView {
                 class UxmlSerializedData extends UnityEngine.UIElements.VisualElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -2544,6 +2665,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             enum TwoPaneSplitViewOrientation {
@@ -2560,7 +2682,8 @@ declare namespace CS {
                 constructor($maxLength: number);
                 constructor($label: string, $maxLength?: number);
                 public ApplyInputDeviceDelta($delta: UnityEngine.Vector3, $speed: UnityEngine.UIElements.DeltaSpeed, $startValue: number): void;
-
+            }
+            namespace UnsignedIntegerField {
                 class UxmlSerializedData extends UnityEngine.UIElements.TextValueField$1.UxmlSerializedData$1<number> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -2577,6 +2700,7 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
+
             }
 
             class UnsignedLongField extends UnityEngine.UIElements.TextValueField$1<bigint> {
@@ -2588,7 +2712,8 @@ declare namespace CS {
                 constructor($maxLength: number);
                 constructor($label: string, $maxLength?: number);
                 public ApplyInputDeviceDelta($delta: UnityEngine.Vector3, $speed: UnityEngine.UIElements.DeltaSpeed, $startValue: bigint): void;
-
+            }
+            namespace UnsignedLongField {
                 class UxmlSerializedData extends UnityEngine.UIElements.TextValueField$1.UxmlSerializedData$1<bigint> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -2605,6 +2730,7 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
+
             }
 
             class Cursor implements System.IEquatable$1<UnityEngine.UIElements.Cursor> {
@@ -2706,7 +2832,8 @@ declare namespace CS {
                 public static AlwaysDisabled($a: UnityEngine.UIElements.DropdownMenuAction): UnityEngine.UIElements.DropdownMenuAction.Status;
                 public UpdateActionStatus($eventInfo: UnityEngine.UIElements.DropdownMenuEventInfo): void;
                 public Execute(): void;
-
+            }
+            namespace DropdownMenuAction {
                 enum Status {
                     None = 0,
                     Normal = 1,
@@ -2714,6 +2841,7 @@ declare namespace CS {
                     Checked = 4,
                     Hidden = 8
                 }
+
             }
 
             class DropdownMenu {
@@ -3138,7 +3266,8 @@ declare namespace CS {
                 constructor();
                 public static GetPooled($moveVector: UnityEngine.Vector2, $modifiers?: UnityEngine.EventModifiers): UnityEngine.UIElements.NavigationMoveEvent;
                 public static GetPooled($direction: UnityEngine.UIElements.NavigationMoveEvent.Direction, $modifiers?: UnityEngine.EventModifiers): UnityEngine.UIElements.NavigationMoveEvent;
-
+            }
+            namespace NavigationMoveEvent {
                 enum Direction {
                     None = 0,
                     Left = 1,
@@ -3148,6 +3277,7 @@ declare namespace CS {
                     Next = 5,
                     Previous = 6
                 }
+
             }
 
             class NavigationCancelEvent extends UnityEngine.UIElements.NavigationEventBase$1<UnityEngine.UIElements.NavigationCancelEvent> {
@@ -3336,7 +3466,8 @@ declare namespace CS {
                 protected [__keep_incompatibility]: never;
                 public GetEnumerator(): UnityEngine.UIElements.StylePropertyNameCollection.Enumerator;
                 public Contains($stylePropertyName: UnityEngine.UIElements.StylePropertyName): boolean;
-
+            }
+            namespace StylePropertyNameCollection {
                 class Enumerator implements System.Collections.Generic.IEnumerator$1<UnityEngine.UIElements.StylePropertyName>, System.Collections.IEnumerator, System.IDisposable {
                     protected [__keep_incompatibility]: never;
                     public get Current(): UnityEngine.UIElements.StylePropertyName;
@@ -3344,6 +3475,7 @@ declare namespace CS {
                     public Reset(): void;
                     public Dispose(): void;
                 }
+
             }
 
             class TransitionEventBase<T extends UnityEngine.UIElements.TransitionEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.ITransitionEvent {
@@ -3423,7 +3555,8 @@ declare namespace CS {
                 public prepareMaterialPropertyBlockCallback: UnityEngine.UIElements.PostProcessingPass.PrepareMaterialPropertyBlockDelegate;
                 public computeRequiredReadMarginsCallback: UnityEngine.UIElements.PostProcessingPass.ComputeRequiredMarginsDelegate;
                 public computeRequiredWriteMarginsCallback: UnityEngine.UIElements.PostProcessingPass.ComputeRequiredMarginsDelegate;
-
+            }
+            namespace PostProcessingPass {
                 interface PrepareMaterialPropertyBlockDelegate {
                     ($mpb: UnityEngine.MaterialPropertyBlock, $func: UnityEngine.UIElements.FilterFunction): void;
                     Invoke?: ($mpb: UnityEngine.MaterialPropertyBlock, $func: UnityEngine.UIElements.FilterFunction) => void;
@@ -3435,6 +3568,7 @@ declare namespace CS {
                     Invoke?: ($func: UnityEngine.UIElements.FilterFunction) => UnityEngine.UIElements.PostProcessingMargins;
                 }
                 var ComputeRequiredMarginsDelegate: { new (func: ($func: UnityEngine.UIElements.FilterFunction) => UnityEngine.UIElements.PostProcessingMargins): ComputeRequiredMarginsDelegate; };
+
             }
 
             class PostProcessingMargins {
@@ -3496,12 +3630,14 @@ declare namespace CS {
                 public panelInputRedirection: UnityEngine.UIElements.PanelInputConfiguration.PanelInputRedirection;
                 public autoCreatePanelComponents: boolean;
                 constructor();
-
+            }
+            namespace PanelInputConfiguration {
                 enum PanelInputRedirection {
                     AutoSwitch = 0,
                     Never = 1,
                     Always = 2
                 }
+
             }
 
             enum PanelScaleMode {
@@ -3590,11 +3726,13 @@ declare namespace CS {
                 public pivot: UnityEngine.UIElements.Pivot;
                 public sortingOrder: number;
                 public get runtimePanel(): UnityEngine.UIElements.IRuntimePanel;
-
+            }
+            namespace UIDocument {
                 enum WorldSpaceSizeMode {
                     Dynamic = 0,
                     Fixed = 1
                 }
+
             }
 
             class IMGUIContainer extends UnityEngine.UIElements.VisualElement implements System.IDisposable {
@@ -3608,7 +3746,8 @@ declare namespace CS {
                 constructor($onGUIHandler: System.Action);
                 public MarkDirtyLayout(): void;
                 public Dispose(): void;
-
+            }
+            namespace IMGUIContainer {
                 class UxmlSerializedData extends UnityEngine.UIElements.VisualElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -3625,16 +3764,19 @@ declare namespace CS {
                     public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
                     constructor();
                 }
+
             }
 
             class ImmediateModeElement extends UnityEngine.UIElements.VisualElement {
                 protected [__keep_incompatibility]: never;
                 public cullingEnabled: boolean;
-
+            }
+            namespace ImmediateModeElement {
                 class UxmlSerializedData extends UnityEngine.UIElements.VisualElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
+
             }
 
             enum SelectionType {
@@ -4360,7 +4502,8 @@ declare namespace CS {
                 public Contains($child: UnityEngine.UIElements.VisualElement): boolean;
                 public FindCommonAncestor($other: UnityEngine.UIElements.VisualElement): UnityEngine.UIElements.VisualElement;
                 public get_Item($key: number): UnityEngine.UIElements.VisualElement;
-
+            }
+            namespace VisualElement {
                 class UxmlSerializedData extends UnityEngine.UIElements.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -4405,6 +4548,7 @@ declare namespace CS {
                     public GetHashCode(): number;
                     public get_Item($key: number): UnityEngine.UIElements.VisualElement;
                 }
+
             }
 
             enum LengthUnit {
@@ -4950,7 +5094,8 @@ declare namespace CS {
                 public get contentContainer(): UnityEngine.UIElements.VisualElement;
                 constructor();
                 constructor($templateId: string);
-
+            }
+            namespace TemplateContainer {
                 class UxmlSerializedData extends UnityEngine.UIElements.BindableElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -4972,6 +5117,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             class PanelTextSettings extends UnityEngine.TextCore.Text.TextSettings {
@@ -4996,7 +5142,8 @@ declare namespace CS {
                 public MeasureTextSize($textToMeasure: string, $width: number, $widthMode: UnityEngine.UIElements.VisualElement.MeasureMode, $height: number, $heightMode: UnityEngine.UIElements.VisualElement.MeasureMode): UnityEngine.Vector2;
                 public MeasureTextSize($textToMeasure: string, $width: number, $widthMode: UnityEngine.UIElements.VisualElement.MeasureMode, $height: number, $heightMode: UnityEngine.UIElements.VisualElement.MeasureMode, $fontsize?: number | null): UnityEngine.Vector2;
                 public MarkDirtyText(): void;
-
+            }
+            namespace TextElement {
                 class Glyph {
                     protected [__keep_incompatibility]: never;
                     public readonly vertices: Unity.Collections.NativeSlice$1<UnityEngine.UIElements.Vertex>;
@@ -5034,6 +5181,7 @@ declare namespace CS {
                     constructor();
                     public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
+
             }
 
             enum TextAutoSizeMode {
@@ -5149,7 +5297,8 @@ declare namespace CS {
                 public Equals($other: UnityEngine.UIElements.UQueryState$1<T>): boolean;
                 public Equals($obj: any): boolean;
                 public GetHashCode(): number;
-
+            }
+            namespace UQueryState {
                 class Enumerator<T extends UnityEngine.UIElements.VisualElement> implements System.Collections.Generic.IEnumerator$1<T>, System.Collections.IEnumerator, System.IDisposable {
                     protected [__keep_incompatibility]: never;
                     public get Current(): T;
@@ -5157,6 +5306,7 @@ declare namespace CS {
                     public Reset(): void;
                     public Dispose(): void;
                 }
+
             }
 
             class UQueryBuilder<T extends UnityEngine.UIElements.VisualElement> implements System.IEquatable$1<UnityEngine.UIElements.UQueryBuilder$1<T>> {
@@ -5301,13 +5451,15 @@ declare namespace CS {
                 public get defaultValueAsString(): string;
                 public use: UnityEngine.UIElements.UxmlAttributeDescription.Use;
                 public restriction: UnityEngine.UIElements.UxmlTypeRestriction;
-
+            }
+            namespace UxmlAttributeDescription {
                 enum Use {
                     None = 0,
                     Optional = 1,
                     Prohibited = 2,
                     Required = 3
                 }
+
             }
 
             class TypedUxmlAttributeDescription<T> extends UnityEngine.UIElements.UxmlAttributeDescription {
@@ -5552,12 +5704,14 @@ declare namespace CS {
                 public static ShouldWriteAttributeValue($attributeFlags: UnityEngine.UIElements.UxmlSerializedData.UxmlAttributeFlags): boolean;
                 public CreateInstance(): any;
                 public Deserialize($obj: any): void;
-
+            }
+            namespace UxmlSerializedData {
                 enum UxmlAttributeFlags {
                     Ignore = 0,
                     OverriddenInUxml = 1,
                     DefaultValue = 2
                 }
+
             }
 
             class UxmlSerializedDataUtility {
@@ -5708,12 +5862,14 @@ declare namespace CS {
                 constructor($root: UnityEngine.UIElements.VisualElement, $dfo?: UnityEngine.UIElements.VisualElementFocusRing.DefaultFocusOrder);
                 public GetFocusChangeDirection($currentFocusable: UnityEngine.UIElements.Focusable, $e: UnityEngine.UIElements.EventBase): UnityEngine.UIElements.FocusChangeDirection;
                 public GetNextFocusable($currentFocusable: UnityEngine.UIElements.Focusable, $direction: UnityEngine.UIElements.FocusChangeDirection): UnityEngine.UIElements.Focusable;
-
+            }
+            namespace VisualElementFocusRing {
                 enum DefaultFocusOrder {
                     ChildOrder = 0,
                     PositionXY = 1,
                     PositionYX = 2
                 }
+
             }
 
             interface IVisualElementScheduledItem {

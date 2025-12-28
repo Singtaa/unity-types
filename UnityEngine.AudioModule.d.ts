@@ -17,7 +17,8 @@ declare namespace CS {
             public static Reset($config: UnityEngine.AudioConfiguration): boolean;
             public static add_OnAudioConfigurationChanged(handler: UnityEngine.AudioSettings.AudioConfigurationChangeHandler): void;
             public static remove_OnAudioConfigurationChanged(handler: UnityEngine.AudioSettings.AudioConfigurationChangeHandler): void;
-
+        }
+        namespace AudioSettings {
             interface AudioConfigurationChangeHandler {
                 ($deviceWasChanged: boolean): void;
                 Invoke?: ($deviceWasChanged: boolean) => void;
@@ -34,6 +35,7 @@ declare namespace CS {
                 public static add_OnMuteStateChanged(handler: System.Action$1<boolean>): void;
                 public static remove_OnMuteStateChanged(handler: System.Action$1<boolean>): void;
             }
+
         }
 
         class AudioSource extends UnityEngine.AudioBehaviour {
@@ -284,7 +286,8 @@ declare namespace CS {
             public static Create($name: string, $lengthSamples: number, $channels: number, $frequency: number, $stream: boolean): UnityEngine.AudioClip;
             public static Create($name: string, $lengthSamples: number, $channels: number, $frequency: number, $stream: boolean, $pcmreadercallback: UnityEngine.AudioClip.PCMReaderCallback): UnityEngine.AudioClip;
             public static Create($name: string, $lengthSamples: number, $channels: number, $frequency: number, $stream: boolean, $pcmreadercallback: UnityEngine.AudioClip.PCMReaderCallback, $pcmsetpositioncallback: UnityEngine.AudioClip.PCMSetPositionCallback): UnityEngine.AudioClip;
-
+        }
+        namespace AudioClip {
             interface PCMReaderCallback {
                 ($data: System.Array$1<number>): void;
                 Invoke?: ($data: System.Array$1<number>) => void;
@@ -296,6 +299,7 @@ declare namespace CS {
                 Invoke?: ($position: number) => void;
             }
             var PCMSetPositionCallback: { new (func: ($position: number) => void): PCMSetPositionCallback; };
+
         }
 
         class AudioBehaviour extends UnityEngine.Behaviour {
@@ -476,7 +480,8 @@ declare namespace CS {
                 public Update($generatorInstance: UnityEngine.Audio.GeneratorInstance): void;
                 public static WaitForBuiltInQueueFlush(): void;
                 public static CreateManualControlContext($format: $Ref<UnityEngine.Audio.AudioFormat>): UnityEngine.Audio.ControlContext.Manual;
-
+            }
+            namespace ControlContext {
                 class Manual implements System.IDisposable {
                     protected [__keep_incompatibility]: never;
                     public get context(): UnityEngine.Audio.ControlContext;
@@ -493,6 +498,7 @@ declare namespace CS {
                 class ProcessorCreationParameters {
                     protected [__keep_incompatibility]: never;
                 }
+
             }
 
             class DSPConfiguration {
@@ -507,7 +513,8 @@ declare namespace CS {
                 public Equals($other: UnityEngine.Audio.GeneratorInstance): boolean;
                 public Equals($obj: any): boolean;
                 public GetHashCode(): number;
-
+            }
+            namespace GeneratorInstance {
                 interface IProcessor {
                 }
 
@@ -545,6 +552,7 @@ declare namespace CS {
                 interface IRealtime extends UnityEngine.Audio.ProcessorInstance.IRealtime, UnityEngine.Audio.GeneratorInstance.ICapabilities {
                     Process($context: $Ref<UnityEngine.Audio.RealtimeContext>, $pipe: UnityEngine.Audio.ProcessorInstance.Pipe, $buffer: UnityEngine.Audio.ChannelBuffer, $args: UnityEngine.Audio.GeneratorInstance.Arguments): UnityEngine.Audio.GeneratorInstance.Result;
                 }
+
             }
 
             class Generator {
@@ -556,7 +564,8 @@ declare namespace CS {
                 public Equals($other: UnityEngine.Audio.ProcessorInstance): boolean;
                 public Equals($obj: any): boolean;
                 public GetHashCode(): number;
-
+            }
+            namespace ProcessorInstance {
                 class CreationParameters {
                     protected [__keep_incompatibility]: never;
                     public controlUpdateSetting: UnityEngine.Audio.ProcessorInstance.UpdateSetting;
@@ -597,6 +606,7 @@ declare namespace CS {
                     Unhandled = 0,
                     Handled = 1
                 }
+
             }
 
             class Processor {
@@ -615,7 +625,8 @@ declare namespace CS {
                 public Equals($other: UnityEngine.Audio.RootOutputInstance): boolean;
                 public Equals($obj: any): boolean;
                 public GetHashCode(): number;
-
+            }
+            namespace RootOutputInstance {
                 interface IProcessor {
                 }
 
@@ -629,6 +640,7 @@ declare namespace CS {
                     EndProcessing($context: $Ref<UnityEngine.Audio.RealtimeContext>, $pipe: UnityEngine.Audio.ProcessorInstance.Pipe, $output: UnityEngine.Audio.ChannelBuffer): void;
                     RemovedFromProcessing(): void;
                 }
+
             }
 
             class RealtimeContext implements UnityEngine.Audio.ProcessorInstance.IContext {
@@ -640,7 +652,8 @@ declare namespace CS {
 
             interface IAudioGenerator extends UnityEngine.Audio.GeneratorInstance.ICapabilities {
                 CreateInstance($context: UnityEngine.Audio.ControlContext, $nestedFormat: UnityEngine.Audio.AudioFormat | null, $creationParameters: UnityEngine.Audio.ProcessorInstance.CreationParameters): UnityEngine.Audio.GeneratorInstance;
-
+            }
+            namespace IAudioGenerator {
                 class Serializable {
                     protected [__keep_incompatibility]: never;
                     public definition: UnityEngine.Audio.IAudioGenerator;
@@ -648,6 +661,7 @@ declare namespace CS {
                     public Get<T extends UnityEngine.Object & UnityEngine.Audio.IAudioGenerator>(): T;
                     public Set<T extends UnityEngine.Object & UnityEngine.Audio.IAudioGenerator>($value: T): void;
                 }
+
             }
 
             class AudioResource extends UnityEngine.Object {
@@ -751,7 +765,8 @@ declare namespace CS {
                     public remove_sampleFramesAvailable(handler: UnityEngine.Experimental.Audio.AudioSampleProvider.SampleFramesHandler): void;
                     public add_sampleFramesOverflow(handler: UnityEngine.Experimental.Audio.AudioSampleProvider.SampleFramesHandler): void;
                     public remove_sampleFramesOverflow(handler: UnityEngine.Experimental.Audio.AudioSampleProvider.SampleFramesHandler): void;
-
+                }
+                namespace AudioSampleProvider {
                     interface ConsumeSampleFramesNativeFunction {
                         ($providerId: number, $interleavedSampleFrames: number, $sampleFrameCount: number): number;
                         Invoke?: ($providerId: number, $interleavedSampleFrames: number, $sampleFrameCount: number) => number;
@@ -769,6 +784,7 @@ declare namespace CS {
                         Invoke?: ($userData: number, $providerId: number, $sampleFrameCount: number) => void;
                     }
                     var SampleFramesEventNativeFunction: { new (func: ($userData: number, $providerId: number, $sampleFrameCount: number) => void): SampleFramesEventNativeFunction; };
+
                 }
 
             }

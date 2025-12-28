@@ -354,7 +354,8 @@ declare namespace CS {
                 public AsReadOnlySpan(): System.ReadOnlySpan$1<T>;
                 public get_Item($index: number): T;
                 public set_Item($index: number, value: T): void;
-
+            }
+            namespace NativeArray {
                 class Enumerator<T> implements System.Collections.Generic.IEnumerator$1<T>, System.Collections.IEnumerator, System.IDisposable {
                     protected [__keep_incompatibility]: never;
                     public get Current(): T;
@@ -376,7 +377,8 @@ declare namespace CS {
                     public GetEnumerator(): Unity.Collections.NativeArray$1.ReadOnly.Enumerator$1<T>;
                     public AsReadOnlySpan(): System.ReadOnlySpan$1<T>;
                     public get_Item($index: number): T;
-
+                }
+                namespace ReadOnly {
                     class Enumerator<T> implements System.Collections.Generic.IEnumerator$1<T>, System.Collections.IEnumerator, System.IDisposable {
                         protected [__keep_incompatibility]: never;
                         public get Current(): T;
@@ -385,7 +387,9 @@ declare namespace CS {
                         public MoveNext(): boolean;
                         public Reset(): void;
                     }
+
                 }
+
             }
 
             class NativeSliceExtensions {
@@ -421,7 +425,8 @@ declare namespace CS {
                 public GetHashCode(): number;
                 public get_Item($index: number): T;
                 public set_Item($index: number, value: T): void;
-
+            }
+            namespace NativeSlice {
                 class Enumerator<T> implements System.Collections.Generic.IEnumerator$1<T>, System.Collections.IEnumerator, System.IDisposable {
                     protected [__keep_incompatibility]: never;
                     public get Current(): T;
@@ -430,6 +435,7 @@ declare namespace CS {
                     public MoveNext(): boolean;
                     public Reset(): void;
                 }
+
             }
 
         }
@@ -676,7 +682,8 @@ declare namespace CS {
                 public get Ticks(): Unity.IntegerTime.RationalTime.TicksPerSecond;
                 constructor($count: bigint, $ticks: Unity.IntegerTime.RationalTime.TicksPerSecond);
                 public static FromDouble($t: number, $ticksPerSecond: Unity.IntegerTime.RationalTime.TicksPerSecond): Unity.IntegerTime.RationalTime;
-
+            }
+            namespace RationalTime {
                 class TicksPerSecond implements System.IEquatable$1<Unity.IntegerTime.RationalTime.TicksPerSecond> {
                     protected [__keep_incompatibility]: never;
                     public static readonly DefaultTicksPerSecond: Unity.IntegerTime.RationalTime.TicksPerSecond;
@@ -699,6 +706,7 @@ declare namespace CS {
                     public Equals($rhs: any): boolean;
                     public GetHashCode(): number;
                 }
+
             }
 
             class RationalTimeExtensions {
@@ -885,11 +893,13 @@ declare namespace CS {
                         public static GetSummaryOfMetrics($metrics: System.Array$1<Unity.IO.LowLevel.Unsafe.AsyncReadManagerRequestMetric>, $metricsFilters: Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetricsFilters): Unity.IO.LowLevel.Unsafe.AsyncReadManagerSummaryMetrics;
                         public static GetSummaryOfMetrics($metrics: System.Collections.Generic.List$1<Unity.IO.LowLevel.Unsafe.AsyncReadManagerRequestMetric>, $metricsFilters: Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetricsFilters): Unity.IO.LowLevel.Unsafe.AsyncReadManagerSummaryMetrics;
                         public static GetTotalSizeOfNonASRMReadsBytes($emptyAfterRead: boolean): bigint;
-
+                    }
+                    namespace AsyncReadManagerMetrics {
                         enum Flags {
                             None = 0,
                             ClearOnRead = 1
                         }
+
                     }
 
                     class AsyncReadManagerSummaryMetrics {
@@ -1086,7 +1096,8 @@ declare namespace CS {
                         public static CreateJobReflectionData($wrapperJobType: System.Type, $userJobType: System.Type, $jobType: Unity.Jobs.LowLevel.Unsafe.JobType, $managedJobFunction0: any): number;
                         public static CreateJobReflectionData($wrapperJobType: System.Type, $userJobType: System.Type, $managedJobFunction0: any): number;
                         public static ResetJobWorkerCount(): void;
-
+                    }
+                    namespace JobsUtility {
                         class JobScheduleParameters {
                             protected [__keep_incompatibility]: never;
                             public Dependency: Unity.Jobs.JobHandle;
@@ -1094,6 +1105,7 @@ declare namespace CS {
                             public ReflectionData: number;
                             public JobDataPtr: number;
                         }
+
                     }
 
                 }
@@ -1171,11 +1183,13 @@ declare namespace CS {
                 public Begin($contextUnityObject: UnityEngine.Object): void;
                 public End(): void;
                 public Auto(): Unity.Profiling.ProfilerMarker.AutoScope;
-
+            }
+            namespace ProfilerMarker {
                 class AutoScope implements System.IDisposable {
                     protected [__keep_incompatibility]: never;
                     public Dispose(): void;
                 }
+
             }
 
             enum ProfilerFlowEventType {
@@ -1359,12 +1373,14 @@ declare namespace CS {
                         public static EndSample($markerPtr: number): void;
                         public static CreateFlow($categoryId: number): number;
                         public static FlowEvent($flowId: number, $flowEventType: Unity.Profiling.ProfilerFlowEventType): void;
-
+                    }
+                    namespace ProfilerUnsafeUtility {
                         class TimestampConversionRatio {
                             protected [__keep_incompatibility]: never;
                             public Numerator: bigint;
                             public Denominator: bigint;
                         }
+
                     }
 
                 }
@@ -1542,12 +1558,14 @@ declare namespace CS {
             public static NameToID($name: string): number;
             public static IDToName($id: number): string;
             public static IsValid($id: number): boolean;
-
+        }
+        namespace SortingLayer {
             interface LayerCallback {
                 ($layer: UnityEngine.SortingLayer): void;
                 Invoke?: ($layer: UnityEngine.SortingLayer) => void;
             }
             var LayerCallback: { new (func: ($layer: UnityEngine.SortingLayer) => void): LayerCallback; };
+
         }
 
         enum WeightedMode {
@@ -1704,7 +1722,8 @@ declare namespace CS {
             public static remove_quitting(handler: System.Action): void;
             public static add_unloading(handler: System.Action): void;
             public static remove_unloading(handler: System.Action): void;
-
+        }
+        namespace Application {
             interface AdvertisingIdentifierCallback {
                 ($advertisingId: string, $trackingEnabled: boolean, $errorMsg: string): void;
                 Invoke?: ($advertisingId: string, $trackingEnabled: boolean, $errorMsg: string) => void;
@@ -1728,6 +1747,7 @@ declare namespace CS {
                 Invoke?: ($condition: string, $stackTrace: string, $type: UnityEngine.LogType) => void;
             }
             var LogCallback: { new (func: ($condition: string, $stackTrace: string, $type: UnityEngine.LogType) => void): LogCallback; };
+
         }
 
         enum ApplicationMemoryUsage {
@@ -2167,7 +2187,8 @@ declare namespace CS {
             public SetStereoProjectionMatrices($leftMatrix: UnityEngine.Matrix4x4, $rightMatrix: UnityEngine.Matrix4x4): void;
             public GetStereoViewMatrices(): System.Array$1<UnityEngine.Matrix4x4>;
             public GetStereoProjectionMatrices(): System.Array$1<UnityEngine.Matrix4x4>;
-
+        }
+        namespace Camera {
             enum GateFitMode {
                 None = 0,
                 Vertical = 1,
@@ -2209,6 +2230,7 @@ declare namespace CS {
                 Invoke?: ($cam: UnityEngine.Camera) => void;
             }
             var CameraCallback: { new (func: ($cam: UnityEngine.Camera) => void): CameraCallback; };
+
         }
 
         class BoundingSphere {
@@ -2249,12 +2271,14 @@ declare namespace CS {
             public SetBoundingDistances($distances: System.Array$1<number>): void;
             public SetDistanceReferencePoint($point: UnityEngine.Vector3): void;
             public SetDistanceReferencePoint($transform: UnityEngine.Transform): void;
-
+        }
+        namespace CullingGroup {
             interface StateChanged {
                 ($sphere: UnityEngine.CullingGroupEvent): void;
                 Invoke?: ($sphere: UnityEngine.CullingGroupEvent) => void;
             }
             var StateChanged: { new (func: ($sphere: UnityEngine.CullingGroupEvent) => void): StateChanged; };
+
         }
 
         class FlareLayer extends UnityEngine.Behaviour {
@@ -2304,11 +2328,13 @@ declare namespace CS {
             public static remove_defaultReflectionSet(handler: System.Action$1<UnityEngine.Cubemap>): void;
             public static add_defaultReflectionTexture(handler: System.Action$1<UnityEngine.Texture>): void;
             public static remove_defaultReflectionTexture(handler: System.Action$1<UnityEngine.Texture>): void;
-
+        }
+        namespace ReflectionProbe {
             enum ReflectionProbeEvent {
                 ReflectionProbeAdded = 0,
                 ReflectionProbeRemoved = 1
             }
+
         }
 
         class CrashReport {
@@ -2383,13 +2409,15 @@ declare namespace CS {
             public static RetrieveStartupLogs(): System.Array$1<UnityEngine.Debug.StartupLog>;
             public static CheckIntegrity($level: UnityEngine.IntegrityCheckLevel): string;
             public static IsValidationLevelEnabled($level: UnityEngine.ValidationLevel): boolean;
-
+        }
+        namespace Debug {
             class StartupLog {
                 protected [__keep_incompatibility]: never;
                 public timestamp: bigint;
                 public logType: UnityEngine.LogType;
                 public message: string;
             }
+
         }
 
         class ExposedPropertyResolver {
@@ -2521,7 +2549,8 @@ declare namespace CS {
             public Equals($other: UnityEngine.BoundsInt): boolean;
             public Equals($other: $Ref<UnityEngine.BoundsInt>): boolean;
             public GetHashCode(): number;
-
+        }
+        namespace BoundsInt {
             class PositionEnumerator implements System.Collections.Generic.IEnumerator$1<UnityEngine.Vector3Int>, System.Collections.IEnumerator, System.IDisposable {
                 protected [__keep_incompatibility]: never;
                 public get Current(): UnityEngine.Vector3Int;
@@ -2530,6 +2559,7 @@ declare namespace CS {
                 public MoveNext(): boolean;
                 public Reset(): void;
             }
+
         }
 
         class GeometryUtility {
@@ -2700,7 +2730,8 @@ declare namespace CS {
             public Equals($other: any): boolean;
             public Equals($other: UnityEngine.RectInt): boolean;
             public Equals($other: $Ref<UnityEngine.RectInt>): boolean;
-
+        }
+        namespace RectInt {
             class PositionEnumerator implements System.Collections.Generic.IEnumerator$1<UnityEngine.Vector2Int>, System.Collections.IEnumerator, System.IDisposable {
                 protected [__keep_incompatibility]: never;
                 public get Current(): UnityEngine.Vector2Int;
@@ -2709,6 +2740,7 @@ declare namespace CS {
                 public MoveNext(): boolean;
                 public Reset(): void;
             }
+
         }
 
         class RectOffset implements System.IFormattable {
@@ -2800,7 +2832,8 @@ declare namespace CS {
             public filteringGaussRadiusIndirect: number;
             public filteringGaussRadiusAO: number;
             constructor();
-
+        }
+        namespace LightingSettings {
             enum Lightmapper {
                 Enlighten = 0,
                 ProgressiveCPU = 1,
@@ -2840,6 +2873,7 @@ declare namespace CS {
                 Unity = 0,
                 XAtlas = 1
             }
+
         }
 
         class Gizmos {
@@ -3002,12 +3036,14 @@ declare namespace CS {
             public static RelativeMouseAt($inputMouseCoordinates: UnityEngine.Vector3): UnityEngine.Vector3;
             public static add_onDisplaysUpdated(handler: UnityEngine.Display.DisplaysUpdatedDelegate): void;
             public static remove_onDisplaysUpdated(handler: UnityEngine.Display.DisplaysUpdatedDelegate): void;
-
+        }
+        namespace Display {
             interface DisplaysUpdatedDelegate {
                 (): void;
                 Invoke?: () => void;
             }
             var DisplaysUpdatedDelegate: { new (func: () => void): DisplaysUpdatedDelegate; };
+
         }
 
         class LightProbesQuery implements System.IDisposable {
@@ -3834,7 +3870,8 @@ declare namespace CS {
             public CombineMeshes($combine: System.Array$1<UnityEngine.CombineInstance>, $mergeSubMeshes: boolean, $useMatrices: boolean): void;
             public CombineMeshes($combine: System.Array$1<UnityEngine.CombineInstance>, $mergeSubMeshes: boolean): void;
             public CombineMeshes($combine: System.Array$1<UnityEngine.CombineInstance>): void;
-
+        }
+        namespace Mesh {
             class LodSelectionCurve {
                 protected [__keep_incompatibility]: never;
                 public lodSlope: number;
@@ -3886,6 +3923,7 @@ declare namespace CS {
                 public Dispose(): void;
                 public get_Item($index: number): UnityEngine.Mesh.MeshData;
             }
+
         }
 
         class Renderer extends UnityEngine.Component {
@@ -4481,7 +4519,8 @@ declare namespace CS {
             public static CopyCount($src: UnityEngine.GraphicsBuffer, $dst: UnityEngine.ComputeBuffer, $dstOffsetBytes: number): void;
             public static CopyCount($src: UnityEngine.ComputeBuffer, $dst: UnityEngine.GraphicsBuffer, $dstOffsetBytes: number): void;
             public static CopyCount($src: UnityEngine.GraphicsBuffer, $dst: UnityEngine.GraphicsBuffer, $dstOffsetBytes: number): void;
-
+        }
+        namespace GraphicsBuffer {
             enum Target {
                 Vertex = 1,
                 Index = 2,
@@ -4518,6 +4557,7 @@ declare namespace CS {
                 public baseVertexIndex: number;
                 public startInstance: number;
             }
+
         }
 
         class OcclusionPortal extends UnityEngine.Component {
@@ -5105,7 +5145,8 @@ declare namespace CS {
             public dataFormat: UnityEngine.LightProbeProxyVolume.DataFormat;
             constructor();
             public Update(): void;
-
+        }
+        namespace LightProbeProxyVolume {
             enum ResolutionMode {
                 Automatic = 0,
                 Custom = 1
@@ -5137,6 +5178,7 @@ declare namespace CS {
                 HalfFloat = 0,
                 Float = 1
             }
+
         }
 
         enum CustomRenderTextureInitializationSource {
@@ -5486,7 +5528,8 @@ declare namespace CS {
             public CopyPixels($src: UnityEngine.Texture): void;
             public CopyPixels($src: UnityEngine.Texture, $srcElement: number, $srcMip: number, $dstMip: number): void;
             public CopyPixels($src: UnityEngine.Texture, $srcElement: number, $srcMip: number, $srcX: number, $srcY: number, $srcWidth: number, $srcHeight: number, $dstMip: number, $dstX: number, $dstY: number): void;
-
+        }
+        namespace Texture2D {
             enum EXRFlags {
                 None = 0,
                 OutputAsFloat = 1,
@@ -5494,6 +5537,7 @@ declare namespace CS {
                 CompressRLE = 4,
                 CompressPIZ = 8
             }
+
         }
 
         class Cubemap extends UnityEngine.Texture {
@@ -6484,7 +6528,8 @@ declare namespace CS {
             public static remove_onBannerWasClicked(handler: UnityEngine.ADBannerView.BannerWasClickedDelegate): void;
             public static add_onBannerWasLoaded(handler: UnityEngine.ADBannerView.BannerWasLoadedDelegate): void;
             public static remove_onBannerWasLoaded(handler: UnityEngine.ADBannerView.BannerWasLoadedDelegate): void;
-
+        }
+        namespace ADBannerView {
             enum Layout {
                 Top = 0,
                 TopLeft = 0,
@@ -6516,6 +6561,7 @@ declare namespace CS {
                 Invoke?: () => void;
             }
             var BannerWasLoadedDelegate: { new (func: () => void): BannerWasLoadedDelegate; };
+
         }
 
         class ADInterstitialAd {
@@ -6528,12 +6574,14 @@ declare namespace CS {
             public ReloadAd(): void;
             public static add_onInterstitialWasLoaded(handler: UnityEngine.ADInterstitialAd.InterstitialWasLoadedDelegate): void;
             public static remove_onInterstitialWasLoaded(handler: UnityEngine.ADInterstitialAd.InterstitialWasLoadedDelegate): void;
-
+        }
+        namespace ADInterstitialAd {
             interface InterstitialWasLoadedDelegate {
                 (): void;
                 Invoke?: () => void;
             }
             var InterstitialWasLoadedDelegate: { new (func: () => void): InterstitialWasLoadedDelegate; };
+
         }
 
         interface ILogger extends UnityEngine.ILogHandler {
@@ -7563,10 +7611,12 @@ declare namespace CS {
             public static ColorHSV($hueMin: number, $hueMax: number, $saturationMin: number, $saturationMax: number): UnityEngine.Color;
             public static ColorHSV($hueMin: number, $hueMax: number, $saturationMin: number, $saturationMax: number, $valueMin: number, $valueMax: number): UnityEngine.Color;
             public static ColorHSV($hueMin: number, $hueMax: number, $saturationMin: number, $saturationMax: number, $valueMin: number, $valueMax: number, $alphaMin: number, $alphaMax: number): UnityEngine.Color;
-
+        }
+        namespace Random {
             class State {
                 protected [__keep_incompatibility]: never;
             }
+
         }
 
         class RenderingLayerMask {
@@ -7647,7 +7697,8 @@ declare namespace CS {
             protected [__keep_incompatibility]: never;
             public get Result(): System.Array$1<T>;
             public GetAwaiter(): UnityEngine.AsyncInstantiateOperation$1.Awaiter$1<T>;
-
+        }
+        namespace AsyncInstantiateOperation {
             class Awaiter<T> implements System.Runtime.CompilerServices.INotifyCompletion {
                 protected [__keep_incompatibility]: never;
                 public get IsCompleted(): boolean;
@@ -7655,6 +7706,7 @@ declare namespace CS {
                 public OnCompleted($continuation: System.Action): void;
                 public GetResult(): System.Array$1<T>;
             }
+
         }
 
         class AsyncOperation extends UnityEngine.YieldInstruction {
@@ -7763,7 +7815,8 @@ declare namespace CS {
             public static EndOfFrameAsync($cancellationToken?: System.Threading.CancellationToken): UnityEngine.Awaitable;
             public static MainThreadAsync(): UnityEngine.MainThreadAwaitable;
             public static BackgroundThreadAsync(): UnityEngine.BackgroundThreadAwaitable;
-
+        }
+        namespace Awaitable {
             class AwaitableAsyncMethodBuilder {
                 protected [__keep_incompatibility]: never;
                 public get Task(): UnityEngine.Awaitable;
@@ -7794,6 +7847,7 @@ declare namespace CS {
                 public OnCompleted($continuation: System.Action): void;
                 public GetResult(): void;
             }
+
         }
 
         class AsyncOperationAwaitableExtensions {
@@ -7856,7 +7910,8 @@ declare namespace CS {
             protected [__keep_incompatibility]: never;
             public Cancel(): void;
             public GetAwaiter(): UnityEngine.Awaitable$1.Awaiter$1<T>;
-
+        }
+        namespace Awaitable {
             class Awaiter<T> implements System.Runtime.CompilerServices.INotifyCompletion {
                 protected [__keep_incompatibility]: never;
                 public get IsCompleted(): boolean;
@@ -7864,6 +7919,7 @@ declare namespace CS {
                 public OnCompleted($continuation: System.Action): void;
                 public GetResult(): T;
             }
+
         }
 
         class Behaviour extends UnityEngine.Component {
@@ -8503,7 +8559,8 @@ declare namespace CS {
             public Add($variant: UnityEngine.ShaderVariantCollection.ShaderVariant): boolean;
             public Remove($variant: UnityEngine.ShaderVariantCollection.ShaderVariant): boolean;
             public Contains($variant: UnityEngine.ShaderVariantCollection.ShaderVariant): boolean;
-
+        }
+        namespace ShaderVariantCollection {
             class ShaderVariant {
                 protected [__keep_incompatibility]: never;
                 public shader: UnityEngine.Shader;
@@ -8511,6 +8568,7 @@ declare namespace CS {
                 public keywords: System.Array$1<string>;
                 constructor($shader: UnityEngine.Shader, $passType: UnityEngine.Rendering.PassType, ...keywords: string[]);
             }
+
         }
 
         enum SnapAxis {
@@ -8748,7 +8806,8 @@ declare namespace CS {
             public static Open($text: string, $keyboardType: UnityEngine.TouchScreenKeyboardType, $autocorrection: boolean): UnityEngine.TouchScreenKeyboard;
             public static Open($text: string, $keyboardType: UnityEngine.TouchScreenKeyboardType): UnityEngine.TouchScreenKeyboard;
             public static Open($text: string): UnityEngine.TouchScreenKeyboard;
-
+        }
+        namespace TouchScreenKeyboard {
             enum Status {
                 Visible = 0,
                 Done = 1,
@@ -8768,6 +8827,7 @@ declare namespace CS {
                 public static consumesOutsideTouches: boolean;
                 constructor();
             }
+
         }
 
         enum TouchScreenKeyboardType {
@@ -8874,7 +8934,8 @@ declare namespace CS {
             public SetSizeWithCurrentAnchors($axis: UnityEngine.RectTransform.Axis, $size: number): void;
             public static add_reapplyDrivenProperties(handler: UnityEngine.RectTransform.ReapplyDrivenProperties): void;
             public static remove_reapplyDrivenProperties(handler: UnityEngine.RectTransform.ReapplyDrivenProperties): void;
-
+        }
+        namespace RectTransform {
             enum Edge {
                 Left = 0,
                 Right = 1,
@@ -8892,6 +8953,7 @@ declare namespace CS {
                 Invoke?: ($driven: UnityEngine.RectTransform) => void;
             }
             var ReapplyDrivenProperties: { new (func: ($driven: UnityEngine.RectTransform) => void): ReapplyDrivenProperties; };
+
         }
 
         class Transform extends UnityEngine.Component implements System.Collections.IEnumerable {
@@ -9056,7 +9118,8 @@ declare namespace CS {
             public InverseTransformVector($vector: UnityEngine.Vector3): UnityEngine.Vector3;
             public InverseTransformVectors($vectors: System.ReadOnlySpan$1<UnityEngine.Vector3>, $transformedVectors: System.Span$1<UnityEngine.Vector3>): void;
             public InverseTransformVectors($vectors: System.Span$1<UnityEngine.Vector3>): void;
-
+        }
+        namespace TransformHandle {
             class DirectChildrenEnumerable implements System.Collections.Generic.IEnumerable$1<UnityEngine.TransformHandle>, System.Collections.IEnumerable {
                 protected [__keep_incompatibility]: never;
                 constructor($root: UnityEngine.TransformHandle);
@@ -9070,6 +9133,7 @@ declare namespace CS {
                 public Reset(): void;
                 public Dispose(): void;
             }
+
         }
 
     }
@@ -9143,12 +9207,14 @@ declare namespace CS {
                     public static ShowCameraPreviewAt($posX: number, $posY: number): boolean;
                     public static ShowCameraPreviewAt($posX: number, $posY: number, $width: number, $height: number): boolean;
                     public static HideCameraPreview(): void;
-
+                }
+                namespace ReplayKit {
                     interface BroadcastStatusCallback {
                         ($hasStarted: boolean, $errorMessage: string): void;
                         Invoke?: ($hasStarted: boolean, $errorMessage: string) => void;
                     }
                     var BroadcastStatusCallback: { new (func: ($hasStarted: boolean, $errorMessage: string) => void): BroadcastStatusCallback; };
+
                 }
 
             }
@@ -9325,12 +9391,14 @@ declare namespace CS {
                 public static QueryPort: number | null;
                 public static QueryType: string;
                 public static ErrorPolicy: UnityEngine.DedicatedServer.Arguments.ArgumentErrorPolicy;
-
+            }
+            namespace Arguments {
                 enum ArgumentErrorPolicy {
                     Ignore = 0,
                     Warn = 1,
                     Fatal = 2
                 }
+
             }
 
         }
@@ -9907,12 +9975,14 @@ declare namespace CS {
                     public static SetDelegate($del: UnityEngine.Experimental.GlobalIllumination.Lightmapping.RequestLightsDelegate): void;
                     public static GetDelegate(): UnityEngine.Experimental.GlobalIllumination.Lightmapping.RequestLightsDelegate;
                     public static ResetDelegate(): void;
-
+                }
+                namespace Lightmapping {
                     interface RequestLightsDelegate {
                         ($requests: System.Array$1<UnityEngine.Light>, $lightsOutput: Unity.Collections.NativeArray$1<UnityEngine.Experimental.GlobalIllumination.LightDataGI>): void;
                         Invoke?: ($requests: System.Array$1<UnityEngine.Light>, $lightsOutput: Unity.Collections.NativeArray$1<UnityEngine.Experimental.GlobalIllumination.LightDataGI>) => void;
                     }
                     var RequestLightsDelegate: { new (func: ($requests: System.Array$1<UnityEngine.Light>, $lightsOutput: Unity.Collections.NativeArray$1<UnityEngine.Experimental.GlobalIllumination.LightDataGI>) => void): RequestLightsDelegate; };
+
                 }
 
                 class RenderSettings {
@@ -10361,7 +10431,8 @@ declare namespace CS {
                     public AddGraphicsStateForVariant($variant: UnityEngine.Experimental.Rendering.GraphicsStateCollection.ShaderVariant, $setup: UnityEngine.Experimental.Rendering.GraphicsStateCollection.GraphicsState): boolean;
                     public RemoveGraphicsStatesForVariant($variant: UnityEngine.Experimental.Rendering.GraphicsStateCollection.ShaderVariant): boolean;
                     public CopyGraphicsStatesForVariant($srcVariant: UnityEngine.Experimental.Rendering.GraphicsStateCollection.ShaderVariant, $dstVariant: UnityEngine.Experimental.Rendering.GraphicsStateCollection.ShaderVariant): boolean;
-
+                }
+                namespace GraphicsStateCollection {
                     class GraphicsState {
                         protected [__keep_incompatibility]: never;
                         public vertexAttributes: System.Array$1<UnityEngine.Rendering.VertexAttributeDescriptor>;
@@ -10398,6 +10469,7 @@ declare namespace CS {
                         constructor($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>);
                         constructor($material: UnityEngine.Material, $passId: UnityEngine.Rendering.PassIdentifier);
                     }
+
                 }
 
                 class ShaderWarmupSetup {
@@ -10448,7 +10520,8 @@ declare namespace CS {
                 public static remove_onBannerWasLoaded(handler: UnityEngine.iOS.ADBannerView.BannerWasLoadedDelegate): void;
                 public static add_onBannerFailedToLoad(handler: UnityEngine.iOS.ADBannerView.BannerFailedToLoadDelegate): void;
                 public static remove_onBannerFailedToLoad(handler: UnityEngine.iOS.ADBannerView.BannerFailedToLoadDelegate): void;
-
+            }
+            namespace ADBannerView {
                 enum Layout {
                     Top = 0,
                     TopLeft = 0,
@@ -10486,6 +10559,7 @@ declare namespace CS {
                     Invoke?: () => void;
                 }
                 var BannerFailedToLoadDelegate: { new (func: () => void): BannerFailedToLoadDelegate; };
+
             }
 
             class ADInterstitialAd {
@@ -10500,7 +10574,8 @@ declare namespace CS {
                 public static remove_onInterstitialWasLoaded(handler: UnityEngine.iOS.ADInterstitialAd.InterstitialWasLoadedDelegate): void;
                 public static add_onInterstitialWasViewed(handler: UnityEngine.iOS.ADInterstitialAd.InterstitialWasViewedDelegate): void;
                 public static remove_onInterstitialWasViewed(handler: UnityEngine.iOS.ADInterstitialAd.InterstitialWasViewedDelegate): void;
-
+            }
+            namespace ADInterstitialAd {
                 interface InterstitialWasLoadedDelegate {
                     (): void;
                     Invoke?: () => void;
@@ -10512,6 +10587,7 @@ declare namespace CS {
                     Invoke?: () => void;
                 }
                 var InterstitialWasViewedDelegate: { new (func: () => void): InterstitialWasViewedDelegate; };
+
             }
 
             class Device {
@@ -10733,12 +10809,14 @@ declare namespace CS {
                 public updateFunction: number;
                 public loopConditionFunction: number;
                 public ToString(): string;
-
+            }
+            namespace PlayerLoopSystem {
                 interface UpdateFunction {
                     (): void;
                     Invoke?: () => void;
                 }
                 var UpdateFunction: { new (func: () => void): UpdateFunction; };
+
             }
 
             class PlayerLoop {
@@ -10838,11 +10916,13 @@ declare namespace CS {
                 public get timeHeld(): boolean;
                 public get output(): UnityEngine.Playables.PlayableOutput;
                 public get effectivePlayState(): UnityEngine.Playables.PlayState;
-
+            }
+            namespace FrameData {
                 enum EvaluationType {
                     Evaluate = 0,
                     Playback = 1
                 }
+
             }
 
             interface INotification {
@@ -11109,7 +11189,8 @@ declare namespace CS {
         namespace PlayerLoop {
             class TimeUpdate {
                 protected [__keep_incompatibility]: never;
-
+            }
+            namespace TimeUpdate {
                 class WaitForLastPresentationAndUpdateTime {
                     protected [__keep_incompatibility]: never;
                 }
@@ -11117,11 +11198,13 @@ declare namespace CS {
                 class ProfilerStartFrame {
                     protected [__keep_incompatibility]: never;
                 }
+
             }
 
             class Initialization {
                 protected [__keep_incompatibility]: never;
-
+            }
+            namespace Initialization {
                 class ProfilerStartFrame {
                     protected [__keep_incompatibility]: never;
                 }
@@ -11153,11 +11236,13 @@ declare namespace CS {
                 class XREarlyUpdate {
                     protected [__keep_incompatibility]: never;
                 }
+
             }
 
             class EarlyUpdate {
                 protected [__keep_incompatibility]: never;
-
+            }
+            namespace EarlyUpdate {
                 class PollPlayerConnection {
                     protected [__keep_incompatibility]: never;
                 }
@@ -11305,11 +11390,13 @@ declare namespace CS {
                 class TilemapRendererEarlyUpdate {
                     protected [__keep_incompatibility]: never;
                 }
+
             }
 
             class FixedUpdate {
                 protected [__keep_incompatibility]: never;
-
+            }
+            namespace FixedUpdate {
                 class ClearLines {
                     protected [__keep_incompatibility]: never;
                 }
@@ -11357,11 +11444,13 @@ declare namespace CS {
                 class NewInputFixedUpdate {
                     protected [__keep_incompatibility]: never;
                 }
+
             }
 
             class PreUpdate {
                 protected [__keep_incompatibility]: never;
-
+            }
+            namespace PreUpdate {
                 class PhysicsUpdate {
                     protected [__keep_incompatibility]: never;
                 }
@@ -11401,11 +11490,13 @@ declare namespace CS {
                 class InputForUIUpdate {
                     protected [__keep_incompatibility]: never;
                 }
+
             }
 
             class Update {
                 protected [__keep_incompatibility]: never;
-
+            }
+            namespace Update {
                 class ScriptRunBehaviourUpdate {
                     protected [__keep_incompatibility]: never;
                 }
@@ -11421,11 +11512,13 @@ declare namespace CS {
                 class ScriptRunDelayedTasks {
                     protected [__keep_incompatibility]: never;
                 }
+
             }
 
             class PreLateUpdate {
                 protected [__keep_incompatibility]: never;
-
+            }
+            namespace PreLateUpdate {
                 class Physics2DLateUpdate {
                     protected [__keep_incompatibility]: never;
                 }
@@ -11485,11 +11578,13 @@ declare namespace CS {
                 class ConstraintManagerUpdate {
                     protected [__keep_incompatibility]: never;
                 }
+
             }
 
             class PostLateUpdate {
                 protected [__keep_incompatibility]: never;
-
+            }
+            namespace PostLateUpdate {
                 class PlayerSendFrameStarted {
                     protected [__keep_incompatibility]: never;
                 }
@@ -11685,6 +11780,7 @@ declare namespace CS {
                 class ObjectDispatcherPostLateUpdate {
                     protected [__keep_incompatibility]: never;
                 }
+
             }
 
         }
@@ -13205,7 +13301,8 @@ declare namespace CS {
                 public ClearInstances(): void;
                 public RemoveInstances($layerMask: number, $rayTracingModeMask: UnityEngine.Rendering.RayTracingAccelerationStructure.RayTracingModeMask): void;
                 public CullInstances($cullingConfig: $Ref<UnityEngine.Rendering.RayTracingInstanceCullingConfig>): UnityEngine.Rendering.RayTracingInstanceCullingResults;
-
+            }
+            namespace RayTracingAccelerationStructure {
                 enum RayTracingModeMask {
                     Nothing = 0,
                     Static = 2,
@@ -13248,6 +13345,7 @@ declare namespace CS {
                     constructor($sceneManagementMode: UnityEngine.Rendering.RayTracingAccelerationStructure.ManagementMode, $rayTracingModeMask: UnityEngine.Rendering.RayTracingAccelerationStructure.RayTracingModeMask, $layerMask: number);
                     constructor($sceneManagementMode: UnityEngine.Rendering.RayTracingAccelerationStructure.ManagementMode, $rayTracingModeMask: UnityEngine.Rendering.RayTracingAccelerationStructure.RayTracingModeMask, $layerMask: number, $buildFlagsStaticGeometries: UnityEngine.Rendering.RayTracingAccelerationStructureBuildFlags, $buildFlagsDynamicGeometries: UnityEngine.Rendering.RayTracingAccelerationStructureBuildFlags);
                 }
+
             }
 
             class CommandBuffer implements System.IDisposable {
@@ -13659,11 +13757,13 @@ declare namespace CS {
                 public static Begin(): void;
                 public static Stop($stopBehavior: UnityEngine.Rendering.SplashScreen.StopBehavior): void;
                 public static Draw(): void;
-
+            }
+            namespace SplashScreen {
                 enum StopBehavior {
                     StopImmediate = 0,
                     FadeOut = 1
                 }
+
             }
 
             class SupportedOnRenderPipelineAttribute extends System.Attribute {
@@ -13674,12 +13774,14 @@ declare namespace CS {
                 constructor(...renderPipeline: System.Type[]);
                 public GetSupportedMode($renderPipelineAssetType: System.Type): UnityEngine.Rendering.SupportedOnRenderPipelineAttribute.SupportedMode;
                 public static IsTypeSupportedOnRenderPipeline($type: System.Type, $renderPipelineAssetType: System.Type): boolean;
-
+            }
+            namespace SupportedOnRenderPipelineAttribute {
                 enum SupportedMode {
                     Unsupported = 0,
                     Supported = 1,
                     SupportedByBaseClass = 2
                 }
+
             }
 
             class Watermark {
@@ -13973,7 +14075,8 @@ declare namespace CS {
                 public SetEnabledViewTypes($viewTypes: System.Array$1<UnityEngine.Rendering.BatchCullingViewType>): void;
                 public static GetConstantBufferMaxWindowSize(): number;
                 public static GetConstantBufferOffsetAlignment(): number;
-
+            }
+            namespace BatchRendererGroup {
                 interface OnPerformCulling {
                     ($rendererGroup: UnityEngine.Rendering.BatchRendererGroup, $cullingContext: UnityEngine.Rendering.BatchCullingContext, $cullingOutput: UnityEngine.Rendering.BatchCullingOutput, $userContext: number): Unity.Jobs.JobHandle;
                     Invoke?: ($rendererGroup: UnityEngine.Rendering.BatchRendererGroup, $cullingContext: UnityEngine.Rendering.BatchCullingContext, $cullingOutput: UnityEngine.Rendering.BatchCullingOutput, $userContext: number) => Unity.Jobs.JobHandle;
@@ -13985,6 +14088,7 @@ declare namespace CS {
                     Invoke?: ($customCullingResult: number) => void;
                 }
                 var OnFinishedCulling: { new (func: ($customCullingResult: number) => void): OnFinishedCulling; };
+
             }
 
             class AttachmentDescriptor implements System.IEquatable$1<UnityEngine.Rendering.AttachmentDescriptor> {
@@ -14307,7 +14411,8 @@ declare namespace CS {
                 public get defaultSettings(): UnityEngine.Rendering.RenderPipelineGlobalSettings;
                 public static SupportsRenderRequest<RequestData>($camera: UnityEngine.Camera, $data: RequestData): boolean;
                 public static SubmitRenderRequest<RequestData>($camera: UnityEngine.Camera, $data: RequestData): void;
-
+            }
+            namespace RenderPipeline {
                 class StandardRequest {
                     protected [__keep_incompatibility]: never;
                     public destination: UnityEngine.RenderTexture;
@@ -14316,6 +14421,7 @@ declare namespace CS {
                     public slice: number;
                     constructor();
                 }
+
             }
 
             class RenderPipelineAsset extends UnityEngine.ScriptableObject {
@@ -14661,7 +14767,8 @@ declare namespace CS {
                 public overridesLightProbeSystemWarningMessage: string;
                 public terrainDetailUnsupported: boolean;
                 constructor();
-
+            }
+            namespace SupportedRenderingFeatures {
                 enum ReflectionProbeModes {
                     None = 0,
                     Rotation = 1
@@ -14673,6 +14780,7 @@ declare namespace CS {
                     Subtractive = 2,
                     Shadowmask = 4
                 }
+
             }
 
             enum UISubset {
@@ -15044,12 +15152,14 @@ declare namespace CS {
                 public static CollectIncremental($nanoseconds?: bigint): boolean;
                 public static add_GCModeChanged(handler: System.Action$1<UnityEngine.Scripting.GarbageCollector.Mode>): void;
                 public static remove_GCModeChanged(handler: System.Action$1<UnityEngine.Scripting.GarbageCollector.Mode>): void;
-
+            }
+            namespace GarbageCollector {
                 enum Mode {
                     Disabled = 0,
                     Enabled = 1,
                     Manual = 2
                 }
+
             }
 
             class PreserveAttribute extends System.Attribute {
@@ -15401,7 +15511,8 @@ declare namespace CS {
                     public static remove_OnError(handler: UnityEngine.Windows.Speech.PhraseRecognitionSystem.ErrorDelegate): void;
                     public static add_OnStatusChanged(handler: UnityEngine.Windows.Speech.PhraseRecognitionSystem.StatusDelegate): void;
                     public static remove_OnStatusChanged(handler: UnityEngine.Windows.Speech.PhraseRecognitionSystem.StatusDelegate): void;
-
+                }
+                namespace PhraseRecognitionSystem {
                     interface ErrorDelegate {
                         ($errorCode: UnityEngine.Windows.Speech.SpeechError): void;
                         Invoke?: ($errorCode: UnityEngine.Windows.Speech.SpeechError) => void;
@@ -15413,6 +15524,7 @@ declare namespace CS {
                         Invoke?: ($status: UnityEngine.Windows.Speech.SpeechSystemStatus) => void;
                     }
                     var StatusDelegate: { new (func: ($status: UnityEngine.Windows.Speech.SpeechSystemStatus) => void): StatusDelegate; };
+
                 }
 
                 class PhraseRecognizer implements System.IDisposable {
@@ -15423,12 +15535,14 @@ declare namespace CS {
                     public Dispose(): void;
                     public add_OnPhraseRecognized(handler: UnityEngine.Windows.Speech.PhraseRecognizer.PhraseRecognizedDelegate): void;
                     public remove_OnPhraseRecognized(handler: UnityEngine.Windows.Speech.PhraseRecognizer.PhraseRecognizedDelegate): void;
-
+                }
+                namespace PhraseRecognizer {
                     interface PhraseRecognizedDelegate {
                         ($args: UnityEngine.Windows.Speech.PhraseRecognizedEventArgs): void;
                         Invoke?: ($args: UnityEngine.Windows.Speech.PhraseRecognizedEventArgs) => void;
                     }
                     var PhraseRecognizedDelegate: { new (func: ($args: UnityEngine.Windows.Speech.PhraseRecognizedEventArgs) => void): PhraseRecognizedDelegate; };
+
                 }
 
                 class DictationRecognizer implements System.IDisposable {
@@ -15451,7 +15565,8 @@ declare namespace CS {
                     public remove_DictationComplete(handler: UnityEngine.Windows.Speech.DictationRecognizer.DictationCompletedDelegate): void;
                     public add_DictationError(handler: UnityEngine.Windows.Speech.DictationRecognizer.DictationErrorHandler): void;
                     public remove_DictationError(handler: UnityEngine.Windows.Speech.DictationRecognizer.DictationErrorHandler): void;
-
+                }
+                namespace DictationRecognizer {
                     interface DictationHypothesisDelegate {
                         ($text: string): void;
                         Invoke?: ($text: string) => void;
@@ -15475,6 +15590,7 @@ declare namespace CS {
                         Invoke?: ($error: string, $hresult: number) => void;
                     }
                     var DictationErrorHandler: { new (func: ($error: string, $hresult: number) => void): DictationErrorHandler; };
+
                 }
 
                 enum ConfidenceLevel {
@@ -15571,7 +15687,8 @@ declare namespace CS {
                     public TakePhotoAsync($onCapturedPhotoToMemoryCallback: UnityEngine.Windows.WebCam.PhotoCapture.OnCapturedToMemoryCallback): void;
                     public GetUnsafePointerToVideoDeviceController(): number;
                     public Dispose(): void;
-
+                }
+                namespace PhotoCapture {
                     enum CaptureResultType {
                         Success = 0,
                         UnknownError = 1
@@ -15613,6 +15730,7 @@ declare namespace CS {
                         Invoke?: ($result: UnityEngine.Windows.WebCam.PhotoCapture.PhotoCaptureResult, $photoCaptureFrame: UnityEngine.Windows.WebCam.PhotoCaptureFrame) => void;
                     }
                     var OnCapturedToMemoryCallback: { new (func: ($result: UnityEngine.Windows.WebCam.PhotoCapture.PhotoCaptureResult, $photoCaptureFrame: UnityEngine.Windows.WebCam.PhotoCaptureFrame) => void): OnCapturedToMemoryCallback; };
+
                 }
 
                 class PhotoCaptureFrame implements System.IDisposable {
@@ -15642,7 +15760,8 @@ declare namespace CS {
                     public StopRecordingAsync($onStoppedRecordingVideoCallback: UnityEngine.Windows.WebCam.VideoCapture.OnStoppedRecordingVideoCallback): void;
                     public GetUnsafePointerToVideoDeviceController(): number;
                     public Dispose(): void;
-
+                }
+                namespace VideoCapture {
                     enum CaptureResultType {
                         Success = 0,
                         UnknownError = 1
@@ -15691,6 +15810,7 @@ declare namespace CS {
                         Invoke?: ($result: UnityEngine.Windows.WebCam.VideoCapture.VideoCaptureResult) => void;
                     }
                     var OnStoppedRecordingVideoCallback: { new (func: ($result: UnityEngine.Windows.WebCam.VideoCapture.VideoCaptureResult) => void): OnStoppedRecordingVideoCallback; };
+
                 }
 
                 enum CapturePixelFormat {

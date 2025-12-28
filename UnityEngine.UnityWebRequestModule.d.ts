@@ -174,7 +174,8 @@ declare namespace CS {
                 public static SerializeFormSections($multipartFormSections: System.Collections.Generic.List$1<UnityEngine.Networking.IMultipartFormSection>, $boundary: System.Array$1<number>): System.Array$1<number>;
                 public static GenerateBoundary(): System.Array$1<number>;
                 public static SerializeSimpleForm($formFields: System.Collections.Generic.Dictionary$2<string, string>): System.Array$1<number>;
-
+            }
+            namespace UnityWebRequest {
                 enum Result {
                     InProgress = 0,
                     Success = 1,
@@ -182,6 +183,7 @@ declare namespace CS {
                     ProtocolError = 3,
                     DataProcessingError = 4
                 }
+
             }
 
             class UploadHandler implements System.IDisposable {

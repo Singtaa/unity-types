@@ -693,7 +693,8 @@ declare namespace CS {
             public Overlap($position: UnityEngine.Vector2, $angle: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public OverlapCollider($contactFilter: UnityEngine.ContactFilter2D, $results: $Out<System.Array$1<UnityEngine.Collider2D>>): number;
             public OverlapCollider($contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
-
+        }
+        namespace Rigidbody2D {
             class SlideMovement {
                 protected [__keep_incompatibility]: never;
                 public maxIterations: number;
@@ -723,6 +724,7 @@ declare namespace CS {
                 public slideHit: UnityEngine.RaycastHit2D;
                 public surfaceHit: UnityEngine.RaycastHit2D;
             }
+
         }
 
         class Collider2D extends UnityEngine.Behaviour {
@@ -804,7 +806,8 @@ declare namespace CS {
             public GetContacts($contactFilter: UnityEngine.ContactFilter2D, $colliders: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public OverlapCollider($contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.Collider2D>): number;
             public OverlapCollider($contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
-
+        }
+        namespace Collider2D {
             enum CompositeOperation {
                 None = 0,
                 Merge = 1,
@@ -812,6 +815,7 @@ declare namespace CS {
                 Difference = 3,
                 Flip = 4
             }
+
         }
 
         class CustomCollider2D extends UnityEngine.Collider2D {
@@ -901,7 +905,8 @@ declare namespace CS {
             public GetPathPointCount($index: number): number;
             public GetPath($index: number, $points: System.Array$1<UnityEngine.Vector2>): number;
             public GetPath($index: number, $points: System.Collections.Generic.List$1<UnityEngine.Vector2>): number;
-
+        }
+        namespace CompositeCollider2D {
             enum GeometryType {
                 Outlines = 0,
                 Polygons = 1
@@ -911,6 +916,7 @@ declare namespace CS {
                 Synchronous = 0,
                 Manual = 1
             }
+
         }
 
         class Joint2D extends UnityEngine.Behaviour {
@@ -1441,7 +1447,8 @@ declare namespace CS {
                 public static CreateJoint($world: UnityEngine.LowLevelPhysics2D.PhysicsWorld, $definition: UnityEngine.LowLevelPhysics2D.PhysicsFixedJointDefinition): UnityEngine.LowLevelPhysics2D.PhysicsFixedJoint;
                 public static CreateJoint($world: UnityEngine.LowLevelPhysics2D.PhysicsWorld, $definition: UnityEngine.LowLevelPhysics2D.PhysicsWheelJointDefinition): UnityEngine.LowLevelPhysics2D.PhysicsWheelJoint;
                 public static DestroyBatch($joints: System.ReadOnlySpan$1<UnityEngine.LowLevelPhysics2D.PhysicsJoint>): void;
-
+            }
+            namespace PhysicsJoint {
                 enum JointType {
                     DistanceJoint = 0,
                     IgnoreJoint = 1,
@@ -1451,6 +1458,7 @@ declare namespace CS {
                     FixedJoint = 5,
                     WheelJoint = 6
                 }
+
             }
 
             class PhysicsRelativeJoint implements System.IEquatable$1<UnityEngine.LowLevelPhysics2D.PhysicsRelativeJoint>, UnityEngine.LowLevelPhysics2D.IPhysicsJoint {
@@ -1699,13 +1707,15 @@ declare namespace CS {
                 public static GetLayerMask(...layerNames: string[]): UnityEngine.LowLevelPhysics2D.PhysicsMask;
                 public static GetLayerOrdinal($layerName: string): number;
                 public static GetLayerName($layerOrdinal: number): string;
-
+            }
+            namespace PhysicsLayers {
                 class LayerNames implements UnityEngine.ISerializationCallbackReceiver {
                     protected [__keep_incompatibility]: never;
                     constructor();
                     public OnBeforeSerialize(): void;
                     public OnAfterDeserialize(): void;
                 }
+
             }
 
             class PhysicsMask implements System.Collections.Generic.IEnumerable$1<number>, System.Collections.IEnumerable {
@@ -1723,7 +1733,8 @@ declare namespace CS {
                 public AreBitsSet($physicsMask: UnityEngine.LowLevelPhysics2D.PhysicsMask): boolean;
                 public GetEnumerator(): System.Collections.Generic.IEnumerator$1<number>;
                 public ToString(): string;
-
+            }
+            namespace PhysicsMask {
                 class ResetBitIterator implements System.Collections.Generic.IEnumerator$1<number>, System.Collections.IEnumerator, System.IDisposable {
                     protected [__keep_incompatibility]: never;
                     constructor($bitMask: UnityEngine.LowLevelPhysics2D.PhysicsMask);
@@ -1738,6 +1749,7 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
+
             }
 
             class PhysicsPlane {
@@ -1905,7 +1917,8 @@ declare namespace CS {
                 public CreateShapeBatch($geometry: System.ReadOnlySpan$1<UnityEngine.LowLevelPhysics2D.ChainSegmentGeometry>, $definition: UnityEngine.LowLevelPhysics2D.PhysicsShapeDefinition, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.LowLevelPhysics2D.PhysicsShape>;
                 public CreateChain($geometry: UnityEngine.LowLevelPhysics2D.ChainGeometry, $definition: UnityEngine.LowLevelPhysics2D.PhysicsChainDefinition): UnityEngine.LowLevelPhysics2D.PhysicsChain;
                 public Draw(): void;
-
+            }
+            namespace PhysicsBody {
                 enum BodyType {
                     Dynamic = 0,
                     Kinematic = 1,
@@ -1980,6 +1993,7 @@ declare namespace CS {
                     public transform: UnityEngine.LowLevelPhysics2D.PhysicsTransform;
                     constructor($physicsBody: UnityEngine.LowLevelPhysics2D.PhysicsBody);
                 }
+
             }
 
             class PhysicsBodyDefinition {
@@ -2009,7 +2023,8 @@ declare namespace CS {
 
             class PhysicsCallbacks {
                 protected [__keep_incompatibility]: never;
-
+            }
+            namespace PhysicsCallbacks {
                 interface IBodyUpdateCallback {
                     OnBodyUpdate2D($bodyUpdateEvent: UnityEngine.LowLevelPhysics2D.PhysicsEvents.BodyUpdateEvent): void;
                 }
@@ -2040,12 +2055,14 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                     public get bodyUpdateCallbackTargets(): System.ReadOnlySpan$1<UnityEngine.LowLevelPhysics2D.PhysicsCallbacks.BodyUpdateCallbackTargets.BodyUpdateTarget>;
                     public Dispose(): void;
-
+                }
+                namespace BodyUpdateCallbackTargets {
                     class BodyUpdateTarget {
                         protected [__keep_incompatibility]: never;
                         public get bodyUpdateEvent(): UnityEngine.LowLevelPhysics2D.PhysicsEvents.BodyUpdateEvent;
                         public get bodyTarget(): UnityEngine.LowLevelPhysics2D.PhysicsCallbacks.IBodyUpdateCallback;
                     }
+
                 }
 
                 class TriggerCallbackTargets implements System.IDisposable {
@@ -2053,7 +2070,8 @@ declare namespace CS {
                     public get BeginCallbackTargets(): System.ReadOnlySpan$1<UnityEngine.LowLevelPhysics2D.PhysicsCallbacks.TriggerCallbackTargets.TriggerBeginTarget>;
                     public get EndCallbackTargets(): System.ReadOnlySpan$1<UnityEngine.LowLevelPhysics2D.PhysicsCallbacks.TriggerCallbackTargets.TriggerEndTarget>;
                     public Dispose(): void;
-
+                }
+                namespace TriggerCallbackTargets {
                     class TriggerBeginTarget {
                         protected [__keep_incompatibility]: never;
                         public get beginEvent(): UnityEngine.LowLevelPhysics2D.PhysicsEvents.TriggerBeginEvent;
@@ -2067,6 +2085,7 @@ declare namespace CS {
                         public get triggerShapeTarget(): UnityEngine.LowLevelPhysics2D.PhysicsCallbacks.ITriggerCallback;
                         public get visitorShapeTarget(): UnityEngine.LowLevelPhysics2D.PhysicsCallbacks.ITriggerCallback;
                     }
+
                 }
 
                 class ContactCallbackTargets implements System.IDisposable {
@@ -2074,7 +2093,8 @@ declare namespace CS {
                     public get BeginCallbackTargets(): System.ReadOnlySpan$1<UnityEngine.LowLevelPhysics2D.PhysicsCallbacks.ContactCallbackTargets.ContactBeginTarget>;
                     public get EndCallbackTargets(): System.ReadOnlySpan$1<UnityEngine.LowLevelPhysics2D.PhysicsCallbacks.ContactCallbackTargets.ContactEndTarget>;
                     public Dispose(): void;
-
+                }
+                namespace ContactCallbackTargets {
                     class ContactBeginTarget {
                         protected [__keep_incompatibility]: never;
                         public get beginEvent(): UnityEngine.LowLevelPhysics2D.PhysicsEvents.ContactBeginEvent;
@@ -2088,19 +2108,23 @@ declare namespace CS {
                         public get shapeTargetA(): UnityEngine.LowLevelPhysics2D.PhysicsCallbacks.IContactCallback;
                         public get shapeTargetB(): UnityEngine.LowLevelPhysics2D.PhysicsCallbacks.IContactCallback;
                     }
+
                 }
 
                 class JointThresholdCallbackTargets implements System.IDisposable {
                     protected [__keep_incompatibility]: never;
                     public get jointThresholdCallbackTargets(): System.ReadOnlySpan$1<UnityEngine.LowLevelPhysics2D.PhysicsCallbacks.JointThresholdCallbackTargets.JointThresholdTarget>;
                     public Dispose(): void;
-
+                }
+                namespace JointThresholdCallbackTargets {
                     class JointThresholdTarget {
                         protected [__keep_incompatibility]: never;
                         public get jointThresholdEvent(): UnityEngine.LowLevelPhysics2D.PhysicsEvents.JointThresholdEvent;
                         public get jointTarget(): UnityEngine.LowLevelPhysics2D.PhysicsCallbacks.IJointThresholdCallback;
                     }
+
                 }
+
             }
 
             class PhysicsChain implements System.IEquatable$1<UnityEngine.LowLevelPhysics2D.PhysicsChain> {
@@ -2174,7 +2198,8 @@ declare namespace CS {
                 public CreatePolygonGeometry($vertexScale: UnityEngine.Vector2, $allocator: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.LowLevelPhysics2D.PolygonGeometry>;
                 public CreateConvexHulls($vertexScale: UnityEngine.Vector2, $allocator: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.LowLevelPhysics2D.PolygonGeometry.ConvexHull>;
                 public CreateChainGeometry($vertices: $Out<Unity.Collections.NativeArray$1<UnityEngine.Vector2>>, $vertexScale: UnityEngine.Vector2, $allocator: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.LowLevelPhysics2D.ChainGeometry>;
-
+            }
+            namespace PhysicsComposer {
                 class LayerHandle {
                     protected [__keep_incompatibility]: never;
                     public ToString(): string;
@@ -2186,6 +2211,7 @@ declare namespace CS {
                     NOT = 2,
                     XOR = 3
                 }
+
             }
 
             class PhysicsConstants {
@@ -2200,7 +2226,8 @@ declare namespace CS {
                 public static Fragment($target: UnityEngine.LowLevelPhysics2D.PhysicsDestructor.FragmentGeometry, $fragmentPoints: System.ReadOnlySpan$1<UnityEngine.Vector2>, $allocator: Unity.Collections.Allocator): UnityEngine.LowLevelPhysics2D.PhysicsDestructor.FragmentResult;
                 public static Fragment($target: UnityEngine.LowLevelPhysics2D.PhysicsDestructor.FragmentGeometry, $mask: UnityEngine.LowLevelPhysics2D.PhysicsDestructor.FragmentGeometry, $fragmentPoints: System.ReadOnlySpan$1<UnityEngine.Vector2>, $allocator: Unity.Collections.Allocator): UnityEngine.LowLevelPhysics2D.PhysicsDestructor.FragmentResult;
                 public static Slice($target: UnityEngine.LowLevelPhysics2D.PhysicsDestructor.FragmentGeometry, $origin: UnityEngine.Vector2, $translation: UnityEngine.Vector2, $allocator: Unity.Collections.Allocator): UnityEngine.LowLevelPhysics2D.PhysicsDestructor.SliceResult;
-
+            }
+            namespace PhysicsDestructor {
                 class FragmentGeometry {
                     protected [__keep_incompatibility]: never;
                     constructor($transform: UnityEngine.LowLevelPhysics2D.PhysicsTransform, $geometry: System.ReadOnlySpan$1<UnityEngine.LowLevelPhysics2D.PolygonGeometry>);
@@ -2221,6 +2248,7 @@ declare namespace CS {
                     public get rightGeometry(): Unity.Collections.NativeArray$1<UnityEngine.LowLevelPhysics2D.PolygonGeometry>;
                     public Dispose(): void;
                 }
+
             }
 
             class PhysicsEvents {
@@ -2229,7 +2257,8 @@ declare namespace CS {
                 public static remove_PreSimulate(handler: UnityEngine.LowLevelPhysics2D.PhysicsEvents.PreSimulateEventHandler): void;
                 public static add_PostSimulate(handler: UnityEngine.LowLevelPhysics2D.PhysicsEvents.PreSimulateEventHandler): void;
                 public static remove_PostSimulate(handler: UnityEngine.LowLevelPhysics2D.PhysicsEvents.PreSimulateEventHandler): void;
-
+            }
+            namespace PhysicsEvents {
                 class BodyUpdateEvent {
                     protected [__keep_incompatibility]: never;
                     public get transform(): UnityEngine.LowLevelPhysics2D.PhysicsTransform;
@@ -2313,6 +2342,7 @@ declare namespace CS {
                     Invoke?: ($world: UnityEngine.LowLevelPhysics2D.PhysicsWorld, $deltaTime: number) => void;
                 }
                 var PostSimulateEventHandler: { new (func: ($world: UnityEngine.LowLevelPhysics2D.PhysicsWorld, $deltaTime: number) => void): PostSimulateEventHandler; };
+
             }
 
             class CircleGeometry {
@@ -2400,13 +2430,15 @@ declare namespace CS {
                 public InverseTransform($transform: UnityEngine.LowLevelPhysics2D.PhysicsTransform): UnityEngine.LowLevelPhysics2D.PolygonGeometry;
                 public Transform($transform: UnityEngine.Matrix4x4, $scaleRadius: boolean): UnityEngine.LowLevelPhysics2D.PolygonGeometry;
                 public InverseTransform($transform: UnityEngine.Matrix4x4, $scaleRadius: boolean): UnityEngine.LowLevelPhysics2D.PolygonGeometry;
-
+            }
+            namespace PolygonGeometry {
                 class ConvexHull {
                     protected [__keep_incompatibility]: never;
                     public vertices: UnityEngine.LowLevelPhysics2D.PhysicsShape.ShapeArray;
                     public count: number;
                     public AsReadOnlySpan(): System.ReadOnlySpan$1<UnityEngine.Vector2>;
                 }
+
             }
 
             class SegmentGeometry {
@@ -2515,7 +2547,8 @@ declare namespace CS {
                 public static CastShapes($castShapePairInput: UnityEngine.LowLevelPhysics2D.PhysicsQuery.CastShapePairInput): void;
                 public static ShapeDistance($distanceInput: UnityEngine.LowLevelPhysics2D.PhysicsQuery.DistanceInput): UnityEngine.LowLevelPhysics2D.PhysicsQuery.DistanceResult;
                 public static ShapeTimeOfImpact($toiInput: UnityEngine.LowLevelPhysics2D.PhysicsQuery.TimeOfImpactInput): UnityEngine.LowLevelPhysics2D.PhysicsQuery.TimeOfImpactResult;
-
+            }
+            namespace PhysicsQuery {
                 class QueryFilter {
                     protected [__keep_incompatibility]: never;
                     public static readonly DefaultCategories: UnityEngine.LowLevelPhysics2D.PhysicsMask;
@@ -2665,7 +2698,8 @@ declare namespace CS {
                     public get normal(): UnityEngine.Vector2;
                     public get impactState(): UnityEngine.LowLevelPhysics2D.PhysicsQuery.TimeOfImpactResult.State;
                     public get fraction(): number;
-
+                }
+                namespace TimeOfImpactResult {
                     enum State {
                         Unknown = 0,
                         Failed = 1,
@@ -2673,7 +2707,9 @@ declare namespace CS {
                         Hit = 3,
                         Separated = 4
                     }
+
                 }
+
             }
 
             class PhysicsShape implements System.IEquatable$1<UnityEngine.LowLevelPhysics2D.PhysicsShape> {
@@ -2755,7 +2791,8 @@ declare namespace CS {
                 public GetOwner(): UnityEngine.Object;
                 public CreateShapeProxy(): UnityEngine.LowLevelPhysics2D.PhysicsShape.ShapeProxy;
                 public Draw(): void;
-
+            }
+            namespace PhysicsShape {
                 enum ShapeType {
                     Circle = 0,
                     Capsule = 1,
@@ -2779,7 +2816,8 @@ declare namespace CS {
                     public tangentSpeed: number;
                     public customColor: UnityEngine.Color32;
                     constructor();
-
+                }
+                namespace SurfaceMaterial {
                     enum MixingMode {
                         Average = 0,
                         Mean = 1,
@@ -2787,6 +2825,7 @@ declare namespace CS {
                         Minimum = 3,
                         Maximum = 4
                     }
+
                 }
 
                 class ContactManifold implements System.Collections.Generic.IEnumerable$1<UnityEngine.LowLevelPhysics2D.PhysicsShape.ContactManifold.ManifoldPoint>, System.Collections.IEnumerable {
@@ -2798,7 +2837,8 @@ declare namespace CS {
                     public get speculativePointCount(): number;
                     public GetEnumerator(): System.Collections.Generic.IEnumerator$1<UnityEngine.LowLevelPhysics2D.PhysicsShape.ContactManifold.ManifoldPoint>;
                     public get_Item($index: number): UnityEngine.LowLevelPhysics2D.PhysicsShape.ContactManifold.ManifoldPoint;
-
+                }
+                namespace ContactManifold {
                     class ManifoldPoint {
                         protected [__keep_incompatibility]: never;
                         public get point(): UnityEngine.Vector2;
@@ -2826,6 +2866,7 @@ declare namespace CS {
                         protected [__keep_incompatibility]: never;
                         constructor($contactManifold: UnityEngine.LowLevelPhysics2D.PhysicsShape.ContactManifold);
                     }
+
                 }
 
                 class Contact {
@@ -2891,6 +2932,7 @@ declare namespace CS {
                     constructor($segmentGeometry: UnityEngine.LowLevelPhysics2D.SegmentGeometry);
                     constructor($chainSegmentGeometry: UnityEngine.LowLevelPhysics2D.ChainSegmentGeometry);
                 }
+
             }
 
             class PhysicsShapeDefinition {
@@ -3065,7 +3107,8 @@ declare namespace CS {
                 public DrawLine($point0: UnityEngine.Vector2, $point1: UnityEngine.Vector2, $color: UnityEngine.Color, $lifetime?: number): void;
                 public DrawLineStrip($transform: UnityEngine.LowLevelPhysics2D.PhysicsTransform, $vertices: System.ReadOnlySpan$1<UnityEngine.Vector2>, $loop: boolean, $color: UnityEngine.Color, $lifetime?: number): void;
                 public DrawTransformAxis($transform: UnityEngine.LowLevelPhysics2D.PhysicsTransform, $scale: number, $lifetime?: number): void;
-
+            }
+            namespace PhysicsWorld {
                 enum SimulationType {
                     FixedUpdate = 0,
                     Update = 1,
@@ -3192,6 +3235,7 @@ declare namespace CS {
                     public contactFriction: UnityEngine.Color;
                     public solverIsland: UnityEngine.Color;
                 }
+
             }
 
             class PhysicsWorldDefinition {

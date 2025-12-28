@@ -270,7 +270,8 @@ declare namespace CS {
                 public remove_canceled(handler: System.Action$1<UnityEngine.InputSystem.InputAction.CallbackContext>): void;
                 public add_performed(handler: System.Action$1<UnityEngine.InputSystem.InputAction.CallbackContext>): void;
                 public remove_performed(handler: System.Action$1<UnityEngine.InputSystem.InputAction.CallbackContext>): void;
-
+            }
+            namespace InputAction {
                 class CallbackContext {
                     protected [__keep_incompatibility]: never;
                     public get phase(): UnityEngine.InputSystem.InputActionPhase;
@@ -290,6 +291,7 @@ declare namespace CS {
                     public ReadValueAsObject(): any;
                     public ToString(): string;
                 }
+
             }
 
             class InputActionAsset extends UnityEngine.ScriptableObject implements System.Collections.Generic.IEnumerable$1<UnityEngine.InputSystem.InputAction>, UnityEngine.InputSystem.IInputActionCollection, System.Collections.IEnumerable, UnityEngine.InputSystem.IInputActionCollection2 {
@@ -406,7 +408,8 @@ declare namespace CS {
                 public static LoadBindingOverridesFromJson($json: string, $removeExisting?: boolean): void;
                 public static LoadBindingOverridesFromJson($json: string, $removeExisting?: boolean): void;
                 public static PerformInteractiveRebinding($bindingIndex?: number): UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
-
+            }
+            namespace InputActionRebindingExtensions {
                 class RebindingOperation implements System.IDisposable {
                     protected [__keep_incompatibility]: never;
                     public static readonly kDefaultMagnitudeThreshold: number;
@@ -456,6 +459,7 @@ declare namespace CS {
                     public Dispose(): void;
                     public Reset(): UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
                 }
+
             }
 
             enum InputActionPhase {
@@ -527,7 +531,8 @@ declare namespace CS {
                 public static WithOptionalDevice($controlPath: string): UnityEngine.InputSystem.InputControlScheme;
                 public static OrWithRequiredDevice($controlPath: string): UnityEngine.InputSystem.InputControlScheme;
                 public static OrWithOptionalDevice($controlPath: string): UnityEngine.InputSystem.InputControlScheme;
-
+            }
+            namespace InputActionSetupExtensions {
                 class BindingSyntax {
                     protected [__keep_incompatibility]: never;
                     public get valid(): boolean;
@@ -574,6 +579,7 @@ declare namespace CS {
                     public OrWithOptionalDevice($controlPath: string): UnityEngine.InputSystem.InputActionSetupExtensions.ControlSchemeSyntax;
                     public Done(): UnityEngine.InputSystem.InputControlScheme;
                 }
+
             }
 
             enum InputActionType {
@@ -612,13 +618,15 @@ declare namespace CS {
                 public ToDisplayString($options?: UnityEngine.InputSystem.InputBinding.DisplayStringOptions, $control?: UnityEngine.InputSystem.InputControl): string;
                 public ToDisplayString($deviceLayoutName: $Out<string>, $controlPath: $Out<string>, $options?: UnityEngine.InputSystem.InputBinding.DisplayStringOptions, $control?: UnityEngine.InputSystem.InputControl): string;
                 public Matches($binding: UnityEngine.InputSystem.InputBinding): boolean;
-
+            }
+            namespace InputBinding {
                 enum DisplayStringOptions {
                     DontUseShortDisplayNames = 1,
                     DontOmitDevice = 2,
                     DontIncludeInteractions = 4,
                     IgnoreBindingOverrides = 8
                 }
+
             }
 
             class InputBindingComposite {
@@ -649,12 +657,14 @@ declare namespace CS {
                 public ReadValueAsButton($partNumber: number): boolean;
                 public ReadValueAsObject($partNumber: number): any;
                 public GetPressTime($partNumber: number): number;
-
+            }
+            namespace InputBindingCompositeContext {
                 class PartBinding {
                     protected [__keep_incompatibility]: never;
                     public part: number;
                     public control: UnityEngine.InputSystem.InputControl;
                 }
+
             }
 
             class InputControlScheme implements System.IEquatable$1<UnityEngine.InputSystem.InputControlScheme> {
@@ -672,7 +682,8 @@ declare namespace CS {
                 public Equals($obj: any): boolean;
                 public GetHashCode(): number;
                 public ToString(): string;
-
+            }
+            namespace InputControlScheme {
                 class MatchResult implements System.Collections.Generic.IEnumerable$1<UnityEngine.InputSystem.InputControlScheme.MatchResult.Match>, System.Collections.IEnumerable, System.IDisposable {
                     protected [__keep_incompatibility]: never;
                     public get score(): number;
@@ -683,7 +694,8 @@ declare namespace CS {
                     public GetEnumerator(): System.Collections.Generic.IEnumerator$1<UnityEngine.InputSystem.InputControlScheme.MatchResult.Match>;
                     public Dispose(): void;
                     public get_Item($index: number): UnityEngine.InputSystem.InputControlScheme.MatchResult.Match;
-
+                }
+                namespace MatchResult {
                     class Match {
                         protected [__keep_incompatibility]: never;
                         public get control(): UnityEngine.InputSystem.InputControl;
@@ -692,6 +704,7 @@ declare namespace CS {
                         public get requirement(): UnityEngine.InputSystem.InputControlScheme.DeviceRequirement;
                         public get isOptional(): boolean;
                     }
+
                 }
 
                 class DeviceRequirement implements System.IEquatable$1<UnityEngine.InputSystem.InputControlScheme.DeviceRequirement> {
@@ -705,6 +718,7 @@ declare namespace CS {
                     public Equals($obj: any): boolean;
                     public GetHashCode(): number;
                 }
+
             }
 
             class InputInteractionContext {
@@ -939,7 +953,8 @@ declare namespace CS {
                 public static GetAllButtonPresses($magnitude?: number, $buttonControlsOnly?: boolean): System.Collections.Generic.IEnumerable$1<UnityEngine.InputSystem.InputControl>;
                 public static Setup(): UnityEngine.InputSystem.InputControlExtensions.ControlBuilder;
                 public static Setup($controlCount: number, $usageCount: number, $aliasCount: number): UnityEngine.InputSystem.InputControlExtensions.DeviceBuilder;
-
+            }
+            namespace InputControlExtensions {
                 enum Enumerate {
                     IgnoreControlsInDefaultState = 1,
                     IgnoreControlsInCurrentState = 2,
@@ -1001,6 +1016,7 @@ declare namespace CS {
                     public WithControlTree($controlTreeNodes: System.Array$1<number>, $controlTreeIndicies: System.Array$1<number>): UnityEngine.InputSystem.InputControlExtensions.DeviceBuilder;
                     public Finish(): void;
                 }
+
             }
 
             enum InputControlLayoutChange {
@@ -1061,7 +1077,8 @@ declare namespace CS {
                 public static Matches($expected: string, $control: UnityEngine.InputSystem.InputControl): boolean;
                 public static MatchesPrefix($expected: string, $control: UnityEngine.InputSystem.InputControl): boolean;
                 public static Parse($path: string): System.Collections.Generic.IEnumerable$1<UnityEngine.InputSystem.InputControlPath.ParsedPathComponent>;
-
+            }
+            namespace InputControlPath {
                 enum HumanReadableStringOptions {
                     None = 0,
                     OmitDevice = 2,
@@ -1076,17 +1093,20 @@ declare namespace CS {
                     public get displayName(): string;
                     public Matches($control: UnityEngine.InputSystem.InputControl): boolean;
                 }
+
             }
 
             class InputProcessor {
                 protected [__keep_incompatibility]: never;
                 public get cachingPolicy(): UnityEngine.InputSystem.InputProcessor.CachingPolicy;
                 public ProcessAsObject($value: any, $control: UnityEngine.InputSystem.InputControl): any;
-
+            }
+            namespace InputProcessor {
                 enum CachingPolicy {
                     CacheResult = 0,
                     EvaluateOnEveryRead = 1
                 }
+
             }
 
             class InputProcessor<TValue> extends UnityEngine.InputSystem.InputProcessor {
@@ -1538,7 +1558,8 @@ declare namespace CS {
                 public StopSending(): void;
                 public Subscribe($observer: System.IObserver$1<UnityEngine.InputSystem.InputRemoting.Message>): System.IDisposable;
                 public RemoveRemoteDevices($participantId: number): void;
-
+            }
+            namespace InputRemoting {
                 enum MessageType {
                     Connect = 0,
                     Disconnect = 1,
@@ -1558,6 +1579,7 @@ declare namespace CS {
                     public type: UnityEngine.InputSystem.InputRemoting.MessageType;
                     public data: System.Array$1<number>;
                 }
+
             }
 
             class Sensor extends UnityEngine.InputSystem.InputDevice {
@@ -1733,7 +1755,8 @@ declare namespace CS {
                 public get iOS(): UnityEngine.InputSystem.InputSettings.iOSSettings;
                 constructor();
                 public SetInternalFeatureFlag($featureName: string, $enabled: boolean): void;
-
+            }
+            namespace InputSettings {
                 enum UpdateMode {
                     ProcessEventsInDynamicUpdate = 1,
                     ProcessEventsInFixedUpdate = 2,
@@ -1768,6 +1791,7 @@ declare namespace CS {
                     public motionUsage: UnityEngine.InputSystem.iOS.PrivacyDataUsage;
                     constructor();
                 }
+
             }
 
             class DefaultInputActions implements System.Collections.Generic.IEnumerable$1<UnityEngine.InputSystem.InputAction>, UnityEngine.InputSystem.IInputActionCollection, System.Collections.IEnumerable, UnityEngine.InputSystem.IInputActionCollection2, System.IDisposable {
@@ -1792,7 +1816,8 @@ declare namespace CS {
                 public Disable(): void;
                 public FindAction($actionNameOrId: string, $throwIfNotFound?: boolean): UnityEngine.InputSystem.InputAction;
                 public FindBinding($bindingMask: UnityEngine.InputSystem.InputBinding, $action: $Out<UnityEngine.InputSystem.InputAction>): number;
-
+            }
+            namespace DefaultInputActions {
                 class PlayerActions {
                     protected [__keep_incompatibility]: never;
                     public get Move(): UnityEngine.InputSystem.InputAction;
@@ -1844,6 +1869,7 @@ declare namespace CS {
                     OnTrackedDevicePosition($context: UnityEngine.InputSystem.InputAction.CallbackContext): void;
                     OnTrackedDeviceOrientation($context: UnityEngine.InputSystem.InputAction.CallbackContext): void;
                 }
+
             }
 
             class InputValue {
@@ -1902,7 +1928,8 @@ declare namespace CS {
                 public remove_onDeviceRegained(handler: System.Action$1<UnityEngine.InputSystem.PlayerInput>): void;
                 public add_onControlsChanged(handler: System.Action$1<UnityEngine.InputSystem.PlayerInput>): void;
                 public remove_onControlsChanged(handler: System.Action$1<UnityEngine.InputSystem.PlayerInput>): void;
-
+            }
+            namespace PlayerInput {
                 class ActionEvent extends UnityEngine.Events.UnityEvent$1<UnityEngine.InputSystem.InputAction.CallbackContext> {
                     protected [__keep_incompatibility]: never;
                     public get actionId(): string;
@@ -1926,6 +1953,7 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
+
             }
 
             class PlayerInputManager extends UnityEngine.MonoBehaviour {
@@ -1957,7 +1985,8 @@ declare namespace CS {
                 public remove_onPlayerJoined(handler: System.Action$1<UnityEngine.InputSystem.PlayerInput>): void;
                 public add_onPlayerLeft(handler: System.Action$1<UnityEngine.InputSystem.PlayerInput>): void;
                 public remove_onPlayerLeft(handler: System.Action$1<UnityEngine.InputSystem.PlayerInput>): void;
-
+            }
+            namespace PlayerInputManager {
                 class PlayerJoinedEvent extends UnityEngine.Events.UnityEvent$1<UnityEngine.InputSystem.PlayerInput> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1967,6 +1996,7 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
+
             }
 
             enum PlayerJoinBehavior {
@@ -2031,7 +2061,8 @@ declare namespace CS {
                 public SetTouch($touchId: number, $phase: UnityEngine.InputSystem.TouchPhase, $position: UnityEngine.Vector2, $pressure: number, $delta?: UnityEngine.Vector2, $queueEventOnly?: boolean, $screen?: UnityEngine.InputSystem.Touchscreen, $time?: number, $timeOffset?: number, $displayIndex?: number): void;
                 public Trigger<TValue>($action: UnityEngine.InputSystem.InputAction, $control: UnityEngine.InputSystem.InputControl$1<TValue>, $value: TValue): void;
                 public Trigger($action: UnityEngine.InputSystem.InputAction): void;
-
+            }
+            namespace InputTestFixture {
                 class ActionConstraint extends NUnit.Framework.Constraints.Constraint {
                     protected [__keep_incompatibility]: never;
                     public phase: UnityEngine.InputSystem.InputActionPhase;
@@ -2045,6 +2076,7 @@ declare namespace CS {
                     public ApplyTo($actual: any): NUnit.Framework.Constraints.ConstraintResult;
                     public AndThen($constraint: UnityEngine.InputSystem.InputTestFixture.ActionConstraint): UnityEngine.InputSystem.InputTestFixture.ActionConstraint;
                 }
+
             }
 
         }
@@ -2214,7 +2246,8 @@ declare namespace CS {
                         public get format(): UnityEngine.InputSystem.Utilities.FourCC;
                         public WithButton($code: UnityEngine.InputSystem.Android.LowLevel.AndroidKeyCode, $value?: boolean): UnityEngine.InputSystem.Android.LowLevel.AndroidGameControllerState;
                         public WithAxis($axis: UnityEngine.InputSystem.Android.LowLevel.AndroidAxis, $value: number): UnityEngine.InputSystem.Android.LowLevel.AndroidGameControllerState;
-
+                    }
+                    namespace AndroidGameControllerState {
                         class Variants {
                             protected [__keep_incompatibility]: never;
                             public static readonly Gamepad: string;
@@ -2223,6 +2256,7 @@ declare namespace CS {
                             public static readonly DPadButtons: string;
                             constructor();
                         }
+
                     }
 
                     enum AndroidKeyCode {
@@ -2466,12 +2500,14 @@ declare namespace CS {
                     constructor();
                     public ReadValue($context: $Ref<UnityEngine.InputSystem.InputBindingCompositeContext>): number;
                     public EvaluateMagnitude($context: $Ref<UnityEngine.InputSystem.InputBindingCompositeContext>): number;
-
+                }
+                namespace AxisComposite {
                     enum WhichSideWins {
                         Neither = 0,
                         Positive = 1,
                         Negative = 2
                     }
+
                 }
 
                 class ButtonWithOneModifier extends UnityEngine.InputSystem.InputBindingComposite$1<number> {
@@ -2483,12 +2519,14 @@ declare namespace CS {
                     constructor();
                     public ReadValue($context: $Ref<UnityEngine.InputSystem.InputBindingCompositeContext>): number;
                     public EvaluateMagnitude($context: $Ref<UnityEngine.InputSystem.InputBindingCompositeContext>): number;
-
+                }
+                namespace ButtonWithOneModifier {
                     enum ModifiersOrder {
                         Default = 0,
                         Ordered = 1,
                         Unordered = 2
                     }
+
                 }
 
                 class ButtonWithTwoModifiers extends UnityEngine.InputSystem.InputBindingComposite$1<number> {
@@ -2501,12 +2539,14 @@ declare namespace CS {
                     constructor();
                     public ReadValue($context: $Ref<UnityEngine.InputSystem.InputBindingCompositeContext>): number;
                     public EvaluateMagnitude($context: $Ref<UnityEngine.InputSystem.InputBindingCompositeContext>): number;
-
+                }
+                namespace ButtonWithTwoModifiers {
                     enum ModifiersOrder {
                         Default = 0,
                         Ordered = 1,
                         Unordered = 2
                     }
+
                 }
 
                 class OneModifierComposite extends UnityEngine.InputSystem.InputBindingComposite {
@@ -2520,12 +2560,14 @@ declare namespace CS {
                     constructor();
                     public EvaluateMagnitude($context: $Ref<UnityEngine.InputSystem.InputBindingCompositeContext>): number;
                     public ReadValueAsObject($context: $Ref<UnityEngine.InputSystem.InputBindingCompositeContext>): any;
-
+                }
+                namespace OneModifierComposite {
                     enum ModifiersOrder {
                         Default = 0,
                         Ordered = 1,
                         Unordered = 2
                     }
+
                 }
 
                 class TwoModifiersComposite extends UnityEngine.InputSystem.InputBindingComposite {
@@ -2540,12 +2582,14 @@ declare namespace CS {
                     constructor();
                     public EvaluateMagnitude($context: $Ref<UnityEngine.InputSystem.InputBindingCompositeContext>): number;
                     public ReadValueAsObject($context: $Ref<UnityEngine.InputSystem.InputBindingCompositeContext>): any;
-
+                }
+                namespace TwoModifiersComposite {
                     enum ModifiersOrder {
                         Default = 0,
                         Ordered = 1,
                         Unordered = 2
                     }
+
                 }
 
                 class Vector2Composite extends UnityEngine.InputSystem.InputBindingComposite$1<UnityEngine.Vector2> {
@@ -2559,12 +2603,14 @@ declare namespace CS {
                     constructor();
                     public ReadValue($context: $Ref<UnityEngine.InputSystem.InputBindingCompositeContext>): UnityEngine.Vector2;
                     public EvaluateMagnitude($context: $Ref<UnityEngine.InputSystem.InputBindingCompositeContext>): number;
-
+                }
+                namespace Vector2Composite {
                     enum Mode {
                         DigitalNormalized = 0,
                         Digital = 1,
                         Analog = 2
                     }
+
                 }
 
                 class Vector3Composite extends UnityEngine.InputSystem.InputBindingComposite$1<UnityEngine.Vector3> {
@@ -2579,12 +2625,14 @@ declare namespace CS {
                     constructor();
                     public ReadValue($context: $Ref<UnityEngine.InputSystem.InputBindingCompositeContext>): UnityEngine.Vector3;
                     public EvaluateMagnitude($context: $Ref<UnityEngine.InputSystem.InputBindingCompositeContext>): number;
-
+                }
+                namespace Vector3Composite {
                     enum Mode {
                         Analog = 0,
                         DigitalNormalized = 1,
                         Digital = 2
                     }
+
                 }
 
             }
@@ -2612,13 +2660,15 @@ declare namespace CS {
                     public scale: boolean;
                     public scaleFactor: number;
                     constructor();
-
+                }
+                namespace AxisControl {
                     enum Clamp {
                         None = 0,
                         BeforeNormalize = 1,
                         AfterNormalize = 2,
                         ToConstantBeforeNormalize = 3
                     }
+
                 }
 
                 class ButtonControl extends UnityEngine.InputSystem.Controls.AxisControl {
@@ -2649,11 +2699,13 @@ declare namespace CS {
                     public nullValue: number;
                     public writeMode: UnityEngine.InputSystem.Controls.DiscreteButtonControl.WriteMode;
                     constructor();
-
+                }
+                namespace DiscreteButtonControl {
                     enum WriteMode {
                         WriteDisabled = 0,
                         WriteNullAndMaxValue = 1
                     }
+
                 }
 
                 class DoubleControl extends UnityEngine.InputSystem.InputControl$1<number> {
@@ -2670,12 +2722,14 @@ declare namespace CS {
                     constructor();
                     public static MakeDpadVector($up: boolean, $down: boolean, $left: boolean, $right: boolean, $normalize?: boolean): UnityEngine.Vector2;
                     public static MakeDpadVector($up: number, $down: number, $left: number, $right: number): UnityEngine.Vector2;
-
+                }
+                namespace DpadControl {
                     class DpadAxisControl extends UnityEngine.InputSystem.Controls.AxisControl {
                         protected [__keep_incompatibility]: never;
                         public component: number;
                         constructor();
                     }
+
                 }
 
                 class IntegerControl extends UnityEngine.InputSystem.InputControl$1<number> {
@@ -2854,13 +2908,15 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                     public static GenerateWrapperCode($asset: UnityEngine.InputSystem.InputActionAsset, $options?: UnityEngine.InputSystem.Editor.InputActionCodeGenerator.Options): string;
                     public static GenerateWrapperCode($filePath: string, $asset: UnityEngine.InputSystem.InputActionAsset, $options: UnityEngine.InputSystem.Editor.InputActionCodeGenerator.Options): boolean;
-
+                }
+                namespace InputActionCodeGenerator {
                     class Options {
                         protected [__keep_incompatibility]: never;
                         public className: string;
                         public namespaceName: string;
                         public sourceAssetPath: string;
                     }
+
                 }
 
                 class InputControlPathEditor implements System.IDisposable {
@@ -2882,11 +2938,13 @@ declare namespace CS {
                     constructor($mode: UnityEngine.InputSystem.Editor.InputControlPicker.Mode, $onPick: System.Action$1<string>, $state: UnityEngine.InputSystem.Editor.InputControlPickerState);
                     public Show($rect: UnityEngine.Rect): void;
                     public Dispose(): void;
-
+                }
+                namespace InputControlPicker {
                     enum Mode {
                         PickControl = 0,
                         PickDevice = 1
                     }
+
                 }
 
                 class InputControlPickerState {
@@ -3024,7 +3082,8 @@ declare namespace CS {
                     constructor();
                     public static UsagePageToString($usagePage: UnityEngine.InputSystem.HID.HID.UsagePage): string;
                     public static UsageToString($usagePage: UnityEngine.InputSystem.HID.HID.UsagePage, $usage: number): string;
-
+                }
+                namespace HID {
                     enum HIDReportType {
                         Unknown = 0,
                         Input = 1,
@@ -3284,12 +3343,14 @@ declare namespace CS {
                         Secondary = 2,
                         Tertiary = 3
                     }
+
                 }
 
                 class HIDSupport {
                     protected [__keep_incompatibility]: never;
                     public static supportedHIDUsages: UnityEngine.InputSystem.Utilities.ReadOnlyArray$1<UnityEngine.InputSystem.HID.HIDSupport.HIDPageUsage>;
-
+                }
+                namespace HIDSupport {
                     class HIDPageUsage {
                         protected [__keep_incompatibility]: never;
                         public page: UnityEngine.InputSystem.HID.HID.UsagePage;
@@ -3297,6 +3358,7 @@ declare namespace CS {
                         constructor($page: UnityEngine.InputSystem.HID.HID.UsagePage, $usage: number);
                         constructor($usage: UnityEngine.InputSystem.HID.HID.GenericDesktop);
                     }
+
                 }
 
             }
@@ -3483,7 +3545,8 @@ declare namespace CS {
                     public static FromJson($json: string): UnityEngine.InputSystem.Layouts.InputControlLayout;
                     public MergeLayout($other: UnityEngine.InputSystem.Layouts.InputControlLayout): void;
                     public get_Item($path: string): UnityEngine.InputSystem.Layouts.InputControlLayout.ControlItem;
-
+                }
+                namespace InputControlLayout {
                     class ControlItem {
                         protected [__keep_incompatibility]: never;
                         public get name(): UnityEngine.InputSystem.Utilities.InternedString;
@@ -3533,7 +3596,8 @@ declare namespace CS {
                         public WithSizeInBytes($sizeInBytes: number): UnityEngine.InputSystem.Layouts.InputControlLayout.Builder;
                         public Extend($baseLayoutName: string): UnityEngine.InputSystem.Layouts.InputControlLayout.Builder;
                         public Build(): UnityEngine.InputSystem.Layouts.InputControlLayout;
-
+                    }
+                    namespace Builder {
                         class ControlBuilder {
                             protected [__keep_incompatibility]: never;
                             public WithDisplayName($displayName: string): UnityEngine.InputSystem.Layouts.InputControlLayout.Builder.ControlBuilder;
@@ -3556,6 +3620,7 @@ declare namespace CS {
                             public UsingStateFrom($path: string): UnityEngine.InputSystem.Layouts.InputControlLayout.Builder.ControlBuilder;
                             public AsArrayOfControlsWithSize($arraySize: number): UnityEngine.InputSystem.Layouts.InputControlLayout.Builder.ControlBuilder;
                         }
+
                     }
 
                     class LayoutNotFoundException extends System.Exception {
@@ -3566,6 +3631,7 @@ declare namespace CS {
                         constructor($name: string);
                         constructor($message: string, $innerException: System.Exception);
                     }
+
                 }
 
                 class InputControlLayoutAttribute extends System.Attribute {
@@ -3662,12 +3728,14 @@ declare namespace CS {
                     public static get Type(): UnityEngine.InputSystem.Utilities.FourCC;
                     public get typeStatic(): UnityEngine.InputSystem.Utilities.FourCC;
                     public static Create(): UnityEngine.InputSystem.LowLevel.InitiateUserAccountPairingCommand;
-
+                }
+                namespace InitiateUserAccountPairingCommand {
                     enum Result {
                         SuccessfullyInitiated = 1,
                         ErrorAlreadyInProgress = -2,
                         ErrorNotSupported = -1
                     }
+
                 }
 
                 interface InputDeviceCommandDelegate {
@@ -3753,13 +3821,15 @@ declare namespace CS {
                     public name: string;
                     public get typeStatic(): UnityEngine.InputSystem.Utilities.FourCC;
                     public static Create(): UnityEngine.InputSystem.LowLevel.QueryPairedUserAccountCommand;
-
+                }
+                namespace QueryPairedUserAccountCommand {
                     enum Result {
                         DevicePairedToUserAccount = 2,
                         UserAccountSelectionInProgress = 4,
                         UserAccountSelectionComplete = 8,
                         UserAccountSelectionCanceled = 16
                     }
+
                 }
 
                 class RequestResetCommand implements UnityEngine.InputSystem.LowLevel.IInputDeviceCommandInfo {
@@ -4056,7 +4126,8 @@ declare namespace CS {
                     public Dispose(): void;
                     public add_onEvent(handler: System.Action$1<UnityEngine.InputSystem.LowLevel.InputEventPtr>): void;
                     public remove_onEvent(handler: System.Action$1<UnityEngine.InputSystem.LowLevel.InputEventPtr>): void;
-
+                }
+                namespace InputEventTrace {
                     class ReplayController implements System.IDisposable {
                         protected [__keep_incompatibility]: never;
                         public get trace(): UnityEngine.InputSystem.LowLevel.InputEventTrace;
@@ -4084,6 +4155,7 @@ declare namespace CS {
                         public stateFormat: UnityEngine.InputSystem.Utilities.FourCC;
                         public stateSizeInBytes: number;
                     }
+
                 }
 
                 class StateEvent implements UnityEngine.InputSystem.LowLevel.IInputEventTypeInfo {
@@ -4228,7 +4300,8 @@ declare namespace CS {
                     public Dispose(): void;
                     public get_Item($index: number): UnityEngine.InputSystem.LowLevel.InputStateHistory.Record;
                     public set_Item($index: number, value: UnityEngine.InputSystem.LowLevel.InputStateHistory.Record): void;
-
+                }
+                namespace InputStateHistory {
                     class Record implements System.IEquatable$1<UnityEngine.InputSystem.LowLevel.InputStateHistory.Record> {
                         protected [__keep_incompatibility]: never;
                         public get valid(): boolean;
@@ -4246,6 +4319,7 @@ declare namespace CS {
                         public GetHashCode(): number;
                         public ToString(): string;
                     }
+
                 }
 
                 class InputStateHistory<TValue> extends UnityEngine.InputSystem.LowLevel.InputStateHistory implements System.Collections.Generic.IEnumerable$1<UnityEngine.InputSystem.LowLevel.InputStateHistory$1.Record$1<TValue>>, System.Collections.Generic.IReadOnlyCollection$1<UnityEngine.InputSystem.LowLevel.InputStateHistory$1.Record$1<TValue>>, System.Collections.Generic.IReadOnlyList$1<UnityEngine.InputSystem.LowLevel.InputStateHistory$1.Record$1<TValue>> {
@@ -4258,7 +4332,8 @@ declare namespace CS {
                     public GetEnumerator(): System.Collections.Generic.IEnumerator$1<UnityEngine.InputSystem.LowLevel.InputStateHistory$1.Record$1<TValue>>;
                     public get_Item($index: number): UnityEngine.InputSystem.LowLevel.InputStateHistory$1.Record$1<TValue>;
                     public set_Item($index: number, value: UnityEngine.InputSystem.LowLevel.InputStateHistory$1.Record$1<TValue>): void;
-
+                }
+                namespace InputStateHistory {
                     class Record<TValue> implements System.IEquatable$1<UnityEngine.InputSystem.LowLevel.InputStateHistory$1.Record$1<TValue>> {
                         protected [__keep_incompatibility]: never;
                         public get valid(): boolean;
@@ -4275,6 +4350,7 @@ declare namespace CS {
                         public GetHashCode(): number;
                         public ToString(): string;
                     }
+
                 }
 
             }
@@ -4306,12 +4382,14 @@ declare namespace CS {
                     public OnPointerDown($eventData: UnityEngine.EventSystems.PointerEventData): void;
                     public OnDrag($eventData: UnityEngine.EventSystems.PointerEventData): void;
                     public OnPointerUp($eventData: UnityEngine.EventSystems.PointerEventData): void;
-
+                }
+                namespace OnScreenStick {
                     enum Behaviour {
                         RelativePositionWithStaticOrigin = 0,
                         ExactPositionWithStaticOrigin = 1,
                         ExactPositionWithDynamicOrigin = 2
                     }
+
                 }
 
             }
@@ -4525,11 +4603,13 @@ declare namespace CS {
                     public ConvertUIToolkitPointerId($sourcePointerData: UnityEngine.EventSystems.PointerEventData): number;
                     public ConvertPointerEventScrollDeltaToTicks($scrollDelta: UnityEngine.Vector2): UnityEngine.Vector2;
                     public GetNavigationEventDeviceType($eventData: UnityEngine.EventSystems.BaseEventData): UnityEngine.EventSystems.NavigationDeviceType;
-
+                }
+                namespace InputSystemUIInputModule {
                     enum CursorLockBehavior {
                         OutsideScreen = 0,
                         ScreenCenter = 1
                     }
+
                 }
 
                 class MultiplayerEventSystem extends UnityEngine.EventSystems.EventSystem {
@@ -4566,11 +4646,13 @@ declare namespace CS {
                     public backButtonAction: UnityEngine.InputSystem.InputActionProperty;
                     public scrollWheelAction: UnityEngine.InputSystem.InputActionProperty;
                     constructor();
-
+                }
+                namespace VirtualMouseInput {
                     enum CursorMode {
                         SoftwareCursor = 0,
                         HardwareCursorIfAvailable = 1
                     }
+
                 }
 
             }
@@ -4618,11 +4700,13 @@ declare namespace CS {
                     public static remove_onUnpairedDeviceUsed(handler: System.Action$2<UnityEngine.InputSystem.InputControl, UnityEngine.InputSystem.LowLevel.InputEventPtr>): void;
                     public static add_onPrefilterUnpairedDeviceActivity(handler: System.Func$3<UnityEngine.InputSystem.InputDevice, UnityEngine.InputSystem.LowLevel.InputEventPtr, boolean>): void;
                     public static remove_onPrefilterUnpairedDeviceActivity(handler: System.Func$3<UnityEngine.InputSystem.InputDevice, UnityEngine.InputSystem.LowLevel.InputEventPtr, boolean>): void;
-
+                }
+                namespace InputUser {
                     class ControlSchemeChangeSyntax {
                         protected [__keep_incompatibility]: never;
                         public AndPairRemainingDevices(): UnityEngine.InputSystem.Users.InputUser.ControlSchemeChangeSyntax;
                     }
+
                 }
 
                 class InputUserAccountHandle implements System.IEquatable$1<UnityEngine.InputSystem.Users.InputUserAccountHandle> {
@@ -4683,7 +4767,8 @@ declare namespace CS {
                     public ToString(): string;
                     public Dispose(): void;
                     public GetEnumerator(): System.Collections.Generic.IEnumerator$1<UnityEngine.InputSystem.Utilities.InputActionTrace.ActionEventPtr>;
-
+                }
+                namespace InputActionTrace {
                     class ActionEventPtr {
                         protected [__keep_incompatibility]: never;
                         public get action(): UnityEngine.InputSystem.InputAction;
@@ -4698,6 +4783,7 @@ declare namespace CS {
                         public ReadValue<TValue>(): TValue;
                         public ToString(): string;
                     }
+
                 }
 
                 class Vector2MagnitudeComparer implements System.Collections.Generic.IComparer$1<UnityEngine.Vector2> {
@@ -4846,7 +4932,8 @@ declare namespace CS {
                     public IndexOf($predicate: System.Predicate$1<TValue>): number;
                     public GetEnumerator(): UnityEngine.InputSystem.Utilities.ReadOnlyArray$1.Enumerator$1<TValue>;
                     public get_Item($index: number): TValue;
-
+                }
+                namespace ReadOnlyArray {
                     class Enumerator<TValue> implements System.Collections.Generic.IEnumerator$1<TValue>, System.Collections.IEnumerator, System.IDisposable {
                         protected [__keep_incompatibility]: never;
                         public get Current(): TValue;
@@ -4854,6 +4941,7 @@ declare namespace CS {
                         public MoveNext(): boolean;
                         public Reset(): void;
                     }
+
                 }
 
                 class ReadOnlyArrayExtensions {
@@ -4916,7 +5004,8 @@ declare namespace CS {
                     public get subType(): UnityEngine.InputSystem.XInput.XInputController.DeviceSubType;
                     public get flags(): UnityEngine.InputSystem.XInput.XInputController.DeviceFlags;
                     constructor();
-
+                }
+                namespace XInputController {
                     enum DeviceSubType {
                         Unknown = 0,
                         Gamepad = 1,
@@ -4938,6 +5027,7 @@ declare namespace CS {
                         PluginModulesSupported = 8,
                         NoNavigation = 16
                     }
+
                 }
 
             }
@@ -5004,7 +5094,8 @@ declare namespace CS {
                     public positionAction: UnityEngine.InputSystem.InputAction;
                     public rotationAction: UnityEngine.InputSystem.InputAction;
                     constructor();
-
+                }
+                namespace TrackedPoseDriver {
                     enum TrackingType {
                         RotationAndPosition = 0,
                         RotationOnly = 1,
@@ -5016,6 +5107,7 @@ declare namespace CS {
                         Update = 1,
                         BeforeRender = 2
                     }
+
                 }
 
                 class XRUtilities {

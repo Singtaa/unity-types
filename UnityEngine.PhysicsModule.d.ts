@@ -596,12 +596,14 @@ declare namespace CS {
             public static remove_ContactModifyEventCCD(handler: System.Action$2<UnityEngine.PhysicsScene, Unity.Collections.NativeArray$1<UnityEngine.ModifiableContactPair>>): void;
             public static add_ContactEvent(handler: UnityEngine.Physics.ContactEventDelegate): void;
             public static remove_ContactEvent(handler: UnityEngine.Physics.ContactEventDelegate): void;
-
+        }
+        namespace Physics {
             interface ContactEventDelegate {
                 ($scene: UnityEngine.PhysicsScene, $headerArray: Unity.Collections.NativeArray$1.ReadOnly$1<UnityEngine.ContactPairHeader>): void;
                 Invoke?: ($scene: UnityEngine.PhysicsScene, $headerArray: Unity.Collections.NativeArray$1.ReadOnly$1<UnityEngine.ContactPairHeader>) => void;
             }
             var ContactEventDelegate: { new (func: ($scene: UnityEngine.PhysicsScene, $headerArray: Unity.Collections.NativeArray$1.ReadOnly$1<UnityEngine.ContactPairHeader>) => void): ContactEventDelegate; };
+
         }
 
         class ModifiableContactPair {
