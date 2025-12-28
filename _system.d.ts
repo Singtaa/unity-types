@@ -1,6 +1,10 @@
 // System namespace types for Unity/C# interop
 // These are .NET Base Class Library types commonly used in Unity APIs
 
+// Helper types (duplicated from index.d.ts for standalone use)
+declare interface $Ref<T> { __doNotAccess: T }
+declare interface $Out<T> { __doNotAccess: T }
+
 declare namespace CS {
     namespace System {
         // Base types
@@ -279,7 +283,9 @@ declare namespace CS {
                     get_Item($key: TKey): TValue;
                     set_Item($key: TKey, $value: TValue): void;
                     ContainsKey($key: TKey): boolean;
+                    Add($item: System.Collections.Generic.KeyValuePair$2<TKey, TValue>): void;
                     Add($key: TKey, $value: TValue): void;
+                    Remove($item: System.Collections.Generic.KeyValuePair$2<TKey, TValue>): boolean;
                     Remove($key: TKey): boolean;
                     TryGetValue($key: TKey, $value: $Out<TValue>): boolean;
                 }
@@ -328,10 +334,14 @@ declare namespace CS {
                     constructor($capacity: number);
                     public get_Item($key: TKey): TValue;
                     public set_Item($key: TKey, $value: TValue): void;
+                    public Add($item: System.Collections.Generic.KeyValuePair$2<TKey, TValue>): void;
                     public Add($key: TKey, $value: TValue): void;
                     public Clear(): void;
+                    public Contains($item: System.Collections.Generic.KeyValuePair$2<TKey, TValue>): boolean;
                     public ContainsKey($key: TKey): boolean;
                     public ContainsValue($value: TValue): boolean;
+                    public CopyTo($array: System.Array$1<System.Collections.Generic.KeyValuePair$2<TKey, TValue>>, $arrayIndex: number): void;
+                    public Remove($item: System.Collections.Generic.KeyValuePair$2<TKey, TValue>): boolean;
                     public Remove($key: TKey): boolean;
                     public TryGetValue($key: TKey, $value: $Out<TValue>): boolean;
                     public GetEnumerator(): System.Collections.Generic.IEnumerator$1<System.Collections.Generic.KeyValuePair$2<TKey, TValue>>;
