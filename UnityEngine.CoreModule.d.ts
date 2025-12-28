@@ -1,4 +1,6 @@
 declare namespace CS {
+    const __keep_incompatibility: symbol;
+
     namespace AOT {
         class MonoPInvokeCallbackAttribute extends System.Attribute {
             protected [__keep_incompatibility]: never;

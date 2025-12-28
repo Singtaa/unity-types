@@ -1,4 +1,6 @@
 declare namespace CS {
+    const __keep_incompatibility: symbol;
+
     namespace UnityEngine {
         class AndroidInput {
             protected [__keep_incompatibility]: never;

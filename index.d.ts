@@ -14,7 +14,7 @@ declare interface $Task<T> { __doNotAccess: T }
 
 // Type incompatibility marker (prevents accidental type assignment)
 declare namespace CS {
-    const __keep_incompatibility: unique symbol;
+    const __keep_incompatibility: symbol;
 }
 
 // Base .NET types

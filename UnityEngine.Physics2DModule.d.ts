@@ -1,4 +1,6 @@
 declare namespace CS {
+    const __keep_incompatibility: symbol;
+
     namespace UnityEngine {
         class PhysicsScene2D implements System.IEquatable$1<UnityEngine.PhysicsScene2D> {
             protected [__keep_incompatibility]: never;

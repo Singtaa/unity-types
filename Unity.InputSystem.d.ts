@@ -1,4 +1,6 @@
 declare namespace CS {
+    const __keep_incompatibility: symbol;
+
     namespace Unity {
         namespace XR {
             namespace GoogleVr {
