@@ -17,10 +17,13 @@ Add `unity-types` to your `tsconfig.json`:
 ```json
 {
   "compilerOptions": {
-    "types": ["unity-types"]
+    "types": ["unity-types"],
+    "skipLibCheck": true
   }
 }
 ```
+
+> **Note:** `skipLibCheck: true` is recommended. Some C# constructs (like compiler-generated fixed buffers) produce type names that aren't valid TypeScript identifiers.
 
 Or add a triple-slash reference in a `global.d.ts` file:
 

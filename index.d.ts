@@ -5,7 +5,7 @@
 //   npm install unity-types@~6000.3.0
 //
 // Add to tsconfig.json:
-//   { "compilerOptions": { "types": ["unity-types"] } }
+//   { "compilerOptions": { "types": ["unity-types"], "skipLibCheck": true } }
 
 // Helper types for C# interop
 declare interface $Ref<T> { __doNotAccess: T }
