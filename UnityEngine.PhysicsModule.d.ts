@@ -138,6 +138,10 @@ declare namespace CS {
             public get_Item($i: number): number;
             public set_Item($i: number, value: number): void;
         }
+        namespace ArticulationReducedSpace {
+            type _x_e__FixedBuffer = any;
+
+        }
 
         class ArticulationJacobian {
             protected [__keep_incompatibility]: never;
@@ -742,6 +746,16 @@ declare namespace CS {
             public get description(): string;
             public get isFallback(): boolean;
         }
+        namespace IntegrationInfo {
+            type _m_Desc_e__FixedBuffer = any;
+
+            type _m_IntegrationVersion_e__FixedBuffer = any;
+
+            type _m_Name_e__FixedBuffer = any;
+
+            type _m_SdkVersion_e__FixedBuffer = any;
+
+        }
 
         class ContactPairHeader {
             protected [__keep_incompatibility]: never;
@@ -1190,6 +1204,10 @@ declare namespace CS {
                 public ScaleAxisRotation: UnityEngine.Quaternion;
                 public get GeometryType(): UnityEngine.LowLevelPhysics.GeometryType;
             }
+            namespace ConvexMeshGeometry {
+                type _m_MeshFlagsPadding_e__FixedBuffer = any;
+
+            }
 
             class TriangleMeshGeometry implements UnityEngine.LowLevelPhysics.IGeometry {
                 protected [__keep_incompatibility]: never;
@@ -1197,10 +1215,18 @@ declare namespace CS {
                 public ScaleAxisRotation: UnityEngine.Quaternion;
                 public get GeometryType(): UnityEngine.LowLevelPhysics.GeometryType;
             }
+            namespace TriangleMeshGeometry {
+                type _m_MeshFlagsPadding_e__FixedBuffer = any;
+
+            }
 
             class TerrainGeometry implements UnityEngine.LowLevelPhysics.IGeometry {
                 protected [__keep_incompatibility]: never;
                 public get GeometryType(): UnityEngine.LowLevelPhysics.GeometryType;
+            }
+            namespace TerrainGeometry {
+                type _m_TerrainFlagsPadding_e__FixedBuffer = any;
+
             }
 
             enum GeometryType {
@@ -1218,6 +1244,10 @@ declare namespace CS {
                 public get Type(): UnityEngine.LowLevelPhysics.GeometryType;
                 public As<T extends UnityEngine.LowLevelPhysics.IGeometry>(): T;
                 public static Create<T extends UnityEngine.LowLevelPhysics.IGeometry>($geometry: T): UnityEngine.LowLevelPhysics.GeometryHolder;
+            }
+            namespace GeometryHolder {
+                type _m_Data_e__FixedBuffer = any;
+
             }
 
         }

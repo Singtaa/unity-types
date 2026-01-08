@@ -2259,6 +2259,10 @@ declare namespace CS {
                             constructor();
                         }
 
+                        type _axis_e__FixedBuffer = any;
+
+                        type _buttons_e__FixedBuffer = any;
+
                     }
 
                     enum AndroidKeyCode {
@@ -3802,6 +3806,10 @@ declare namespace CS {
                     public WriteLayoutName($name: string): void;
                     public static Create(): UnityEngine.InputSystem.LowLevel.QueryKeyboardLayoutCommand;
                 }
+                namespace QueryKeyboardLayoutCommand {
+                    type _nameBuffer_e__FixedBuffer = any;
+
+                }
 
                 class QueryKeyNameCommand implements UnityEngine.InputSystem.LowLevel.IInputDeviceCommandInfo {
                     protected [__keep_incompatibility]: never;
@@ -3812,6 +3820,10 @@ declare namespace CS {
                     public get typeStatic(): UnityEngine.InputSystem.Utilities.FourCC;
                     public ReadKeyName(): string;
                     public static Create($key: UnityEngine.InputSystem.Key): UnityEngine.InputSystem.LowLevel.QueryKeyNameCommand;
+                }
+                namespace QueryKeyNameCommand {
+                    type _nameBuffer_e__FixedBuffer = any;
+
                 }
 
                 class QueryPairedUserAccountCommand implements UnityEngine.InputSystem.LowLevel.IInputDeviceCommandInfo {
@@ -3831,6 +3843,10 @@ declare namespace CS {
                         UserAccountSelectionComplete = 8,
                         UserAccountSelectionCanceled = 16
                     }
+
+                    type _idBuffer_e__FixedBuffer = any;
+
+                    type _nameBuffer_e__FixedBuffer = any;
 
                 }
 
@@ -3928,6 +3944,10 @@ declare namespace CS {
                     public Press($key: UnityEngine.InputSystem.Key): void;
                     public Release($key: UnityEngine.InputSystem.Key): void;
                 }
+                namespace KeyboardState {
+                    type _keys_e__FixedBuffer = any;
+
+                }
 
                 class MouseState implements UnityEngine.InputSystem.LowLevel.IInputStateTypeInfo {
                     protected [__keep_incompatibility]: never;
@@ -3998,6 +4018,10 @@ declare namespace CS {
                     public ToEventPtr(): UnityEngine.InputSystem.LowLevel.InputEventPtr;
                     public static From($control: UnityEngine.InputSystem.InputControl, $eventPtr: $Out<UnityEngine.InputSystem.LowLevel.InputEventPtr>, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<number>;
                 }
+                namespace DeltaStateEvent {
+                    type _stateData_e__FixedBuffer = any;
+
+                }
 
                 class DeviceConfigurationEvent implements UnityEngine.InputSystem.LowLevel.IInputEventTypeInfo {
                     protected [__keep_incompatibility]: never;
@@ -4046,6 +4070,10 @@ declare namespace CS {
                     public ToString(): string;
                     public GetEnumerator(): System.Collections.Generic.IEnumerator$1<number>;
                     public get_Item($index: number): number;
+                }
+                namespace IMECompositionString {
+                    type _buffer_e__FixedBuffer = any;
+
                 }
 
                 class InputEvent {
@@ -4173,6 +4201,10 @@ declare namespace CS {
                     public static GetEventSizeWithPayload<TState>(): number;
                     public static From($device: UnityEngine.InputSystem.InputDevice, $eventPtr: $Out<UnityEngine.InputSystem.LowLevel.InputEventPtr>, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<number>;
                     public static FromDefaultStateFor($device: UnityEngine.InputSystem.InputDevice, $eventPtr: $Out<UnityEngine.InputSystem.LowLevel.InputEventPtr>, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<number>;
+                }
+                namespace StateEvent {
+                    type _stateData_e__FixedBuffer = any;
+
                 }
 
                 class TextEvent implements UnityEngine.InputSystem.LowLevel.IInputEventTypeInfo {
@@ -5265,6 +5297,10 @@ declare namespace CS {
                         protected [__keep_incompatibility]: never;
                         public get typeStatic(): UnityEngine.InputSystem.Utilities.FourCC;
                         public static Create($rumbleBuffer: System.Array$1<number>): UnityEngine.InputSystem.XR.Haptics.SendBufferedHapticCommand;
+                    }
+                    namespace SendBufferedHapticCommand {
+                        type _buffer_e__FixedBuffer = any;
+
                     }
 
                     class SendHapticImpulseCommand implements UnityEngine.InputSystem.LowLevel.IInputDeviceCommandInfo {

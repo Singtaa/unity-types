@@ -29,3 +29,6 @@ declare namespace CS {
 /// <reference path="./UnityEngine.Physics2DModule.d.ts" />
 /// <reference path="./UnityEngine.AudioModule.d.ts" />
 /// <reference path="./UnityEngine.UnityWebRequestModule.d.ts" />
+
+// OneJS types
+/// <reference path="./OneJS.d.ts" />

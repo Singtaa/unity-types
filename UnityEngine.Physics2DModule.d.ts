@@ -3155,6 +3155,10 @@ declare namespace CS {
                     public static Add($countersA: UnityEngine.LowLevelPhysics2D.PhysicsWorld.WorldCounters, $countersB: UnityEngine.LowLevelPhysics2D.PhysicsWorld.WorldCounters): UnityEngine.LowLevelPhysics2D.PhysicsWorld.WorldCounters;
                     public static Maximum($countersA: UnityEngine.LowLevelPhysics2D.PhysicsWorld.WorldCounters, $countersB: UnityEngine.LowLevelPhysics2D.PhysicsWorld.WorldCounters): UnityEngine.LowLevelPhysics2D.PhysicsWorld.WorldCounters;
                 }
+                namespace WorldCounters {
+                    type _m_ColorCounts_e__FixedBuffer = any;
+
+                }
 
                 class WorldProfile {
                     protected [__keep_incompatibility]: never;

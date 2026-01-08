@@ -14173,6 +14173,14 @@ declare namespace CS {
                 public Equals($obj: any): boolean;
                 public GetHashCode(): number;
             }
+            namespace CameraProperties {
+                type _layerCullDistances_e__FixedBuffer = any;
+
+                type _m_CameraCullPlanes_e__FixedBuffer = any;
+
+                type _m_ShadowCullPlanes_e__FixedBuffer = any;
+
+            }
 
             enum CullingOptions {
                 None = 0,
@@ -14217,6 +14225,12 @@ declare namespace CS {
                 public Equals($other: UnityEngine.Rendering.ScriptableCullingParameters): boolean;
                 public Equals($obj: any): boolean;
                 public GetHashCode(): number;
+            }
+            namespace ScriptableCullingParameters {
+                type _m_CullingPlanes_e__FixedBuffer = any;
+
+                type _m_LayerFarCullDistances_e__FixedBuffer = any;
+
             }
 
             class LightShadowCasterCullingInfo {
@@ -14286,6 +14300,10 @@ declare namespace CS {
                 public Equals($other: UnityEngine.Rendering.DrawingSettings): boolean;
                 public Equals($obj: any): boolean;
                 public GetHashCode(): number;
+            }
+            namespace DrawingSettings {
+                type _shaderPassNames_e__FixedBuffer = any;
+
             }
 
             class FilteringSettings implements System.IEquatable$1<UnityEngine.Rendering.FilteringSettings> {
@@ -14661,6 +14679,10 @@ declare namespace CS {
                 public Equals($other: UnityEngine.Rendering.ShadowSplitData): boolean;
                 public Equals($obj: any): boolean;
                 public GetHashCode(): number;
+            }
+            namespace ShadowSplitData {
+                type _m_CullingPlanes_e__FixedBuffer = any;
+
             }
 
             enum SortingCriteria {
