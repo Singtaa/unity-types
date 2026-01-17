@@ -21,3 +21,20 @@
 /// <reference path="UnityEngine.UnityWebRequestModule.d.ts" />
 /// <reference path="Unity.InputSystem.d.ts" />
 /// <reference path="OneJS.d.ts" />
+
+// =============================================================================
+// ES6 Module Declarations
+// Allows ES6-style imports: import { GameObject } from "UnityEngine"
+// =============================================================================
+
+declare module "UnityEngine" {
+    export = CS.UnityEngine;
+}
+
+declare module "UnityEngine/UIElements" {
+    export = CS.UnityEngine.UIElements;
+}
+
+declare module "System" {
+    export = CS.System;
+}
