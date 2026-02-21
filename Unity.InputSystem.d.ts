@@ -2243,8 +2243,8 @@ declare namespace CS {
                         public static readonly MaxAxes: number;
                         public static readonly MaxButtons: number;
                         public static kFormat: UnityEngine.InputSystem.Utilities.FourCC;
-                        public buttons: UnityEngine.InputSystem.Android.LowLevel.AndroidGameControllerState.<buttons>e__FixedBuffer;
-                        public axis: UnityEngine.InputSystem.Android.LowLevel.AndroidGameControllerState.<axis>e__FixedBuffer;
+                        public buttons: any; // C# fixed buffer
+                        public axis: any; // C# fixed buffer
                         public get format(): UnityEngine.InputSystem.Utilities.FourCC;
                         public WithButton($code: UnityEngine.InputSystem.Android.LowLevel.AndroidKeyCode, $value?: boolean): UnityEngine.InputSystem.Android.LowLevel.AndroidGameControllerState;
                         public WithAxis($axis: UnityEngine.InputSystem.Android.LowLevel.AndroidAxis, $value: number): UnityEngine.InputSystem.Android.LowLevel.AndroidGameControllerState;
@@ -3799,7 +3799,7 @@ declare namespace CS {
                 class QueryKeyboardLayoutCommand implements UnityEngine.InputSystem.LowLevel.IInputDeviceCommandInfo {
                     protected [__keep_incompatibility]: never;
                     public baseCommand: UnityEngine.InputSystem.LowLevel.InputDeviceCommand;
-                    public nameBuffer: UnityEngine.InputSystem.LowLevel.QueryKeyboardLayoutCommand.<nameBuffer>e__FixedBuffer;
+                    public nameBuffer: any; // C# fixed buffer
                     public static get Type(): UnityEngine.InputSystem.Utilities.FourCC;
                     public get typeStatic(): UnityEngine.InputSystem.Utilities.FourCC;
                     public ReadLayoutName(): string;
@@ -3815,7 +3815,7 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                     public baseCommand: UnityEngine.InputSystem.LowLevel.InputDeviceCommand;
                     public scanOrKeyCode: number;
-                    public nameBuffer: UnityEngine.InputSystem.LowLevel.QueryKeyNameCommand.<nameBuffer>e__FixedBuffer;
+                    public nameBuffer: any; // C# fixed buffer
                     public static get Type(): UnityEngine.InputSystem.Utilities.FourCC;
                     public get typeStatic(): UnityEngine.InputSystem.Utilities.FourCC;
                     public ReadKeyName(): string;
@@ -3935,7 +3935,7 @@ declare namespace CS {
 
                 class KeyboardState implements UnityEngine.InputSystem.LowLevel.IInputStateTypeInfo {
                     protected [__keep_incompatibility]: never;
-                    public keys: UnityEngine.InputSystem.LowLevel.KeyboardState.<keys>e__FixedBuffer;
+                    public keys: any; // C# fixed buffer
                     public static get Format(): UnityEngine.InputSystem.Utilities.FourCC;
                     public get format(): UnityEngine.InputSystem.Utilities.FourCC;
                     constructor(...pressedKeys: UnityEngine.InputSystem.Key[]);

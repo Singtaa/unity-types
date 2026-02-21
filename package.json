@@ -1,6 +1,6 @@
 {
     "name": "unity-types",
-    "version": "6000.3.2",
+    "version": "6000.3.3",
     "description": "TypeScript definitions for Unity 6000.3",
     "types": "index.d.ts",
     "repository": {

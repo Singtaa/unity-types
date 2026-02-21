@@ -23,6 +23,15 @@
 /// <reference path="OneJS.d.ts" />
 
 // =============================================================================
+// CS as a runtime value
+// At runtime, CS is a Proxy object created by QuickJSBootstrap.js that provides
+// access to all C# types. This declaration makes it usable as both a namespace
+// (for type annotations) and a value (for runtime usage like CS.UnityEngine.GameObject.Find(...)).
+// =============================================================================
+
+declare const CS: typeof CS;
+
+// =============================================================================
 // ES6 Module Declarations
 // Allows ES6-style imports: import { GameObject } from "UnityEngine"
 // =============================================================================
