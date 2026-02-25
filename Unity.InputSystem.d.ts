@@ -433,7 +433,7 @@ declare namespace CS {
                     public WithCancelingThrough($binding: string): UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
                     public WithCancelingThrough($control: UnityEngine.InputSystem.InputControl): UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
                     public WithExpectedControlType($layoutName: string): UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
-                    public WithExpectedControlType($type: System.Type): UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
+                    public WithExpectedControlType($type: System.TypeLike): UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
                     public WithExpectedControlType<TControl extends UnityEngine.InputSystem.InputControl>(): UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
                     public WithTargetBinding($bindingIndex: number): UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
                     public WithBindingMask($bindingMask: UnityEngine.InputSystem.InputBinding | null): UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
@@ -759,7 +759,7 @@ declare namespace CS {
                 public static get version(): System.Version;
                 public static runInBackground: boolean;
                 public static get metrics(): UnityEngine.InputSystem.LowLevel.InputMetrics;
-                public static RegisterLayout($type: System.Type, $name?: string, $matches?: UnityEngine.InputSystem.Layouts.InputDeviceMatcher | null): void;
+                public static RegisterLayout($type: System.TypeLike, $name?: string, $matches?: UnityEngine.InputSystem.Layouts.InputDeviceMatcher | null): void;
                 public static RegisterLayout<T extends UnityEngine.InputSystem.InputControl>($name?: string, $matches?: UnityEngine.InputSystem.Layouts.InputDeviceMatcher | null): void;
                 public static RegisterLayout($json: string, $name?: string, $matches?: UnityEngine.InputSystem.Layouts.InputDeviceMatcher | null): void;
                 public static RegisterLayoutOverride($json: string, $name?: string): void;
@@ -775,7 +775,7 @@ declare namespace CS {
                 public static LoadLayout<TControl extends UnityEngine.InputSystem.InputControl>(): UnityEngine.InputSystem.Layouts.InputControlLayout;
                 public static GetNameOfBaseLayout($layoutName: string): string;
                 public static IsFirstLayoutBasedOnSecond($firstLayoutName: string, $secondLayoutName: string): boolean;
-                public static RegisterProcessor($type: System.Type, $name?: string): void;
+                public static RegisterProcessor($type: System.TypeLike, $name?: string): void;
                 public static RegisterProcessor<T>($name?: string): void;
                 public static TryGetProcessor($name: string): System.Type;
                 public static ListProcessors(): System.Collections.Generic.IEnumerable$1<string>;
@@ -787,7 +787,7 @@ declare namespace CS {
                 public static FlushDisconnectedDevices(): void;
                 public static GetDevice($nameOrLayout: string): UnityEngine.InputSystem.InputDevice;
                 public static GetDevice<TDevice extends UnityEngine.InputSystem.InputDevice>(): TDevice;
-                public static GetDevice($type: System.Type): UnityEngine.InputSystem.InputDevice;
+                public static GetDevice($type: System.TypeLike): UnityEngine.InputSystem.InputDevice;
                 public static GetDevice<TDevice extends UnityEngine.InputSystem.InputDevice>($usage: UnityEngine.InputSystem.Utilities.InternedString): TDevice;
                 public static GetDevice<TDevice extends UnityEngine.InputSystem.InputDevice>($usage: string): TDevice;
                 public static GetDeviceById($deviceId: number): UnityEngine.InputSystem.InputDevice;
@@ -818,11 +818,11 @@ declare namespace CS {
                 public static QueueConfigChangeEvent($device: UnityEngine.InputSystem.InputDevice, $time?: number): void;
                 public static QueueTextEvent($device: UnityEngine.InputSystem.InputDevice, $character: number, $time?: number): void;
                 public static Update(): void;
-                public static RegisterInteraction($type: System.Type, $name?: string): void;
+                public static RegisterInteraction($type: System.TypeLike, $name?: string): void;
                 public static RegisterInteraction<T>($name?: string): void;
                 public static TryGetInteraction($name: string): System.Type;
                 public static ListInteractions(): System.Collections.Generic.IEnumerable$1<string>;
-                public static RegisterBindingComposite($type: System.Type, $name: string): void;
+                public static RegisterBindingComposite($type: System.TypeLike, $name: string): void;
                 public static RegisterBindingComposite<T>($name?: string): void;
                 public static TryGetBindingComposite($name: string): System.Type;
                 public static DisableAllEnabledActions(): void;
@@ -3546,7 +3546,7 @@ declare namespace CS {
                     public FindControl($path: UnityEngine.InputSystem.Utilities.InternedString): UnityEngine.InputSystem.Layouts.InputControlLayout.ControlItem | null;
                     public FindControlIncludingArrayElements($path: string, $arrayIndex: $Out<number>): UnityEngine.InputSystem.Layouts.InputControlLayout.ControlItem | null;
                     public GetValueType(): System.Type;
-                    public static FromType($name: string, $type: System.Type): UnityEngine.InputSystem.Layouts.InputControlLayout;
+                    public static FromType($name: string, $type: System.TypeLike): UnityEngine.InputSystem.Layouts.InputControlLayout;
                     public ToJson(): string;
                     public static FromJson($json: string): UnityEngine.InputSystem.Layouts.InputControlLayout;
                     public MergeLayout($other: UnityEngine.InputSystem.Layouts.InputControlLayout): void;
@@ -4308,7 +4308,7 @@ declare namespace CS {
                     public bitOffset: number;
                     public sizeInBits: number;
                     public static GetSizeOfPrimitiveFormatInBits($type: UnityEngine.InputSystem.Utilities.FourCC): number;
-                    public static GetPrimitiveFormatFromType($type: System.Type): UnityEngine.InputSystem.Utilities.FourCC;
+                    public static GetPrimitiveFormatFromType($type: System.TypeLike): UnityEngine.InputSystem.Utilities.FourCC;
                 }
 
                 class InputStateHistory implements System.Collections.Generic.IEnumerable$1<UnityEngine.InputSystem.LowLevel.InputStateHistory.Record>, System.Collections.IEnumerable, UnityEngine.InputSystem.LowLevel.IInputStateChangeMonitor, System.IDisposable {
@@ -4877,7 +4877,7 @@ declare namespace CS {
                     public name: string;
                     public value: UnityEngine.InputSystem.Utilities.PrimitiveValue;
                     public get type(): System.TypeCode;
-                    public ConvertTo($type: System.TypeCode): UnityEngine.InputSystem.Utilities.NamedValue;
+                    public ConvertTo($type: System.TypeLikeCode): UnityEngine.InputSystem.Utilities.NamedValue;
                     public static From<TValue>($name: string, $value: TValue): UnityEngine.InputSystem.Utilities.NamedValue;
                     public ToString(): string;
                     public Equals($other: UnityEngine.InputSystem.Utilities.NamedValue): boolean;
@@ -4917,7 +4917,7 @@ declare namespace CS {
                     constructor($value: bigint);
                     constructor($value: number);
                     constructor($value: number);
-                    public ConvertTo($type: System.TypeCode): UnityEngine.InputSystem.Utilities.PrimitiveValue;
+                    public ConvertTo($type: System.TypeLikeCode): UnityEngine.InputSystem.Utilities.PrimitiveValue;
                     public Equals($other: UnityEngine.InputSystem.Utilities.PrimitiveValue): boolean;
                     public Equals($obj: any): boolean;
                     public GetHashCode(): number;
@@ -4936,7 +4936,7 @@ declare namespace CS {
                     public ToSByte($provider?: System.IFormatProvider): number;
                     public ToSingle($provider?: System.IFormatProvider): number;
                     public ToString($provider: System.IFormatProvider): string;
-                    public ToType($conversionType: System.Type, $provider: System.IFormatProvider): any;
+                    public ToType($conversionType: System.TypeLike, $provider: System.IFormatProvider): any;
                     public ToUInt16($provider?: System.IFormatProvider): number;
                     public ToUInt32($provider?: System.IFormatProvider): number;
                     public ToUInt64($provider?: System.IFormatProvider): bigint;

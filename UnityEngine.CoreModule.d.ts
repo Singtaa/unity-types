@@ -4,7 +4,7 @@ declare namespace CS {
     namespace AOT {
         class MonoPInvokeCallbackAttribute extends System.Attribute {
             protected [__keep_incompatibility]: never;
-            constructor($type: System.Type);
+            constructor($type: System.TypeLike);
         }
 
     }
@@ -77,7 +77,7 @@ declare namespace CS {
             class BaseTypeRequiredAttribute extends System.Attribute {
                 protected [__keep_incompatibility]: never;
                 public get BaseType(): System.Type;
-                constructor($baseType: System.Type);
+                constructor($baseType: System.TypeLike);
             }
 
             class UsedImplicitlyAttribute extends System.Attribute {
@@ -584,10 +584,10 @@ declare namespace CS {
                         public static GetLeakDetectionMode(): Unity.Collections.NativeLeakDetectionMode;
                         public static SetLeakDetectionMode($value: Unity.Collections.NativeLeakDetectionMode): void;
                         public static IsValidAllocator($allocator: Unity.Collections.Allocator): boolean;
-                        public static SizeOf($type: System.Type): number;
-                        public static IsBlittable($type: System.Type): boolean;
-                        public static IsUnmanaged($type: System.Type): boolean;
-                        public static IsValidNativeContainerElementType($type: System.Type): boolean;
+                        public static SizeOf($type: System.TypeLike): number;
+                        public static IsBlittable($type: System.TypeLike): boolean;
+                        public static IsUnmanaged($type: System.TypeLike): boolean;
+                        public static IsValidNativeContainerElementType($type: System.TypeLike): boolean;
                         public static IsUnmanaged<T>(): boolean;
                         public static IsNativeContainerType<T>(): boolean;
                         public static IsValidNativeContainerElementType<T>(): boolean;
@@ -1056,7 +1056,7 @@ declare namespace CS {
                     class JobProducerTypeAttribute extends System.Attribute {
                         protected [__keep_incompatibility]: never;
                         public get ProducerType(): System.Type;
-                        constructor($producerType: System.Type);
+                        constructor($producerType: System.TypeLike);
                     }
 
                     class JobRanges {
@@ -1093,10 +1093,10 @@ declare namespace CS {
                         public static ScheduleParallelFor($parameters: $Ref<Unity.Jobs.LowLevel.Unsafe.JobsUtility.JobScheduleParameters>, $arrayLength: number, $innerloopBatchCount: number): Unity.Jobs.JobHandle;
                         public static ScheduleParallelForTransform($parameters: $Ref<Unity.Jobs.LowLevel.Unsafe.JobsUtility.JobScheduleParameters>, $transfromAccesssArray: number): Unity.Jobs.JobHandle;
                         public static ScheduleParallelForTransformReadOnly($parameters: $Ref<Unity.Jobs.LowLevel.Unsafe.JobsUtility.JobScheduleParameters>, $transfromAccesssArray: number, $innerloopBatchCount: number): Unity.Jobs.JobHandle;
-                        public static CreateJobReflectionData($type: System.Type, $jobType: Unity.Jobs.LowLevel.Unsafe.JobType, $managedJobFunction0: any, $managedJobFunction1?: any, $managedJobFunction2?: any): number;
-                        public static CreateJobReflectionData($type: System.Type, $managedJobFunction0: any, $managedJobFunction1?: any, $managedJobFunction2?: any): number;
-                        public static CreateJobReflectionData($wrapperJobType: System.Type, $userJobType: System.Type, $jobType: Unity.Jobs.LowLevel.Unsafe.JobType, $managedJobFunction0: any): number;
-                        public static CreateJobReflectionData($wrapperJobType: System.Type, $userJobType: System.Type, $managedJobFunction0: any): number;
+                        public static CreateJobReflectionData($type: System.TypeLike, $jobType: Unity.Jobs.LowLevel.Unsafe.JobType, $managedJobFunction0: any, $managedJobFunction1?: any, $managedJobFunction2?: any): number;
+                        public static CreateJobReflectionData($type: System.TypeLike, $managedJobFunction0: any, $managedJobFunction1?: any, $managedJobFunction2?: any): number;
+                        public static CreateJobReflectionData($wrapperJobType: System.TypeLike, $userJobType: System.TypeLike, $jobType: Unity.Jobs.LowLevel.Unsafe.JobType, $managedJobFunction0: any): number;
+                        public static CreateJobReflectionData($wrapperJobType: System.TypeLike, $userJobType: System.TypeLike, $managedJobFunction0: any): number;
                         public static ResetJobWorkerCount(): void;
                     }
                     namespace JobsUtility {
@@ -7657,18 +7657,18 @@ declare namespace CS {
         class Resources {
             protected [__keep_incompatibility]: never;
             constructor();
-            public static FindObjectsOfTypeAll($type: System.Type): System.Array$1<UnityEngine.Object>;
+            public static FindObjectsOfTypeAll($type: System.TypeLike): System.Array$1<UnityEngine.Object>;
             public static FindObjectsOfTypeAll<T extends UnityEngine.Object>(): System.Array$1<T>;
             public static Load($path: string): UnityEngine.Object;
             public static Load<T extends UnityEngine.Object>($path: string): T;
-            public static Load($path: string, $systemTypeInstance: System.Type): UnityEngine.Object;
+            public static Load($path: string, $systemTypeInstance: System.TypeLike): UnityEngine.Object;
             public static LoadAsync($path: string): UnityEngine.ResourceRequest;
             public static LoadAsync<T extends UnityEngine.Object>($path: string): UnityEngine.ResourceRequest;
-            public static LoadAsync($path: string, $type: System.Type): UnityEngine.ResourceRequest;
-            public static LoadAll($path: string, $systemTypeInstance: System.Type): System.Array$1<UnityEngine.Object>;
+            public static LoadAsync($path: string, $type: System.TypeLike): UnityEngine.ResourceRequest;
+            public static LoadAll($path: string, $systemTypeInstance: System.TypeLike): System.Array$1<UnityEngine.Object>;
             public static LoadAll($path: string): System.Array$1<UnityEngine.Object>;
             public static LoadAll<T extends UnityEngine.Object>($path: string): System.Array$1<T>;
-            public static GetBuiltinResource($type: System.Type, $path: string): UnityEngine.Object;
+            public static GetBuiltinResource($type: System.TypeLike, $path: string): UnityEngine.Object;
             public static GetBuiltinResource<T extends UnityEngine.Object>($path: string): T;
             public static UnloadAsset($assetToUnload: UnityEngine.Object): void;
             public static UnloadUnusedAssets(): UnityEngine.AsyncOperation;
@@ -7732,9 +7732,9 @@ declare namespace CS {
             public m_Type0: System.Type;
             public m_Type1: System.Type;
             public m_Type2: System.Type;
-            constructor($requiredComponent: System.Type);
-            constructor($requiredComponent: System.Type, $requiredComponent2: System.Type);
-            constructor($requiredComponent: System.Type, $requiredComponent2: System.Type, $requiredComponent3: System.Type);
+            constructor($requiredComponent: System.TypeLike);
+            constructor($requiredComponent: System.TypeLike, $requiredComponent2: System.TypeLike);
+            constructor($requiredComponent: System.TypeLike, $requiredComponent2: System.TypeLike, $requiredComponent3: System.TypeLike);
         }
 
         class AddComponentMenu extends System.Attribute {
@@ -7938,32 +7938,32 @@ declare namespace CS {
             public get gameObject(): UnityEngine.GameObject;
             public tag: string;
             constructor();
-            public GetComponent($type: System.Type): UnityEngine.Component;
+            public GetComponent($type: System.TypeLike): UnityEngine.Component;
             public GetComponent<T>(): T;
-            public TryGetComponent($type: System.Type, $component: $Out<UnityEngine.Component>): boolean;
+            public TryGetComponent($type: System.TypeLike, $component: $Out<UnityEngine.Component>): boolean;
             public TryGetComponent<T>($component: $Out<T>): boolean;
             public GetComponent($type: string): UnityEngine.Component;
-            public GetComponentInChildren($t: System.Type, $includeInactive: boolean): UnityEngine.Component;
-            public GetComponentInChildren($t: System.Type): UnityEngine.Component;
+            public GetComponentInChildren($t: System.TypeLike, $includeInactive: boolean): UnityEngine.Component;
+            public GetComponentInChildren($t: System.TypeLike): UnityEngine.Component;
             public GetComponentInChildren<T>($includeInactive: boolean): T;
             public GetComponentInChildren<T>(): T;
-            public GetComponentsInChildren($t: System.Type, $includeInactive: boolean): System.Array$1<UnityEngine.Component>;
-            public GetComponentsInChildren($t: System.Type): System.Array$1<UnityEngine.Component>;
+            public GetComponentsInChildren($t: System.TypeLike, $includeInactive: boolean): System.Array$1<UnityEngine.Component>;
+            public GetComponentsInChildren($t: System.TypeLike): System.Array$1<UnityEngine.Component>;
             public GetComponentsInChildren<T>($includeInactive: boolean): System.Array$1<T>;
             public GetComponentsInChildren<T>($includeInactive: boolean, $result: System.Collections.Generic.List$1<T>): void;
             public GetComponentsInChildren<T>(): System.Array$1<T>;
             public GetComponentsInChildren<T>($results: System.Collections.Generic.List$1<T>): void;
-            public GetComponentInParent($t: System.Type, $includeInactive: boolean): UnityEngine.Component;
-            public GetComponentInParent($t: System.Type): UnityEngine.Component;
+            public GetComponentInParent($t: System.TypeLike, $includeInactive: boolean): UnityEngine.Component;
+            public GetComponentInParent($t: System.TypeLike): UnityEngine.Component;
             public GetComponentInParent<T>($includeInactive: boolean): T;
             public GetComponentInParent<T>(): T;
-            public GetComponentsInParent($t: System.Type, $includeInactive: boolean): System.Array$1<UnityEngine.Component>;
-            public GetComponentsInParent($t: System.Type): System.Array$1<UnityEngine.Component>;
+            public GetComponentsInParent($t: System.TypeLike, $includeInactive: boolean): System.Array$1<UnityEngine.Component>;
+            public GetComponentsInParent($t: System.TypeLike): System.Array$1<UnityEngine.Component>;
             public GetComponentsInParent<T>($includeInactive: boolean): System.Array$1<T>;
             public GetComponentsInParent<T>($includeInactive: boolean, $results: System.Collections.Generic.List$1<T>): void;
             public GetComponentsInParent<T>(): System.Array$1<T>;
-            public GetComponents($type: System.Type): System.Array$1<UnityEngine.Component>;
-            public GetComponents($type: System.Type, $results: System.Collections.Generic.List$1<UnityEngine.Component>): void;
+            public GetComponents($type: System.TypeLike): System.Array$1<UnityEngine.Component>;
+            public GetComponents($type: System.TypeLike, $results: System.Collections.Generic.List$1<UnityEngine.Component>): void;
             public GetComponents<T>($results: System.Collections.Generic.List$1<T>): void;
             public GetComponents<T>(): System.Array$1<T>;
             public GetComponentIndex(): number;
@@ -8015,42 +8015,42 @@ declare namespace CS {
             public get gameObject(): UnityEngine.GameObject;
             constructor($name: string);
             constructor();
-            constructor($name: string, ...components: System.Type[]);
+            constructor($name: string, ...components: System.TypeLike[]);
             public static CreatePrimitive($type: UnityEngine.PrimitiveType): UnityEngine.GameObject;
             public GetComponent<T>(): T;
-            public GetComponent($type: System.Type): UnityEngine.Component;
+            public GetComponent($type: System.TypeLike): UnityEngine.Component;
             public GetComponent($type: string): UnityEngine.Component;
-            public GetComponentInChildren($type: System.Type, $includeInactive: boolean): UnityEngine.Component;
-            public GetComponentInChildren($type: System.Type): UnityEngine.Component;
+            public GetComponentInChildren($type: System.TypeLike, $includeInactive: boolean): UnityEngine.Component;
+            public GetComponentInChildren($type: System.TypeLike): UnityEngine.Component;
             public GetComponentInChildren<T>(): T;
             public GetComponentInChildren<T>($includeInactive: boolean): T;
-            public GetComponentInParent($type: System.Type, $includeInactive: boolean): UnityEngine.Component;
-            public GetComponentInParent($type: System.Type): UnityEngine.Component;
+            public GetComponentInParent($type: System.TypeLike, $includeInactive: boolean): UnityEngine.Component;
+            public GetComponentInParent($type: System.TypeLike): UnityEngine.Component;
             public GetComponentInParent<T>(): T;
             public GetComponentInParent<T>($includeInactive: boolean): T;
-            public GetComponents($type: System.Type): System.Array$1<UnityEngine.Component>;
+            public GetComponents($type: System.TypeLike): System.Array$1<UnityEngine.Component>;
             public GetComponents<T>(): System.Array$1<T>;
-            public GetComponents($type: System.Type, $results: System.Collections.Generic.List$1<UnityEngine.Component>): void;
+            public GetComponents($type: System.TypeLike, $results: System.Collections.Generic.List$1<UnityEngine.Component>): void;
             public GetComponents<T>($results: System.Collections.Generic.List$1<T>): void;
-            public GetComponentsInChildren($type: System.Type): System.Array$1<UnityEngine.Component>;
-            public GetComponentsInChildren($type: System.Type, $includeInactive: boolean): System.Array$1<UnityEngine.Component>;
+            public GetComponentsInChildren($type: System.TypeLike): System.Array$1<UnityEngine.Component>;
+            public GetComponentsInChildren($type: System.TypeLike, $includeInactive: boolean): System.Array$1<UnityEngine.Component>;
             public GetComponentsInChildren<T>($includeInactive: boolean): System.Array$1<T>;
             public GetComponentsInChildren<T>($includeInactive: boolean, $results: System.Collections.Generic.List$1<T>): void;
             public GetComponentsInChildren<T>(): System.Array$1<T>;
             public GetComponentsInChildren<T>($results: System.Collections.Generic.List$1<T>): void;
-            public GetComponentsInParent($type: System.Type): System.Array$1<UnityEngine.Component>;
-            public GetComponentsInParent($type: System.Type, $includeInactive: boolean): System.Array$1<UnityEngine.Component>;
+            public GetComponentsInParent($type: System.TypeLike): System.Array$1<UnityEngine.Component>;
+            public GetComponentsInParent($type: System.TypeLike, $includeInactive: boolean): System.Array$1<UnityEngine.Component>;
             public GetComponentsInParent<T>($includeInactive: boolean, $results: System.Collections.Generic.List$1<T>): void;
             public GetComponentsInParent<T>($includeInactive: boolean): System.Array$1<T>;
             public GetComponentsInParent<T>(): System.Array$1<T>;
             public TryGetComponent<T>($component: $Out<T>): boolean;
-            public TryGetComponent($type: System.Type, $component: $Out<UnityEngine.Component>): boolean;
+            public TryGetComponent($type: System.TypeLike, $component: $Out<UnityEngine.Component>): boolean;
             public static FindWithTag($tag: string): UnityEngine.GameObject;
             public static FindGameObjectsWithTag($tag: string, $results: System.Collections.Generic.List$1<UnityEngine.GameObject>): void;
             public SendMessageUpwards($methodName: string, $options: UnityEngine.SendMessageOptions): void;
             public SendMessage($methodName: string, $options: UnityEngine.SendMessageOptions): void;
             public BroadcastMessage($methodName: string, $options: UnityEngine.SendMessageOptions): void;
-            public AddComponent($componentType: System.Type): UnityEngine.Component;
+            public AddComponent($componentType: System.TypeLike): UnityEngine.Component;
             public AddComponent<T extends UnityEngine.Component>(): T;
             public GetComponentCount(): number;
             public GetComponentAtIndex($index: number): UnityEngine.Component;
@@ -8170,7 +8170,7 @@ declare namespace CS {
             constructor();
             public SetDirty(): void;
             public static CreateInstance($className: string): UnityEngine.ScriptableObject;
-            public static CreateInstance($type: System.Type): UnityEngine.ScriptableObject;
+            public static CreateInstance($type: System.TypeLike): UnityEngine.ScriptableObject;
             public static CreateInstance<T extends UnityEngine.ScriptableObject>(): T;
         }
 
@@ -8343,15 +8343,15 @@ declare namespace CS {
             public static Destroy($obj: UnityEngine.Object): void;
             public static DestroyImmediate($obj: UnityEngine.Object, $allowDestroyingAssets: boolean): void;
             public static DestroyImmediate($obj: UnityEngine.Object): void;
-            public static FindObjectsOfType($type: System.Type): System.Array$1<UnityEngine.Object>;
-            public static FindObjectsOfType($type: System.Type, $includeInactive: boolean): System.Array$1<UnityEngine.Object>;
-            public static FindObjectsByType($type: System.Type, $sortMode: UnityEngine.FindObjectsSortMode): System.Array$1<UnityEngine.Object>;
-            public static FindObjectsByType($type: System.Type, $findObjectsInactive: UnityEngine.FindObjectsInactive, $sortMode: UnityEngine.FindObjectsSortMode): System.Array$1<UnityEngine.Object>;
+            public static FindObjectsOfType($type: System.TypeLike): System.Array$1<UnityEngine.Object>;
+            public static FindObjectsOfType($type: System.TypeLike, $includeInactive: boolean): System.Array$1<UnityEngine.Object>;
+            public static FindObjectsByType($type: System.TypeLike, $sortMode: UnityEngine.FindObjectsSortMode): System.Array$1<UnityEngine.Object>;
+            public static FindObjectsByType($type: System.TypeLike, $findObjectsInactive: UnityEngine.FindObjectsInactive, $sortMode: UnityEngine.FindObjectsSortMode): System.Array$1<UnityEngine.Object>;
             public static DontDestroyOnLoad($target: UnityEngine.Object): void;
             public static DestroyObject($obj: UnityEngine.Object, $t: number): void;
             public static DestroyObject($obj: UnityEngine.Object): void;
-            public static FindSceneObjectsOfType($type: System.Type): System.Array$1<UnityEngine.Object>;
-            public static FindObjectsOfTypeIncludingAssets($type: System.Type): System.Array$1<UnityEngine.Object>;
+            public static FindSceneObjectsOfType($type: System.TypeLike): System.Array$1<UnityEngine.Object>;
+            public static FindObjectsOfTypeIncludingAssets($type: System.TypeLike): System.Array$1<UnityEngine.Object>;
             public static FindObjectsOfType<T extends UnityEngine.Object>(): System.Array$1<T>;
             public static FindObjectsByType<T extends UnityEngine.Object>($sortMode: UnityEngine.FindObjectsSortMode): System.Array$1<T>;
             public static FindObjectsOfType<T extends UnityEngine.Object>($includeInactive: boolean): System.Array$1<T>;
@@ -8362,13 +8362,13 @@ declare namespace CS {
             public static FindAnyObjectByType<T extends UnityEngine.Object>(): T;
             public static FindFirstObjectByType<T extends UnityEngine.Object>($findObjectsInactive: UnityEngine.FindObjectsInactive): T;
             public static FindAnyObjectByType<T extends UnityEngine.Object>($findObjectsInactive: UnityEngine.FindObjectsInactive): T;
-            public static FindObjectsOfTypeAll($type: System.Type): System.Array$1<UnityEngine.Object>;
-            public static FindObjectOfType($type: System.Type): UnityEngine.Object;
-            public static FindFirstObjectByType($type: System.Type): UnityEngine.Object;
-            public static FindAnyObjectByType($type: System.Type): UnityEngine.Object;
-            public static FindObjectOfType($type: System.Type, $includeInactive: boolean): UnityEngine.Object;
-            public static FindFirstObjectByType($type: System.Type, $findObjectsInactive: UnityEngine.FindObjectsInactive): UnityEngine.Object;
-            public static FindAnyObjectByType($type: System.Type, $findObjectsInactive: UnityEngine.FindObjectsInactive): UnityEngine.Object;
+            public static FindObjectsOfTypeAll($type: System.TypeLike): System.Array$1<UnityEngine.Object>;
+            public static FindObjectOfType($type: System.TypeLike): UnityEngine.Object;
+            public static FindFirstObjectByType($type: System.TypeLike): UnityEngine.Object;
+            public static FindAnyObjectByType($type: System.TypeLike): UnityEngine.Object;
+            public static FindObjectOfType($type: System.TypeLike, $includeInactive: boolean): UnityEngine.Object;
+            public static FindFirstObjectByType($type: System.TypeLike, $findObjectsInactive: UnityEngine.FindObjectsInactive): UnityEngine.Object;
+            public static FindAnyObjectByType($type: System.TypeLike, $findObjectsInactive: UnityEngine.FindObjectsInactive): UnityEngine.Object;
             public ToString(): string;
         }
 
@@ -8430,7 +8430,7 @@ declare namespace CS {
 
         class MakeSerializableAttribute extends System.Attribute {
             protected [__keep_incompatibility]: never;
-            constructor($type: System.Type);
+            constructor($type: System.TypeLike);
         }
 
         class SerializeField extends System.Attribute {
@@ -9690,7 +9690,7 @@ declare namespace CS {
                 public RemoveAllListeners(): void;
                 public ToString(): string;
                 public static GetValidMethodInfo($obj: any, $functionName: string, $argumentTypes: System.Array$1<System.Type>): System.Reflection.MethodInfo;
-                public static GetValidMethodInfo($objectType: System.Type, $functionName: string, $argumentTypes: System.Array$1<System.Type>): System.Reflection.MethodInfo;
+                public static GetValidMethodInfo($objectType: System.TypeLike, $functionName: string, $argumentTypes: System.Array$1<System.Type>): System.Reflection.MethodInfo;
             }
 
             interface UnityAction {
@@ -11175,7 +11175,7 @@ declare namespace CS {
 
             class ScriptPlayableBinding {
                 protected [__keep_incompatibility]: never;
-                public static Create($name: string, $key: UnityEngine.Object, $type: System.Type): UnityEngine.Playables.PlayableBinding;
+                public static Create($name: string, $key: UnityEngine.Object, $type: System.TypeLike): UnityEngine.Playables.PlayableBinding;
             }
 
             class ScriptPlayableOutput implements UnityEngine.Playables.IPlayableOutput {
@@ -12885,13 +12885,13 @@ declare namespace CS {
                 public static Subscribe<TChild extends UnityEngine.Rendering.IRenderPipelineGraphicsSettings>($callback: System.Action$2<TChild, string>): void;
                 public static Unsubscribe<TChild extends UnityEngine.Rendering.IRenderPipelineGraphicsSettings>($callback: System.Action$2<TChild, string>): void;
                 public static ForEach($callback: System.Action$1<UnityEngine.Rendering.IRenderPipelineGraphicsSettings>): void;
-                public static UpdateGraphicsSettings($newSettings: UnityEngine.Rendering.RenderPipelineGlobalSettings, $renderPipelineType: System.Type): void;
-                public static RegisterRenderPipelineSettings($renderPipelineType: System.Type, $settings: UnityEngine.Rendering.RenderPipelineGlobalSettings): void;
+                public static UpdateGraphicsSettings($newSettings: UnityEngine.Rendering.RenderPipelineGlobalSettings, $renderPipelineType: System.TypeLike): void;
+                public static RegisterRenderPipelineSettings($renderPipelineType: System.TypeLike, $settings: UnityEngine.Rendering.RenderPipelineGlobalSettings): void;
                 public static RegisterRenderPipelineSettings<T extends UnityEngine.Rendering.RenderPipeline>($settings: UnityEngine.Rendering.RenderPipelineGlobalSettings): void;
                 public static UnregisterRenderPipelineSettings<T extends UnityEngine.Rendering.RenderPipeline>(): void;
-                public static UnregisterRenderPipelineSettings($renderPipelineType: System.Type): void;
+                public static UnregisterRenderPipelineSettings($renderPipelineType: System.TypeLike): void;
                 public static GetSettingsForRenderPipeline<T extends UnityEngine.Rendering.RenderPipeline>(): UnityEngine.Rendering.RenderPipelineGlobalSettings;
-                public static GetSettingsForRenderPipeline($renderPipelineType: System.Type): UnityEngine.Rendering.RenderPipelineGlobalSettings;
+                public static GetSettingsForRenderPipeline($renderPipelineType: System.TypeLike): UnityEngine.Rendering.RenderPipelineGlobalSettings;
                 public static TryGetCurrentRenderPipelineGlobalSettings($asset: $Out<UnityEngine.Rendering.RenderPipelineGlobalSettings>): boolean;
                 public static GetRenderPipelineSettings<T extends UnityEngine.Rendering.IRenderPipelineGraphicsSettings>(): T;
                 public static TryGetRenderPipelineSettings<T extends UnityEngine.Rendering.IRenderPipelineGraphicsSettings>($settings: $Out<T>): boolean;
@@ -13281,7 +13281,7 @@ declare namespace CS {
                 public AddInstances<T>($config: $Ref<UnityEngine.Rendering.RayTracingMeshInstanceConfig>, $instanceData: Unity.Collections.NativeArray$1<T>, $instanceCount?: number, $startInstance?: number, $id?: number): number;
                 public AddInstancesIndirect($config: $Ref<UnityEngine.Rendering.RayTracingMeshInstanceConfig>, $instanceMatrices: UnityEngine.GraphicsBuffer, $maxInstanceCount: number, $argsBuffer: UnityEngine.GraphicsBuffer, $argsOffset?: number, $id?: number): number;
                 public AddInstancesIndirect($config: $Ref<UnityEngine.Rendering.RayTracingGeometryInstanceConfig>, $instanceMatrices: UnityEngine.GraphicsBuffer, $maxInstanceCount: number, $argsBuffer: UnityEngine.GraphicsBuffer, $argsOffset?: number, $id?: number): number;
-                public AddInstancesIndirect($config: $Ref<UnityEngine.Rendering.RayTracingMultiGeometryInstanceConfig>, $instanceData: UnityEngine.GraphicsBuffer, $instanceType: System.Type, $instanceIndices: UnityEngine.GraphicsBuffer, $maxInstanceCount: number, $argsBuffer: UnityEngine.GraphicsBuffer, $argsOffset?: number, $id?: number): number;
+                public AddInstancesIndirect($config: $Ref<UnityEngine.Rendering.RayTracingMultiGeometryInstanceConfig>, $instanceData: UnityEngine.GraphicsBuffer, $instanceType: System.TypeLike, $instanceIndices: UnityEngine.GraphicsBuffer, $maxInstanceCount: number, $argsBuffer: UnityEngine.GraphicsBuffer, $argsOffset?: number, $id?: number): number;
                 public AddInstancesIndirect<T>($config: $Ref<UnityEngine.Rendering.RayTracingMultiGeometryInstanceConfig>, $instanceData: UnityEngine.GraphicsBuffer, $instanceIndices: UnityEngine.GraphicsBuffer, $maxInstanceCount: number, $argsBuffer: UnityEngine.GraphicsBuffer, $argsOffset?: number, $id?: number): number;
                 public AddInstances<T>($config: $Ref<UnityEngine.Rendering.RayTracingMeshInstanceConfig>, $instanceData: Unity.Collections.NativeSlice$1<T>, $id?: number): number;
                 public RemoveInstance($targetRenderer: UnityEngine.Renderer): void;
@@ -13772,10 +13772,10 @@ declare namespace CS {
                 protected [__keep_incompatibility]: never;
                 public get renderPipelineTypes(): System.Array$1<System.Type>;
                 public get isSupportedOnCurrentPipeline(): boolean;
-                constructor($renderPipeline: System.Type);
-                constructor(...renderPipeline: System.Type[]);
-                public GetSupportedMode($renderPipelineAssetType: System.Type): UnityEngine.Rendering.SupportedOnRenderPipelineAttribute.SupportedMode;
-                public static IsTypeSupportedOnRenderPipeline($type: System.Type, $renderPipelineAssetType: System.Type): boolean;
+                constructor($renderPipeline: System.TypeLike);
+                constructor(...renderPipeline: System.TypeLike[]);
+                public GetSupportedMode($renderPipelineAssetType: System.TypeLike): UnityEngine.Rendering.SupportedOnRenderPipelineAttribute.SupportedMode;
+                public static IsTypeSupportedOnRenderPipeline($type: System.TypeLike, $renderPipelineAssetType: System.TypeLike): boolean;
             }
             namespace SupportedOnRenderPipelineAttribute {
                 enum SupportedMode {
@@ -15203,7 +15203,7 @@ declare namespace CS {
 
             class RequiredInterfaceAttribute extends System.Attribute {
                 protected [__keep_incompatibility]: never;
-                constructor($interfaceType: System.Type);
+                constructor($interfaceType: System.TypeLike);
             }
 
             class RequiredMemberAttribute extends System.Attribute {
@@ -15271,9 +15271,9 @@ declare namespace CS {
                 constructor($query: string, $flags: UnityEngine.Search.SearchViewFlags);
                 constructor($query: string, $providerIdsCommaSeparated: string);
                 constructor($query: string, $providerIdsCommaSeparated: string, $flags: UnityEngine.Search.SearchViewFlags);
-                constructor($query: string, ...instantiableProviders: System.Type[]);
-                constructor($query: string, $flags: UnityEngine.Search.SearchViewFlags, ...instantiableProviders: System.Type[]);
-                constructor($query: string, $flags: UnityEngine.Search.SearchViewFlags, $providerIdsCommaSeparated: string, ...instantiableProviders: System.Type[]);
+                constructor($query: string, ...instantiableProviders: System.TypeLike[]);
+                constructor($query: string, $flags: UnityEngine.Search.SearchViewFlags, ...instantiableProviders: System.TypeLike[]);
+                constructor($query: string, $flags: UnityEngine.Search.SearchViewFlags, $providerIdsCommaSeparated: string, ...instantiableProviders: System.TypeLike[]);
             }
 
         }
@@ -15318,7 +15318,7 @@ declare namespace CS {
             class UnitySurrogateSelector implements System.Runtime.Serialization.ISurrogateSelector {
                 protected [__keep_incompatibility]: never;
                 constructor();
-                public GetSurrogate($type: System.Type, $context: System.Runtime.Serialization.StreamingContext, $selector: $Out<System.Runtime.Serialization.ISurrogateSelector>): System.Runtime.Serialization.ISerializationSurrogate;
+                public GetSurrogate($type: System.TypeLike, $context: System.Runtime.Serialization.StreamingContext, $selector: $Out<System.Runtime.Serialization.ISurrogateSelector>): System.Runtime.Serialization.ISerializationSurrogate;
                 public ChainSelector($selector: System.Runtime.Serialization.ISurrogateSelector): void;
                 public GetNextSelector(): System.Runtime.Serialization.ISurrogateSelector;
             }
@@ -15369,7 +15369,7 @@ declare namespace CS {
                 public static GetSequencePointsFor($method: System.Reflection.MethodBase): System.Array$1<UnityEngine.TestTools.CoveredSequencePoint>;
                 public static GetStatsFor($method: System.Reflection.MethodBase): UnityEngine.TestTools.CoveredMethodStats;
                 public static GetStatsFor($methods: System.Array$1<System.Reflection.MethodBase>): System.Array$1<UnityEngine.TestTools.CoveredMethodStats>;
-                public static GetStatsFor($type: System.Type): System.Array$1<UnityEngine.TestTools.CoveredMethodStats>;
+                public static GetStatsFor($type: System.TypeLike): System.Array$1<UnityEngine.TestTools.CoveredMethodStats>;
                 public static GetStatsForAllCoveredMethods(): System.Array$1<UnityEngine.TestTools.CoveredMethodStats>;
                 public static ResetFor($method: System.Reflection.MethodBase): void;
                 public static ResetAll(): void;

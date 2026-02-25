@@ -5580,7 +5580,7 @@ declare namespace CS {
                 public libraryPath: string;
                 constructor();
                 constructor($uxmlName: string);
-                constructor($uxmlName: string, ...supportedTypes: System.Type[]);
+                constructor($uxmlName: string, ...supportedTypes: System.TypeLike[]);
             }
 
             class UxmlAttributeAttribute extends System.Attribute {
@@ -5596,7 +5596,7 @@ declare namespace CS {
                 protected [__keep_incompatibility]: never;
                 public baseType: System.Type;
                 constructor();
-                constructor($baseType: System.Type);
+                constructor($baseType: System.TypeLike);
             }
 
             class UxmlIgnoreAttribute extends System.Attribute {
@@ -5615,14 +5615,14 @@ declare namespace CS {
                 public types: System.Array$1<System.Type>;
                 constructor();
                 constructor($uxmlName: string);
-                constructor($uxmlName: string, ...acceptedTypes: System.Type[]);
+                constructor($uxmlName: string, ...acceptedTypes: System.TypeLike[]);
             }
 
             class UxmlChildElementDescription {
                 protected [__keep_incompatibility]: never;
                 public get elementName(): string;
                 public get elementNamespace(): string;
-                constructor($t: System.Type);
+                constructor($t: System.TypeLike);
             }
 
             class UxmlAttributeNames {
@@ -5641,7 +5641,7 @@ declare namespace CS {
 
             class UxmlDescriptionCache {
                 protected [__keep_incompatibility]: never;
-                public static RegisterType($type: System.Type, $attributeNames: System.Array$1<UnityEngine.UIElements.UxmlAttributeNames>, $isEditorOnly?: boolean): void;
+                public static RegisterType($type: System.TypeLike, $attributeNames: System.Array$1<UnityEngine.UIElements.UxmlAttributeNames>, $isEditorOnly?: boolean): void;
             }
 
             class BaseUxmlTraits {
@@ -5844,7 +5844,7 @@ declare namespace CS {
 
             class EventInterestAttribute extends System.Attribute {
                 protected [__keep_incompatibility]: never;
-                constructor(...eventTypes: System.Type[]);
+                constructor(...eventTypes: System.TypeLike[]);
                 constructor($interests: UnityEngine.UIElements.EventInterestOptions);
             }
 

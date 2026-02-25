@@ -12,14 +12,14 @@ declare namespace CS {
         public static GetPeakHandleCount(): number;
         public static ResetHandleMonitoring(): void;
         public static RegisterStructType<T>(): void;
-        public static RegisterStructType($type: System.Type): void;
+        public static RegisterStructType($type: System.TypeLike): void;
         public static RegisterStructType<T>($serializer: System.Func$2<T, string>, $deserializer: System.Func$2<System.Collections.Generic.Dictionary$2<string, any>, T>): void;
-        public static IsSerializableStruct($type: System.Type): boolean;
+        public static IsSerializableStruct($type: System.TypeLike): boolean;
         public static SerializeStruct($value: any): string;
-        public static DeserializeStruct($json: string, $targetType: System.Type): any;
-        public static DeserializeFromDict($dict: System.Collections.Generic.Dictionary$2<string, any>, $targetType: System.Type): any;
+        public static DeserializeStruct($json: string, $targetType: System.TypeLike): any;
+        public static DeserializeFromDict($dict: System.Collections.Generic.Dictionary$2<string, any>, $targetType: System.TypeLike): any;
         public static RegisterTask($task: System.Threading.Tasks.Task): number;
-        public static IsTaskType($type: System.Type): boolean;
+        public static IsTaskType($type: System.TypeLike): boolean;
         public static ProcessCompletedTasks($ctx: QuickJSContext): number;
         public static ClearPendingTasks(): void;
         public static GetPendingTaskCount(): number;
@@ -172,7 +172,7 @@ declare namespace CS {
             public static Struct<T>($pack: QuickJSNative.StructPacker$1<T>, $unpack?: QuickJSNative.StructUnpacker$1<T>, $fromDict?: QuickJSNative.DictConverter$1<T>): void;
             public static BlittableStruct<T>(): void;
             public static HasStructHandler<T>(): boolean;
-            public static HasStructHandler($type: System.Type): boolean;
+            public static HasStructHandler($type: System.TypeLike): boolean;
             public static Clear(): void;
         }
 
@@ -417,7 +417,7 @@ declare namespace CS {
                 class TypeAnalyzer {
                     protected [__keep_incompatibility]: never;
                     constructor($options?: OneJS.Editor.TypeGenerator.AnalyzerOptions);
-                    public AnalyzeType($type: System.Type): OneJS.Editor.TypeGenerator.TsTypeInfo;
+                    public AnalyzeType($type: System.TypeLike): OneJS.Editor.TypeGenerator.TsTypeInfo;
                     public AnalyzeTypes($types: System.Collections.Generic.IEnumerable$1<System.Type>): System.Collections.Generic.List$1<OneJS.Editor.TypeGenerator.TsTypeInfo>;
                 }
 
@@ -432,12 +432,12 @@ declare namespace CS {
 
                 class TypeMapper {
                     protected [__keep_incompatibility]: never;
-                    public static MapType($type: System.Type): OneJS.Editor.TypeGenerator.TsTypeRef;
-                    public static ShouldSkipType($type: System.Type): boolean;
-                    public static ShouldEmitAsAny($type: System.Type): boolean;
+                    public static MapType($type: System.TypeLike): OneJS.Editor.TypeGenerator.TsTypeRef;
+                    public static ShouldSkipType($type: System.TypeLike): boolean;
+                    public static ShouldEmitAsAny($type: System.TypeLike): boolean;
                     public static SanitizeTypeName($name: string): string;
                     public static ShouldSkipMember($member: System.Reflection.MemberInfo): boolean;
-                    public static GetTsFriendlyName($type: System.Type): string;
+                    public static GetTsFriendlyName($type: System.TypeLike): string;
                 }
 
                 class TypeScriptEmitter {
@@ -655,12 +655,12 @@ declare namespace CS {
                 class TypeGenerator {
                     protected [__keep_incompatibility]: never;
                     public static readonly DefaultOutputPath: string;
-                    public static Generate($outputPath: string, ...types: System.Type[]): void;
+                    public static Generate($outputPath: string, ...types: System.TypeLike[]): void;
                     public static GenerateFromAssembly($outputPath: string, $assemblyNamePattern: string): void;
                     public static GenerateFromAssemblies($outputPath: string, ...assemblyNamePatterns: string[]): void;
                     public static GenerateFromNamespace($outputPath: string, $namespaceName: string): void;
                     public static GenerateProjectTypes($outputPath?: string): void;
-                    public static GenerateToResult(...types: System.Type[]): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
+                    public static GenerateToResult(...types: System.TypeLike[]): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
                     public static Create(): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
                     public static CombinePresets(...results: OneJS.Editor.TypeGenerator.TypeGeneratorResult[]): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
                     public static GetAssemblies($namePattern: string): System.Collections.Generic.IEnumerable$1<System.Reflection.Assembly>;
@@ -687,9 +687,9 @@ declare namespace CS {
                     public get Types(): System.Collections.Generic.IReadOnlyCollection$1<System.Type>;
                     constructor();
                     public AddType<T>(): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
-                    public AddType($type: System.Type): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
+                    public AddType($type: System.TypeLike): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
                     public AddTypeByName($fullTypeName: string): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
-                    public AddTypes(...types: System.Type[]): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
+                    public AddTypes(...types: System.TypeLike[]): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
                     public AddTypes($types: System.Collections.Generic.IEnumerable$1<System.Type>): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
                     public AddAssemblyByName($assemblyNamePattern: string): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
                     public AddAssembly($assembly: System.Reflection.Assembly): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
@@ -719,7 +719,7 @@ declare namespace CS {
                     public static Audio(): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
                     public static InputSystem(): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
                     public static All(): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
-                    public static CreateCustom($name: string, ...types: System.Type[]): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
+                    public static CreateCustom($name: string, ...types: System.TypeLike[]): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
                     public static FromNamespace($namespaceName: string): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
                     public static FromAssembly($assemblyPattern: string): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
                 }

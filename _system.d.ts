@@ -30,6 +30,13 @@ declare namespace CS {
             public static GetType($typeName: string): System.Type;
         }
 
+        /**
+         * Accepts both `System.Type` objects and class constructor references.
+         * In OneJS, class references (e.g., `CS.UnityEngine.GameObject`) can be
+         * passed wherever a `System.Type` is expected in C# method parameters.
+         */
+        type TypeLike = Type | (abstract new (...args: any[]) => any);
+
         class Attribute {}
         class Exception {
             public get Message(): string;
@@ -63,7 +70,7 @@ declare namespace CS {
             ToString($format: string, $formatProvider: System.IFormatProvider): string;
         }
         interface IFormatProvider {
-            GetFormat($formatType: System.Type): any;
+            GetFormat($formatType: System.TypeLike): any;
         }
 
         // Arrays
