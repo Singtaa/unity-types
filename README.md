@@ -47,12 +47,12 @@ pos.x = 10
 const button = new CS.UnityEngine.UIElements.Button()
 button.text = "Click me"
 
-// Physics
-const rb: CS.UnityEngine.Rigidbody = go.AddComponent($typeof(CS.UnityEngine.Rigidbody))
+// Physics — generic overloads return the correct type directly
+const rb = go.AddComponent(CS.UnityEngine.Rigidbody)  // Type: Rigidbody
 rb.mass = 5
 
 // Audio
-const audio: CS.UnityEngine.AudioSource = go.GetComponent($typeof(CS.UnityEngine.AudioSource))
+const audio = go.GetComponent(CS.UnityEngine.AudioSource)  // Type: AudioSource
 audio.Play()
 
 // Web requests
