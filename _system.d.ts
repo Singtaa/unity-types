@@ -88,8 +88,10 @@ declare namespace CS {
         }
 
         // Generic array (T[])
+        // Uses PascalCase `Length` to match C# Array.Length.
+        // Use toArray() from onejs-react to convert to a JS array with .length, .map(), etc.
         interface Array$1<T> {
-            readonly length: number;
+            readonly Length: number;
             [index: number]: T;
             get_Item($index: number): T;
             set_Item($index: number, $value: T): void;
