@@ -106,53 +106,103 @@ declare namespace CS {
         }
 
         // Delegates / Function types
+        // Each delegate has both an interface (for structural typing) and a var
+        // (for value-level access via CS.System.Action, etc.)
         interface Action {
             (): void;
-            Invoke(): void;
+            Invoke?(): void;
         }
+        var Action: { new(fn: () => void): Action };
+
         interface Action$1<T> {
             ($arg: T): void;
-            Invoke($arg: T): void;
+            Invoke?($arg: T): void;
         }
+        var Action$1: { new<T>(fn: ($arg: T) => void): Action$1<T> };
+
         interface Action$2<T1, T2> {
             ($arg1: T1, $arg2: T2): void;
-            Invoke($arg1: T1, $arg2: T2): void;
+            Invoke?($arg1: T1, $arg2: T2): void;
         }
+        var Action$2: { new<T1, T2>(fn: ($arg1: T1, $arg2: T2) => void): Action$2<T1, T2> };
+
         interface Action$3<T1, T2, T3> {
             ($arg1: T1, $arg2: T2, $arg3: T3): void;
-            Invoke($arg1: T1, $arg2: T2, $arg3: T3): void;
+            Invoke?($arg1: T1, $arg2: T2, $arg3: T3): void;
         }
+        var Action$3: { new<T1, T2, T3>(fn: ($arg1: T1, $arg2: T2, $arg3: T3) => void): Action$3<T1, T2, T3> };
+
         interface Action$4<T1, T2, T3, T4> {
             ($arg1: T1, $arg2: T2, $arg3: T3, $arg4: T4): void;
-            Invoke($arg1: T1, $arg2: T2, $arg3: T3, $arg4: T4): void;
+            Invoke?($arg1: T1, $arg2: T2, $arg3: T3, $arg4: T4): void;
         }
+        var Action$4: { new<T1, T2, T3, T4>(fn: ($arg1: T1, $arg2: T2, $arg3: T3, $arg4: T4) => void): Action$4<T1, T2, T3, T4> };
 
         interface Func$1<TResult> {
             (): TResult;
-            Invoke(): TResult;
+            Invoke?(): TResult;
         }
+        var Func$1: { new<TResult>(fn: () => TResult): Func$1<TResult> };
+
         interface Func$2<T, TResult> {
             ($arg: T): TResult;
-            Invoke($arg: T): TResult;
+            Invoke?($arg: T): TResult;
         }
+        var Func$2: { new<T, TResult>(fn: ($arg: T) => TResult): Func$2<T, TResult> };
+
         interface Func$3<T1, T2, TResult> {
             ($arg1: T1, $arg2: T2): TResult;
-            Invoke($arg1: T1, $arg2: T2): TResult;
+            Invoke?($arg1: T1, $arg2: T2): TResult;
         }
+        var Func$3: { new<T1, T2, TResult>(fn: ($arg1: T1, $arg2: T2) => TResult): Func$3<T1, T2, TResult> };
+
         interface Func$4<T1, T2, T3, TResult> {
             ($arg1: T1, $arg2: T2, $arg3: T3): TResult;
-            Invoke($arg1: T1, $arg2: T2, $arg3: T3): TResult;
+            Invoke?($arg1: T1, $arg2: T2, $arg3: T3): TResult;
         }
+        var Func$4: { new<T1, T2, T3, TResult>(fn: ($arg1: T1, $arg2: T2, $arg3: T3) => TResult): Func$4<T1, T2, T3, TResult> };
 
         interface Predicate$1<T> {
             ($obj: T): boolean;
-            Invoke($obj: T): boolean;
+            Invoke?($obj: T): boolean;
         }
+        var Predicate$1: { new<T>(fn: ($obj: T) => boolean): Predicate$1<T> };
 
         interface Comparison$1<T> {
             ($x: T, $y: T): number;
-            Invoke($x: T, $y: T): number;
+            Invoke?($x: T, $y: T): number;
         }
+        var Comparison$1: { new<T>(fn: ($x: T, $y: T) => number): Comparison$1<T> };
+
+        interface Action$5<T1, T2, T3, T4, T5> {
+            ($arg1: T1, $arg2: T2, $arg3: T3, $arg4: T4, $arg5: T5): void;
+            Invoke?($arg1: T1, $arg2: T2, $arg3: T3, $arg4: T4, $arg5: T5): void;
+        }
+        var Action$5: { new<T1, T2, T3, T4, T5>(fn: ($arg1: T1, $arg2: T2, $arg3: T3, $arg4: T4, $arg5: T5) => void): Action$5<T1, T2, T3, T4, T5> };
+
+        interface Action$6<T1, T2, T3, T4, T5, T6> {
+            ($arg1: T1, $arg2: T2, $arg3: T3, $arg4: T4, $arg5: T5, $arg6: T6): void;
+            Invoke?($arg1: T1, $arg2: T2, $arg3: T3, $arg4: T4, $arg5: T5, $arg6: T6): void;
+        }
+        var Action$6: { new<T1, T2, T3, T4, T5, T6>(fn: ($arg1: T1, $arg2: T2, $arg3: T3, $arg4: T4, $arg5: T5, $arg6: T6) => void): Action$6<T1, T2, T3, T4, T5, T6> };
+
+        interface Func$5<T1, T2, T3, T4, TResult> {
+            ($arg1: T1, $arg2: T2, $arg3: T3, $arg4: T4): TResult;
+            Invoke?($arg1: T1, $arg2: T2, $arg3: T3, $arg4: T4): TResult;
+        }
+        var Func$5: { new<T1, T2, T3, T4, TResult>(fn: ($arg1: T1, $arg2: T2, $arg3: T3, $arg4: T4) => TResult): Func$5<T1, T2, T3, T4, TResult> };
+
+        interface Func$6<T1, T2, T3, T4, T5, TResult> {
+            ($arg1: T1, $arg2: T2, $arg3: T3, $arg4: T4, $arg5: T5): TResult;
+            Invoke?($arg1: T1, $arg2: T2, $arg3: T3, $arg4: T4, $arg5: T5): TResult;
+        }
+        var Func$6: { new<T1, T2, T3, T4, T5, TResult>(fn: ($arg1: T1, $arg2: T2, $arg3: T3, $arg4: T4, $arg5: T5) => TResult): Func$6<T1, T2, T3, T4, T5, TResult> };
+
+        interface Func$7<T1, T2, T3, T4, T5, T6, TResult> {
+            ($arg1: T1, $arg2: T2, $arg3: T3, $arg4: T4, $arg5: T5, $arg6: T6): TResult;
+            Invoke?($arg1: T1, $arg2: T2, $arg3: T3, $arg4: T4, $arg5: T5, $arg6: T6): TResult;
+        }
+        var Func$7: { new<T1, T2, T3, T4, T5, T6, TResult>(fn: ($arg1: T1, $arg2: T2, $arg3: T3, $arg4: T4, $arg5: T5, $arg6: T6) => TResult): Func$7<T1, T2, T3, T4, T5, T6, TResult> };
 
         // Tuples
         class ValueTuple$2<T1, T2> {

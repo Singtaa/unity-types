@@ -44,6 +44,10 @@ declare module "UnityEngine/UIElements" {
     export = CS.UnityEngine.UIElements;
 }
 
+declare module "UnityEngine/SceneManagement" {
+    export = CS.UnityEngine.SceneManagement;
+}
+
 declare module "System" {
     export = CS.System;
 }
