@@ -14,12 +14,12 @@
 /// <reference path="_system.d.ts" />
 /// <reference path="UnityEngine.CoreModule.d.ts" />
 /// <reference path="UnityEngine.UIElementsModule.d.ts" />
+/// <reference path="UnityEngine.InputLegacyModule.d.ts" />
+/// <reference path="Unity.InputSystem.d.ts" />
 /// <reference path="UnityEngine.PhysicsModule.d.ts" />
 /// <reference path="UnityEngine.Physics2DModule.d.ts" />
 /// <reference path="UnityEngine.AudioModule.d.ts" />
-/// <reference path="UnityEngine.InputLegacyModule.d.ts" />
 /// <reference path="UnityEngine.UnityWebRequestModule.d.ts" />
-/// <reference path="Unity.InputSystem.d.ts" />
 /// <reference path="OneJS.d.ts" />
 
 // =============================================================================
@@ -50,4 +50,8 @@ declare module "UnityEngine/SceneManagement" {
 
 declare module "System" {
     export = CS.System;
+}
+
+declare module "OneJS" {
+    export = CS.OneJS;
 }
