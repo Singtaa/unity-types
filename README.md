@@ -47,7 +47,7 @@ pos.x = 10
 const button = new CS.UnityEngine.UIElements.Button()
 button.text = "Click me"
 
-// Physics — generic overloads return the correct type directly
+// Physics - generic overloads return the correct type directly
 const rb = go.AddComponent(CS.UnityEngine.Rigidbody)  // Type: Rigidbody
 rb.mass = 5
 
