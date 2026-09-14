@@ -84,15 +84,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.BindableElement, UnityEngine.UIElements.BindableElement.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.VisualElement.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -289,6 +290,7 @@ declare namespace CS {
             class BaseTreeViewController extends UnityEngine.UIElements.CollectionViewController {
                 protected [__keep_incompatibility]: never;
                 public itemsSource: System.Collections.IList;
+                /** @deprecated RebuildTree is no longer supported and will be removed. */
                 public RebuildTree(): void;
                 public GetRootItemIds(): System.Collections.Generic.IEnumerable$1<number>;
                 public GetAllItemIds($rootIds?: System.Collections.Generic.IEnumerable$1<number>): System.Collections.Generic.IEnumerable$1<number>;
@@ -381,6 +383,9 @@ declare namespace CS {
             class MultiColumnTreeViewController extends UnityEngine.UIElements.BaseTreeViewController {
                 protected [__keep_incompatibility]: never;
                 public get columnController(): UnityEngine.UIElements.MultiColumnController;
+                public GetItemForIndex($index: number): any;
+                public GetIndexForId($id: number): number;
+                public GetIdForIndex($index: number): number;
                 public Dispose(): void;
             }
 
@@ -491,10 +496,11 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseVerticalCollectionView.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
+                    constructor();
                 }
 
             }
@@ -550,11 +556,13 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits<TValueType extends System.IComparable$1<TValueType>> extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<TValueType> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits<TValueUxmlAttributeType> is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits<TValueType extends System.IComparable$1<TValueType>, TValueUxmlAttributeType extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<TValueType>> extends UnityEngine.UIElements.BaseFieldTraits$2<TValueType, TValueUxmlAttributeType> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -614,11 +622,11 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseVerticalCollectionView.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -676,10 +684,12 @@ declare namespace CS {
                 public GetRootElementForIndex($index: number): UnityEngine.UIElements.VisualElement;
                 public RefreshItem($index: number): void;
                 public RefreshItems(): void;
+                /** @deprecated Refresh() has been deprecated. Use Rebuild() instead. (UnityUpgradable) -> Rebuild() */
                 public Refresh(): void;
                 public Rebuild(): void;
                 public ScrollTo($visualElement: UnityEngine.UIElements.VisualElement): void;
                 public ScrollToItem($index: number): void;
+                /** @deprecated ScrollToId() has been deprecated. Use ScrollToItemById() instead. (UnityUpgradable) -> ScrollToItemById(*) */
                 public ScrollToId($id: number): void;
                 public ScrollToItemById($id: number): void;
                 public AddToSelection($index: number): void;
@@ -720,11 +730,11 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BindableElement.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -764,15 +774,16 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.BoundsField, UnityEngine.UIElements.BoundsField.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<UnityEngine.Bounds> {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -796,15 +807,16 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.BoundsIntField, UnityEngine.UIElements.BoundsIntField.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<UnityEngine.BoundsInt> {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -821,6 +833,7 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$1<UnityEngine.UIElements.Box> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -852,15 +865,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.Button, UnityEngine.UIElements.Button.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.TextElement.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -881,15 +895,16 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.RectField, UnityEngine.UIElements.RectField.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<UnityEngine.Rect> {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -910,15 +925,16 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.RectIntField, UnityEngine.UIElements.RectIntField.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<UnityEngine.RectInt> {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -939,15 +955,16 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.Vector2Field, UnityEngine.UIElements.Vector2Field.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<UnityEngine.Vector2> {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -968,15 +985,16 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.Vector3Field, UnityEngine.UIElements.Vector3Field.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<UnityEngine.Vector3> {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -997,15 +1015,16 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.Vector4Field, UnityEngine.UIElements.Vector4Field.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<UnityEngine.Vector4> {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -1026,15 +1045,16 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.Vector2IntField, UnityEngine.UIElements.Vector2IntField.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<UnityEngine.Vector2Int> {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -1055,15 +1075,16 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.Vector3IntField, UnityEngine.UIElements.Vector3IntField.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<UnityEngine.Vector3Int> {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -1086,11 +1107,13 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.DoubleField, UnityEngine.UIElements.DoubleField.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.TextValueFieldTraits$2<number, UnityEngine.UIElements.UxmlDoubleAttributeDescription> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1116,15 +1139,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.DropdownField, UnityEngine.UIElements.DropdownField.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<string> {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -1153,15 +1177,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.EnumField, UnityEngine.UIElements.EnumField.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<System.Enum> {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -1184,11 +1209,13 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.FloatField, UnityEngine.UIElements.FloatField.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.TextValueFieldTraits$2<number, UnityEngine.UIElements.UxmlFloatAttributeDescription> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1221,15 +1248,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.Foldout, UnityEngine.UIElements.Foldout.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BindableElement.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -1267,8 +1295,11 @@ declare namespace CS {
                 public AddItem($itemName: string, $isChecked: boolean, $action: System.Action$1<any>, $data: any): void;
                 public AddDisabledItem($itemName: string, $isChecked: boolean): void;
                 public AddSeparator($path: string): void;
+                /** @deprecated This version of Dropdown is deprecated. To ensure the dropdown is positioned correctly, please provide a reference to the targetElement. */
                 public DropDown($position: UnityEngine.Rect): void;
+                /** @deprecated This version of Dropdown is deprecated. Please use DropDown(Rect position, VisualElement targetElement, DropdownMenuSizeMode dropdownMenuSizeMode). */
                 public DropDown($position: UnityEngine.Rect, $targetElement: UnityEngine.UIElements.VisualElement, $anchored?: boolean): void;
+                /** @deprecated This version of Dropdown is deprecated. Please use DropDown(Rect position, VisualElement targetElement, DropdownMenuSizeMode dropdownMenuSizeMode). */
                 public DropDown($position: UnityEngine.Rect, $targetElement: UnityEngine.UIElements.VisualElement, $anchored?: boolean, $fitContentWidthIfAnchored?: boolean): void;
                 public DropDown($position: UnityEngine.Rect, $targetElement: UnityEngine.UIElements.VisualElement, $dropdownMenuSizeMode?: UnityEngine.UIElements.DropdownMenuSizeMode): void;
                 public add_onOpen(handler: System.Action): void;
@@ -1294,15 +1325,37 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.GroupBox, UnityEngine.UIElements.GroupBox.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BindableElement.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
+                }
+
+            }
+
+            class GUIDField extends UnityEngine.UIElements.TextInputBaseField$1<UnityEngine.GUID> {
+                protected [__keep_incompatibility]: never;
+                public static readonly ussClassName: string;
+                public static readonly labelUssClassName: string;
+                public static readonly inputUssClassName: string;
+                public value: UnityEngine.GUID;
+                constructor();
+                constructor($maxLength: number);
+                constructor($label: string, $maxLength?: number);
+                public SetValueWithoutNotify($newValue: UnityEngine.GUID): void;
+            }
+            namespace GUIDField {
+                class UxmlSerializedData extends UnityEngine.UIElements.TextInputBaseField$1.UxmlSerializedData$1<UnityEngine.GUID> {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                    public static Register(): void;
+                    public CreateInstance(): any;
                 }
 
             }
@@ -1326,11 +1379,13 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.Hash128Field, UnityEngine.UIElements.Hash128Field.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.TextValueFieldTraits$2<UnityEngine.Hash128, UnityEngine.UIElements.UxmlHash128AttributeDescription> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1348,15 +1403,25 @@ declare namespace CS {
             class HelpBox extends UnityEngine.UIElements.VisualElement {
                 protected [__keep_incompatibility]: never;
                 public static readonly ussClassName: string;
+                public static readonly topContainerUssClassName: string;
+                public static readonly bottomContainerUssClassName: string;
+                public static readonly linkUssClassName: string;
+                public static readonly buttonUssClassName: string;
                 public static readonly labelUssClassName: string;
                 public static readonly iconUssClassName: string;
                 public static readonly iconInfoUssClassName: string;
                 public static readonly iconwarningUssClassName: string;
+                public static readonly iconWarningUssClassName: string;
                 public static readonly iconErrorUssClassName: string;
                 public text: string;
                 public messageType: UnityEngine.UIElements.HelpBoxMessageType;
+                public buttonText: string;
+                public linkText: string;
+                public linkHref: string;
                 constructor();
                 constructor($text: string, $messageType: UnityEngine.UIElements.HelpBoxMessageType);
+                public add_onButtonClicked(handler: System.Action): void;
+                public remove_onButtonClicked(handler: System.Action): void;
             }
             namespace HelpBox {
                 class UxmlSerializedData extends UnityEngine.UIElements.VisualElement.UxmlSerializedData {
@@ -1367,15 +1432,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.HelpBox, UnityEngine.UIElements.HelpBox.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.VisualElement.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -1401,11 +1467,13 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.Image, UnityEngine.UIElements.Image.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.VisualElement.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
@@ -1429,7 +1497,7 @@ declare namespace CS {
                 public static UnregisterValueChangedCallback<T>($callback: UnityEngine.UIElements.EventCallback$1<UnityEngine.UIElements.ChangeEvent$1<T>>): boolean;
             }
 
-            class BaseField<TValueType> extends UnityEngine.UIElements.BindableElement implements UnityEngine.UIElements.IPrefixLabel, UnityEngine.UIElements.IEditableElement, UnityEngine.UIElements.IMixedValueSupport, UnityEngine.UIElements.INotifyValueChanged$1<TValueType> {
+            class BaseField<TValueType> extends UnityEngine.UIElements.BindableElement implements UnityEngine.UIElements.IMixedValueSupport, UnityEngine.UIElements.INotifyValueChanged$1<TValueType>, UnityEngine.UIElements.IPrefixLabel, UnityEngine.UIElements.IEditableElement {
                 protected [__keep_incompatibility]: never;
                 public static readonly ussClassName: string;
                 public static readonly labelUssClassName: string;
@@ -1451,18 +1519,12 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits<TValueType> extends UnityEngine.UIElements.BindableElement.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
-            }
-
-            class BaseFieldTraits<TValueType, TValueUxmlAttributeType extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<TValueType>> extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<TValueType> {
-                protected [__keep_incompatibility]: never;
-                constructor();
-                public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
             }
 
             class TextField extends UnityEngine.UIElements.TextInputBaseField$1<string> {
@@ -1487,15 +1549,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.TextField, UnityEngine.UIElements.TextField.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.TextInputBaseField$1.UxmlTraits$1<string> {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -1514,6 +1577,7 @@ declare namespace CS {
                 public isReadOnly: boolean;
                 public isPasswordField: boolean;
                 public autoCorrection: boolean;
+                public hideSoftKeyboard: boolean;
                 public hideMobileInput: boolean;
                 public keyboardType: UnityEngine.TouchScreenKeyboardType;
                 public get touchScreenKeyboard(): UnityEngine.TouchScreenKeyboard;
@@ -1535,8 +1599,10 @@ declare namespace CS {
                 public SelectAll(): void;
                 public SelectNone(): void;
                 public SelectRange($cursorIndex: number, $selectionIndex: number): void;
+                /** @deprecated SetVerticalScrollerVisibility is deprecated. Use TextField.verticalScrollerVisibility instead. */
                 public SetVerticalScrollerVisibility($sv: UnityEngine.UIElements.ScrollerVisibility): boolean;
                 public MeasureTextSize($textToMeasure: string, $width: number, $widthMode: UnityEngine.UIElements.VisualElement.MeasureMode, $height: number, $heightMode: UnityEngine.UIElements.VisualElement.MeasureMode): UnityEngine.Vector2;
+                public SetValueWithoutNotify($newValue: TValueType): void;
             }
             namespace TextInputBaseField {
                 class UxmlSerializedData<TValueType> extends UnityEngine.UIElements.BaseField$1.UxmlSerializedData$1<TValueType> {
@@ -1546,10 +1612,10 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits<TValueType> extends UnityEngine.UIElements.BaseFieldTraits$2<string, UnityEngine.UIElements.UxmlStringAttributeDescription> {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -1572,11 +1638,13 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.IntegerField, UnityEngine.UIElements.IntegerField.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.TextValueFieldTraits$2<number, UnityEngine.UIElements.UxmlIntAttributeDescription> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1597,11 +1665,13 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.Label, UnityEngine.UIElements.Label.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.TextElement.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -1628,15 +1698,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.ListView, UnityEngine.UIElements.ListView.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseListView.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -1659,14 +1730,78 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.LongField, UnityEngine.UIElements.LongField.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.TextValueFieldTraits$2<bigint, UnityEngine.UIElements.UxmlLongAttributeDescription> {
                     protected [__keep_incompatibility]: never;
                     constructor();
+                }
+
+            }
+
+            class BaseMask64Field extends UnityEngine.UIElements.BasePopupField$2<bigint, string> {
+                protected [__keep_incompatibility]: never;
+                public choices: System.Collections.Generic.List$1<string>;
+                public choicesMasks: System.Collections.Generic.List$1<bigint>;
+                public value: bigint;
+                public SetValueWithoutNotify($newValue: bigint): void;
+            }
+
+            class Mask64Field extends UnityEngine.UIElements.BaseMask64Field {
+                protected [__keep_incompatibility]: never;
+                public static readonly ussClassName: string;
+                public static readonly labelUssClassName: string;
+                public static readonly inputUssClassName: string;
+                public formatSelectedValueCallback: System.Func$2<string, string>;
+                public formatListItemCallback: System.Func$2<string, string>;
+                constructor($choices: System.Collections.Generic.List$1<string>, $defaultMask: bigint, $formatSelectedValueCallback?: System.Func$2<string, string>, $formatListItemCallback?: System.Func$2<string, string>);
+                constructor($label: string, $choices: System.Collections.Generic.List$1<string>, $defaultMask: bigint, $formatSelectedValueCallback?: System.Func$2<string, string>, $formatListItemCallback?: System.Func$2<string, string>);
+                constructor();
+                constructor($label: string);
+            }
+            namespace Mask64Field {
+                class UxmlSerializedData extends UnityEngine.UIElements.BaseField$1.UxmlSerializedData$1<bigint> {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                    public static Register(): void;
+                    public CreateInstance(): any;
+                    public Deserialize($obj: any): void;
+                }
+
+            }
+
+            class BaseMaskField<TChoice> extends UnityEngine.UIElements.BasePopupField$2<TChoice, string> {
+                protected [__keep_incompatibility]: never;
+                public choices: System.Collections.Generic.List$1<string>;
+                public choicesMasks: System.Collections.Generic.List$1<number>;
+                public value: TChoice;
+                public SetValueWithoutNotify($newValue: TChoice): void;
+            }
+
+            class MaskField extends UnityEngine.UIElements.BaseMaskField$1<number> {
+                protected [__keep_incompatibility]: never;
+                public static readonly ussClassName: string;
+                public static readonly labelUssClassName: string;
+                public static readonly inputUssClassName: string;
+                public formatSelectedValueCallback: System.Func$2<string, string>;
+                public formatListItemCallback: System.Func$2<string, string>;
+                constructor($choices: System.Collections.Generic.List$1<string>, $defaultMask: number, $formatSelectedValueCallback?: System.Func$2<string, string>, $formatListItemCallback?: System.Func$2<string, string>);
+                constructor($label: string, $choices: System.Collections.Generic.List$1<string>, $defaultMask: number, $formatSelectedValueCallback?: System.Func$2<string, string>, $formatListItemCallback?: System.Func$2<string, string>);
+                constructor();
+                constructor($label: string);
+            }
+            namespace MaskField {
+                class UxmlSerializedData extends UnityEngine.UIElements.BaseField$1.UxmlSerializedData$1<number> {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                    public static Register(): void;
+                    public CreateInstance(): any;
+                    public Deserialize($obj: any): void;
                 }
 
             }
@@ -1701,15 +1836,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.MinMaxSlider, UnityEngine.UIElements.MinMaxSlider.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<UnityEngine.Vector2> {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -1755,7 +1891,7 @@ declare namespace CS {
 
             }
 
-            class Columns implements System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.Column>, System.Collections.IEnumerable, UnityEngine.UIElements.INotifyBindablePropertyChanged, System.Collections.Generic.ICollection$1<UnityEngine.UIElements.Column> {
+            class Columns implements UnityEngine.UIElements.INotifyBindablePropertyChanged, System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.Column>, System.Collections.IEnumerable, System.Collections.Generic.ICollection$1<UnityEngine.UIElements.Column> {
                 protected [__keep_incompatibility]: never;
                 public primaryColumnName: string;
                 public reorderable: boolean;
@@ -1848,15 +1984,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.MultiColumnListView, UnityEngine.UIElements.MultiColumnListView.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseListView.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -1886,15 +2023,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.MultiColumnTreeView, UnityEngine.UIElements.MultiColumnTreeView.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseTreeView.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -1963,6 +2101,7 @@ declare namespace CS {
                 public formatListItemCallback: System.Func$2<T, string>;
                 public value: T;
                 public index: number;
+                public choices: System.Collections.Generic.List$1<T>;
                 constructor();
                 constructor($label?: string);
                 constructor($choices: System.Collections.Generic.List$1<T>, $defaultValue: T, $formatSelectedValueCallback?: System.Func$2<T, string>, $formatListItemCallback?: System.Func$2<T, string>);
@@ -1986,11 +2125,13 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.PopupWindow, UnityEngine.UIElements.PopupWindow.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.TextElement.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
@@ -2021,10 +2162,10 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BindableElement.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -2040,6 +2181,7 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.ProgressBar, UnityEngine.UIElements.AbstractProgressBar.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -2058,6 +2200,7 @@ declare namespace CS {
                 public value: boolean;
                 constructor();
                 constructor($label: string);
+                /** @deprecated [UI Toolkit] Please set the value property instead. */
                 public SetSelected($selected: boolean): void;
                 public SetValueWithoutNotify($newValue: boolean): void;
             }
@@ -2070,15 +2213,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.RadioButton, UnityEngine.UIElements.RadioButton.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseFieldTraits$2<boolean, UnityEngine.UIElements.UxmlBoolAttributeDescription> {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -2102,15 +2246,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.RadioButtonGroup, UnityEngine.UIElements.RadioButtonGroup.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseFieldTraits$2<number, UnityEngine.UIElements.UxmlIntAttributeDescription> {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -2131,15 +2276,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.RepeatButton, UnityEngine.UIElements.RepeatButton.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.TextElement.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -2178,16 +2324,17 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.Scroller, UnityEngine.UIElements.Scroller.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.VisualElement.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -2253,17 +2400,6 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
-                class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.ScrollView, UnityEngine.UIElements.ScrollView.UxmlTraits> {
-                    protected [__keep_incompatibility]: never;
-                    constructor();
-                }
-
-                class UxmlTraits extends UnityEngine.UIElements.VisualElement.UxmlTraits {
-                    protected [__keep_incompatibility]: never;
-                    constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
-                }
-
                 enum TouchScrollBehavior {
                     Unrestricted = 0,
                     Elastic = 1,
@@ -2274,6 +2410,18 @@ declare namespace CS {
                     Default = 0,
                     StopScrolling = 1,
                     ForwardScrolling = 2
+                }
+
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
+                class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.ScrollView, UnityEngine.UIElements.ScrollView.UxmlTraits> {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                }
+
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
+                class UxmlTraits extends UnityEngine.UIElements.VisualElement.UxmlTraits {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
                 }
 
             }
@@ -2297,15 +2445,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.Slider, UnityEngine.UIElements.Slider.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseSlider$1.UxmlTraits$2<number, UnityEngine.UIElements.UxmlFloatAttributeDescription> {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -2330,15 +2479,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.SliderInt, UnityEngine.UIElements.SliderInt.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseSlider$1.UxmlTraits$2<number, UnityEngine.UIElements.UxmlIntAttributeDescription> {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -2385,15 +2535,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.Tab, UnityEngine.UIElements.Tab.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.VisualElement.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -2433,15 +2584,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.TabView, UnityEngine.UIElements.TabView.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.VisualElement.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -2478,12 +2630,6 @@ declare namespace CS {
 
             }
 
-            class TextValueFieldTraits<TValueType, TValueUxmlAttributeType extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<TValueType>> extends UnityEngine.UIElements.BaseFieldTraits$2<TValueType, TValueUxmlAttributeType> {
-                protected [__keep_incompatibility]: never;
-                constructor();
-                public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
-            }
-
             class Toggle extends UnityEngine.UIElements.BaseBoolField {
                 protected [__keep_incompatibility]: never;
                 public static readonly ussClassName: string;
@@ -2505,15 +2651,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.Toggle, UnityEngine.UIElements.Toggle.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseFieldTraits$2<boolean, UnityEngine.UIElements.UxmlBoolAttributeDescription> {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -2548,15 +2695,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.ToggleButtonGroup, UnityEngine.UIElements.ToggleButtonGroup.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<UnityEngine.UIElements.ToggleButtonGroupState> {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -2612,15 +2760,16 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.TreeView, UnityEngine.UIElements.TreeView.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BaseTreeView.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -2656,16 +2805,17 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.TwoPaneSplitView, UnityEngine.UIElements.TwoPaneSplitView.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.VisualElement.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -2693,11 +2843,13 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.UnsignedIntegerField, UnityEngine.UIElements.UnsignedIntegerField.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.TextValueFieldTraits$2<number, UnityEngine.UIElements.UxmlUnsignedIntAttributeDescription> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -2723,11 +2875,13 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.UnsignedLongField, UnityEngine.UIElements.UnsignedLongField.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.TextValueFieldTraits$2<bigint, UnityEngine.UIElements.UxmlUnsignedLongAttributeDescription> {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -2800,6 +2954,7 @@ declare namespace CS {
                 public get visualMode(): UnityEngine.UIElements.DragVisualMode;
                 constructor($title: string, $visualMode: UnityEngine.UIElements.DragVisualMode);
                 public SetGenericData($key: string, $data: any): void;
+                /** @deprecated Use SetEntityIds instead, and call Object.GetEntityId() if you really need to convert from a Unity object to an EntityId. */
                 public SetUnityObjectReferences($references: System.Collections.Generic.IEnumerable$1<UnityEngine.Object>): void;
                 public SetEntityIds($ids: System.Collections.Generic.IReadOnlyList$1<UnityEngine.EntityId>): void;
                 public SetPaths($paths: System.Array$1<string>): void;
@@ -2986,6 +3141,7 @@ declare namespace CS {
                 public get timestamp(): bigint;
                 public get bubbles(): boolean;
                 public get tricklesDown(): boolean;
+                public get ignoreDisabledElements(): boolean;
                 public target: UnityEngine.UIElements.IEventHandler;
                 public get isPropagationStopped(): boolean;
                 public get isImmediatePropagationStopped(): boolean;
@@ -2997,6 +3153,7 @@ declare namespace CS {
                 public get originalMousePosition(): UnityEngine.Vector2;
                 public StopPropagation(): void;
                 public StopImmediatePropagation(): void;
+                /** @deprecated Use StopPropagation and/or FocusController.IgnoreEvent. Before proceeding, make sure you understand the latest changes to UIToolkit event propagation rules by visiting Unity's manual page https://docs.unity3d.com/Manual/UIE-Events-Dispatching.html */
                 public PreventDefault(): void;
                 public Dispose(): void;
             }
@@ -3024,6 +3181,14 @@ declare namespace CS {
                 TrickleDown = 1
             }
 
+            enum CallbackOptions {
+                Default = 0,
+                TrickleDown = 1,
+                IncludeDisabled = 2,
+                Once = 4,
+                Removable = 8
+            }
+
             enum PropagationPhase {
                 None = 0,
                 TrickleDown = 1,
@@ -3046,8 +3211,13 @@ declare namespace CS {
                 public RegisterCallbackOnce<TEventType extends UnityEngine.UIElements.EventBase$1<TEventType>>($callback: UnityEngine.UIElements.EventCallback$1<TEventType>, $useTrickleDown?: UnityEngine.UIElements.TrickleDown): void;
                 public RegisterCallback<TEventType extends UnityEngine.UIElements.EventBase$1<TEventType>, TUserArgsType>($callback: UnityEngine.UIElements.EventCallback$2<TEventType, TUserArgsType>, $userArgs: TUserArgsType, $useTrickleDown?: UnityEngine.UIElements.TrickleDown): void;
                 public RegisterCallbackOnce<TEventType extends UnityEngine.UIElements.EventBase$1<TEventType>, TUserArgsType>($callback: UnityEngine.UIElements.EventCallback$2<TEventType, TUserArgsType>, $userArgs: TUserArgsType, $useTrickleDown?: UnityEngine.UIElements.TrickleDown): void;
+                public RegisterCallback<TEventType extends UnityEngine.UIElements.EventBase$1<TEventType>>($callback: UnityEngine.UIElements.EventCallback$1<TEventType>, $callbackOptions: UnityEngine.UIElements.CallbackOptions): void;
+                public RegisterCallback<TEventType extends UnityEngine.UIElements.EventBase$1<TEventType>, TUserArgsType>($callback: UnityEngine.UIElements.EventCallback$2<TEventType, TUserArgsType>, $userArgs: TUserArgsType, $callbackOptions: UnityEngine.UIElements.CallbackOptions): void;
                 public UnregisterCallback<TEventType extends UnityEngine.UIElements.EventBase$1<TEventType>>($callback: UnityEngine.UIElements.EventCallback$1<TEventType>, $useTrickleDown?: UnityEngine.UIElements.TrickleDown): void;
+                public UnregisterCallback<TEventType extends UnityEngine.UIElements.EventBase$1<TEventType>>($callback: UnityEngine.UIElements.EventCallback$1<TEventType>, $callbackOptions: UnityEngine.UIElements.CallbackOptions): void;
                 public UnregisterCallback<TEventType extends UnityEngine.UIElements.EventBase$1<TEventType>, TUserArgsType>($callback: UnityEngine.UIElements.EventCallback$2<TEventType, TUserArgsType>, $useTrickleDown?: UnityEngine.UIElements.TrickleDown): void;
+                public UnregisterCallback<TEventType extends UnityEngine.UIElements.EventBase$1<TEventType>, TUserArgsType>($callback: UnityEngine.UIElements.EventCallback$2<TEventType, TUserArgsType>, $callbackOptions: UnityEngine.UIElements.CallbackOptions): void;
+                public UnregisterAllRemovableCallbacks(): void;
                 public SendEvent($e: UnityEngine.UIElements.EventBase): void;
                 public HasTrickleDownHandlers(): boolean;
                 public HasBubbleUpHandlers(): boolean;
@@ -3151,7 +3321,7 @@ declare namespace CS {
                 get actionKey(): boolean;
             }
 
-            class MouseEventBase<T extends UnityEngine.UIElements.MouseEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.IMouseEvent, UnityEngine.UIElements.IPointerOrMouseEvent, UnityEngine.UIElements.IMouseEventInternal {
+            class MouseEventBase<T extends UnityEngine.UIElements.MouseEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.IMouseEvent, UnityEngine.UIElements.IMouseEventInternal, UnityEngine.UIElements.IPointerOrMouseEvent {
                 protected [__keep_incompatibility]: never;
                 public get modifiers(): UnityEngine.EventModifiers;
                 public get mousePosition(): UnityEngine.Vector2;
@@ -3406,6 +3576,7 @@ declare namespace CS {
                 constructor();
             }
 
+            /** @deprecated Not sent by input backend. */
             class PointerStationaryEvent extends UnityEngine.UIElements.PointerEventBase$1<UnityEngine.UIElements.PointerStationaryEvent> {
                 protected [__keep_incompatibility]: never;
                 constructor();
@@ -3554,16 +3725,16 @@ declare namespace CS {
                 public passIndex: number;
                 public parameterBindings: System.Array$1<UnityEngine.UIElements.ParameterBinding>;
                 public writeMargins: UnityEngine.UIElements.PostProcessingMargins;
-                public prepareMaterialPropertyBlockCallback: UnityEngine.UIElements.PostProcessingPass.PrepareMaterialPropertyBlockDelegate;
+                public applySettingsCallback: UnityEngine.UIElements.PostProcessingPass.ApplyFilterPassSettingsDelegate;
                 public computeRequiredReadMarginsCallback: UnityEngine.UIElements.PostProcessingPass.ComputeRequiredMarginsDelegate;
                 public computeRequiredWriteMarginsCallback: UnityEngine.UIElements.PostProcessingPass.ComputeRequiredMarginsDelegate;
             }
             namespace PostProcessingPass {
-                interface PrepareMaterialPropertyBlockDelegate {
-                    ($mpb: UnityEngine.MaterialPropertyBlock, $func: UnityEngine.UIElements.FilterFunction): void;
-                    Invoke?: ($mpb: UnityEngine.MaterialPropertyBlock, $func: UnityEngine.UIElements.FilterFunction) => void;
+                interface ApplyFilterPassSettingsDelegate {
+                    ($mpb: UnityEngine.MaterialPropertyBlock, $context: UnityEngine.UIElements.FilterPassContext): void;
+                    Invoke?: ($mpb: UnityEngine.MaterialPropertyBlock, $context: UnityEngine.UIElements.FilterPassContext) => void;
                 }
-                var PrepareMaterialPropertyBlockDelegate: { new (func: ($mpb: UnityEngine.MaterialPropertyBlock, $func: UnityEngine.UIElements.FilterFunction) => void): PrepareMaterialPropertyBlockDelegate; };
+                var ApplyFilterPassSettingsDelegate: { new (func: ($mpb: UnityEngine.MaterialPropertyBlock, $context: UnityEngine.UIElements.FilterPassContext) => void): ApplyFilterPassSettingsDelegate; };
 
                 interface ComputeRequiredMarginsDelegate {
                     ($func: UnityEngine.UIElements.FilterFunction): UnityEngine.UIElements.PostProcessingMargins;
@@ -3571,6 +3742,16 @@ declare namespace CS {
                 }
                 var ComputeRequiredMarginsDelegate: { new (func: ($func: UnityEngine.UIElements.FilterFunction) => UnityEngine.UIElements.PostProcessingMargins): ComputeRequiredMarginsDelegate; };
 
+            }
+
+            class FilterPassContext {
+                protected [__keep_incompatibility]: never;
+                public get filterFunction(): UnityEngine.UIElements.FilterFunction;
+                public get postProcessingPass(): UnityEngine.UIElements.PostProcessingPass;
+                public get filterPassIndex(): number;
+                public get readsGamma(): boolean;
+                public get writesGamma(): boolean;
+                public get scaledPixelsPerPoint(): number;
             }
 
             class PostProcessingMargins {
@@ -3622,7 +3803,7 @@ declare namespace CS {
                 constructor();
             }
 
-            class PanelInputConfiguration extends UnityEngine.MonoBehaviour {
+            class PanelInputConfiguration extends UnityEngine.MonoBehaviour implements UnityEngine.UIElements.IPanelInputProvider {
                 protected [__keep_incompatibility]: never;
                 public processWorldSpaceInput: boolean;
                 public interactionLayers: UnityEngine.LayerMask;
@@ -3654,12 +3835,18 @@ declare namespace CS {
                 Expand = 2
             }
 
+            enum PanelRenderMode {
+                ScreenSpaceOverlay = 0,
+                WorldSpace = 1
+            }
+
             class PanelSettings extends UnityEngine.ScriptableObject {
                 protected [__keep_incompatibility]: never;
                 public forceGammaRendering: boolean;
                 public textSettings: UnityEngine.UIElements.PanelTextSettings;
                 public themeStyleSheet: UnityEngine.UIElements.ThemeStyleSheet;
                 public targetTexture: UnityEngine.RenderTexture;
+                public renderMode: UnityEngine.UIElements.PanelRenderMode;
                 public scaleMode: UnityEngine.UIElements.PanelScaleMode;
                 public referenceSpritePixelsPerUnit: number;
                 public scale: number;
@@ -3698,6 +3885,11 @@ declare namespace CS {
                 public static SetTextureDirty($texture: UnityEngine.Texture2D): void;
             }
 
+            enum WorldSpaceSizeMode {
+                Dynamic = 0,
+                Fixed = 1
+            }
+
             enum PivotReferenceSize {
                 BoundingBox = 0,
                 Layout = 1
@@ -3715,14 +3907,14 @@ declare namespace CS {
                 BottomRight = 8
             }
 
-            class UIDocument extends UnityEngine.MonoBehaviour {
+            class UIDocument extends UnityEngine.MonoBehaviour implements UnityEngine.UIElements.IPanelComponent {
                 protected [__keep_incompatibility]: never;
                 public panelSettings: UnityEngine.UIElements.PanelSettings;
                 public get parentUI(): UnityEngine.UIElements.UIDocument;
                 public visualTreeAsset: UnityEngine.UIElements.VisualTreeAsset;
                 public get rootVisualElement(): UnityEngine.UIElements.VisualElement;
                 public position: UnityEngine.UIElements.Position;
-                public worldSpaceSizeMode: UnityEngine.UIElements.UIDocument.WorldSpaceSizeMode;
+                public worldSpaceSizeMode: UnityEngine.UIElements.WorldSpaceSizeMode;
                 public worldSpaceSize: UnityEngine.Vector2;
                 public pivotReferenceSize: UnityEngine.UIElements.PivotReferenceSize;
                 public pivot: UnityEngine.UIElements.Pivot;
@@ -3730,6 +3922,7 @@ declare namespace CS {
                 public get runtimePanel(): UnityEngine.UIElements.IRuntimePanel;
             }
             namespace UIDocument {
+                /** @deprecated UIDocument.WorldSpaceSizeMode has been moved to WorldSpaceSizeMode . (UnityUpgradable) -> WorldSpaceSizeMode */
                 enum WorldSpaceSizeMode {
                     Dynamic = 0,
                     Fixed = 1
@@ -3756,11 +3949,13 @@ declare namespace CS {
                     public CreateInstance(): any;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.IMGUIContainer, UnityEngine.UIElements.IMGUIContainer.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.VisualElement.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
@@ -3853,6 +4048,52 @@ declare namespace CS {
             class MouseManipulator extends UnityEngine.UIElements.Manipulator {
                 protected [__keep_incompatibility]: never;
                 public get activators(): System.Collections.Generic.List$1<UnityEngine.UIElements.ManipulatorActivationFilter>;
+            }
+
+            interface IPanelComponent {
+                get gameObject(): UnityEngine.GameObject;
+                panelSettings: UnityEngine.UIElements.PanelSettings;
+                visualTreeAsset: UnityEngine.UIElements.VisualTreeAsset;
+                get parentUI(): UnityEngine.UIElements.IPanelComponent;
+                get sortingOrder(): number;
+                worldSpaceSizeMode: UnityEngine.UIElements.WorldSpaceSizeMode;
+                worldSpaceSize: UnityEngine.Vector2;
+                position: UnityEngine.UIElements.Position;
+                pivotReferenceSize: UnityEngine.UIElements.PivotReferenceSize;
+                pivot: UnityEngine.UIElements.Pivot;
+                PerformValidation($forced: boolean): void;
+                PerformUpdate(): void;
+            }
+
+            class PanelRenderer extends UnityEngine.Renderer implements UnityEngine.UIElements.IPanelComponent {
+                protected [__keep_incompatibility]: never;
+                public panelSettings: UnityEngine.UIElements.PanelSettings;
+                public visualTreeAsset: UnityEngine.UIElements.VisualTreeAsset;
+                public worldSpaceSizeMode: UnityEngine.UIElements.WorldSpaceSizeMode;
+                public worldSpaceSize: UnityEngine.Vector2;
+                public position: UnityEngine.UIElements.Position;
+                public pivotReferenceSize: UnityEngine.UIElements.PivotReferenceSize;
+                public pivot: UnityEngine.UIElements.Pivot;
+                public get parentUI(): UnityEngine.UIElements.PanelRenderer;
+                constructor();
+                public RegisterUIReloadCallback($callback: UnityEngine.UIElements.PanelRenderer.UIReloadCallback): void;
+                public RegisterUIReloadCallback($callback: UnityEngine.UIElements.PanelRenderer.VersionedUIReloadCallback): void;
+                public UnregisterUIReloadCallback($callback: UnityEngine.UIElements.PanelRenderer.UIReloadCallback): void;
+                public UnregisterUIReloadCallback($callback: UnityEngine.UIElements.PanelRenderer.VersionedUIReloadCallback): void;
+            }
+            namespace PanelRenderer {
+                interface UIReloadCallback {
+                    ($panelRenderer: UnityEngine.UIElements.PanelRenderer, $rootElement: UnityEngine.UIElements.VisualElement): void;
+                    Invoke?: ($panelRenderer: UnityEngine.UIElements.PanelRenderer, $rootElement: UnityEngine.UIElements.VisualElement) => void;
+                }
+                var UIReloadCallback: { new (func: ($panelRenderer: UnityEngine.UIElements.PanelRenderer, $rootElement: UnityEngine.UIElements.VisualElement) => void): UIReloadCallback; };
+
+                interface VersionedUIReloadCallback {
+                    ($panelRenderer: UnityEngine.UIElements.PanelRenderer, $rootElement: UnityEngine.UIElements.VisualElement, $version: number): void;
+                    Invoke?: ($panelRenderer: UnityEngine.UIElements.PanelRenderer, $rootElement: UnityEngine.UIElements.VisualElement, $version: number) => void;
+                }
+                var VersionedUIReloadCallback: { new (func: ($panelRenderer: UnityEngine.UIElements.PanelRenderer, $rootElement: UnityEngine.UIElements.VisualElement, $version: number) => void): VersionedUIReloadCallback; };
+
             }
 
             enum FillRule {
@@ -3976,12 +4217,74 @@ declare namespace CS {
                 protected [__keep_incompatibility]: never;
             }
 
+            class AuthoringIdPath implements System.IEquatable$1<UnityEngine.UIElements.AuthoringIdPath> {
+                protected [__keep_incompatibility]: never;
+                public get path(): System.ReadOnlySpan$1<number>;
+                constructor();
+                constructor(...pathIds: number[]);
+                public Equals($other: UnityEngine.UIElements.AuthoringIdPath): boolean;
+                public GetHashCode(): number;
+                public ToString(): string;
+            }
+
+            class VisualElementAssetReferenceTable implements System.IDisposable {
+                protected [__keep_incompatibility]: never;
+                public get root(): UnityEngine.UIElements.VisualElementAssetReferenceTable.DocumentNode;
+                public ReleaseToPool(): void;
+                public TryGetReference<T extends UnityEngine.UIElements.VisualElement>($idPath: UnityEngine.UIElements.AuthoringIdPath, $element: $Out<T>): boolean;
+                public TryGetReference<T extends UnityEngine.UIElements.VisualElement>($documentNode: UnityEngine.UIElements.VisualElementAssetReferenceTable.DocumentNode, $idPath: UnityEngine.UIElements.AuthoringIdPath, $element: $Out<T>): boolean;
+                public Dispose(): void;
+            }
+            namespace VisualElementAssetReferenceTable {
+                class ElementNode implements System.IDisposable {
+                    protected [__keep_incompatibility]: never;
+                    public visualElement: UnityEngine.UIElements.VisualElement;
+                    public Dispose(): void;
+                }
+
+                class DocumentNode extends UnityEngine.UIElements.VisualElementAssetReferenceTable.ElementNode {
+                    protected [__keep_incompatibility]: never;
+                    public TryGetChild($id: number, $elementNode: $Out<UnityEngine.UIElements.VisualElementAssetReferenceTable.ElementNode>): boolean;
+                }
+
+            }
+
+            class VisualElementReference implements System.IEquatable$1<UnityEngine.UIElements.VisualElementReference>, UnityEngine.UIElements.IVisualElementReferenceHandler, System.IDisposable {
+                protected [__keep_incompatibility]: never;
+                public get panelRenderer(): UnityEngine.UIElements.PanelRenderer;
+                public get authoringPath(): UnityEngine.UIElements.AuthoringIdPath;
+                constructor();
+                constructor($renderer: UnityEngine.UIElements.PanelRenderer, $path: UnityEngine.UIElements.AuthoringIdPath);
+                public SetReference($renderer: UnityEngine.UIElements.PanelRenderer, $path: UnityEngine.UIElements.AuthoringIdPath): void;
+                public RegisterReferenceResolvedCallback($callback: System.Action$1<UnityEngine.UIElements.VisualElement>): void;
+                public UnregisterReferenceResolvedCallback($callback: System.Action$1<UnityEngine.UIElements.VisualElement>): void;
+                public RegisterReferenceUnloadedCallback($callback: System.Action$1<UnityEngine.UIElements.VisualElement>): void;
+                public UnregisterReferenceUnloadedCallback($callback: System.Action$1<UnityEngine.UIElements.VisualElement>): void;
+                public Equals($other: UnityEngine.UIElements.VisualElementReference): boolean;
+            }
+
+            class VisualElementReference<T extends UnityEngine.UIElements.VisualElement> extends UnityEngine.UIElements.VisualElementReference {
+                protected [__keep_incompatibility]: never;
+                constructor();
+                constructor($renderer: UnityEngine.UIElements.PanelRenderer, $path: UnityEngine.UIElements.AuthoringIdPath);
+                public RegisterReferenceResolvedCallback($callback: System.Action$1<T>): void;
+                public UnregisterReferenceResolvedCallback($callback: System.Action$1<T>): void;
+                public RegisterReferenceUnloadedCallback($callback: System.Action$1<T>): void;
+                public UnregisterReferenceUnloadedCallback($callback: System.Action$1<T>): void;
+            }
+
             class Vertex {
                 protected [__keep_incompatibility]: never;
                 public static readonly nearZ: number;
                 public position: UnityEngine.Vector3;
                 public tint: UnityEngine.Color32;
                 public uv: UnityEngine.Vector2;
+            }
+
+            enum TextureOptions {
+                None = 0,
+                SkipDynamicAtlas = 1,
+                PremultipliedAlpha = 2
             }
 
             class MeshWriteData {
@@ -4004,6 +4307,7 @@ declare namespace CS {
                 public AllocateTempMesh($vertexCount: number, $indexCount: number, $vertices: $Out<Unity.Collections.NativeSlice$1<UnityEngine.UIElements.Vertex>>, $indices: $Out<Unity.Collections.NativeSlice$1<number>>): void;
                 public Allocate($vertexCount: number, $indexCount: number, $texture?: UnityEngine.Texture): UnityEngine.UIElements.MeshWriteData;
                 public DrawMesh($vertices: Unity.Collections.NativeSlice$1<UnityEngine.UIElements.Vertex>, $indices: Unity.Collections.NativeSlice$1<number>, $texture?: UnityEngine.Texture): void;
+                public DrawMesh($vertices: Unity.Collections.NativeSlice$1<UnityEngine.UIElements.Vertex>, $indices: Unity.Collections.NativeSlice$1<number>, $texture: UnityEngine.Texture, $textureOptions: UnityEngine.UIElements.TextureOptions): void;
                 public DrawVectorImage($vectorImage: UnityEngine.UIElements.VectorImage, $offset: UnityEngine.Vector2, $rotationAngle: UnityEngine.UIElements.Angle, $scale: UnityEngine.Vector2): void;
                 public DrawText($text: string, $pos: UnityEngine.Vector2, $fontSize: number, $color: UnityEngine.Color, $font?: UnityEngine.TextCore.Text.FontAsset): void;
                 public GetTempMeshAllocator($allocator: $Out<UnityEngine.UIElements.TempMeshAllocator>): void;
@@ -4014,6 +4318,7 @@ declare namespace CS {
             class MeshGenerationNode {
                 protected [__keep_incompatibility]: never;
                 public DrawMesh($vertices: Unity.Collections.NativeSlice$1<UnityEngine.UIElements.Vertex>, $indices: Unity.Collections.NativeSlice$1<number>, $texture?: UnityEngine.Texture): void;
+                public DrawMesh($vertices: Unity.Collections.NativeSlice$1<UnityEngine.UIElements.Vertex>, $indices: Unity.Collections.NativeSlice$1<number>, $texture: UnityEngine.Texture, $textureOptions: UnityEngine.UIElements.TextureOptions): void;
             }
 
             class Painter2D implements System.IDisposable {
@@ -4021,9 +4326,9 @@ declare namespace CS {
                 public lineWidth: number;
                 public strokeColor: UnityEngine.Color;
                 public strokeGradient: UnityEngine.Gradient;
-                public set fillGradient(value: UnityEngine.UIElements.FillGradient);
-                public set strokeFillGradient(value: UnityEngine.UIElements.FillGradient);
-                public set fillTexture(value: UnityEngine.Texture2D);
+                public fillGradient: UnityEngine.UIElements.FillGradient;
+                public strokeFillGradient: UnityEngine.UIElements.FillGradient;
+                public fillTexture: UnityEngine.Texture2D;
                 public fillColor: UnityEngine.Color;
                 public lineJoin: UnityEngine.UIElements.LineJoin;
                 public lineCap: UnityEngine.UIElements.LineCap;
@@ -4033,6 +4338,8 @@ declare namespace CS {
                 constructor();
                 public Clear(): void;
                 public Dispose(): void;
+                public SetDashPattern($pattern: System.ReadOnlySpan$1<number>): void;
+                public GetDashPattern($values: System.Span$1<number>): number;
                 public SetDashPattern($dash: number, $gap: number): void;
                 public BeginPath(): void;
                 public ClosePath(): void;
@@ -4044,6 +4351,8 @@ declare namespace CS {
                 public QuadraticCurveTo($p1: UnityEngine.Vector2, $p2: UnityEngine.Vector2): void;
                 public Stroke(): void;
                 public Fill($fillRule?: UnityEngine.UIElements.FillRule): void;
+                public PushClip(): void;
+                public PopClip(): void;
                 public SaveToVectorImage($vectorImage: UnityEngine.UIElements.VectorImage): boolean;
             }
 
@@ -4403,9 +4712,10 @@ declare namespace CS {
                 width: UnityEngine.UIElements.StyleLength;
                 wordSpacing: UnityEngine.UIElements.StyleLength;
                 unityBackgroundScaleMode: UnityEngine.UIElements.StyleEnum$1<UnityEngine.ScaleMode>;
+                Clear($clearSourceAssetStyles?: boolean): void;
             }
 
-            class VisualElement extends UnityEngine.UIElements.Focusable implements UnityEngine.UIElements.ITransform, UnityEngine.UIElements.IStylePropertyAnimations, UnityEngine.UIElements.IVisualElementScheduler, UnityEngine.UIElements.IExperimentalFeatures, UnityEngine.UIElements.IResolvedStyle, UnityEngine.UIElements.Experimental.ITransitionAnimations {
+            class VisualElement extends UnityEngine.UIElements.Focusable implements UnityEngine.UIElements.IStylePropertyAnimations, UnityEngine.UIElements.IVisualElementScheduler, UnityEngine.UIElements.IExperimentalFeatures, UnityEngine.UIElements.IResolvedStyle, UnityEngine.UIElements.ICustomStyle, UnityEngine.UIElements.Experimental.ITransitionAnimations, UnityEngine.UIElements.ITransform {
                 protected [__keep_incompatibility]: never;
                 public static readonly disabledUssClassName: string;
                 public viewDataKey: string;
@@ -4431,6 +4741,7 @@ declare namespace CS {
                 public get hasRootPseudoState(): boolean;
                 public pickingMode: UnityEngine.UIElements.PickingMode;
                 public name: string;
+                public get resourcesReleased(): boolean;
                 public get enabledInHierarchy(): boolean;
                 public enabledSelf: boolean;
                 public languageDirection: UnityEngine.UIElements.LanguageDirection;
@@ -4456,6 +4767,7 @@ declare namespace CS {
                 constructor();
                 public SetActivePseudoState($value: boolean): void;
                 public SetCheckedPseudoState($value: boolean): void;
+                public ReleaseResources(): void;
                 public Focus(): void;
                 public SendEvent($e: UnityEngine.UIElements.EventBase): void;
                 public SetEnabled($value: boolean): void;
@@ -4467,6 +4779,7 @@ declare namespace CS {
                 public GetClasses(): System.Collections.Generic.IEnumerable$1<string>;
                 public ClearClassList(): void;
                 public AddToClassList($className: string): void;
+                public AddToClassList(...classNames: string[]): void;
                 public RemoveFromClassList($className: string): void;
                 public ToggleInClassList($className: string): void;
                 public EnableInClassList($className: string, $enable: boolean): void;
@@ -4490,6 +4803,7 @@ declare namespace CS {
                 public Remove($element: UnityEngine.UIElements.VisualElement): void;
                 public RemoveAt($index: number): void;
                 public Clear(): void;
+                public Clear($options: UnityEngine.UIElements.VisualElementClearOptions): void;
                 public ElementAt($index: number): UnityEngine.UIElements.VisualElement;
                 public IndexOf($element: UnityEngine.UIElements.VisualElement): number;
                 public Children(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.VisualElement>;
@@ -4506,24 +4820,25 @@ declare namespace CS {
                 public get_Item($key: number): UnityEngine.UIElements.VisualElement;
             }
             namespace VisualElement {
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
+                class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.VisualElement, UnityEngine.UIElements.VisualElement.UxmlTraits> {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                }
+
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
+                class UxmlTraits extends UnityEngine.UIElements.UxmlTraits {
+                    protected [__keep_incompatibility]: never;
+                    public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
+                    constructor();
+                }
+
                 class UxmlSerializedData extends UnityEngine.UIElements.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     constructor();
                     public static Register(): void;
                     public CreateInstance(): any;
                     public Deserialize($obj: any): void;
-                }
-
-                class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.VisualElement, UnityEngine.UIElements.VisualElement.UxmlTraits> {
-                    protected [__keep_incompatibility]: never;
-                    constructor();
-                }
-
-                class UxmlTraits extends UnityEngine.UIElements.UxmlTraits {
-                    protected [__keep_incompatibility]: never;
-                    public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
-                    constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
                 enum MeasureMode {
@@ -4541,6 +4856,7 @@ declare namespace CS {
                     public Remove($child: UnityEngine.UIElements.VisualElement): void;
                     public RemoveAt($index: number): void;
                     public Clear(): void;
+                    public Clear($options: UnityEngine.UIElements.VisualElementClearOptions): void;
                     public IndexOf($element: UnityEngine.UIElements.VisualElement): number;
                     public ElementAt($index: number): UnityEngine.UIElements.VisualElement;
                     public Children(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.VisualElement>;
@@ -5054,7 +5370,7 @@ declare namespace CS {
                 Tiled = 1
             }
 
-            class StylePropertyName implements System.IEquatable$1<UnityEngine.UIElements.StylePropertyName> {
+            class StylePropertyName implements System.IEquatable$1<UnityEngine.UIElements.StyleSheets.StylePropertyId>, System.IEquatable$1<UnityEngine.UIElements.StylePropertyName> {
                 protected [__keep_incompatibility]: never;
                 constructor($name: string);
                 public static IsNullOrEmpty($propertyName: UnityEngine.UIElements.StylePropertyName): boolean;
@@ -5106,6 +5422,7 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.TemplateContainer, UnityEngine.UIElements.TemplateContainer.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     public get uxmlName(): string;
@@ -5113,11 +5430,11 @@ declare namespace CS {
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BindableElement.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -5127,7 +5444,7 @@ declare namespace CS {
                 constructor();
             }
 
-            class TextElement extends UnityEngine.UIElements.BindableElement implements UnityEngine.UIElements.ITextElement, UnityEngine.UIElements.ITextEdition, UnityEngine.UIElements.ITextElementExperimentalFeatures, UnityEngine.UIElements.ITextSelection, UnityEngine.UIElements.INotifyValueChanged$1<string> {
+            class TextElement extends UnityEngine.UIElements.BindableElement implements UnityEngine.UIElements.INotifyValueChanged$1<string>, UnityEngine.UIElements.ITextElement, UnityEngine.UIElements.ITextEdition, UnityEngine.UIElements.ITextElementExperimentalFeatures, UnityEngine.UIElements.ITextSelection {
                 protected [__keep_incompatibility]: never;
                 public static readonly ussClassName: string;
                 public static readonly selectableUssClassName: string;
@@ -5146,9 +5463,17 @@ declare namespace CS {
                 public MarkDirtyText(): void;
             }
             namespace TextElement {
+                enum GlyphKind {
+                    Character = 0,
+                    Sprite = 1
+                }
+
                 class Glyph {
                     protected [__keep_incompatibility]: never;
                     public readonly vertices: Unity.Collections.NativeSlice$1<UnityEngine.UIElements.Vertex>;
+                    public readonly line: number;
+                    public readonly linkID: string;
+                    public readonly kind: UnityEngine.UIElements.TextElement.GlyphKind;
                 }
 
                 class GlyphsEnumerable {
@@ -5172,16 +5497,17 @@ declare namespace CS {
                     public Deserialize($obj: any): void;
                 }
 
+                /** @deprecated UxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.TextElement, UnityEngine.UIElements.TextElement.UxmlTraits> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
+                /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
                 class UxmlTraits extends UnityEngine.UIElements.BindableElement.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
                     constructor();
-                    public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
                 }
 
             }
@@ -5212,6 +5538,7 @@ declare namespace CS {
                 isPassword: boolean;
                 hidePlaceholderOnFocus: boolean;
                 autoCorrection: boolean;
+                hideSoftKeyboard: boolean;
                 hideMobileInput: boolean;
                 get touchScreenKeyboard(): UnityEngine.TouchScreenKeyboard;
                 keyboardType: UnityEngine.TouchScreenKeyboardType;
@@ -5253,9 +5580,9 @@ declare namespace CS {
 
             class TextShadow implements System.IEquatable$1<UnityEngine.UIElements.TextShadow> {
                 protected [__keep_incompatibility]: never;
+                public color: UnityEngine.Color;
                 public offset: UnityEngine.Vector2;
                 public blurRadius: number;
-                public color: UnityEngine.Color;
                 public Equals($obj: any): boolean;
                 public Equals($other: UnityEngine.UIElements.TextShadow): boolean;
                 public GetHashCode(): number;
@@ -5269,11 +5596,14 @@ declare namespace CS {
                 Eight = 8
             }
 
+            /** @deprecated All the methods in this class are obsolete. */
             class UIToolkitInputConfiguration {
                 protected [__keep_incompatibility]: never;
+                /** @deprecated This method should not be used. Setting a backend other than the Default backend may lead to unexpected results or undefined behavior. */
                 public static SetRuntimeInputBackend($backend: UnityEngine.UIElements.UIToolkitInputBackendOption): void;
             }
 
+            /** @deprecated This enum only has one supported value. The Default backend should always be used, as it is more stable and covers all use cases. */
             enum UIToolkitInputBackendOption {
                 Default = 0,
                 InputSystemCompatibleBackend = 0,
@@ -5331,7 +5661,9 @@ declare namespace CS {
                 public NotHovered(): UnityEngine.UIElements.UQueryBuilder$1<T>;
                 public Checked(): UnityEngine.UIElements.UQueryBuilder$1<T>;
                 public NotChecked(): UnityEngine.UIElements.UQueryBuilder$1<T>;
+                /** @deprecated Use Checked() instead */
                 public Selected(): UnityEngine.UIElements.UQueryBuilder$1<T>;
+                /** @deprecated Use NotChecked() instead */
                 public NotSelected(): UnityEngine.UIElements.UQueryBuilder$1<T>;
                 public Enabled(): UnityEngine.UIElements.UQueryBuilder$1<T>;
                 public NotEnabled(): UnityEngine.UIElements.UQueryBuilder$1<T>;
@@ -5368,6 +5700,7 @@ declare namespace CS {
                 TryGetAttributeValue($attributeName: string, $value: $Out<string>): boolean;
             }
 
+            /** @deprecated UxmlRootElementFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlRootElementFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.VisualElement, UnityEngine.UIElements.UxmlRootElementTraits> {
                 protected [__keep_incompatibility]: never;
                 public get uxmlName(): string;
@@ -5379,12 +5712,14 @@ declare namespace CS {
                 public Create($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): UnityEngine.UIElements.VisualElement;
             }
 
+            /** @deprecated UxmlRootElementTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlRootElementTraits extends UnityEngine.UIElements.UxmlTraits {
                 protected [__keep_incompatibility]: never;
                 public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
                 constructor();
             }
 
+            /** @deprecated UxmlStyleFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlStyleFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.VisualElement, UnityEngine.UIElements.UxmlStyleTraits> {
                 protected [__keep_incompatibility]: never;
                 public get uxmlName(): string;
@@ -5396,12 +5731,14 @@ declare namespace CS {
                 public Create($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): UnityEngine.UIElements.VisualElement;
             }
 
+            /** @deprecated UxmlStyleTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlStyleTraits extends UnityEngine.UIElements.UxmlTraits {
                 protected [__keep_incompatibility]: never;
                 public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
                 constructor();
             }
 
+            /** @deprecated UxmlTemplateFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlTemplateFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.VisualElement, UnityEngine.UIElements.UxmlTemplateTraits> {
                 protected [__keep_incompatibility]: never;
                 public get uxmlName(): string;
@@ -5413,12 +5750,14 @@ declare namespace CS {
                 public Create($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): UnityEngine.UIElements.VisualElement;
             }
 
+            /** @deprecated UxmlTemplateTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlTemplateTraits extends UnityEngine.UIElements.UxmlTraits {
                 protected [__keep_incompatibility]: never;
                 public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
                 constructor();
             }
 
+            /** @deprecated UxmlAttributeOverridesFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlAttributeOverridesFactory extends UnityEngine.UIElements.UxmlFactory$2<UnityEngine.UIElements.VisualElement, UnityEngine.UIElements.UxmlAttributeOverridesTraits> {
                 protected [__keep_incompatibility]: never;
                 public get uxmlName(): string;
@@ -5430,12 +5769,26 @@ declare namespace CS {
                 public Create($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): UnityEngine.UIElements.VisualElement;
             }
 
+            /** @deprecated UxmlAttributeOverridesTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlAttributeOverridesTraits extends UnityEngine.UIElements.UxmlTraits {
                 protected [__keep_incompatibility]: never;
                 public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
                 constructor();
             }
 
+            /** @deprecated BaseFieldTraits<TValueType, TValueUxmlAttributeType> is deprecated and will be removed. Use UxmlElementAttribute instead. */
+            class BaseFieldTraits<TValueType, TValueUxmlAttributeType extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<TValueType>> extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<TValueType> {
+                protected [__keep_incompatibility]: never;
+                constructor();
+            }
+
+            /** @deprecated TextValueFieldTraits<TValueType, TValueUxmlAttributeType> is deprecated and will be removed. Use UxmlElementAttribute instead. */
+            class TextValueFieldTraits<TValueType, TValueUxmlAttributeType extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<TValueType>> extends UnityEngine.UIElements.BaseFieldTraits$2<TValueType, TValueUxmlAttributeType> {
+                protected [__keep_incompatibility]: never;
+                constructor();
+            }
+
+            /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlAssetAttributeDescription<T extends UnityEngine.Object> extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<T> implements UnityEngine.UIElements.IUxmlAssetAttributeDescription {
                 protected [__keep_incompatibility]: never;
                 public get defaultValueAsString(): string;
@@ -5444,6 +5797,7 @@ declare namespace CS {
                 public TryGetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext, $value: $Out<T>): boolean;
             }
 
+            /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlAttributeDescription {
                 protected [__keep_incompatibility]: never;
                 public name: string;
@@ -5464,6 +5818,7 @@ declare namespace CS {
 
             }
 
+            /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class TypedUxmlAttributeDescription<T> extends UnityEngine.UIElements.UxmlAttributeDescription {
                 protected [__keep_incompatibility]: never;
                 public defaultValue: T;
@@ -5471,6 +5826,7 @@ declare namespace CS {
                 public GetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): T;
             }
 
+            /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlStringAttributeDescription extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<string> {
                 protected [__keep_incompatibility]: never;
                 public get defaultValueAsString(): string;
@@ -5479,6 +5835,7 @@ declare namespace CS {
                 public TryGetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext, $value: $Ref<string>): boolean;
             }
 
+            /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlFloatAttributeDescription extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<number> {
                 protected [__keep_incompatibility]: never;
                 public get defaultValueAsString(): string;
@@ -5487,6 +5844,7 @@ declare namespace CS {
                 public TryGetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext, $value: $Ref<number>): boolean;
             }
 
+            /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlDoubleAttributeDescription extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<number> {
                 protected [__keep_incompatibility]: never;
                 public get defaultValueAsString(): string;
@@ -5495,6 +5853,7 @@ declare namespace CS {
                 public TryGetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext, $value: $Ref<number>): boolean;
             }
 
+            /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlIntAttributeDescription extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<number> {
                 protected [__keep_incompatibility]: never;
                 public get defaultValueAsString(): string;
@@ -5503,6 +5862,7 @@ declare namespace CS {
                 public TryGetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext, $value: $Ref<number>): boolean;
             }
 
+            /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlUnsignedIntAttributeDescription extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<number> {
                 protected [__keep_incompatibility]: never;
                 public get defaultValueAsString(): string;
@@ -5511,6 +5871,7 @@ declare namespace CS {
                 public TryGetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext, $value: $Ref<number>): boolean;
             }
 
+            /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlUnsignedLongAttributeDescription extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<bigint> {
                 protected [__keep_incompatibility]: never;
                 public get defaultValueAsString(): string;
@@ -5519,6 +5880,7 @@ declare namespace CS {
                 public TryGetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext, $value: $Ref<bigint>): boolean;
             }
 
+            /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlLongAttributeDescription extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<bigint> {
                 protected [__keep_incompatibility]: never;
                 public get defaultValueAsString(): string;
@@ -5527,6 +5889,7 @@ declare namespace CS {
                 public TryGetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext, $value: $Ref<bigint>): boolean;
             }
 
+            /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlBoolAttributeDescription extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<boolean> {
                 protected [__keep_incompatibility]: never;
                 public get defaultValueAsString(): string;
@@ -5535,6 +5898,7 @@ declare namespace CS {
                 public TryGetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext, $value: $Ref<boolean>): boolean;
             }
 
+            /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlColorAttributeDescription extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<UnityEngine.Color> {
                 protected [__keep_incompatibility]: never;
                 public get defaultValueAsString(): string;
@@ -5543,14 +5907,16 @@ declare namespace CS {
                 public TryGetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext, $value: $Ref<UnityEngine.Color>): boolean;
             }
 
+            /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlTypeAttributeDescription<TBase> extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<System.Type> {
                 protected [__keep_incompatibility]: never;
                 public get defaultValueAsString(): string;
                 constructor();
                 public GetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): System.Type;
-                public TryGetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext, $value: $Ref<System.Type>): boolean;
+                public TryGetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext, $value: System.TypeLike): boolean;
             }
 
+            /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlEnumAttributeDescription<T extends System.IConvertible> extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<T> {
                 protected [__keep_incompatibility]: never;
                 public get defaultValueAsString(): string;
@@ -5559,6 +5925,7 @@ declare namespace CS {
                 public TryGetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext, $value: $Ref<T>): boolean;
             }
 
+            /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlHash128AttributeDescription extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<UnityEngine.Hash128> {
                 protected [__keep_incompatibility]: never;
                 public get defaultValueAsString(): string;
@@ -5581,6 +5948,11 @@ declare namespace CS {
                 constructor();
                 constructor($uxmlName: string);
                 constructor($uxmlName: string, ...supportedTypes: System.TypeLike[]);
+            }
+
+            class UxmlCreateInstanceMethodAttribute extends System.Attribute {
+                protected [__keep_incompatibility]: never;
+                constructor();
             }
 
             class UxmlAttributeAttribute extends System.Attribute {
@@ -5631,7 +6003,7 @@ declare namespace CS {
                 public readonly uxmlName: string;
                 public readonly typeReference: System.Type;
                 public readonly obsoleteNames: System.Array$1<string>;
-                constructor($fieldName: string, $uxmlName: string, $typeReference?: System.Type, ...obsoleteNames: string[]);
+                constructor($fieldName: string, $uxmlName: string, $typeReference?: System.TypeLike, ...obsoleteNames: string[]);
             }
 
             class RegisterUxmlCacheAttribute extends System.Attribute {
@@ -5644,6 +6016,7 @@ declare namespace CS {
                 public static RegisterType($type: System.TypeLike, $attributeNames: System.Array$1<UnityEngine.UIElements.UxmlAttributeNames>, $isEditorOnly?: boolean): void;
             }
 
+            /** @deprecated BaseUxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class BaseUxmlTraits {
                 protected [__keep_incompatibility]: never;
                 public get canHaveAnyAttribute(): boolean;
@@ -5651,11 +6024,13 @@ declare namespace CS {
                 public get uxmlChildElementsDescription(): System.Collections.Generic.IEnumerable$1<UnityEngine.UIElements.UxmlChildElementDescription>;
             }
 
+            /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlTraits extends UnityEngine.UIElements.BaseUxmlTraits {
                 protected [__keep_incompatibility]: never;
                 public Init($ve: UnityEngine.UIElements.VisualElement, $bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): void;
             }
 
+            /** @deprecated IUxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
             interface IBaseUxmlFactory {
                 get uxmlName(): string;
                 get uxmlNamespace(): string;
@@ -5670,10 +6045,12 @@ declare namespace CS {
                 AcceptsAttributeBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): boolean;
             }
 
+            /** @deprecated IUxmlFactory is deprecated and will be removed. Use UxmlElementAttribute instead. */
             interface IUxmlFactory extends UnityEngine.UIElements.IBaseUxmlFactory {
                 Create($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): UnityEngine.UIElements.VisualElement;
             }
 
+            /** @deprecated BaseUxmlFactory<TCreatedType, TTraits> is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class BaseUxmlFactory<TCreatedType, TTraits extends UnityEngine.UIElements.BaseUxmlTraits> {
                 protected [__keep_incompatibility]: never;
                 public get uxmlName(): string;
@@ -5689,12 +6066,14 @@ declare namespace CS {
                 public AcceptsAttributeBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): boolean;
             }
 
+            /** @deprecated UxmlFactory<TCreatedType, TTraits> is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlFactory<TCreatedType extends UnityEngine.UIElements.VisualElement, TTraits extends UnityEngine.UIElements.UxmlTraits> extends UnityEngine.UIElements.BaseUxmlFactory$2<TCreatedType, TTraits> implements UnityEngine.UIElements.IBaseUxmlFactory, UnityEngine.UIElements.IUxmlFactory {
                 protected [__keep_incompatibility]: never;
                 constructor();
                 public Create($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): UnityEngine.UIElements.VisualElement;
             }
 
+            /** @deprecated UxmlFactory<TCreatedType> is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlFactory<TCreatedType extends UnityEngine.UIElements.VisualElement> extends UnityEngine.UIElements.UxmlFactory$2<TCreatedType, UnityEngine.UIElements.VisualElement.UxmlTraits> {
                 protected [__keep_incompatibility]: never;
                 constructor();
@@ -5764,6 +6143,7 @@ declare namespace CS {
                 public CloneTree(): UnityEngine.UIElements.TemplateContainer;
                 public CloneTree($bindingPath: string): UnityEngine.UIElements.TemplateContainer;
                 public CloneTree($target: UnityEngine.UIElements.VisualElement): void;
+                public CloneTree($target: UnityEngine.UIElements.VisualElement, $referenceTable: $Out<UnityEngine.UIElements.VisualElementAssetReferenceTable>): void;
                 public CloneTree($target: UnityEngine.UIElements.VisualElement, $firstElementIndex: $Out<number>, $elementAddedCount: $Out<number>): void;
             }
 
@@ -5819,11 +6199,18 @@ declare namespace CS {
                 public static LocalToWorld($r: UnityEngine.Rect): UnityEngine.Rect;
                 public static ChangeCoordinatesTo($dest: UnityEngine.UIElements.VisualElement, $point: UnityEngine.Vector2): UnityEngine.Vector2;
                 public static ChangeCoordinatesTo($dest: UnityEngine.UIElements.VisualElement, $rect: UnityEngine.Rect): UnityEngine.Rect;
+                public static FindRootPanelComponent(): UnityEngine.UIElements.IPanelComponent;
             }
 
             class VisualElementDebugExtensions {
                 protected [__keep_incompatibility]: never;
                 public static DebugIncrementVersionChange($ve: UnityEngine.UIElements.VisualElement, $changeType: UnityEngine.UIElements.VersionChangeType): void;
+            }
+
+            enum VisualElementClearOptions {
+                None = 0,
+                Recursive = 1,
+                RecursiveReleaseResources = 3
             }
 
             class BindingId implements System.IEquatable$1<UnityEngine.UIElements.BindingId> {
@@ -5903,25 +6290,6 @@ declare namespace CS {
                 public Equals($obj: any): boolean;
                 public GetHashCode(): number;
                 public get_Item($index: number): UnityEngine.UIElements.StyleSheet;
-            }
-
-            class InputWrapper extends UnityEngine.MonoBehaviour {
-                protected [__keep_incompatibility]: never;
-                public get compositionString(): string;
-                public imeCompositionMode: UnityEngine.IMECompositionMode;
-                public compositionCursorPos: UnityEngine.Vector2;
-                public get mousePresent(): boolean;
-                public get mousePosition(): UnityEngine.Vector2;
-                public get mouseScrollDelta(): UnityEngine.Vector2;
-                public get touchSupported(): boolean;
-                public get touchCount(): number;
-                constructor();
-                public GetMouseButtonDown($button: number): boolean;
-                public GetMouseButtonUp($button: number): boolean;
-                public GetMouseButton($button: number): boolean;
-                public GetTouch($index: number): UnityEngine.Touch;
-                public GetAxisRaw($axisName: string): number;
-                public GetButtonDown($buttonName: string): boolean;
             }
 
         }
@@ -6064,7 +6432,7 @@ declare namespace CS {
                     Recycle(): void;
                 }
 
-                class ValueAnimation<T> implements UnityEngine.UIElements.Experimental.IValueAnimation, UnityEngine.UIElements.Experimental.IValueAnimationUpdate {
+                class ValueAnimation<T> implements UnityEngine.UIElements.Experimental.IValueAnimationUpdate, UnityEngine.UIElements.Experimental.IValueAnimation {
                     protected [__keep_incompatibility]: never;
                     public durationMs: number;
                     public easingCurve: System.Func$2<number, number>;
@@ -6084,18 +6452,6 @@ declare namespace CS {
                     public Ease($easing: System.Func$2<number, number>): UnityEngine.UIElements.Experimental.ValueAnimation$1<T>;
                     public OnCompleted($callback: System.Action): UnityEngine.UIElements.Experimental.ValueAnimation$1<T>;
                     public KeepAlive(): UnityEngine.UIElements.Experimental.ValueAnimation$1<T>;
-                }
-
-            }
-        }
-    }
-    namespace UnityEngine {
-        namespace UIElements {
-            namespace InputSystem {
-                class InputSystemEventSystem extends UnityEngine.MonoBehaviour {
-                    protected [__keep_incompatibility]: never;
-                    public get isAppFocused(): boolean;
-                    public inputOverride: UnityEngine.UIElements.InputWrapper;
                 }
 
             }

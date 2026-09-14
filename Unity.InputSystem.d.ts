@@ -336,7 +336,7 @@ declare namespace CS {
                 BoundControlsChanged = 8
             }
 
-            class InputActionMap implements System.Collections.Generic.IEnumerable$1<UnityEngine.InputSystem.InputAction>, UnityEngine.InputSystem.IInputActionCollection, System.Collections.IEnumerable, UnityEngine.InputSystem.IInputActionCollection2, System.ICloneable, System.IDisposable, UnityEngine.ISerializationCallbackReceiver {
+            class InputActionMap implements System.Collections.Generic.IEnumerable$1<UnityEngine.InputSystem.InputAction>, UnityEngine.InputSystem.IInputActionCollection, System.Collections.IEnumerable, UnityEngine.InputSystem.IInputActionCollection2, UnityEngine.ISerializationCallbackReceiver, System.ICloneable, System.IDisposable {
                 protected [__keep_incompatibility]: never;
                 public get name(): string;
                 public get asset(): UnityEngine.InputSystem.InputActionAsset;
@@ -797,6 +797,7 @@ declare namespace CS {
                 public static DisableDevice($device: UnityEngine.InputSystem.InputDevice, $keepSendingEvents?: boolean): void;
                 public static TrySyncDevice($device: UnityEngine.InputSystem.InputDevice): boolean;
                 public static ResetDevice($device: UnityEngine.InputSystem.InputDevice, $alsoResetDontResetControls?: boolean): void;
+                /** @deprecated Use 'ResetDevice' instead. */
                 public static TryResetDevice($device: UnityEngine.InputSystem.InputDevice): boolean;
                 public static PauseHaptics(): void;
                 public static ResumeHaptics(): void;
@@ -1117,7 +1118,7 @@ declare namespace CS {
                 public ProcessAsObject($value: any, $control: UnityEngine.InputSystem.InputControl): any;
             }
 
-            class Gamepad extends UnityEngine.InputSystem.InputDevice implements UnityEngine.InputSystem.Haptics.IHaptics, UnityEngine.InputSystem.Haptics.IDualMotorRumble {
+            class Gamepad extends UnityEngine.InputSystem.InputDevice implements UnityEngine.InputSystem.Haptics.IDualMotorRumble, UnityEngine.InputSystem.Haptics.IHaptics {
                 protected [__keep_incompatibility]: never;
                 public get buttonWest(): UnityEngine.InputSystem.Controls.ButtonControl;
                 public get buttonNorth(): UnityEngine.InputSystem.Controls.ButtonControl;
@@ -1913,6 +1914,7 @@ declare namespace CS {
                 public GetDevice<TDevice extends UnityEngine.InputSystem.InputDevice>(): TDevice;
                 public ActivateInput(): void;
                 public DeactivateInput(): void;
+                /** @deprecated Use DeactivateInput instead. */
                 public PassivateInput(): void;
                 public SwitchCurrentControlScheme(...devices: UnityEngine.InputSystem.InputDevice[]): boolean;
                 public SwitchCurrentControlScheme($controlScheme: string, ...devices: UnityEngine.InputSystem.InputDevice[]): void;
@@ -2074,7 +2076,7 @@ declare namespace CS {
                     public control: UnityEngine.InputSystem.InputControl;
                     public value: any;
                     public interaction: System.Type;
-                    constructor($phase: UnityEngine.InputSystem.InputActionPhase, $action: UnityEngine.InputSystem.InputAction, $control: UnityEngine.InputSystem.InputControl, $value?: any, $interaction?: System.Type, $time?: number | null, $duration?: number | null);
+                    constructor($phase: UnityEngine.InputSystem.InputActionPhase, $action: UnityEngine.InputSystem.InputAction, $control: UnityEngine.InputSystem.InputControl, $value?: any, $interaction?: System.TypeLike, $time?: number | null, $duration?: number | null);
                     public ApplyTo($actual: any): NUnit.Framework.Constraints.ConstraintResult;
                     public AndThen($constraint: UnityEngine.InputSystem.InputTestFixture.ActionConstraint): UnityEngine.InputSystem.InputTestFixture.ActionConstraint;
                 }
@@ -2243,8 +2245,8 @@ declare namespace CS {
                         public static readonly MaxAxes: number;
                         public static readonly MaxButtons: number;
                         public static kFormat: UnityEngine.InputSystem.Utilities.FourCC;
-                        public buttons: any; // C# fixed buffer
-                        public axis: any; // C# fixed buffer
+                        public buttons: any;
+                        public axis: any;
                         public get format(): UnityEngine.InputSystem.Utilities.FourCC;
                         public WithButton($code: UnityEngine.InputSystem.Android.LowLevel.AndroidKeyCode, $value?: boolean): UnityEngine.InputSystem.Android.LowLevel.AndroidGameControllerState;
                         public WithAxis($axis: UnityEngine.InputSystem.Android.LowLevel.AndroidAxis, $value: number): UnityEngine.InputSystem.Android.LowLevel.AndroidGameControllerState;
@@ -2877,7 +2879,7 @@ declare namespace CS {
                     constructor();
                 }
 
-                interface IDualShockHaptics extends UnityEngine.InputSystem.Haptics.IHaptics, UnityEngine.InputSystem.Haptics.IDualMotorRumble {
+                interface IDualShockHaptics extends UnityEngine.InputSystem.Haptics.IDualMotorRumble, UnityEngine.InputSystem.Haptics.IHaptics {
                     SetLightBarColor($color: UnityEngine.Color): void;
                 }
 
@@ -3432,13 +3434,6 @@ declare namespace CS {
     namespace UnityEngine {
         namespace InputSystem {
             namespace iOS {
-                class PrivacyDataUsage {
-                    protected [__keep_incompatibility]: never;
-                    public enabled: boolean;
-                    public usageDescription: string;
-                    constructor();
-                }
-
                 class iOSGameController extends UnityEngine.InputSystem.Gamepad {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -3456,6 +3451,13 @@ declare namespace CS {
 
                 class DualSenseGampadiOS extends UnityEngine.InputSystem.DualShock.DualShockGamepad {
                     protected [__keep_incompatibility]: never;
+                    constructor();
+                }
+
+                class PrivacyDataUsage {
+                    protected [__keep_incompatibility]: never;
+                    public enabled: boolean;
+                    public usageDescription: string;
                     constructor();
                 }
 
@@ -3796,10 +3798,25 @@ declare namespace CS {
                     public static Create(): UnityEngine.InputSystem.LowLevel.QueryEnabledStateCommand;
                 }
 
+                class QueryKeyNameCommand implements UnityEngine.InputSystem.LowLevel.IInputDeviceCommandInfo {
+                    protected [__keep_incompatibility]: never;
+                    public baseCommand: UnityEngine.InputSystem.LowLevel.InputDeviceCommand;
+                    public scanOrKeyCode: number;
+                    public nameBuffer: any;
+                    public static get Type(): UnityEngine.InputSystem.Utilities.FourCC;
+                    public get typeStatic(): UnityEngine.InputSystem.Utilities.FourCC;
+                    public ReadKeyName(): string;
+                    public static Create($key: UnityEngine.InputSystem.Key): UnityEngine.InputSystem.LowLevel.QueryKeyNameCommand;
+                }
+                namespace QueryKeyNameCommand {
+                    type _nameBuffer_e__FixedBuffer = any;
+
+                }
+
                 class QueryKeyboardLayoutCommand implements UnityEngine.InputSystem.LowLevel.IInputDeviceCommandInfo {
                     protected [__keep_incompatibility]: never;
                     public baseCommand: UnityEngine.InputSystem.LowLevel.InputDeviceCommand;
-                    public nameBuffer: any; // C# fixed buffer
+                    public nameBuffer: any;
                     public static get Type(): UnityEngine.InputSystem.Utilities.FourCC;
                     public get typeStatic(): UnityEngine.InputSystem.Utilities.FourCC;
                     public ReadLayoutName(): string;
@@ -3807,21 +3824,6 @@ declare namespace CS {
                     public static Create(): UnityEngine.InputSystem.LowLevel.QueryKeyboardLayoutCommand;
                 }
                 namespace QueryKeyboardLayoutCommand {
-                    type _nameBuffer_e__FixedBuffer = any;
-
-                }
-
-                class QueryKeyNameCommand implements UnityEngine.InputSystem.LowLevel.IInputDeviceCommandInfo {
-                    protected [__keep_incompatibility]: never;
-                    public baseCommand: UnityEngine.InputSystem.LowLevel.InputDeviceCommand;
-                    public scanOrKeyCode: number;
-                    public nameBuffer: any; // C# fixed buffer
-                    public static get Type(): UnityEngine.InputSystem.Utilities.FourCC;
-                    public get typeStatic(): UnityEngine.InputSystem.Utilities.FourCC;
-                    public ReadKeyName(): string;
-                    public static Create($key: UnityEngine.InputSystem.Key): UnityEngine.InputSystem.LowLevel.QueryKeyNameCommand;
-                }
-                namespace QueryKeyNameCommand {
                     type _nameBuffer_e__FixedBuffer = any;
 
                 }
@@ -3935,7 +3937,7 @@ declare namespace CS {
 
                 class KeyboardState implements UnityEngine.InputSystem.LowLevel.IInputStateTypeInfo {
                     protected [__keep_incompatibility]: never;
-                    public keys: any; // C# fixed buffer
+                    public keys: any;
                     public static get Format(): UnityEngine.InputSystem.Utilities.FourCC;
                     public get format(): UnityEngine.InputSystem.Utilities.FourCC;
                     constructor(...pressedKeys: UnityEngine.InputSystem.Key[]);
@@ -4311,7 +4313,7 @@ declare namespace CS {
                     public static GetPrimitiveFormatFromType($type: System.TypeLike): UnityEngine.InputSystem.Utilities.FourCC;
                 }
 
-                class InputStateHistory implements System.Collections.Generic.IEnumerable$1<UnityEngine.InputSystem.LowLevel.InputStateHistory.Record>, System.Collections.IEnumerable, UnityEngine.InputSystem.LowLevel.IInputStateChangeMonitor, System.IDisposable {
+                class InputStateHistory implements System.Collections.Generic.IEnumerable$1<UnityEngine.InputSystem.LowLevel.InputStateHistory.Record>, UnityEngine.InputSystem.LowLevel.IInputStateChangeMonitor, System.Collections.IEnumerable, System.IDisposable {
                     protected [__keep_incompatibility]: never;
                     public get Count(): number;
                     public get version(): number;
@@ -4877,7 +4879,7 @@ declare namespace CS {
                     public name: string;
                     public value: UnityEngine.InputSystem.Utilities.PrimitiveValue;
                     public get type(): System.TypeCode;
-                    public ConvertTo($type: System.TypeLikeCode): UnityEngine.InputSystem.Utilities.NamedValue;
+                    public ConvertTo($type: System.TypeCode): UnityEngine.InputSystem.Utilities.NamedValue;
                     public static From<TValue>($name: string, $value: TValue): UnityEngine.InputSystem.Utilities.NamedValue;
                     public ToString(): string;
                     public Equals($other: UnityEngine.InputSystem.Utilities.NamedValue): boolean;
@@ -4917,7 +4919,7 @@ declare namespace CS {
                     constructor($value: bigint);
                     constructor($value: number);
                     constructor($value: number);
-                    public ConvertTo($type: System.TypeLikeCode): UnityEngine.InputSystem.Utilities.PrimitiveValue;
+                    public ConvertTo($type: System.TypeCode): UnityEngine.InputSystem.Utilities.PrimitiveValue;
                     public Equals($other: UnityEngine.InputSystem.Utilities.PrimitiveValue): boolean;
                     public Equals($obj: any): boolean;
                     public GetHashCode(): number;
@@ -5007,28 +5009,8 @@ declare namespace CS {
     namespace UnityEngine {
         namespace InputSystem {
             namespace XInput {
-                interface IXboxOneRumble extends UnityEngine.InputSystem.Haptics.IHaptics, UnityEngine.InputSystem.Haptics.IDualMotorRumble {
+                interface IXboxOneRumble extends UnityEngine.InputSystem.Haptics.IDualMotorRumble, UnityEngine.InputSystem.Haptics.IHaptics {
                     SetMotorSpeeds($lowFrequency: number, $highFrequency: number, $leftTrigger: number, $rightTrigger: number): void;
-                }
-
-                class XboxGamepadMacOS extends UnityEngine.InputSystem.XInput.XInputController {
-                    protected [__keep_incompatibility]: never;
-                    constructor();
-                }
-
-                class XboxGamepadMacOSNative extends UnityEngine.InputSystem.XInput.XInputController {
-                    protected [__keep_incompatibility]: never;
-                    constructor();
-                }
-
-                class XboxOneGampadMacOSWireless extends UnityEngine.InputSystem.XInput.XInputController {
-                    protected [__keep_incompatibility]: never;
-                    constructor();
-                }
-
-                class XboxGamepadMacOSWireless extends UnityEngine.InputSystem.XInput.XInputController {
-                    protected [__keep_incompatibility]: never;
-                    constructor();
                 }
 
                 class XInputController extends UnityEngine.InputSystem.Gamepad {
@@ -5062,6 +5044,26 @@ declare namespace CS {
                         NoNavigation = 16
                     }
 
+                }
+
+                class XboxGamepadMacOS extends UnityEngine.InputSystem.XInput.XInputController {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                }
+
+                class XboxGamepadMacOSNative extends UnityEngine.InputSystem.XInput.XInputController {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                }
+
+                class XboxOneGampadMacOSWireless extends UnityEngine.InputSystem.XInput.XInputController {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                }
+
+                class XboxGamepadMacOSWireless extends UnityEngine.InputSystem.XInput.XInputController {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
                 }
 
             }

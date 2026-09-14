@@ -4,6 +4,11 @@
 // Helper types (duplicated from index.d.ts for standalone use)
 declare interface $Ref<T> { __doNotAccess: T }
 declare interface $Out<T> { __doNotAccess: T }
+// The generator emits `$Task` bare as the return of an async C# method, and
+// `$Task<T>` for a Task<T>, so the parameter defaults rather than being
+// required: a generic interface used with no argument is a TypeScript error,
+// and 11 signatures in OneJS.d.ts reference the bare form.
+declare interface $Task<T = any> { __doNotAccess: T }
 
 declare namespace CS {
     namespace System {

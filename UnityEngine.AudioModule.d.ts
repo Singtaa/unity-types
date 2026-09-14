@@ -11,6 +11,7 @@ declare namespace CS {
             public static audioSpatialExperience: UnityEngine.AudioSpatialExperience;
             constructor();
             public static GetDSPBufferSize($bufferLength: $Out<number>, $numBuffers: $Out<number>): void;
+            /** @deprecated AudioSettings.SetDSPBufferSize is deprecated and has been replaced by audio project settings and the AudioSettings.GetConfiguration/AudioSettings.Reset API. */
             public static SetDSPBufferSize($bufferLength: number, $numBuffers: number): void;
             public static GetSpatializerPluginNames(): System.Array$1<string>;
             public static GetSpatializerPluginName(): string;
@@ -96,8 +97,10 @@ declare namespace CS {
             public static PlayClipAtPoint($clip: UnityEngine.AudioClip, $position: UnityEngine.Vector3, $volume: number): void;
             public SetCustomCurve($type: UnityEngine.AudioSourceCurveType, $curve: UnityEngine.AnimationCurve): void;
             public GetCustomCurve($type: UnityEngine.AudioSourceCurveType): UnityEngine.AnimationCurve;
+            /** @deprecated GetOutputData returning a float[] is deprecated, use GetOutputData and pass a pre allocated array instead. */
             public GetOutputData($numSamples: number, $channel: number): System.Array$1<number>;
             public GetOutputData($samples: System.Array$1<number>, $channel: number): void;
+            /** @deprecated GetSpectrumData returning a float[] is deprecated, use GetSpectrumData and pass a pre allocated array instead. */
             public GetSpectrumData($numSamples: number, $channel: number, $window: UnityEngine.FFTWindow): System.Array$1<number>;
             public GetSpectrumData($samples: System.Array$1<number>, $channel: number, $window: UnityEngine.FFTWindow): void;
             public SetSpatializerFloat($index: number, $value: number): boolean;
@@ -282,12 +285,16 @@ declare namespace CS {
             public GetData($data: System.Array$1<number>, $offsetSamples: number): boolean;
             public SetData($data: System.Array$1<number>, $offsetSamples: number): boolean;
             public SetData($data: System.ReadOnlySpan$1<number>, $offsetSamples: number): boolean;
+            /** @deprecated The _3D argument of AudioClip is deprecated. Use the spatialBlend property of AudioSource instead to morph between 2D and 3D playback. */
             public static Create($name: string, $lengthSamples: number, $channels: number, $frequency: number, $_3D: boolean, $stream: boolean): UnityEngine.AudioClip;
+            /** @deprecated The _3D argument of AudioClip is deprecated. Use the spatialBlend property of AudioSource instead to morph between 2D and 3D playback. */
             public static Create($name: string, $lengthSamples: number, $channels: number, $frequency: number, $_3D: boolean, $stream: boolean, $pcmreadercallback: UnityEngine.AudioClip.PCMReaderCallback): UnityEngine.AudioClip;
+            /** @deprecated The _3D argument of AudioClip is deprecated. Use the spatialBlend property of AudioSource instead to morph between 2D and 3D playback. */
             public static Create($name: string, $lengthSamples: number, $channels: number, $frequency: number, $_3D: boolean, $stream: boolean, $pcmreadercallback: UnityEngine.AudioClip.PCMReaderCallback, $pcmsetpositioncallback: UnityEngine.AudioClip.PCMSetPositionCallback): UnityEngine.AudioClip;
             public static Create($name: string, $lengthSamples: number, $channels: number, $frequency: number, $stream: boolean): UnityEngine.AudioClip;
             public static Create($name: string, $lengthSamples: number, $channels: number, $frequency: number, $stream: boolean, $pcmreadercallback: UnityEngine.AudioClip.PCMReaderCallback): UnityEngine.AudioClip;
             public static Create($name: string, $lengthSamples: number, $channels: number, $frequency: number, $stream: boolean, $pcmreadercallback: UnityEngine.AudioClip.PCMReaderCallback, $pcmsetpositioncallback: UnityEngine.AudioClip.PCMSetPositionCallback): UnityEngine.AudioClip;
+            public CreateInstance($context: UnityEngine.Audio.ControlContext, $nestedFormat: UnityEngine.Audio.AudioFormat | null, $creationParameters: UnityEngine.Audio.ProcessorInstance.CreationParameters): UnityEngine.Audio.GeneratorInstance;
         }
         namespace AudioClip {
             interface PCMReaderCallback {
@@ -315,8 +322,10 @@ declare namespace CS {
             public static pause: boolean;
             public velocityUpdateMode: UnityEngine.AudioVelocityUpdateMode;
             constructor();
+            /** @deprecated GetOutputData returning a float[] is deprecated, use GetOutputData and pass a pre allocated array instead. */
             public static GetOutputData($numSamples: number, $channel: number): System.Array$1<number>;
             public static GetOutputData($samples: System.Array$1<number>, $channel: number): void;
+            /** @deprecated GetSpectrumData returning a float[] is deprecated, use GetSpectrumData and pass a pre allocated array instead. */
             public static GetSpectrumData($numSamples: number, $channel: number, $window: UnityEngine.FFTWindow): System.Array$1<number>;
             public static GetSpectrumData($samples: System.Array$1<number>, $channel: number, $window: UnityEngine.FFTWindow): void;
         }
@@ -391,6 +400,7 @@ declare namespace CS {
             public static Render($buffer: Unity.Collections.NativeArray$1<number>): boolean;
         }
 
+        /** @deprecated MovieTexture is removed. Use VideoPlayer instead. */
         class MovieTexture extends UnityEngine.Texture {
             protected [__keep_incompatibility]: never;
         }
@@ -469,6 +479,7 @@ declare namespace CS {
             class ControlContext implements UnityEngine.Audio.ProcessorInstance.IContext {
                 protected [__keep_incompatibility]: never;
                 public static get builtIn(): UnityEngine.Audio.ControlContext;
+                public get IsSystemWideReconfiguring(): boolean;
                 public AllocateGenerator<TRealtime extends UnityEngine.Audio.GeneratorInstance.IRealtime, TControl extends UnityEngine.Audio.GeneratorInstance.IControl$1<TRealtime>>($realtimeState: $Ref<TRealtime>, $controlState: $Ref<TControl>, $nestedFormat?: UnityEngine.Audio.AudioFormat | null, $creationParameters?: $Ref<UnityEngine.Audio.ProcessorInstance.CreationParameters>): UnityEngine.Audio.GeneratorInstance;
                 public AllocateRootOutput<TRealtime extends UnityEngine.Audio.RootOutputInstance.IRealtime, TControl extends UnityEngine.Audio.RootOutputInstance.IControl$1<TRealtime>>($realtimeState: $Ref<TRealtime>, $controlState: $Ref<TControl>, $creationParameters?: $Ref<UnityEngine.Audio.ProcessorInstance.CreationParameters>): UnityEngine.Audio.RootOutputInstance;
                 public IsGenerator<TRealtime extends UnityEngine.Audio.GeneratorInstance.IRealtime, TControl extends UnityEngine.Audio.GeneratorInstance.IControl$1<TRealtime>>($processorInstance: UnityEngine.Audio.ProcessorInstance): boolean;
@@ -493,20 +504,24 @@ declare namespace CS {
                     public Dispose(): void;
                 }
 
+                /** @deprecated ControlContext.ProcessorUpdateSetting has been deprecated. Use ProcessorInstance.UpdateSetting instead. (UnityUpgradable) -> ProcessorInstance/UpdateSetting */
                 class ProcessorUpdateSetting {
                     protected [__keep_incompatibility]: never;
                 }
 
+                /** @deprecated ControlContext.ProcessorCreationParameters has been deprecated. Use ProcessorInstance.CreationParameters instead. (UnityUpgradable) -> ProcessorInstance/CreationParameters */
                 class ProcessorCreationParameters {
                     protected [__keep_incompatibility]: never;
                 }
 
             }
 
+            /** @deprecated DSPConfiguration has been deprecated. Use AudioFormat instead. (UnityUpgradable) -> AudioFormat */
             class DSPConfiguration {
                 protected [__keep_incompatibility]: never;
             }
 
+            /** @deprecated IGeneratorDefinition has been deprecated. Use IAudioGenerator instead. (UnityUpgradable) -> IAudioGenerator */
             interface IGeneratorDefinition {
             }
 
@@ -517,6 +532,7 @@ declare namespace CS {
                 public GetHashCode(): number;
             }
             namespace GeneratorInstance {
+                /** @deprecated IProcessor has been deprecated. Use IRealtime instead. (UnityUpgradable) -> GeneratorInstance/IRealtime */
                 interface IProcessor {
                 }
 
@@ -557,6 +573,7 @@ declare namespace CS {
 
             }
 
+            /** @deprecated Generator has been deprecated. Use GeneratorInstance instead. (UnityUpgradable) -> GeneratorInstance */
             class Generator {
                 protected [__keep_incompatibility]: never;
             }
@@ -574,9 +591,11 @@ declare namespace CS {
                     public realtimeUpdateSetting: UnityEngine.Audio.ProcessorInstance.UpdateSetting;
                 }
 
+                /** @deprecated IProcessor has been deprecated. Use IRealtime instead. (UnityUpgradable) -> ProcessorInstance/IRealtime */
                 interface IProcessor {
                 }
 
+                /** @deprecated MessageStatus has been deprecated. Use Response instead. (UnityUpgradable) -> ProcessorInstance/Response */
                 enum MessageStatus {
                 }
 
@@ -611,14 +630,17 @@ declare namespace CS {
 
             }
 
+            /** @deprecated Processor has been deprecated. Use ProcessorInstance instead. (UnityUpgradable) -> ProcessorInstance */
             class Processor {
                 protected [__keep_incompatibility]: never;
             }
 
+            /** @deprecated ProcessingContext has been deprecated. Use RealtimeContext instead. (UnityUpgradable) -> RealtimeContext */
             class ProcessingContext {
                 protected [__keep_incompatibility]: never;
             }
 
+            /** @deprecated IAudioScriptingContext has been deprecated. Use ProcessorInstance.IContext instead. (UnityUpgradable) -> ProcessorInstance/IContext */
             interface IAudioScriptingContext {
             }
 
@@ -629,6 +651,7 @@ declare namespace CS {
                 public GetHashCode(): number;
             }
             namespace RootOutputInstance {
+                /** @deprecated IProcessor has been deprecated. Use IRealtime instead. (UnityUpgradable) -> RootOutputInstance/IRealtime */
                 interface IProcessor {
                 }
 

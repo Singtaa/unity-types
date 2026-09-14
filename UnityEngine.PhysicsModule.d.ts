@@ -16,11 +16,21 @@ declare namespace CS {
             protected [__keep_incompatibility]: never;
             public get impulse(): UnityEngine.Vector3;
             public get relativeVelocity(): UnityEngine.Vector3;
+            public get thisRigidbody(): UnityEngine.Rigidbody;
             public get rigidbody(): UnityEngine.Rigidbody;
+            public get thisArticulationBody(): UnityEngine.ArticulationBody;
             public get articulationBody(): UnityEngine.ArticulationBody;
+            public get thisBody(): UnityEngine.Component;
             public get body(): UnityEngine.Component;
+            public get thisCollider(): UnityEngine.Collider;
             public get collider(): UnityEngine.Collider;
+            public get thisLinearVelocity(): UnityEngine.Vector3;
+            public get linearVelocity(): UnityEngine.Vector3;
+            public get thisAngularVelocity(): UnityEngine.Vector3;
+            public get angularVelocity(): UnityEngine.Vector3;
+            public get thisTransform(): UnityEngine.Transform;
             public get transform(): UnityEngine.Transform;
+            public get thisGameObject(): UnityEngine.GameObject;
             public get gameObject(): UnityEngine.GameObject;
             public get contactCount(): number;
             public get contacts(): System.Array$1<UnityEngine.ContactPoint>;
@@ -593,8 +603,6 @@ declare namespace CS {
             public static OverlapCapsuleNonAlloc($point0: UnityEngine.Vector3, $point1: UnityEngine.Vector3, $radius: number, $results: System.Array$1<UnityEngine.Collider>): number;
             public static RebuildBroadphaseRegions($worldBounds: UnityEngine.Bounds, $subdivisions: number): void;
             public static BakeMesh($meshEntityId: UnityEngine.EntityId, $convex: boolean, $cookingOptions: UnityEngine.MeshColliderCookingOptions): void;
-            public static BakeMesh($meshID: number, $convex: boolean, $cookingOptions: UnityEngine.MeshColliderCookingOptions): void;
-            public static BakeMesh($meshID: number, $convex: boolean): void;
             public static BakeMesh($meshEntityId: UnityEngine.EntityId, $convex: boolean): void;
             public static add_ContactModifyEvent(handler: System.Action$2<UnityEngine.PhysicsScene, Unity.Collections.NativeArray$1<UnityEngine.ModifiableContactPair>>): void;
             public static remove_ContactModifyEvent(handler: System.Action$2<UnityEngine.PhysicsScene, Unity.Collections.NativeArray$1<UnityEngine.ModifiableContactPair>>): void;
@@ -618,10 +626,10 @@ declare namespace CS {
             public position: UnityEngine.Vector3;
             public otherRotation: UnityEngine.Quaternion;
             public otherPosition: UnityEngine.Vector3;
-            public get colliderInstanceID(): number;
-            public get otherColliderInstanceID(): number;
-            public get bodyInstanceID(): number;
-            public get otherBodyInstanceID(): number;
+            public get colliderEntityId(): UnityEngine.EntityId;
+            public get otherColliderEntityId(): UnityEngine.EntityId;
+            public get bodyEntityId(): UnityEngine.EntityId;
+            public get otherBodyEntityId(): UnityEngine.EntityId;
             public get bodyVelocity(): UnityEngine.Vector3;
             public get bodyAngularVelocity(): UnityEngine.Vector3;
             public get otherBodyVelocity(): UnityEngine.Vector3;
@@ -759,12 +767,14 @@ declare namespace CS {
 
         class ContactPairHeader {
             protected [__keep_incompatibility]: never;
-            public get bodyInstanceID(): number;
-            public get otherBodyInstanceID(): number;
             public get bodyEntityId(): UnityEngine.EntityId;
             public get otherBodyEntityId(): UnityEngine.EntityId;
             public get body(): UnityEngine.Component;
             public get otherBody(): UnityEngine.Component;
+            public get bodyLinearVelocity(): UnityEngine.Vector3;
+            public get bodyAngularVelocity(): UnityEngine.Vector3;
+            public get otherBodyLinearVelocity(): UnityEngine.Vector3;
+            public get otherBodyAngularVelocity(): UnityEngine.Vector3;
             public get pairCount(): number;
             public get BodyInstanceID(): number;
             public get OtherBodyInstanceID(): number;
@@ -776,8 +786,6 @@ declare namespace CS {
 
         class ContactPair {
             protected [__keep_incompatibility]: never;
-            public get colliderInstanceID(): number;
-            public get otherColliderInstanceID(): number;
             public get colliderEntityId(): UnityEngine.EntityId;
             public get otherColliderEntityId(): UnityEngine.EntityId;
             public get collider(): UnityEngine.Collider;
@@ -831,6 +839,7 @@ declare namespace CS {
             constructor($name: string);
         }
 
+        /** @deprecated PhysicMaterialCombine has been renamed to PhysicsMaterialCombine. Please use PhysicsMaterialCombine instead. (UnityUpgradable) -> PhysicsMaterialCombine */
         enum PhysicMaterialCombine {
             Average = 0,
             Multiply = 1,
@@ -838,6 +847,7 @@ declare namespace CS {
             Maximum = 3
         }
 
+        /** @deprecated PhysicMaterial has been renamed to PhysicsMaterial. Please use PhysicsMaterial instead. (UnityUpgradable) -> PhysicsMaterial */
         class PhysicMaterial extends UnityEngine.Object {
             protected [__keep_incompatibility]: never;
             public bounciness: number;
@@ -860,6 +870,7 @@ declare namespace CS {
             public IsEmpty(): boolean;
             public Simulate($step: number): void;
             public RunSimulationStages($step: number, $stages: UnityEngine.SimulationStage, $options?: UnityEngine.SimulationOption): void;
+            public ReleaseLastSimulationStepBuffers(): void;
             public InterpolateBodies(): void;
             public ResetInterpolationPoses(): void;
             public Raycast($origin: UnityEngine.Vector3, $direction: UnityEngine.Vector3, $maxDistance?: number, $layerMask?: number, $queryTriggerInteraction?: UnityEngine.QueryTriggerInteraction): boolean;
@@ -896,7 +907,7 @@ declare namespace CS {
 
         class ColliderHit {
             protected [__keep_incompatibility]: never;
-            public get instanceID(): number;
+            public get entityId(): UnityEngine.EntityId;
             public get collider(): UnityEngine.Collider;
         }
 
@@ -973,12 +984,12 @@ declare namespace CS {
         class ClosestPointCommand {
             protected [__keep_incompatibility]: never;
             public point: UnityEngine.Vector3;
-            public colliderInstanceID: number;
+            public colliderEntityId: UnityEngine.EntityId;
             public position: UnityEngine.Vector3;
             public rotation: UnityEngine.Quaternion;
             public scale: UnityEngine.Vector3;
-            constructor($point: UnityEngine.Vector3, $colliderInstanceID: number, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $scale: UnityEngine.Vector3);
             constructor($point: UnityEngine.Vector3, $collider: UnityEngine.Collider, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $scale: UnityEngine.Vector3);
+            constructor($point: UnityEngine.Vector3, $colliderEntityId: UnityEngine.EntityId, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $scale: UnityEngine.Vector3);
             public static ScheduleBatch($commands: Unity.Collections.NativeArray$1<UnityEngine.ClosestPointCommand>, $results: Unity.Collections.NativeArray$1<UnityEngine.Vector3>, $minCommandsPerJob: number, $dependsOn?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
         }
 
@@ -1020,7 +1031,6 @@ declare namespace CS {
         class RaycastHit {
             protected [__keep_incompatibility]: never;
             public get collider(): UnityEngine.Collider;
-            public get colliderInstanceID(): number;
             public get colliderEntityId(): UnityEngine.EntityId;
             public point: UnityEngine.Vector3;
             public normal: UnityEngine.Vector3;
@@ -1131,6 +1141,7 @@ declare namespace CS {
             public SweepTestAll($direction: UnityEngine.Vector3, $maxDistance: number, $queryTriggerInteraction: UnityEngine.QueryTriggerInteraction): System.Array$1<UnityEngine.RaycastHit>;
             public SweepTestAll($direction: UnityEngine.Vector3, $maxDistance: number): System.Array$1<UnityEngine.RaycastHit>;
             public SweepTestAll($direction: UnityEngine.Vector3): System.Array$1<UnityEngine.RaycastHit>;
+            /** @deprecated Please use Rigidbody.mass instead. Setting density on a Rigidbody no longer has any effect. */
             public SetDensity($density: number): void;
         }
 

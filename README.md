@@ -2,12 +2,12 @@
 
 TypeScript definitions for Unity, designed for use with [OneJS](https://onejs.com).
 
-> **Note:** Only Unity 6000.3 and later versions are supported.
+> **Note:** Only Unity 6000.3 and later versions are supported. This build is generated against 6000.5.
 
 ## Installation
 
 ```bash
-npm install -D unity-types@~6000.3.0
+npm install -D unity-types@~6000.5.0
 ```
 
 ## Setup
@@ -93,16 +93,17 @@ Package versions match Unity versions:
 
 | Package Version | Unity Version |
 |-----------------|---------------|
+| `6000.5.x` | Unity 6000.5.x |
 | `6000.3.x` | Unity 6000.3.x |
 
 Use semver ranges to get compatible updates:
 
 ```bash
 # Exact version
-npm install -D unity-types@6000.3.0
+npm install -D unity-types@6000.5.0
 
-# Compatible updates within Unity 6000.3
-npm install -D unity-types@~6000.3.0
+# Compatible updates within Unity 6000.5
+npm install -D unity-types@~6000.5.0
 ```
 
 ## Generating Custom Types
@@ -122,6 +123,42 @@ TypeGenerator.Create()
     .Build()
     .WriteTo("my-types.d.ts");
 ```
+
+## Regenerating this package
+
+Against the editor whose Unity version the package will claim, with the project
+open and the OneJS MCP bridge up:
+
+1. For each assembly below, run the generator and write it over the file of the
+   same name:
+
+   ```csharp
+   OneJS.Editor.TypeGenerator.TypeGenerator.Create()
+       .AddAssemblyByName("UnityEngine.CoreModule").Build()
+       .WriteTo("<repo>/JSModules/unity-types/UnityEngine.CoreModule.d.ts", false);
+   ```
+
+   The nine: `UnityEngine.CoreModule`, `UnityEngine.UIElementsModule`,
+   `UnityEngine.InputLegacyModule`, `Unity.InputSystem`,
+   `UnityEngine.PhysicsModule`, `UnityEngine.Physics2DModule`,
+   `UnityEngine.AudioModule`, `UnityEngine.UnityWebRequestModule`, `OneJS`.
+
+2. `node tools/strip-preamble.mjs`
+
+3. Bump `version` and `description` in `package.json`, and the table above.
+
+`index.d.ts` and `_system.d.ts` are hand written and are not regenerated. They
+hold the triple-slash references, the ES6 module declarations, and the `$Ref`,
+`$Out` and `$Task` helpers the generated files use.
+
+Nothing else is hand edited. Earlier releases were: roughly 1300 array types
+and 118 `System.TypeLike` parameters were written in by hand over the
+generator's output, because the generator emitted `any` for every array and
+`System.Type` for every `Type` parameter. Both are fixed in the generator as of
+OneJS 3.4.3, so a regeneration now reproduces them. If you find yourself editing
+a generated file, fix the generator instead: the hand written layer is also how
+`System.TypeLikeCode`, a type that exists nowhere, reached two published
+signatures.
 
 ## License
 

@@ -202,6 +202,7 @@ declare namespace CS {
                 IS_NOT_NULL = 3
             }
 
+            /** @deprecated Use [ContractAnnotation('=> halt')] instead */
             class TerminatesProgramAttribute extends System.Attribute {
                 protected [__keep_incompatibility]: never;
                 constructor();
@@ -481,6 +482,7 @@ declare namespace CS {
                         constructor();
                     }
 
+                    /** @deprecated Use NativeSetThreadIndexAttribute instead */
                     class NativeContainerNeedsThreadIndexAttribute extends System.Attribute {
                         protected [__keep_incompatibility]: never;
                         constructor();
@@ -577,6 +579,7 @@ declare namespace CS {
                     class UnsafeUtility {
                         protected [__keep_incompatibility]: never;
                         public static GetFieldOffset($field: System.Reflection.FieldInfo): number;
+                        /** @deprecated Use GCHandle.Free instead. */
                         public static ReleaseGCObject($gcHandle: bigint): void;
                         public static IsBlittable<T>(): boolean;
                         public static CheckForLeaks(): number;
@@ -1071,6 +1074,7 @@ declare namespace CS {
                         Single = 2
                     }
 
+                    /** @deprecated Reflection data is now universal between job types. The parameter can be removed. */
                     enum JobType {
                         Single = 0,
                         ParallelFor = 1
@@ -1093,8 +1097,10 @@ declare namespace CS {
                         public static ScheduleParallelFor($parameters: $Ref<Unity.Jobs.LowLevel.Unsafe.JobsUtility.JobScheduleParameters>, $arrayLength: number, $innerloopBatchCount: number): Unity.Jobs.JobHandle;
                         public static ScheduleParallelForTransform($parameters: $Ref<Unity.Jobs.LowLevel.Unsafe.JobsUtility.JobScheduleParameters>, $transfromAccesssArray: number): Unity.Jobs.JobHandle;
                         public static ScheduleParallelForTransformReadOnly($parameters: $Ref<Unity.Jobs.LowLevel.Unsafe.JobsUtility.JobScheduleParameters>, $transfromAccesssArray: number, $innerloopBatchCount: number): Unity.Jobs.JobHandle;
+                        /** @deprecated JobType is obsolete. The parameter should be removed. (UnityUpgradable) -> !1 */
                         public static CreateJobReflectionData($type: System.TypeLike, $jobType: Unity.Jobs.LowLevel.Unsafe.JobType, $managedJobFunction0: any, $managedJobFunction1?: any, $managedJobFunction2?: any): number;
                         public static CreateJobReflectionData($type: System.TypeLike, $managedJobFunction0: any, $managedJobFunction1?: any, $managedJobFunction2?: any): number;
+                        /** @deprecated JobType is obsolete. The parameter should be removed. (UnityUpgradable) -> !2 */
                         public static CreateJobReflectionData($wrapperJobType: System.TypeLike, $userJobType: System.TypeLike, $jobType: Unity.Jobs.LowLevel.Unsafe.JobType, $managedJobFunction0: any): number;
                         public static CreateJobReflectionData($wrapperJobType: System.TypeLike, $userJobType: System.TypeLike, $managedJobFunction0: any): number;
                         public static ResetJobWorkerCount(): void;
@@ -1112,6 +1118,20 @@ declare namespace CS {
 
                 }
             }
+        }
+    }
+    namespace Unity {
+        namespace Mathematics {
+            class PostNormalizeAttribute extends UnityEngine.PropertyAttribute {
+                protected [__keep_incompatibility]: never;
+                constructor();
+            }
+
+            class DoNotNormalizeAttribute extends UnityEngine.PropertyAttribute {
+                protected [__keep_incompatibility]: never;
+                constructor();
+            }
+
         }
     }
     namespace Unity {
@@ -1144,6 +1164,8 @@ declare namespace CS {
                 public static get VirtualTexturing(): Unity.Profiling.ProfilerCategory;
                 public static get FileIO(): Unity.Profiling.ProfilerCategory;
                 public static get Internal(): Unity.Profiling.ProfilerCategory;
+                public static get U2D(): Unity.Profiling.ProfilerCategory;
+                public static get UIToolkit(): Unity.Profiling.ProfilerCategory;
                 constructor($categoryName: string);
                 constructor($categoryName: string, $color: Unity.Profiling.ProfilerCategoryColor);
                 public ToString(): string;
@@ -1301,7 +1323,8 @@ declare namespace CS {
                     Double = 7,
                     String16 = 9,
                     Blob8 = 11,
-                    GfxResourceId = 12
+                    GfxResourceId = 12,
+                    EntityId = 13
                 }
 
             }
@@ -1366,6 +1389,8 @@ declare namespace CS {
                         public static readonly CategoryInput: number;
                         public static readonly CategoryVirtualTexturing: number;
                         public static readonly CategoryPhysics2D: number;
+                        public static readonly CategoryU2D: number;
+                        public static readonly CategoryUIToolkit: number;
                         public static get Timestamp(): bigint;
                         public static get TimestampToNanosecondsConversionRatio(): Unity.Profiling.LowLevel.Unsafe.ProfilerUnsafeUtility.TimestampConversionRatio;
                         public static GetCategoryDescription($categoryId: number): Unity.Profiling.LowLevel.Unsafe.ProfilerCategoryDescription;
@@ -1460,6 +1485,8 @@ declare namespace CS {
             constructor();
             public RegisterSpriteChangeCallback($callback: UnityEngine.Events.UnityAction$1<UnityEngine.SpriteRenderer>): void;
             public UnregisterSpriteChangeCallback($callback: UnityEngine.Events.UnityAction$1<UnityEngine.SpriteRenderer>): void;
+            public GetBlendShapeWeight($index: number): number;
+            public SetBlendShapeWeight($index: number, $value: number): void;
         }
 
         enum SpriteMeshType {
@@ -1525,11 +1552,12 @@ declare namespace CS {
             public get vertices(): System.Array$1<UnityEngine.Vector2>;
             public get triangles(): System.Array$1<number>;
             public get uv(): System.Array$1<UnityEngine.Vector2>;
+            public get blendShapeCount(): number;
             public GetSecondaryTextureCount(): number;
-            public GetSecondaryTextures($secondaryTexture: System.Array$1<UnityEngine.SecondarySpriteTexture>): number;
+            public GetSecondaryTextures($secondaryTexture: $Out<System.Array$1<UnityEngine.SecondarySpriteTexture>>): number;
             public GetPhysicsShapeCount(): number;
             public GetScriptableObjectsCount(): number;
-            public GetScriptableObjects($scriptableObjects: System.Array$1<UnityEngine.ScriptableObject>): number;
+            public GetScriptableObjects($scriptableObjects: $Out<System.Array$1<UnityEngine.ScriptableObject>>): number;
             public AddScriptableObject($obj: UnityEngine.ScriptableObject): boolean;
             public RemoveScriptableObjectAt($i: number): boolean;
             public SetScriptableObjectAt($obj: UnityEngine.ScriptableObject, $i: number): boolean;
@@ -1538,6 +1566,18 @@ declare namespace CS {
             public GetPhysicsShape($shapeIdx: number): System.ReadOnlySpan$1<UnityEngine.Vector2>;
             public OverridePhysicsShape($physicsShapes: System.Collections.Generic.IList$1<System.Array$1<UnityEngine.Vector2>>): void;
             public OverrideGeometry($vertices: System.Array$1<UnityEngine.Vector2>, $triangles: System.Array$1<number>): void;
+            public ClearBlendShapes(): void;
+            public GetBlendShapeName($shapeIndex: number): string;
+            public GetBlendShapeIndex($blendShapeName: string): number;
+            public GetBlendShapeFrameCount($shapeIndex: number): number;
+            public GetBlendShapeFrameWeight($shapeIndex: number, $frameIndex: number): number;
+            public AddBlendShape($shapeName: string): number;
+            public AddBlendShapeFrame($shapeIndex: number, $frameWeight: number, $vertices: Unity.Collections.NativeArray$1<UnityEngine.U2D.SpriteBlendShapeVertex>): number;
+            public GetBlendShapeFrameVertexCount($shapeIndex: number, $frameIndex: number): number;
+            public GetBlendShapeFrame($shapeIndex: number, $frameIndex: number, $outVertices: Unity.Collections.NativeArray$1<UnityEngine.U2D.SpriteBlendShapeVertex>): void;
+            public UpdateBlendShapeFrame($shapeIndex: number, $frameIndex: number, $vertices: Unity.Collections.NativeArray$1<UnityEngine.U2D.SpriteBlendShapeVertex>): void;
+            public GetBlendShapeBuffer($layout: UnityEngine.Rendering.BlendShapeBufferLayout): UnityEngine.GraphicsBuffer;
+            public GetBlendShapeBuffer(): UnityEngine.GraphicsBuffer;
             public static Create($texture: UnityEngine.Texture2D, $rect: UnityEngine.Rect, $pivot: UnityEngine.Vector2, $pixelsPerUnit: number, $extrude: number, $meshType: UnityEngine.SpriteMeshType, $border: UnityEngine.Vector4, $generateFallbackPhysicsShape: boolean): UnityEngine.Sprite;
             public static Create($texture: UnityEngine.Texture2D, $rect: UnityEngine.Rect, $pivot: UnityEngine.Vector2, $pixelsPerUnit: number, $extrude: number, $meshType: UnityEngine.SpriteMeshType, $border: UnityEngine.Vector4, $generateFallbackPhysicsShape: boolean, $secondaryTextures: System.Array$1<UnityEngine.SecondarySpriteTexture>): UnityEngine.Sprite;
             public static Create($texture: UnityEngine.Texture2D, $rect: UnityEngine.Rect, $pivot: UnityEngine.Vector2, $pixelsPerUnit: number, $extrude: number, $meshType: UnityEngine.SpriteMeshType, $border: UnityEngine.Vector4): UnityEngine.Sprite;
@@ -1545,6 +1585,35 @@ declare namespace CS {
             public static Create($texture: UnityEngine.Texture2D, $rect: UnityEngine.Rect, $pivot: UnityEngine.Vector2, $pixelsPerUnit: number, $extrude: number): UnityEngine.Sprite;
             public static Create($texture: UnityEngine.Texture2D, $rect: UnityEngine.Rect, $pivot: UnityEngine.Vector2, $pixelsPerUnit: number): UnityEngine.Sprite;
             public static Create($texture: UnityEngine.Texture2D, $rect: UnityEngine.Rect, $pivot: UnityEngine.Vector2): UnityEngine.Sprite;
+        }
+
+        enum SimulationMode2D {
+            FixedUpdate = 0,
+            Update = 1,
+            Script = 2
+        }
+
+        enum RigidbodyType2D {
+            Dynamic = 0,
+            Kinematic = 1,
+            Static = 2
+        }
+
+        enum RigidbodyConstraints2D {
+            None = 0,
+            FreezePositionX = 1,
+            FreezePositionY = 2,
+            FreezePosition = 3,
+            FreezeRotation = 4,
+            FreezeAll = 7
+        }
+
+        enum PhysicsMaterialCombine2D {
+            Average = 0,
+            Mean = 1,
+            Multiply = 2,
+            Minimum = 3,
+            Maximum = 4
         }
 
         class SortingLayer {
@@ -1672,37 +1741,58 @@ declare namespace CS {
             constructor();
             public static Quit($exitCode: number): void;
             public static Quit(): void;
+            /** @deprecated CancelQuit is deprecated. Use the wantsToQuit event instead. */
             public static CancelQuit(): void;
             public static Unload(): void;
+            /** @deprecated Streaming was a Unity Web Player feature, and is removed. This function is deprecated and always returns 1.0 for valid level indices. */
             public static GetStreamProgressForLevel($levelIndex: number): number;
+            /** @deprecated Streaming was a Unity Web Player feature, and is removed. This function is deprecated and always returns 1.0. */
             public static GetStreamProgressForLevel($levelName: string): number;
             public static CanStreamedLevelBeLoaded($levelIndex: number): boolean;
             public static CanStreamedLevelBeLoaded($levelName: string): boolean;
             public static IsPlaying($obj: UnityEngine.Object): boolean;
+            /** @deprecated Application.GetBuildTags is no longer supported and will be removed. */
             public static GetBuildTags(): System.Array$1<string>;
+            /** @deprecated Application.SetBuildTags is no longer supported and will be removed. */
             public static SetBuildTags($buildTags: System.Array$1<string>): void;
             public static HasProLicense(): boolean;
+            /** @deprecated Application.ExternalEval is deprecated. See https://docs.unity3d.com/Manual/webgl-interactingwithbrowserscripting.html for alternatives. */
             public static ExternalEval($script: string): void;
             public static RequestAdvertisingIdentifierAsync($delegateMethod: UnityEngine.Application.AdvertisingIdentifierCallback): boolean;
             public static OpenURL($url: string): void;
+            /** @deprecated Use UnityEngine.Diagnostics.Utils.ForceCrash */
             public static ForceCrash($mode: number): void;
             public static GetStackTraceLogType($logType: UnityEngine.LogType): UnityEngine.StackTraceLogType;
             public static SetStackTraceLogType($logType: UnityEngine.LogType, $stackTraceType: UnityEngine.StackTraceLogType): void;
             public static RequestUserAuthorization($mode: UnityEngine.UserAuthorization): UnityEngine.AsyncOperation;
             public static HasUserAuthorization($mode: UnityEngine.UserAuthorization): boolean;
+            /** @deprecated Application.ExternalCall is deprecated. See https://docs.unity3d.com/Manual/webgl-interactingwithbrowserscripting.html for alternatives. */
             public static ExternalCall($functionName: string, ...args: any[]): void;
+            /** @deprecated Use Object.DontDestroyOnLoad instead */
             public static DontDestroyOnLoad($o: UnityEngine.Object): void;
+            /** @deprecated Application.RegisterLogCallback is deprecated. Use Application.logMessageReceived instead. */
             public static RegisterLogCallback($handler: UnityEngine.Application.LogCallback): void;
+            /** @deprecated Application.RegisterLogCallbackThreaded is deprecated. Use Application.logMessageReceivedThreaded instead. */
             public static RegisterLogCallbackThreaded($handler: UnityEngine.Application.LogCallback): void;
+            /** @deprecated Use SceneManager.LoadScene */
             public static LoadLevel($index: number): void;
+            /** @deprecated Use SceneManager.LoadScene */
             public static LoadLevel($name: string): void;
+            /** @deprecated Use SceneManager.LoadScene */
             public static LoadLevelAdditive($index: number): void;
+            /** @deprecated Use SceneManager.LoadScene */
             public static LoadLevelAdditive($name: string): void;
+            /** @deprecated Use SceneManager.LoadSceneAsync */
             public static LoadLevelAsync($index: number): UnityEngine.AsyncOperation;
+            /** @deprecated Use SceneManager.LoadSceneAsync */
             public static LoadLevelAsync($levelName: string): UnityEngine.AsyncOperation;
+            /** @deprecated Use SceneManager.LoadSceneAsync */
             public static LoadLevelAdditiveAsync($index: number): UnityEngine.AsyncOperation;
+            /** @deprecated Use SceneManager.LoadSceneAsync */
             public static LoadLevelAdditiveAsync($levelName: string): UnityEngine.AsyncOperation;
+            /** @deprecated Use SceneManager.UnloadScene */
             public static UnloadLevel($index: number): boolean;
+            /** @deprecated Use SceneManager.UnloadScene */
             public static UnloadLevel($scenePath: string): boolean;
             public static add_lowMemory(handler: UnityEngine.Application.LowMemoryCallback): void;
             public static remove_lowMemory(handler: UnityEngine.Application.LowMemoryCallback): void;
@@ -1987,6 +2077,7 @@ declare namespace CS {
             public ClearCache($expiration: number): boolean;
         }
 
+        /** @deprecated This struct is not for public use. */
         class CacheIndex {
             protected [__keep_incompatibility]: never;
             public name: string;
@@ -2014,18 +2105,23 @@ declare namespace CS {
             public static ClearOtherCachedVersions($assetBundleName: string, $hash: UnityEngine.Hash128): boolean;
             public static ClearAllCachedVersions($assetBundleName: string): boolean;
             public static GetCachedVersions($assetBundleName: string, $outCachedVersions: System.Collections.Generic.List$1<UnityEngine.Hash128>): void;
+            /** @deprecated Please use IsVersionCached with Hash128 instead. */
             public static IsVersionCached($url: string, $version: number): boolean;
             public static IsVersionCached($url: string, $hash: UnityEngine.Hash128): boolean;
             public static IsVersionCached($cachedBundle: UnityEngine.CachedAssetBundle): boolean;
+            /** @deprecated Please use MarkAsUsed with Hash128 instead. */
             public static MarkAsUsed($url: string, $version: number): boolean;
             public static MarkAsUsed($url: string, $hash: UnityEngine.Hash128): boolean;
             public static MarkAsUsed($cachedBundle: UnityEngine.CachedAssetBundle): boolean;
+            /** @deprecated Please use SetNoBackupFlag with Hash128 instead. */
             public static SetNoBackupFlag($url: string, $version: number): void;
             public static SetNoBackupFlag($url: string, $hash: UnityEngine.Hash128): void;
             public static SetNoBackupFlag($cachedBundle: UnityEngine.CachedAssetBundle): void;
+            /** @deprecated Please use ResetNoBackupFlag with Hash128 instead. */
             public static ResetNoBackupFlag($url: string, $version: number): void;
             public static ResetNoBackupFlag($url: string, $hash: UnityEngine.Hash128): void;
             public static ResetNoBackupFlag($cachedBundle: UnityEngine.CachedAssetBundle): void;
+            /** @deprecated This function is obsolete and will always return -1. Use IsVersionCached instead. */
             public static GetVersionFromCache($url: string): number;
             public static AddCache($cachePath: string): UnityEngine.Cache;
             public static GetCacheAt($cacheIndex: number): UnityEngine.Cache;
@@ -2034,6 +2130,7 @@ declare namespace CS {
             public static RemoveCache($cache: UnityEngine.Cache): boolean;
             public static MoveCacheBefore($src: UnityEngine.Cache, $dst: UnityEngine.Cache): void;
             public static MoveCacheAfter($src: UnityEngine.Cache, $dst: UnityEngine.Cache): void;
+            /** @deprecated This function is obsolete. Please use ClearCache.  (UnityUpgradable) -> ClearCache() */
             public static CleanCache(): boolean;
         }
 
@@ -2184,10 +2281,15 @@ declare namespace CS {
             public GetCommandBuffers($evt: UnityEngine.Rendering.CameraEvent): System.Array$1<UnityEngine.Rendering.CommandBuffer>;
             public TryGetCullingParameters($cullingParameters: $Out<UnityEngine.Rendering.ScriptableCullingParameters>): boolean;
             public TryGetCullingParameters($stereoAware: boolean, $cullingParameters: $Out<UnityEngine.Rendering.ScriptableCullingParameters>): boolean;
+            /** @deprecated Camera.ResetFieldOfView has been deprecated in Unity 5.6 and will be removed in the future. Please replace it by explicitly setting the camera's FOV to 60 degrees. */
             public ResetFieldOfView(): void;
+            /** @deprecated Camera.SetStereoViewMatrices has been deprecated. Use SetStereoViewMatrix(StereoscopicEye eye) instead. */
             public SetStereoViewMatrices($leftMatrix: UnityEngine.Matrix4x4, $rightMatrix: UnityEngine.Matrix4x4): void;
+            /** @deprecated Camera.SetStereoProjectionMatrices has been deprecated. Use SetStereoProjectionMatrix(StereoscopicEye eye) instead. */
             public SetStereoProjectionMatrices($leftMatrix: UnityEngine.Matrix4x4, $rightMatrix: UnityEngine.Matrix4x4): void;
+            /** @deprecated Camera.GetStereoViewMatrices has been deprecated. Use GetStereoViewMatrix(StereoscopicEye eye) instead. */
             public GetStereoViewMatrices(): System.Array$1<UnityEngine.Matrix4x4>;
+            /** @deprecated Camera.GetStereoProjectionMatrices has been deprecated. Use GetStereoProjectionMatrix(StereoscopicEye eye) instead. */
             public GetStereoProjectionMatrices(): System.Array$1<UnityEngine.Matrix4x4>;
         }
         namespace Camera {
@@ -2283,6 +2385,7 @@ declare namespace CS {
 
         }
 
+        /** @deprecated The Flare Layer component is deprecated now that the Built-In Render Pipeline is deprecated. To use an alternative, refer to the documentation in the component help icon. #from(6000.5) */
         class FlareLayer extends UnityEngine.Behaviour {
             protected [__keep_incompatibility]: never;
         }
@@ -2326,8 +2429,6 @@ declare namespace CS {
             public static UpdateCachedState(): void;
             public static add_reflectionProbeChanged(handler: System.Action$2<UnityEngine.ReflectionProbe, UnityEngine.ReflectionProbe.ReflectionProbeEvent>): void;
             public static remove_reflectionProbeChanged(handler: System.Action$2<UnityEngine.ReflectionProbe, UnityEngine.ReflectionProbe.ReflectionProbeEvent>): void;
-            public static add_defaultReflectionSet(handler: System.Action$1<UnityEngine.Cubemap>): void;
-            public static remove_defaultReflectionSet(handler: System.Action$1<UnityEngine.Cubemap>): void;
             public static add_defaultReflectionTexture(handler: System.Action$1<UnityEngine.Texture>): void;
             public static remove_defaultReflectionTexture(handler: System.Action$1<UnityEngine.Texture>): void;
         }
@@ -2959,7 +3060,7 @@ declare namespace CS {
 
         class CustomRenderTextureManager {
             protected [__keep_incompatibility]: never;
-            public static GetAllCustomRenderTextures($currentCustomRenderTextures: System.Collections.Generic.List$1<UnityEngine.CustomRenderTexture>): void;
+            public static GetAllCustomRenderTextures($currentCustomRenderTextures: $Out<System.Collections.Generic.List$1<UnityEngine.CustomRenderTexture>>): void;
             public static add_textureLoaded(handler: System.Action$1<UnityEngine.CustomRenderTexture>): void;
             public static remove_textureLoaded(handler: System.Action$1<UnityEngine.CustomRenderTexture>): void;
             public static add_textureUnloaded(handler: System.Action$1<UnityEngine.CustomRenderTexture>): void;
@@ -3031,9 +3132,11 @@ declare namespace CS {
             public static get activeEditorGameViewTarget(): number;
             public Activate(): void;
             public Activate($width: number, $height: number, $refreshRate: UnityEngine.RefreshRate): void;
+            /** @deprecated Activate(int, int, int) is deprecated. Use Activate(int, int, RefreshRate) instead. */
             public Activate($width: number, $height: number, $refreshRate: number): void;
             public SetParams($width: number, $height: number, $x: number, $y: number): void;
             public SetRenderingResolution($w: number, $h: number): void;
+            /** @deprecated MultiDisplayLicense has been deprecated. */
             public static MultiDisplayLicense(): boolean;
             public static RelativeMouseAt($inputMouseCoordinates: UnityEngine.Vector3): UnityEngine.Vector3;
             public static add_onDisplaysUpdated(handler: UnityEngine.Display.DisplaysUpdatedDelegate): void;
@@ -3119,8 +3222,10 @@ declare namespace CS {
             public static lockCursor: boolean;
             constructor();
             public static SetResolution($width: number, $height: number, $fullscreenMode: UnityEngine.FullScreenMode, $preferredRefreshRate: UnityEngine.RefreshRate): void;
+            /** @deprecated SetResolution(int, int, FullScreenMode, int) is obsolete. Use SetResolution(int, int, FullScreenMode, RefreshRate) instead. */
             public static SetResolution($width: number, $height: number, $fullscreenMode: UnityEngine.FullScreenMode, $preferredRefreshRate: number): void;
             public static SetResolution($width: number, $height: number, $fullscreenMode: UnityEngine.FullScreenMode): void;
+            /** @deprecated SetResolution(int, int, bool, int) is obsolete. Use SetResolution(int, int, FullScreenMode, RefreshRate) instead. */
             public static SetResolution($width: number, $height: number, $fullscreen: boolean, $preferredRefreshRate: number): void;
             public static SetResolution($width: number, $height: number, $fullscreen: boolean): void;
             public static SetMSAASamples($numSamples: number): void;
@@ -3193,6 +3298,11 @@ declare namespace CS {
             public static RenderPrimitivesIndexed($rparams: $Ref<UnityEngine.RenderParams>, $topology: UnityEngine.MeshTopology, $indexBuffer: UnityEngine.GraphicsBuffer, $indexCount: number, $startIndex?: number, $instanceCount?: number): void;
             public static RenderPrimitivesIndirect($rparams: $Ref<UnityEngine.RenderParams>, $topology: UnityEngine.MeshTopology, $argsBuffer: UnityEngine.GraphicsBuffer, $commandCount?: number, $startCommand?: number): void;
             public static RenderPrimitivesIndexedIndirect($rparams: $Ref<UnityEngine.RenderParams>, $topology: UnityEngine.MeshTopology, $indexBuffer: UnityEngine.GraphicsBuffer, $commandBuffer: UnityEngine.GraphicsBuffer, $commandCount?: number, $startCommand?: number): void;
+            public static RenderSprite($renderParams: $Ref<UnityEngine.RenderParams>, $spriteParams: $Ref<UnityEngine.SpriteParams>, $submeshIndex: number, $objectToWorld: UnityEngine.Matrix4x4): void;
+            public static RenderSpriteInstanced<T>($renderParams: $Ref<UnityEngine.RenderParams>, $spriteParams: $Ref<UnityEngine.SpriteParams>, $submeshIndex: number, $instanceData: System.Array$1<T>): void;
+            public static RenderSpriteInstanced<T>($renderParams: $Ref<UnityEngine.RenderParams>, $spriteParams: $Ref<UnityEngine.SpriteParams>, $submeshIndex: number, $instanceData: System.Collections.Generic.List$1<T>): void;
+            public static RenderSpriteInstanced<T>($renderParams: $Ref<UnityEngine.RenderParams>, $spriteParams: $Ref<UnityEngine.SpriteParams>, $submeshIndex: number, $instanceData: Unity.Collections.NativeArray$1<T>): void;
+            public static RenderSpriteInstanced<T>($renderParams: $Ref<UnityEngine.RenderParams>, $spriteParams: $Ref<UnityEngine.SpriteParams>, $submeshIndex: number, $instanceData: System.ReadOnlySpan$1<T>): void;
             public static DrawMeshNow($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $materialIndex: number): void;
             public static DrawMeshNow($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $materialIndex: number): void;
             public static DrawMeshNow($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion): void;
@@ -3200,12 +3310,24 @@ declare namespace CS {
             public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: boolean, $receiveShadows: boolean, $useLightProbes: boolean): void;
             public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $probeAnchor: UnityEngine.Transform, $useLightProbes: boolean): void;
             public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: boolean, $receiveShadows: boolean, $useLightProbes: boolean): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $probeAnchor: UnityEngine.Transform, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage, $lightProbeProxyVolume: UnityEngine.LightProbeProxyVolume): void;
-            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage, $lightProbeProxyVolume: UnityEngine.LightProbeProxyVolume): void;
-            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage, $lightProbeProxyVolume: UnityEngine.LightProbeProxyVolume): void;
-            public static DrawMeshInstancedProcedural($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $bounds: UnityEngine.Bounds, $count: number, $properties?: UnityEngine.MaterialPropertyBlock, $castShadows?: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows?: boolean, $layer?: number, $camera?: UnityEngine.Camera, $lightProbeUsage?: UnityEngine.Rendering.LightProbeUsage, $lightProbeProxyVolume?: UnityEngine.LightProbeProxyVolume): void;
+            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $probeAnchor: UnityEngine.Transform, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage): void;
+            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage): void;
+            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage): void;
+            public static DrawMeshInstancedProcedural($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $bounds: UnityEngine.Bounds, $count: number, $properties?: UnityEngine.MaterialPropertyBlock, $castShadows?: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows?: boolean, $layer?: number, $camera?: UnityEngine.Camera, $lightProbeUsage?: UnityEngine.Rendering.LightProbeUsage): void;
+            public static DrawMeshInstancedIndirect($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $bounds: UnityEngine.Bounds, $bufferWithArgs: UnityEngine.ComputeBuffer, $argsOffset?: number, $properties?: UnityEngine.MaterialPropertyBlock, $castShadows?: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows?: boolean, $layer?: number, $camera?: UnityEngine.Camera, $lightProbeUsage?: UnityEngine.Rendering.LightProbeUsage): void;
+            public static DrawMeshInstancedIndirect($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $bounds: UnityEngine.Bounds, $bufferWithArgs: UnityEngine.GraphicsBuffer, $argsOffset?: number, $properties?: UnityEngine.MaterialPropertyBlock, $castShadows?: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows?: boolean, $layer?: number, $camera?: UnityEngine.Camera, $lightProbeUsage?: UnityEngine.Rendering.LightProbeUsage): void;
+            /** @deprecated This method is deprecated. Use DrawMeshInstancedIndirect without a LightProbeProxyVolume argument. #from(6000.5) */
             public static DrawMeshInstancedIndirect($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $bounds: UnityEngine.Bounds, $bufferWithArgs: UnityEngine.ComputeBuffer, $argsOffset: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage, $lightProbeProxyVolume: UnityEngine.LightProbeProxyVolume): void;
+            /** @deprecated This method is deprecated. Use DrawMeshInstanced without a LightProbeProxyVolume argument. #from(6000.5) */
+            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage, $lightProbeProxyVolume: UnityEngine.LightProbeProxyVolume): void;
+            /** @deprecated This method is deprecated. Use DrawMeshInstanced without a LightProbeProxyVolume argument. #from(6000.5) */
+            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage, $lightProbeProxyVolume: UnityEngine.LightProbeProxyVolume): void;
+            /** @deprecated This method is deprecated. Use DrawMeshInstancedProcedural without a LightProbeProxyVolume argument. #from(6000.5) */
+            public static DrawMeshInstancedProcedural($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $bounds: UnityEngine.Bounds, $count: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage, $lightProbeProxyVolume: UnityEngine.LightProbeProxyVolume): void;
+            /** @deprecated This method is deprecated. Use DrawMeshInstancedIndirect without a LightProbeProxyVolume argument. #from(6000.5) */
             public static DrawMeshInstancedIndirect($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $bounds: UnityEngine.Bounds, $bufferWithArgs: UnityEngine.GraphicsBuffer, $argsOffset: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage, $lightProbeProxyVolume: UnityEngine.LightProbeProxyVolume): void;
+            /** @deprecated This method is deprecated. Use DrawMesh without a LightProbeProxyVolume argument. #from(6000.5) */
+            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $probeAnchor: UnityEngine.Transform, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage, $lightProbeProxyVolume: UnityEngine.LightProbeProxyVolume): void;
             public static DrawProceduralNow($topology: UnityEngine.MeshTopology, $vertexCount: number, $instanceCount?: number): void;
             public static DrawProceduralNow($topology: UnityEngine.MeshTopology, $indexBuffer: UnityEngine.GraphicsBuffer, $indexCount: number, $instanceCount?: number): void;
             public static DrawProceduralIndirectNow($topology: UnityEngine.MeshTopology, $bufferWithArgs: UnityEngine.ComputeBuffer, $argsOffset?: number): void;
@@ -3258,7 +3380,6 @@ declare namespace CS {
             public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean): void;
             public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $probeAnchor: UnityEngine.Transform): void;
             public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $probeAnchor: UnityEngine.Transform, $useLightProbes: boolean): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $probeAnchor: UnityEngine.Transform, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage): void;
             public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>): void;
             public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number): void;
             public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number, $properties: UnityEngine.MaterialPropertyBlock): void;
@@ -3266,16 +3387,12 @@ declare namespace CS {
             public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean): void;
             public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number): void;
             public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera): void;
-            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage): void;
             public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>): void;
             public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock): void;
             public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode): void;
             public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean): void;
             public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number): void;
             public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera): void;
-            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage): void;
-            public static DrawMeshInstancedIndirect($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $bounds: UnityEngine.Bounds, $bufferWithArgs: UnityEngine.ComputeBuffer, $argsOffset?: number, $properties?: UnityEngine.MaterialPropertyBlock, $castShadows?: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows?: boolean, $layer?: number, $camera?: UnityEngine.Camera, $lightProbeUsage?: UnityEngine.Rendering.LightProbeUsage): void;
-            public static DrawMeshInstancedIndirect($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $bounds: UnityEngine.Bounds, $bufferWithArgs: UnityEngine.GraphicsBuffer, $argsOffset?: number, $properties?: UnityEngine.MaterialPropertyBlock, $castShadows?: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows?: boolean, $layer?: number, $camera?: UnityEngine.Camera, $lightProbeUsage?: UnityEngine.Rendering.LightProbeUsage): void;
             public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $sourceRect: UnityEngine.Rect, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number, $color: UnityEngine.Color, $mat: UnityEngine.Material): void;
             public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $sourceRect: UnityEngine.Rect, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number, $color: UnityEngine.Color): void;
             public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $sourceRect: UnityEngine.Rect, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number, $mat: UnityEngine.Material): void;
@@ -3318,7 +3435,9 @@ declare namespace CS {
             public static Flush(): void;
             public static RenderTargetBarrier(): void;
             public static MultMatrix($m: UnityEngine.Matrix4x4): void;
+            /** @deprecated IssuePluginEvent(eventID) is deprecated. Use IssuePluginEvent(callback, eventID) instead. */
             public static IssuePluginEvent($eventID: number): void;
+            /** @deprecated SetRevertBackfacing(revertBackFaces) is deprecated. Use invertCulling property instead. (UnityUpgradable) -> invertCulling */
             public static SetRevertBackfacing($revertBackFaces: boolean): void;
             public static PushMatrix(): void;
             public static PopMatrix(): void;
@@ -3389,6 +3508,26 @@ declare namespace CS {
             public static bakedColorSpace: UnityEngine.ColorSpace;
         }
 
+        class LightProbeOcclusion {
+            protected [__keep_incompatibility]: never;
+            public static readonly MaxLightsPerProbe: number;
+            public GetProbeOcclusionLightIndex($index: number, $lightIndex: $Out<number>): boolean;
+            public SetProbeOcclusionLightIndex($index: number, $value: number): boolean;
+            public GetOcclusion($index: number, $occlusion: $Out<number>): boolean;
+            public SetOcclusion($index: number, $value: number): boolean;
+            public GetOcclusionMaskChannel($index: number, $maskChannel: $Out<number>): boolean;
+            public SetOcclusionMaskChannel($index: number, $value: number): boolean;
+            public SetDefaultValues(): void;
+        }
+        namespace LightProbeOcclusion {
+            type _Occlusion_e__FixedBuffer = any;
+
+            type _OcclusionMaskChannel_e__FixedBuffer = any;
+
+            type _ProbeOcclusionLightIndex_e__FixedBuffer = any;
+
+        }
+
         class LightProbes extends UnityEngine.Object {
             protected [__keep_incompatibility]: never;
             public get positions(): System.Array$1<UnityEngine.Vector3>;
@@ -3414,6 +3553,7 @@ declare namespace CS {
             public static remove_needsRetetrahedralization(handler: System.Action): void;
         }
 
+        /** @deprecated D3DHDRDisplayBitDepth has been replaced by HDRDisplayBitDepth. (UnityUpgradable) -> HDRDisplayBitDepth */
         enum D3DHDRDisplayBitDepth {
             D3DHDRDisplayBitDepth10 = 0,
             D3DHDRDisplayBitDepth16 = 1
@@ -3435,6 +3575,7 @@ declare namespace CS {
             public get minToneMapLuminance(): number;
             public get HDRModeChangeRequested(): boolean;
             public RequestHDRModeChange($enabled: boolean): void;
+            /** @deprecated SetPaperWhiteInNits is deprecated, please use paperWhiteNits instead. */
             public static SetPaperWhiteInNits($paperWhite: number): void;
         }
 
@@ -3481,7 +3622,6 @@ declare namespace CS {
             public layer: number;
             public renderingLayerMask: number;
             public rendererPriority: number;
-            public instanceID: number;
             public entityId: UnityEngine.EntityId;
             public worldBounds: UnityEngine.Bounds;
             public camera: UnityEngine.Camera;
@@ -3497,7 +3637,18 @@ declare namespace CS {
             public sceneCullingMask: bigint;
             public forceMeshLod: number;
             public meshLodSelectionBias: number;
+            public sortingLayerID: number;
+            public sortingOrder: number;
             constructor($mat: UnityEngine.Material);
+        }
+
+        class SpriteParams {
+            protected [__keep_incompatibility]: never;
+            public get sprite(): UnityEngine.Sprite;
+            public get color(): UnityEngine.Color;
+            public get maskInteraction(): UnityEngine.SpriteMaskInteraction;
+            constructor($s: UnityEngine.Sprite);
+            constructor($s: UnityEngine.Sprite, $spriteColor: UnityEngine.Color, $mask?: UnityEngine.SpriteMaskInteraction);
         }
 
         class QualitySettings extends UnityEngine.Object {
@@ -3985,6 +4136,7 @@ declare namespace CS {
             public GetClosestReflectionProbes($result: System.Collections.Generic.List$1<UnityEngine.Rendering.ReflectionProbeBlendInfo>): void;
         }
 
+        /** @deprecated Projector component is deprecated now that the Built-In Render Pipeline is deprecated. To use an alternative, refer to the documentation in the component help icon. #from(6000.5) */
         class Projector extends UnityEngine.Behaviour {
             protected [__keep_incompatibility]: never;
             public nearClipPlane: number;
@@ -4021,6 +4173,8 @@ declare namespace CS {
             public static IsKeywordEnabled($keyword: $Ref<UnityEngine.Rendering.GlobalKeyword>): boolean;
             public static WarmupAllShaders(): void;
             public static PropertyToID($name: string): number;
+            public static TryConvertPropertyIDToName($propertyID: number, $name: $Out<string>): boolean;
+            public static PropertyIDToName($id: number): string;
             public GetDependency($name: string): UnityEngine.Shader;
             public GetPassCountInSubshader($subshaderIndex: number): number;
             public FindPassTagValue($passIndex: number, $tagName: UnityEngine.Rendering.ShaderTagId): UnityEngine.Rendering.ShaderTagId;
@@ -4181,8 +4335,11 @@ declare namespace CS {
             public widthCurve: UnityEngine.AnimationCurve;
             public colorGradient: UnityEngine.Gradient;
             constructor();
+            /** @deprecated Use startWidth, endWidth or widthCurve instead. */
             public SetWidth($start: number, $end: number): void;
+            /** @deprecated Use startColor, endColor or colorGradient instead. */
             public SetColors($start: UnityEngine.Color, $end: UnityEngine.Color): void;
+            /** @deprecated Use positionCount instead. */
             public SetVertexCount($count: number): void;
             public SetPosition($index: number, $position: UnityEngine.Vector3): void;
             public GetPosition($index: number): UnityEngine.Vector3;
@@ -4580,6 +4737,7 @@ declare namespace CS {
             constructor();
         }
 
+        /** @deprecated The Lens Flare component is deprecated now that the Built-In Render Pipeline is deprecated. To use an alternative, refer to the documentation in the component help icon. #from(6000.5) */
         class LensFlare extends UnityEngine.Behaviour {
             protected [__keep_incompatibility]: never;
             public brightness: number;
@@ -4587,82 +4745,6 @@ declare namespace CS {
             public color: UnityEngine.Color;
             public flare: UnityEngine.Flare;
             constructor();
-        }
-
-        class LightBakingOutput {
-            protected [__keep_incompatibility]: never;
-            public probeOcclusionLightIndex: number;
-            public occlusionMaskChannel: number;
-            public lightmapBakeType: UnityEngine.LightmapBakeType;
-            public mixedLightingMode: UnityEngine.MixedLightingMode;
-            public isBaked: boolean;
-        }
-
-        enum LightShadowCasterMode {
-            Default = 0,
-            NonLightmappedOnly = 1,
-            Everything = 2
-        }
-
-        class Light extends UnityEngine.Behaviour {
-            protected [__keep_incompatibility]: never;
-            public type: UnityEngine.LightType;
-            public shape: UnityEngine.LightShape;
-            public spotAngle: number;
-            public innerSpotAngle: number;
-            public color: UnityEngine.Color;
-            public colorTemperature: number;
-            public useColorTemperature: boolean;
-            public intensity: number;
-            public bounceIntensity: number;
-            public lightUnit: UnityEngine.Rendering.LightUnit;
-            public luxAtDistance: number;
-            public enableSpotReflector: boolean;
-            public useBoundingSphereOverride: boolean;
-            public boundingSphereOverride: UnityEngine.Vector4;
-            public useViewFrustumForShadowCasterCull: boolean;
-            public forceVisible: boolean;
-            public shadowCustomResolution: number;
-            public shadowBias: number;
-            public shadowNormalBias: number;
-            public shadowNearPlane: number;
-            public useShadowMatrixOverride: boolean;
-            public shadowMatrixOverride: UnityEngine.Matrix4x4;
-            public range: number;
-            public get dilatedRange(): number;
-            public flare: UnityEngine.Flare;
-            public bakingOutput: UnityEngine.LightBakingOutput;
-            public cullingMask: number;
-            public renderingLayerMask: number;
-            public lightShadowCasterMode: UnityEngine.LightShadowCasterMode;
-            public shadowRadius: number;
-            public shadowAngle: number;
-            public shadows: UnityEngine.LightShadows;
-            public shadowStrength: number;
-            public shadowResolution: UnityEngine.Rendering.LightShadowResolution;
-            public layerShadowCullDistances: System.Array$1<number>;
-            public cookieSize: number;
-            public cookieSize2D: UnityEngine.Vector2;
-            public cookie: UnityEngine.Texture;
-            public renderMode: UnityEngine.LightRenderMode;
-            public areaSize: UnityEngine.Vector2;
-            public lightmapBakeType: UnityEngine.LightmapBakeType;
-            public get commandBufferCount(): number;
-            public static pixelLightCount: number;
-            public get isBaked(): boolean;
-            public alreadyLightmapped: boolean;
-            constructor();
-            public Reset(): void;
-            public SetLightDirty(): void;
-            public AddCommandBuffer($evt: UnityEngine.Rendering.LightEvent, $buffer: UnityEngine.Rendering.CommandBuffer): void;
-            public AddCommandBuffer($evt: UnityEngine.Rendering.LightEvent, $buffer: UnityEngine.Rendering.CommandBuffer, $shadowPassMask: UnityEngine.Rendering.ShadowMapPass): void;
-            public AddCommandBufferAsync($evt: UnityEngine.Rendering.LightEvent, $buffer: UnityEngine.Rendering.CommandBuffer, $queueType: UnityEngine.Rendering.ComputeQueueType): void;
-            public AddCommandBufferAsync($evt: UnityEngine.Rendering.LightEvent, $buffer: UnityEngine.Rendering.CommandBuffer, $shadowPassMask: UnityEngine.Rendering.ShadowMapPass, $queueType: UnityEngine.Rendering.ComputeQueueType): void;
-            public RemoveCommandBuffer($evt: UnityEngine.Rendering.LightEvent, $buffer: UnityEngine.Rendering.CommandBuffer): void;
-            public RemoveCommandBuffers($evt: UnityEngine.Rendering.LightEvent): void;
-            public RemoveAllCommandBuffers(): void;
-            public GetCommandBuffers($evt: UnityEngine.Rendering.LightEvent): System.Array$1<UnityEngine.Rendering.CommandBuffer>;
-            public static GetLights($type: UnityEngine.LightType, $layer: number): System.Array$1<UnityEngine.Light>;
         }
 
         class Skybox extends UnityEngine.Behaviour {
@@ -4732,6 +4814,7 @@ declare namespace CS {
             Tube = 7
         }
 
+        /** @deprecated This property has been deprecated. Use LightType.Spot, LightType.Pyramid, or LightType.Box instead. */
         enum LightShape {
             Cone = 0,
             Pyramid = 1,
@@ -4780,6 +4863,7 @@ declare namespace CS {
             HighQuality = 3
         }
 
+        /** @deprecated See QualitySettings.names, QualitySettings.SetQualityLevel, and QualitySettings.GetQualityLevel */
         enum QualityLevel {
             Fastest = 0,
             Fast = 1,
@@ -4848,6 +4932,7 @@ declare namespace CS {
             ForceEnable = 2
         }
 
+        /** @deprecated BlendWeights is obsolete. Use SkinWeights instead (UnityUpgradable) -> SkinWeights */
         enum BlendWeights {
             OneBone = 1,
             TwoBones = 2,
@@ -5129,6 +5214,7 @@ declare namespace CS {
             EmissiveIsBlack = 4
         }
 
+        /** @deprecated The Light Probe Proxy Volume component is deprecated now that the Built-In Render Pipeline is deprecated. To use an alternative, refer to the documentation in the component help icon. #from(6000.5) */
         class LightProbeProxyVolume extends UnityEngine.Behaviour {
             protected [__keep_incompatibility]: never;
             public static get isFeatureSupported(): boolean;
@@ -5292,6 +5378,87 @@ declare namespace CS {
             public GetShaderUserValue(): number;
         }
 
+        class LightBakingOutput {
+            protected [__keep_incompatibility]: never;
+            public probeOcclusionLightIndex: number;
+            public occlusionMaskChannel: number;
+            public lightmapBakeType: UnityEngine.LightmapBakeType;
+            public mixedLightingMode: UnityEngine.MixedLightingMode;
+            public isBaked: boolean;
+        }
+
+        enum LightShadowCasterMode {
+            Default = 0,
+            NonLightmappedOnly = 1,
+            ShadowMask = 1,
+            Everything = 2,
+            DistanceShadowMask = 2
+        }
+
+        class Light extends UnityEngine.Behaviour {
+            protected [__keep_incompatibility]: never;
+            public shadows: UnityEngine.LightShadows;
+            public shadowStrength: number;
+            public shadowResolution: UnityEngine.Rendering.LightShadowResolution;
+            public layerShadowCullDistances: System.Array$1<number>;
+            public cookieSize2D: UnityEngine.Vector2;
+            public cookie: UnityEngine.Texture;
+            public renderMode: UnityEngine.LightRenderMode;
+            public areaSize: UnityEngine.Vector2;
+            public lightmapBakeType: UnityEngine.LightmapBakeType;
+            public get commandBufferCount(): number;
+            public type: UnityEngine.LightType;
+            public spotAngle: number;
+            public innerSpotAngle: number;
+            public color: UnityEngine.Color;
+            public colorTemperature: number;
+            public useColorTemperature: boolean;
+            public intensity: number;
+            public bounceIntensity: number;
+            public lightUnit: UnityEngine.Rendering.LightUnit;
+            public luxAtDistance: number;
+            public enableSpotReflector: boolean;
+            public useBoundingSphereOverride: boolean;
+            public boundingSphereOverride: UnityEngine.Vector4;
+            public useViewFrustumForShadowCasterCull: boolean;
+            public forceVisible: boolean;
+            public shadowCustomResolution: number;
+            public shadowBias: number;
+            public shadowNormalBias: number;
+            public shadowNearPlane: number;
+            public useShadowMatrixOverride: boolean;
+            public shadowMatrixOverride: UnityEngine.Matrix4x4;
+            public range: number;
+            public get dilatedRange(): number;
+            public flare: UnityEngine.Flare;
+            public bakingOutput: UnityEngine.LightBakingOutput;
+            public cullingMask: number;
+            public renderingLayerMask: number;
+            public lightShadowCasterMode: UnityEngine.LightShadowCasterMode;
+            public shapeRadius: number;
+            public shadowAngle: number;
+            public cookieSize: number;
+            public shadowRadius: number;
+            public shape: UnityEngine.LightShape;
+            public static pixelLightCount: number;
+            public get isBaked(): boolean;
+            public alreadyLightmapped: boolean;
+            constructor();
+            public Reset(): void;
+            public SetLightDirty(): void;
+            public AddCommandBuffer($evt: UnityEngine.Rendering.LightEvent, $buffer: UnityEngine.Rendering.CommandBuffer): void;
+            public AddCommandBuffer($evt: UnityEngine.Rendering.LightEvent, $buffer: UnityEngine.Rendering.CommandBuffer, $shadowPassMask: UnityEngine.Rendering.ShadowMapPass): void;
+            public AddCommandBufferAsync($evt: UnityEngine.Rendering.LightEvent, $buffer: UnityEngine.Rendering.CommandBuffer, $queueType: UnityEngine.Rendering.ComputeQueueType): void;
+            public AddCommandBufferAsync($evt: UnityEngine.Rendering.LightEvent, $buffer: UnityEngine.Rendering.CommandBuffer, $shadowPassMask: UnityEngine.Rendering.ShadowMapPass, $queueType: UnityEngine.Rendering.ComputeQueueType): void;
+            public RemoveCommandBuffer($evt: UnityEngine.Rendering.LightEvent, $buffer: UnityEngine.Rendering.CommandBuffer): void;
+            public RemoveCommandBuffers($evt: UnityEngine.Rendering.LightEvent): void;
+            public RemoveAllCommandBuffers(): void;
+            public GetCommandBuffers($evt: UnityEngine.Rendering.LightEvent): System.Array$1<UnityEngine.Rendering.CommandBuffer>;
+            /** @deprecated Light.GetLights has been deprecated, use FindObjectsOfType in combination with light.cullingmask/light.type */
+            public static GetLights($type: UnityEngine.LightType, $layer: number): System.Array$1<UnityEngine.Light>;
+        }
+
+        /** @deprecated LightmappingMode has been deprecated. Use LightmapBakeType instead (UnityUpgradable) -> LightmapBakeType */
         enum LightmappingMode {
             Mixed = 1,
             Baked = 2,
@@ -5341,6 +5508,7 @@ declare namespace CS {
             constructor();
             public RecalculateBounds(): void;
             public GetLODs(): System.Array$1<UnityEngine.LOD>;
+            /** @deprecated Use SetLODs instead. */
             public SetLODS($lods: System.Array$1<UnityEngine.LOD>): void;
             public SetLODs($lods: System.Array$1<UnityEngine.LOD>): void;
             public ForceLOD($index: number): void;
@@ -5433,6 +5601,7 @@ declare namespace CS {
             public get graphicsTexture(): UnityEngine.Rendering.GraphicsTexture;
             public static SetGlobalAnisotropicFilteringLimits($forcedMin: number, $globalMax: number): void;
             public GetNativeTexturePtr(): number;
+            /** @deprecated Use GetNativeTexturePtr instead. */
             public GetNativeTextureID(): number;
             public IncrementUpdateCount(): void;
             public static SetStreamingTextureMaterialDebugProperties(): void;
@@ -5515,8 +5684,11 @@ declare namespace CS {
             public Reinitialize($width: number, $height: number): boolean;
             public Reinitialize($width: number, $height: number, $format: UnityEngine.TextureFormat, $hasMipMap: boolean): boolean;
             public Reinitialize($width: number, $height: number, $format: UnityEngine.Experimental.Rendering.GraphicsFormat, $hasMipMap: boolean): boolean;
+            /** @deprecated Texture2D.Resize(int, int) has been deprecated because it actually reinitializes the texture. Use Texture2D.Reinitialize(int, int) instead (UnityUpgradable) -> Reinitialize([*] System.Int32, [*] System.Int32) */
             public Resize($width: number, $height: number): boolean;
+            /** @deprecated Texture2D.Resize(int, int, TextureFormat, bool) has been deprecated because it actually reinitializes the texture. Use Texture2D.Reinitialize(int, int, TextureFormat, bool) instead (UnityUpgradable) -> Reinitialize([*] System.Int32, [*] System.Int32, UnityEngine.TextureFormat, [*] System.Boolean) */
             public Resize($width: number, $height: number, $format: UnityEngine.TextureFormat, $hasMipMap: boolean): boolean;
+            /** @deprecated Texture2D.Resize(int, int, GraphicsFormat, bool) has been deprecated because it actually reinitializes the texture. Use Texture2D.Reinitialize(int, int, GraphicsFormat, bool) instead (UnityUpgradable) -> Reinitialize([*] System.Int32, [*] System.Int32, UnityEngine.Experimental.Rendering.GraphicsFormat, [*] System.Boolean) */
             public Resize($width: number, $height: number, $format: UnityEngine.Experimental.Rendering.GraphicsFormat, $hasMipMap: boolean): boolean;
             public ReadPixels($source: UnityEngine.Rect, $destX: number, $destY: number, $recalculateMipMaps: boolean): void;
             public ReadPixels($source: UnityEngine.Rect, $destX: number, $destY: number): void;
@@ -5759,6 +5931,7 @@ declare namespace CS {
             public ApplyDynamicScale(): void;
             public GetNativeDepthBufferPtr(): number;
             public DiscardContents($discardColor: boolean, $discardDepth: boolean): void;
+            /** @deprecated This function has no effect. */
             public MarkRestoreExpected(): void;
             public DiscardContents(): void;
             public ResolveAntiAliasedSurface(): void;
@@ -5785,6 +5958,7 @@ declare namespace CS {
             public static GetTemporary($width: number, $height: number, $depthBuffer: number, $format: UnityEngine.RenderTextureFormat): UnityEngine.RenderTexture;
             public static GetTemporary($width: number, $height: number, $depthBuffer: number): UnityEngine.RenderTexture;
             public static GetTemporary($width: number, $height: number): UnityEngine.RenderTexture;
+            /** @deprecated GetTexelOffset always returns zero now, no point in using it. */
             public GetTexelOffset(): UnityEngine.Vector2;
         }
 
@@ -6360,6 +6534,7 @@ declare namespace CS {
             F24 = 678
         }
 
+        /** @deprecated iPhoneScreenOrientation enumeration is deprecated. Please use ScreenOrientation instead (UnityUpgradable) */
         enum iPhoneScreenOrientation {
             Unknown = 0,
             Portrait = 1,
@@ -6370,12 +6545,14 @@ declare namespace CS {
             Landscape = 6
         }
 
+        /** @deprecated iPhoneNetworkReachability enumeration is deprecated. Please use NetworkReachability instead (UnityUpgradable) -> NetworkReachability */
         enum iPhoneNetworkReachability {
             NotReachable = 0,
             ReachableViaCarrierDataNetwork = 1,
             ReachableViaWiFiNetwork = 2
         }
 
+        /** @deprecated iPhoneGeneration enumeration is deprecated. Please use iOS.DeviceGeneration instead (UnityUpgradable) -> UnityEngine.iOS.DeviceGeneration */
         enum iPhoneGeneration {
             Unknown = 0,
             iPhone = 1,
@@ -6408,6 +6585,7 @@ declare namespace CS {
             constructor();
         }
 
+        /** @deprecated iPhoneTouchPhase enumeration is deprecated. Please use TouchPhase instead (UnityUpgradable) -> TouchPhase */
         enum iPhoneTouchPhase {
             Began = 0,
             Moved = 1,
@@ -6416,6 +6594,7 @@ declare namespace CS {
             Canceled = 4
         }
 
+        /** @deprecated iPhoneTouch struct is deprecated. Please use Touch instead (UnityUpgradable) -> Touch */
         class iPhoneTouch {
             protected [__keep_incompatibility]: never;
             public get fingerId(): number;
@@ -6426,6 +6605,7 @@ declare namespace CS {
             public get phase(): UnityEngine.iPhoneTouchPhase;
         }
 
+        /** @deprecated iPhoneMovieControlMode enumeration is deprecated. Please use FullScreenMovieControlMode instead (UnityUpgradable) -> FullScreenMovieControlMode */
         enum iPhoneMovieControlMode {
             Full = 0,
             Minimal = 1,
@@ -6434,6 +6614,7 @@ declare namespace CS {
             VolumeOnly = 4
         }
 
+        /** @deprecated iPhoneMovieScalingMode enumeration is deprecated. Please use FullScreenMovieScalingMode instead  (UnityUpgradable) -> FullScreenMovieScalingMode */
         enum iPhoneMovieScalingMode {
             None = 0,
             AspectFit = 1,
@@ -6446,15 +6627,23 @@ declare namespace CS {
             public static get isApplicationGenuine(): boolean;
             public static get isApplicationGenuineAvailable(): boolean;
             constructor();
+            /** @deprecated PlayMovie method is deprecated. Please use Handheld.PlayFullScreenMovie instead (UnityUpgradable) -> [mscorlib] System.Boolean Handheld.PlayFullScreenMovie(*) */
             public static PlayMovie($path: string, $bgColor: UnityEngine.Color, $controlMode: UnityEngine.iPhoneMovieControlMode, $scalingMode: UnityEngine.iPhoneMovieScalingMode): void;
+            /** @deprecated PlayMovie method is deprecated. Please use Handheld.PlayFullScreenMovie instead (UnityUpgradable) -> [mscorlib] System.Boolean Handheld.PlayFullScreenMovie(*) */
             public static PlayMovie($path: string, $bgColor: UnityEngine.Color, $controlMode: UnityEngine.iPhoneMovieControlMode): void;
+            /** @deprecated PlayMovie method is deprecated. Please use Handheld.PlayFullScreenMovie instead (UnityUpgradable) -> [mscorlib] System.Boolean Handheld.PlayFullScreenMovie(*) */
             public static PlayMovie($path: string, $bgColor: UnityEngine.Color): void;
+            /** @deprecated PlayMovieURL method is deprecated. Please use Handheld.PlayFullScreenMovie instead (UnityUpgradable) -> [mscorlib] System.Boolean Handheld.PlayFullScreenMovie(*) */
             public static PlayMovieURL($url: string, $bgColor: UnityEngine.Color, $controlMode: UnityEngine.iPhoneMovieControlMode, $scalingMode: UnityEngine.iPhoneMovieScalingMode): void;
+            /** @deprecated PlayMovieURL method is deprecated. Please use Handheld.PlayFullScreenMovie instead (UnityUpgradable) -> [mscorlib] System.Boolean Handheld.PlayFullScreenMovie(*) */
             public static PlayMovieURL($url: string, $bgColor: UnityEngine.Color, $controlMode: UnityEngine.iPhoneMovieControlMode): void;
+            /** @deprecated PlayMovieURL method is deprecated. Please use Handheld.PlayFullScreenMovie instead (UnityUpgradable) -> [mscorlib] System.Boolean Handheld.PlayFullScreenMovie(*) */
             public static PlayMovieURL($url: string, $bgColor: UnityEngine.Color): void;
+            /** @deprecated Vibrate method is deprecated. Please use Handheld.Vibrate instead (UnityUpgradable) -> Handheld.Vibrate() */
             public static Vibrate(): void;
         }
 
+        /** @deprecated iPhoneKeyboardType enumeration is deprecated. Please use TouchScreenKeyboardType instead (UnityUpgradable) -> TouchScreenKeyboardType */
         enum iPhoneKeyboardType {
             Default = 0,
             ASCIICapable = 1,
@@ -6466,6 +6655,7 @@ declare namespace CS {
             EmailAddress = 7
         }
 
+        /** @deprecated iPhoneKeyboard class is deprecated. Please use TouchScreenKeyboard instead (UnityUpgradable) -> TouchScreenKeyboard */
         class iPhoneKeyboard {
             protected [__keep_incompatibility]: never;
             public text: string;
@@ -6477,12 +6667,14 @@ declare namespace CS {
             constructor();
         }
 
+        /** @deprecated iPhoneAccelerationEvent struct is deprecated. Please use AccelerationEvent instead (UnityUpgradable) -> AccelerationEvent */
         class iPhoneAccelerationEvent {
             protected [__keep_incompatibility]: never;
             public get acceleration(): UnityEngine.Vector3;
             public get deltaTime(): number;
         }
 
+        /** @deprecated iPhoneOrientation enumeration is deprecated. Please use DeviceOrientation instead (UnityUpgradable) -> DeviceOrientation */
         enum iPhoneOrientation {
             Unknown = 0,
             Portrait = 1,
@@ -6493,6 +6685,7 @@ declare namespace CS {
             FaceDown = 6
         }
 
+        /** @deprecated iPhoneInput class is deprecated. Please use Input instead (UnityUpgradable) -> Input */
         class iPhoneInput {
             protected [__keep_incompatibility]: never;
             public static get accelerationEvents(): System.Array$1<UnityEngine.iPhoneAccelerationEvent>;
@@ -6506,6 +6699,7 @@ declare namespace CS {
             public static GetAccelerationEvent($index: number): UnityEngine.iPhoneAccelerationEvent;
         }
 
+        /** @deprecated iPhone class is deprecated. Please use iOS.Device instead (UnityUpgradable) -> UnityEngine.iOS.Device */
         class iPhone {
             protected [__keep_incompatibility]: never;
             public static get generation(): UnityEngine.iPhoneGeneration;
@@ -6517,6 +6711,7 @@ declare namespace CS {
             public static ResetNoBackupFlag($path: string): void;
         }
 
+        /** @deprecated ADBannerView class is obsolete, Apple iAD service discontinued */
         class ADBannerView {
             protected [__keep_incompatibility]: never;
             public get loaded(): boolean;
@@ -6566,6 +6761,7 @@ declare namespace CS {
 
         }
 
+        /** @deprecated ADInterstitialAd class is obsolete, Apple iAD service discontinued */
         class ADInterstitialAd {
             protected [__keep_incompatibility]: never;
             public static get isAvailable(): boolean;
@@ -7074,7 +7270,9 @@ declare namespace CS {
             public ToString(): string;
             public ToString($format: string): string;
             public ToString($format: string, $formatProvider: System.IFormatProvider): string;
+            /** @deprecated Use Vector3.Angle instead. AngleBetween uses radians instead of degrees and was deprecated for this reason */
             public static AngleBetween($from: UnityEngine.Vector3, $to: UnityEngine.Vector3): number;
+            /** @deprecated Use Vector3.ProjectOnPlane instead. */
             public static Exclude($excludeThis: UnityEngine.Vector3, $fromThat: UnityEngine.Vector3): UnityEngine.Vector3;
             public get_Item($index: number): number;
             public set_Item($index: number, value: number): void;
@@ -7136,19 +7334,33 @@ declare namespace CS {
             public ToString(): string;
             public ToString($format: string): string;
             public ToString($format: string, $formatProvider: System.IFormatProvider): string;
+            /** @deprecated Use Quaternion.Euler instead. This function was deprecated because it uses radians instead of degrees. */
             public static EulerRotation($x: number, $y: number, $z: number): UnityEngine.Quaternion;
+            /** @deprecated Use Quaternion.Euler instead. This function was deprecated because it uses radians instead of degrees. */
             public static EulerRotation($euler: UnityEngine.Vector3): UnityEngine.Quaternion;
+            /** @deprecated Use Quaternion.Euler instead. This function was deprecated because it uses radians instead of degrees. */
             public SetEulerRotation($x: number, $y: number, $z: number): void;
+            /** @deprecated Use Quaternion.Euler instead. This function was deprecated because it uses radians instead of degrees. */
             public SetEulerRotation($euler: UnityEngine.Vector3): void;
+            /** @deprecated Use Quaternion.eulerAngles instead. This function was deprecated because it uses radians instead of degrees. */
             public ToEuler(): UnityEngine.Vector3;
+            /** @deprecated Use Quaternion.Euler instead. This function was deprecated because it uses radians instead of degrees. */
             public static EulerAngles($x: number, $y: number, $z: number): UnityEngine.Quaternion;
+            /** @deprecated Use Quaternion.Euler instead. This function was deprecated because it uses radians instead of degrees. */
             public static EulerAngles($euler: UnityEngine.Vector3): UnityEngine.Quaternion;
+            /** @deprecated Use Quaternion.ToAngleAxis instead. This function was deprecated because it uses radians instead of degrees. */
             public ToAxisAngle($axis: $Out<UnityEngine.Vector3>, $angle: $Out<number>): void;
+            /** @deprecated Use Quaternion.Euler instead. This function was deprecated because it uses radians instead of degrees. */
             public SetEulerAngles($x: number, $y: number, $z: number): void;
+            /** @deprecated Use Quaternion.Euler instead. This function was deprecated because it uses radians instead of degrees. */
             public SetEulerAngles($euler: UnityEngine.Vector3): void;
+            /** @deprecated Use Quaternion.eulerAngles instead. This function was deprecated because it uses radians instead of degrees. */
             public static ToEulerAngles($rotation: UnityEngine.Quaternion): UnityEngine.Vector3;
+            /** @deprecated Use Quaternion.eulerAngles instead. This function was deprecated because it uses radians instead of degrees. */
             public ToEulerAngles(): UnityEngine.Vector3;
+            /** @deprecated Use Quaternion.AngleAxis instead. This function was deprecated because it uses radians instead of degrees. */
             public SetAxisAngle($axis: UnityEngine.Vector3, $angle: number): void;
+            /** @deprecated Use Quaternion.AngleAxis instead. This function was deprecated because it uses radians instead of degrees */
             public static AxisAngle($axis: UnityEngine.Vector3, $angle: number): UnityEngine.Quaternion;
             public get_Item($index: number): number;
             public set_Item($index: number, value: number): void;
@@ -7480,6 +7692,7 @@ declare namespace CS {
             public get applyToCollection(): boolean;
         }
 
+        /** @deprecated Derive collection attributes from 'PropertyAttribute' and set its 'applyToCollection' property to 'true'. */
         class PropertyCollectionAttribute extends UnityEngine.PropertyAttribute {
             protected [__keep_incompatibility]: never;
         }
@@ -7599,6 +7812,7 @@ declare namespace CS {
             public static get value(): number;
             public static get insideUnitSphere(): UnityEngine.Vector3;
             public static get insideUnitCircle(): UnityEngine.Vector2;
+            public static get onUnitCircle(): UnityEngine.Vector2;
             public static get onUnitSphere(): UnityEngine.Vector3;
             public static get rotation(): UnityEngine.Quaternion;
             public static get rotationUniform(): UnityEngine.Quaternion;
@@ -7606,7 +7820,9 @@ declare namespace CS {
             public static InitState($seed: number): void;
             public static Range($minInclusive: number, $maxInclusive: number): number;
             public static Range($minInclusive: number, $maxExclusive: number): number;
+            /** @deprecated Use Random.Range instead */
             public static RandomRange($min: number, $max: number): number;
+            /** @deprecated Use Random.Range instead */
             public static RandomRange($min: number, $max: number): number;
             public static ColorHSV(): UnityEngine.Color;
             public static ColorHSV($hueMin: number, $hueMax: number): UnityEngine.Color;
@@ -7673,15 +7889,15 @@ declare namespace CS {
             public static UnloadAsset($assetToUnload: UnityEngine.Object): void;
             public static UnloadUnusedAssets(): UnityEngine.AsyncOperation;
             public static EntityIdToObject($entityId: UnityEngine.EntityId): UnityEngine.Object;
-            public static InstanceIDToObject($instanceID: number): UnityEngine.Object;
             public static EntityIdsToObjectList($entityIds: Unity.Collections.NativeArray$1<UnityEngine.EntityId>, $objects: System.Collections.Generic.List$1<UnityEngine.Object>): void;
-            public static InstanceIDToObjectList($instanceIDs: Unity.Collections.NativeArray$1<number>, $objects: System.Collections.Generic.List$1<UnityEngine.Object>): void;
             public static EntityIdIsValid($entityId: UnityEngine.EntityId): boolean;
-            public static InstanceIDIsValid($instanceId: number): boolean;
-            public static InstanceIDsToValidArray($instanceIDs: Unity.Collections.NativeArray$1<number>, $validArray: Unity.Collections.NativeArray$1<boolean>): void;
             public static EntityIdsToValidArray($entityIDs: Unity.Collections.NativeArray$1<UnityEngine.EntityId>, $validArray: Unity.Collections.NativeArray$1<boolean>): void;
-            public static InstanceIDsToValidArray($instanceIDs: System.ReadOnlySpan$1<number>, $validArray: System.Span$1<boolean>): void;
             public static EntityIdsToValidArray($entityIds: System.ReadOnlySpan$1<UnityEngine.EntityId>, $validArray: System.Span$1<boolean>): void;
+        }
+
+        class AssemblyExtension {
+            protected [__keep_incompatibility]: never;
+            public static GetLoadedAssemblyPath(): string;
         }
 
         class AsyncInstantiateOperation extends UnityEngine.AsyncOperation {
@@ -7811,6 +8027,7 @@ declare namespace CS {
             public static FromAsyncOperation($op: UnityEngine.AsyncOperation, $cancellationToken?: System.Threading.CancellationToken): UnityEngine.Awaitable;
             public GetAwaiter(): UnityEngine.Awaitable.Awaiter;
             public Cancel(): void;
+            public LogExceptionsAndForget(): void;
             public static NextFrameAsync($cancellationToken?: System.Threading.CancellationToken): UnityEngine.Awaitable;
             public static WaitForSecondsAsync($seconds: number, $cancellationToken?: System.Threading.CancellationToken): UnityEngine.Awaitable;
             public static FixedUpdateAsync($cancellationToken?: System.Threading.CancellationToken): UnityEngine.Awaitable;
@@ -7938,7 +8155,6 @@ declare namespace CS {
             public get gameObject(): UnityEngine.GameObject;
             public tag: string;
             constructor();
-            public GetComponent<T extends UnityEngine.Component>($type: { new(...args: any[]): T }): T;
             public GetComponent($type: System.TypeLike): UnityEngine.Component;
             public GetComponent<T>(): T;
             public TryGetComponent($type: System.TypeLike, $component: $Out<UnityEngine.Component>): boolean;
@@ -8006,7 +8222,6 @@ declare namespace CS {
             public get transform(): UnityEngine.Transform;
             public get transformHandle(): UnityEngine.TransformHandle;
             public layer: number;
-            public active: boolean;
             public get activeSelf(): boolean;
             public get activeInHierarchy(): boolean;
             public isStatic: boolean;
@@ -8018,16 +8233,13 @@ declare namespace CS {
             constructor();
             constructor($name: string, ...components: System.TypeLike[]);
             public static CreatePrimitive($type: UnityEngine.PrimitiveType): UnityEngine.GameObject;
-            public GetComponent<T extends UnityEngine.Component>($type: { new(...args: any[]): T }): T;
             public GetComponent<T>(): T;
             public GetComponent($type: System.TypeLike): UnityEngine.Component;
             public GetComponent($type: string): UnityEngine.Component;
-            public GetComponentInChildren<T extends UnityEngine.Component>($type: { new(...args: any[]): T }): T;
             public GetComponentInChildren($type: System.TypeLike, $includeInactive: boolean): UnityEngine.Component;
             public GetComponentInChildren($type: System.TypeLike): UnityEngine.Component;
             public GetComponentInChildren<T>(): T;
             public GetComponentInChildren<T>($includeInactive: boolean): T;
-            public GetComponentInParent<T extends UnityEngine.Component>($type: { new(...args: any[]): T }): T;
             public GetComponentInParent($type: System.TypeLike, $includeInactive: boolean): UnityEngine.Component;
             public GetComponentInParent($type: System.TypeLike): UnityEngine.Component;
             public GetComponentInParent<T>(): T;
@@ -8054,7 +8266,6 @@ declare namespace CS {
             public SendMessageUpwards($methodName: string, $options: UnityEngine.SendMessageOptions): void;
             public SendMessage($methodName: string, $options: UnityEngine.SendMessageOptions): void;
             public BroadcastMessage($methodName: string, $options: UnityEngine.SendMessageOptions): void;
-            public AddComponent<T extends UnityEngine.Component>($type: { new(...args: any[]): T }): T;
             public AddComponent($componentType: System.TypeLike): UnityEngine.Component;
             public AddComponent<T extends UnityEngine.Component>(): T;
             public GetComponentCount(): number;
@@ -8062,7 +8273,6 @@ declare namespace CS {
             public GetComponentAtIndex<T extends UnityEngine.Component>($index: number): T;
             public GetComponentIndex($component: UnityEngine.Component): number;
             public SetActive($value: boolean): void;
-            public SetActiveRecursively($state: boolean): void;
             public CompareTag($tag: string): boolean;
             public CompareTag($tag: UnityEngine.TagHandle): boolean;
             public static FindGameObjectWithTag($tag: string): UnityEngine.GameObject;
@@ -8077,14 +8287,28 @@ declare namespace CS {
             public BroadcastMessage($methodName: string, $parameter: any): void;
             public BroadcastMessage($methodName: string): void;
             public static Find($name: string): UnityEngine.GameObject;
-            public static SetGameObjectsActive($instanceIDs: Unity.Collections.NativeArray$1<number>, $active: boolean): void;
             public static SetGameObjectsActive($entityIds: Unity.Collections.NativeArray$1<UnityEngine.EntityId>, $active: boolean): void;
-            public static SetGameObjectsActive($instanceIDs: System.ReadOnlySpan$1<number>, $active: boolean): void;
             public static SetGameObjectsActive($entityIds: System.ReadOnlySpan$1<UnityEngine.EntityId>, $active: boolean): void;
-            public static InstantiateGameObjects($sourceInstanceID: number, $count: number, $newInstanceIDs: Unity.Collections.NativeArray$1<number>, $newTransformInstanceIDs: Unity.Collections.NativeArray$1<number>, $destinationScene?: UnityEngine.SceneManagement.Scene): void;
             public static InstantiateGameObjects($sourceEntityId: UnityEngine.EntityId, $count: number, $newEntityIds: Unity.Collections.NativeArray$1<UnityEngine.EntityId>, $newTransformEntityIds: Unity.Collections.NativeArray$1<UnityEngine.EntityId>, $destinationScene?: UnityEngine.SceneManagement.Scene): void;
-            public static GetScene($instanceID: number): UnityEngine.SceneManagement.Scene;
             public static GetScene($entityId: UnityEngine.EntityId): UnityEngine.SceneManagement.Scene;
+            public IsDestroying(): boolean;
+        }
+
+        class GUID implements System.IEquatable$1<UnityEngine.GUID>, System.IComparable, System.IComparable$1<UnityEngine.GUID> {
+            protected [__keep_incompatibility]: never;
+            constructor($hexRepresentation: string);
+            constructor($a: number, $b: number, $c: number, $d: number);
+            public Equals($obj: any): boolean;
+            public Equals($obj: UnityEngine.GUID): boolean;
+            public GetHashCode(): number;
+            public CompareTo($obj: any): number;
+            public CompareTo($rhs: UnityEngine.GUID): number;
+            public Empty(): boolean;
+            /** @deprecated Use TryParse instead */
+            public ParseExact($hex: string): boolean;
+            public static TryParse($hex: string, $result: $Out<UnityEngine.GUID>): boolean;
+            public static Generate(): UnityEngine.GUID;
+            public ToString(): string;
         }
 
         class InspectorOrderAttribute extends UnityEngine.PropertyAttribute {
@@ -8116,10 +8340,8 @@ declare namespace CS {
             public get isBroken(): boolean;
             public asset: T;
             public entityId: UnityEngine.EntityId;
-            public instanceID: number;
             constructor($asset: T);
             constructor($entityId: UnityEngine.EntityId);
-            constructor($instanceID: number);
         }
 
         class MonoBehaviour extends UnityEngine.Behaviour {
@@ -8139,6 +8361,7 @@ declare namespace CS {
             public StartCoroutine($methodName: string): UnityEngine.Coroutine;
             public StartCoroutine($methodName: string, $value: any): UnityEngine.Coroutine;
             public StartCoroutine($routine: System.Collections.IEnumerator): UnityEngine.Coroutine;
+            /** @deprecated StartCoroutine_Auto has been deprecated. Use StartCoroutine instead (UnityUpgradable) -> StartCoroutine([mscorlib] System.Collections.IEnumerator) */
             public StartCoroutine_Auto($routine: System.Collections.IEnumerator): UnityEngine.Coroutine;
             public StopCoroutine($routine: System.Collections.IEnumerator): void;
             public StopCoroutine($routine: UnityEngine.Coroutine): void;
@@ -8153,6 +8376,13 @@ declare namespace CS {
             public length: number;
             public get end(): number;
             constructor($start: number, $length: number);
+        }
+
+        class ReplacementComponentAttribute extends System.Attribute {
+            protected [__keep_incompatibility]: never;
+            public get TypeName(): string;
+            public get DisplayName(): string;
+            constructor($typeName: string, $displayName?: string);
         }
 
         enum RuntimeInitializeLoadType {
@@ -8173,6 +8403,7 @@ declare namespace CS {
         class ScriptableObject extends UnityEngine.Object {
             protected [__keep_incompatibility]: never;
             constructor();
+            /** @deprecated Use EditorUtility.SetDirty instead */
             public SetDirty(): void;
             public static CreateInstance($className: string): UnityEngine.ScriptableObject;
             public static CreateInstance($type: System.TypeLike): UnityEngine.ScriptableObject;
@@ -8261,6 +8492,7 @@ declare namespace CS {
             HideAndDontSave = 61
         }
 
+        /** @deprecated FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter. */
         enum FindObjectsSortMode {
             None = 0,
             InstanceID = 1
@@ -8279,7 +8511,8 @@ declare namespace CS {
             public originalImmutable: boolean;
         }
 
-        class InstanceID implements System.IEquatable$1<UnityEngine.InstanceID>, System.IComparable$1<UnityEngine.InstanceID> {
+        /** @deprecated Obsolete - Please use EntityId instead. */
+        class InstanceID implements System.IEquatable$1<UnityEngine.InstanceID>, System.IFormattable, System.IComparable$1<UnityEngine.InstanceID> {
             protected [__keep_incompatibility]: never;
             public static get None(): UnityEngine.InstanceID;
             public Equals($obj: any): boolean;
@@ -8290,9 +8523,10 @@ declare namespace CS {
             public Equals($other: number): boolean;
             public ToString(): string;
             public ToString($format: string): string;
+            public ToString($format: string, $formatProvider: System.IFormatProvider): string;
         }
 
-        class EntityId implements System.IEquatable$1<UnityEngine.EntityId>, System.IComparable$1<UnityEngine.EntityId> {
+        class EntityId implements System.IEquatable$1<UnityEngine.EntityId>, System.IFormattable, System.IComparable$1<UnityEngine.EntityId> {
             protected [__keep_incompatibility]: never;
             public static get None(): UnityEngine.EntityId;
             public Equals($obj: any): boolean;
@@ -8300,9 +8534,15 @@ declare namespace CS {
             public CompareTo($other: UnityEngine.EntityId): number;
             public GetHashCode(): number;
             public IsValid(): boolean;
+            /** @deprecated EntityId will not be representable by an int in the future. This equals will be removed in a future version. */
             public Equals($other: number): boolean;
             public ToString(): string;
             public ToString($format: string): string;
+            public ToString($format: string, $formatProvider: System.IFormatProvider): string;
+            /** @deprecated Please use EntityId.ToULong(EntityId) instead. */
+            public GetRawData(): bigint;
+            public static FromULong($input: bigint): UnityEngine.EntityId;
+            public static ToULong($entityId: UnityEngine.EntityId): bigint;
         }
 
         class Object {
@@ -8311,7 +8551,6 @@ declare namespace CS {
             public hideFlags: UnityEngine.HideFlags;
             constructor();
             public GetEntityId(): UnityEngine.EntityId;
-            public GetInstanceID(): number;
             public GetHashCode(): number;
             public Equals($other: any): boolean;
             public static InstantiateAsync<T extends UnityEngine.Object>($original: T): UnityEngine.AsyncInstantiateOperation$1<T>;
@@ -8331,47 +8570,72 @@ declare namespace CS {
             public static InstantiateAsync<T extends UnityEngine.Object>($original: T, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $parameters: UnityEngine.InstantiateParameters, $cancellationToken?: System.Threading.CancellationToken): UnityEngine.AsyncInstantiateOperation$1<T>;
             public static InstantiateAsync<T extends UnityEngine.Object>($original: T, $count: number, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $parameters: UnityEngine.InstantiateParameters, $cancellationToken?: System.Threading.CancellationToken): UnityEngine.AsyncInstantiateOperation$1<T>;
             public static InstantiateAsync<T extends UnityEngine.Object>($original: T, $count: number, $positions: System.ReadOnlySpan$1<UnityEngine.Vector3>, $rotations: System.ReadOnlySpan$1<UnityEngine.Quaternion>, $parameters: UnityEngine.InstantiateParameters, $cancellationToken?: System.Threading.CancellationToken): UnityEngine.AsyncInstantiateOperation$1<T>;
+            public static Instantiate($original: UnityEngine.Object, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion): UnityEngine.Object;
+            public static Instantiate($original: UnityEngine.Object, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $parent: UnityEngine.Transform): UnityEngine.Object;
+            public static Instantiate($original: UnityEngine.Object): UnityEngine.Object;
+            public static Instantiate($original: UnityEngine.Object, $scene: UnityEngine.SceneManagement.Scene): UnityEngine.Object;
+            public static Instantiate<T extends UnityEngine.Object>($original: T, $parameters: UnityEngine.InstantiateParameters): T;
+            public static Instantiate<T extends UnityEngine.Object>($original: T, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $parameters: UnityEngine.InstantiateParameters): T;
+            public static Instantiate($original: UnityEngine.Object, $parent: UnityEngine.Transform): UnityEngine.Object;
+            public static Instantiate($original: UnityEngine.Object, $parent: UnityEngine.Transform, $instantiateInWorldSpace: boolean): UnityEngine.Object;
             public static Instantiate<T extends UnityEngine.Object>($original: T): T;
             public static Instantiate<T extends UnityEngine.Object>($original: T, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion): T;
             public static Instantiate<T extends UnityEngine.Object>($original: T, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $parent: UnityEngine.Transform): T;
             public static Instantiate<T extends UnityEngine.Object>($original: T, $parent: UnityEngine.Transform): T;
             public static Instantiate<T extends UnityEngine.Object>($original: T, $parent: UnityEngine.Transform, $worldPositionStays: boolean): T;
-            public static Instantiate<T extends UnityEngine.Object>($original: T, $parameters: UnityEngine.InstantiateParameters): T;
-            public static Instantiate<T extends UnityEngine.Object>($original: T, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $parameters: UnityEngine.InstantiateParameters): T;
-            public static Instantiate($original: UnityEngine.Object): UnityEngine.Object;
-            public static Instantiate($original: UnityEngine.Object, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion): UnityEngine.Object;
-            public static Instantiate($original: UnityEngine.Object, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $parent: UnityEngine.Transform): UnityEngine.Object;
-            public static Instantiate($original: UnityEngine.Object, $parent: UnityEngine.Transform): UnityEngine.Object;
-            public static Instantiate($original: UnityEngine.Object, $parent: UnityEngine.Transform, $instantiateInWorldSpace: boolean): UnityEngine.Object;
-            public static Instantiate($original: UnityEngine.Object, $scene: UnityEngine.SceneManagement.Scene): UnityEngine.Object;
             public static Destroy($obj: UnityEngine.Object, $t: number): void;
             public static Destroy($obj: UnityEngine.Object): void;
             public static DestroyImmediate($obj: UnityEngine.Object, $allowDestroyingAssets: boolean): void;
             public static DestroyImmediate($obj: UnityEngine.Object): void;
+            /** @deprecated Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID, but if you do not need this using FindObjectSortMode.None is considerably faster. */
             public static FindObjectsOfType($type: System.TypeLike): System.Array$1<UnityEngine.Object>;
+            /** @deprecated Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster. */
             public static FindObjectsOfType($type: System.TypeLike, $includeInactive: boolean): System.Array$1<UnityEngine.Object>;
+            /** @deprecated FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType(Type) or FindObjectsByType(Type, FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained. */
             public static FindObjectsByType($type: System.TypeLike, $sortMode: UnityEngine.FindObjectsSortMode): System.Array$1<UnityEngine.Object>;
+            /** @deprecated FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType(Type) or FindObjectsByType(Type, FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained. */
             public static FindObjectsByType($type: System.TypeLike, $findObjectsInactive: UnityEngine.FindObjectsInactive, $sortMode: UnityEngine.FindObjectsSortMode): System.Array$1<UnityEngine.Object>;
+            public static FindObjectsByType($type: System.TypeLike): System.Array$1<UnityEngine.Object>;
+            public static FindObjectsByType($type: System.TypeLike, $findObjectsInactive: UnityEngine.FindObjectsInactive): System.Array$1<UnityEngine.Object>;
             public static DontDestroyOnLoad($target: UnityEngine.Object): void;
+            /** @deprecated use Object.Destroy instead. */
             public static DestroyObject($obj: UnityEngine.Object, $t: number): void;
+            /** @deprecated use Object.Destroy instead. */
             public static DestroyObject($obj: UnityEngine.Object): void;
+            /** @deprecated Object.FindSceneObjectsOfType has been deprecated, Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindSceneObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster. */
             public static FindSceneObjectsOfType($type: System.TypeLike): System.Array$1<UnityEngine.Object>;
+            /** @deprecated use Resources.FindObjectsOfTypeAll instead. */
             public static FindObjectsOfTypeIncludingAssets($type: System.TypeLike): System.Array$1<UnityEngine.Object>;
+            /** @deprecated Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster. */
             public static FindObjectsOfType<T extends UnityEngine.Object>(): System.Array$1<T>;
+            /** @deprecated FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained. */
             public static FindObjectsByType<T extends UnityEngine.Object>($sortMode: UnityEngine.FindObjectsSortMode): System.Array$1<T>;
+            /** @deprecated Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster. */
             public static FindObjectsOfType<T extends UnityEngine.Object>($includeInactive: boolean): System.Array$1<T>;
+            /** @deprecated FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained. */
             public static FindObjectsByType<T extends UnityEngine.Object>($findObjectsInactive: UnityEngine.FindObjectsInactive, $sortMode: UnityEngine.FindObjectsSortMode): System.Array$1<T>;
+            /** @deprecated Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead. */
             public static FindObjectOfType<T extends UnityEngine.Object>(): T;
+            /** @deprecated Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead. */
             public static FindObjectOfType<T extends UnityEngine.Object>($includeInactive: boolean): T;
+            /** @deprecated FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering. */
             public static FindFirstObjectByType<T extends UnityEngine.Object>(): T;
             public static FindAnyObjectByType<T extends UnityEngine.Object>(): T;
+            /** @deprecated FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering. */
             public static FindFirstObjectByType<T extends UnityEngine.Object>($findObjectsInactive: UnityEngine.FindObjectsInactive): T;
             public static FindAnyObjectByType<T extends UnityEngine.Object>($findObjectsInactive: UnityEngine.FindObjectsInactive): T;
+            public static FindObjectsByType<T extends UnityEngine.Object>(): System.Array$1<T>;
+            public static FindObjectsByType<T extends UnityEngine.Object>($findObjectsInactive: UnityEngine.FindObjectsInactive): System.Array$1<T>;
+            /** @deprecated Please use Resources.FindObjectsOfTypeAll instead */
             public static FindObjectsOfTypeAll($type: System.TypeLike): System.Array$1<UnityEngine.Object>;
+            /** @deprecated Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead. */
             public static FindObjectOfType($type: System.TypeLike): UnityEngine.Object;
+            /** @deprecated FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering. */
             public static FindFirstObjectByType($type: System.TypeLike): UnityEngine.Object;
             public static FindAnyObjectByType($type: System.TypeLike): UnityEngine.Object;
+            /** @deprecated Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead. */
             public static FindObjectOfType($type: System.TypeLike, $includeInactive: boolean): UnityEngine.Object;
+            /** @deprecated FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering. */
             public static FindFirstObjectByType($type: System.TypeLike, $findObjectsInactive: UnityEngine.FindObjectsInactive): UnityEngine.Object;
             public static FindAnyObjectByType($type: System.TypeLike, $findObjectsInactive: UnityEngine.FindObjectsInactive): UnityEngine.Object;
             public ToString(): string;
@@ -8456,6 +8720,18 @@ declare namespace CS {
         interface ISerializationCallbackReceiver {
             OnBeforeSerialize(): void;
             OnAfterDeserialize(): void;
+        }
+
+        class TypeTreeStoreManager {
+            protected [__keep_incompatibility]: never;
+            public static AddTypeTreeSourceFromFile($path: string): UnityEngine.TypeTreeStoreManager.SourceHandle;
+            public static RemoveTypeTreeSource($handle: UnityEngine.TypeTreeStoreManager.SourceHandle): boolean;
+        }
+        namespace TypeTreeStoreManager {
+            class SourceHandle {
+                protected [__keep_incompatibility]: never;
+            }
+
         }
 
         class ComputeBuffer implements System.IDisposable {
@@ -8695,6 +8971,7 @@ declare namespace CS {
             public static get supportsVariableRateShading(): boolean;
             public static get maxTiledPixelStorageSize(): number;
             public static get supportsDynamicResolution(): boolean;
+            public static get supportsBackbufferInMultipleRenderTargets(): boolean;
             public static get npotSupport(): UnityEngine.NPOTSupport;
             public static get maxTextureSize(): number;
             public static get maxTexture3DSize(): number;
@@ -8744,8 +9021,10 @@ declare namespace CS {
             public static SupportsRandomWriteOnRenderTextureFormat($format: UnityEngine.RenderTextureFormat): boolean;
             public static SupportsTextureFormat($format: UnityEngine.TextureFormat): boolean;
             public static SupportsVertexAttributeFormat($format: UnityEngine.Rendering.VertexAttributeFormat, $dimension: number): boolean;
+            /** @deprecated Use overload with a GraphicsFormatUsage parameter instead */
             public static IsFormatSupported($format: UnityEngine.Experimental.Rendering.GraphicsFormat, $usage: UnityEngine.Experimental.Rendering.FormatUsage): boolean;
             public static IsFormatSupported($format: UnityEngine.Experimental.Rendering.GraphicsFormat, $usage: UnityEngine.Experimental.Rendering.GraphicsFormatUsage): boolean;
+            /** @deprecated Use overload with a GraphicsFormatUsage parameter instead */
             public static GetCompatibleFormat($format: UnityEngine.Experimental.Rendering.GraphicsFormat, $usage: UnityEngine.Experimental.Rendering.FormatUsage): UnityEngine.Experimental.Rendering.GraphicsFormat;
             public static GetCompatibleFormat($format: UnityEngine.Experimental.Rendering.GraphicsFormat, $usage: UnityEngine.Experimental.Rendering.GraphicsFormatUsage): UnityEngine.Experimental.Rendering.GraphicsFormat;
             public static GetGraphicsFormat($format: UnityEngine.Experimental.Rendering.DefaultFormat): UnityEngine.Experimental.Rendering.GraphicsFormat;
@@ -8860,7 +9139,7 @@ declare namespace CS {
             public static GetGlobalEventQueue(): number;
         }
 
-        class Pose implements System.IEquatable$1<UnityEngine.Pose> {
+        class Pose implements System.IEquatable$1<UnityEngine.Pose>, System.IFormattable {
             protected [__keep_incompatibility]: never;
             public position: UnityEngine.Vector3;
             public rotation: UnityEngine.Quaternion;
@@ -8881,6 +9160,29 @@ declare namespace CS {
         class FrameDebugger {
             protected [__keep_incompatibility]: never;
             public static get enabled(): boolean;
+        }
+
+        class DelegateAutoCleanup extends Unity.Scripting.LifecycleManagement.CodeGen.ClassAutoCleanup {
+            protected [__keep_incompatibility]: never;
+            constructor($cleanup: System.Action, $scopeType: System.TypeLike, $ownerDescription?: string);
+            public Cleanup(): void;
+            public ToString(): string;
+            public static CreateForPlayMode($cleanup: System.Action, $ownerDescription?: string): UnityEngine.DelegateAutoCleanup;
+        }
+
+        class OnEnteringPlayModeAttribute extends Unity.Scripting.LifecycleManagement.LifecycleAttributeBase {
+            protected [__keep_incompatibility]: never;
+            constructor();
+        }
+
+        class OnExitingPlayModeAttribute extends Unity.Scripting.LifecycleManagement.LifecycleAttributeBase {
+            protected [__keep_incompatibility]: never;
+            constructor();
+        }
+
+        /** @deprecated PlayModeScopeAutoCleanup is no longer emitted by the source generator. Use DelegateAutoCleanup.CreateForPlayMode(...) instead. */
+        class PlayModeScopeAutoCleanup extends Unity.Scripting.LifecycleManagement.CodeGen.ClassAutoCleanup {
+            protected [__keep_incompatibility]: never;
         }
 
         enum DrivenTransformProperties {
@@ -8916,6 +9218,7 @@ declare namespace CS {
             public static StopRecordingUndo(): void;
             public static StartRecordingUndo(): void;
             public Add($driver: UnityEngine.Object, $rectTransform: UnityEngine.RectTransform, $drivenProperties: UnityEngine.DrivenTransformProperties): void;
+            /** @deprecated revertValues parameter is ignored. Please use Clear() instead. */
             public Clear($revertValues: boolean): void;
             public Clear(): void;
         }
@@ -9038,11 +9341,15 @@ declare namespace CS {
             public GetSiblingIndex(): number;
             public Find($n: string): UnityEngine.Transform;
             public IsChildOf($parent: UnityEngine.Transform): boolean;
+            /** @deprecated FindChild has been deprecated. Use Find instead (UnityUpgradable) -> Find([mscorlib] System.String) */
             public FindChild($n: string): UnityEngine.Transform;
             public GetEnumerator(): System.Collections.IEnumerator;
+            /** @deprecated warning use Transform.Rotate instead. */
             public RotateAround($axis: UnityEngine.Vector3, $angle: number): void;
+            /** @deprecated warning use Transform.Rotate instead. */
             public RotateAroundLocal($axis: UnityEngine.Vector3, $angle: number): void;
             public GetChild($index: number): UnityEngine.Transform;
+            /** @deprecated warning use Transform.childCount instead (UnityUpgradable) -> Transform.childCount */
             public GetChildCount(): number;
         }
 
@@ -9185,51 +9492,8 @@ declare namespace CS {
     }
     namespace UnityEngine {
         namespace Apple {
-            namespace ReplayKit {
-                class ReplayKit {
-                    protected [__keep_incompatibility]: never;
-                    public static get APIAvailable(): boolean;
-                    public static get broadcastingAPIAvailable(): boolean;
-                    public static get recordingAvailable(): boolean;
-                    public static get isRecording(): boolean;
-                    public static get isBroadcasting(): boolean;
-                    public static get isBroadcastingPaused(): boolean;
-                    public static get isPreviewControllerActive(): boolean;
-                    public static cameraEnabled: boolean;
-                    public static microphoneEnabled: boolean;
-                    public static get broadcastURL(): string;
-                    public static get lastError(): string;
-                    public static StartRecording($enableMicrophone: boolean, $enableCamera: boolean): boolean;
-                    public static StartRecording($enableMicrophone: boolean): boolean;
-                    public static StartRecording(): boolean;
-                    public static StartBroadcasting($callback: UnityEngine.Apple.ReplayKit.ReplayKit.BroadcastStatusCallback, $enableMicrophone: boolean, $enableCamera: boolean): void;
-                    public static StartBroadcasting($callback: UnityEngine.Apple.ReplayKit.ReplayKit.BroadcastStatusCallback, $enableMicrophone: boolean): void;
-                    public static StartBroadcasting($callback: UnityEngine.Apple.ReplayKit.ReplayKit.BroadcastStatusCallback): void;
-                    public static StopRecording(): boolean;
-                    public static StopBroadcasting(): void;
-                    public static PauseBroadcasting(): void;
-                    public static ResumeBroadcasting(): void;
-                    public static Preview(): boolean;
-                    public static Discard(): boolean;
-                    public static ShowCameraPreviewAt($posX: number, $posY: number): boolean;
-                    public static ShowCameraPreviewAt($posX: number, $posY: number, $width: number, $height: number): boolean;
-                    public static HideCameraPreview(): void;
-                }
-                namespace ReplayKit {
-                    interface BroadcastStatusCallback {
-                        ($hasStarted: boolean, $errorMessage: string): void;
-                        Invoke?: ($hasStarted: boolean, $errorMessage: string) => void;
-                    }
-                    var BroadcastStatusCallback: { new (func: ($hasStarted: boolean, $errorMessage: string) => void): BroadcastStatusCallback; };
-
-                }
-
-            }
-        }
-    }
-    namespace UnityEngine {
-        namespace Apple {
             namespace TV {
+                /** @deprecated UnityEngine.Apple.TV.Remote has been deprecated. Use UnityEngine.tvOS.Remote instead (UnityUpgradable) -> UnityEngine.tvOS.Remote */
                 class Remote {
                     protected [__keep_incompatibility]: never;
                     public static allowExitToHome: boolean;
@@ -9240,6 +9504,18 @@ declare namespace CS {
                 }
 
             }
+        }
+    }
+    namespace UnityEngine {
+        namespace Assemblies {
+            class CurrentAssemblies {
+                protected [__keep_incompatibility]: never;
+                public static GetLoadedAssemblies(): System.Collections.Generic.IReadOnlyList$1<System.Reflection.Assembly>;
+                public static LoadFromPath($assemblyPath: string): System.Reflection.Assembly;
+                public static LoadFromBytes($rawAssembly: System.Array$1<number>): System.Reflection.Assembly;
+                public static LoadFromBytes($rawAssembly: System.Array$1<number>, $rawSymbolStore: System.Array$1<number>): System.Reflection.Assembly;
+            }
+
         }
     }
     namespace UnityEngine {
@@ -9342,27 +9618,48 @@ declare namespace CS {
     namespace UnityEngine {
         namespace Assertions {
             namespace Must {
+                /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                 class MustExtensions {
                     protected [__keep_incompatibility]: never;
+                    /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                     public static MustBeTrue(): void;
+                    /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                     public static MustBeTrue($message: string): void;
+                    /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                     public static MustBeFalse(): void;
+                    /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                     public static MustBeFalse($message: string): void;
+                    /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                     public static MustBeApproximatelyEqual($expected: number): void;
+                    /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                     public static MustBeApproximatelyEqual($expected: number, $message: string): void;
+                    /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                     public static MustBeApproximatelyEqual($expected: number, $tolerance: number): void;
+                    /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                     public static MustBeApproximatelyEqual($expected: number, $tolerance: number, $message: string): void;
+                    /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                     public static MustNotBeApproximatelyEqual($expected: number): void;
+                    /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                     public static MustNotBeApproximatelyEqual($expected: number, $message: string): void;
+                    /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                     public static MustNotBeApproximatelyEqual($expected: number, $tolerance: number): void;
+                    /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                     public static MustNotBeApproximatelyEqual($expected: number, $tolerance: number, $message: string): void;
+                    /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                     public static MustBeEqual<T>($expected: T): void;
+                    /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                     public static MustBeEqual<T>($expected: T, $message: string): void;
+                    /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                     public static MustNotBeEqual<T>($expected: T): void;
+                    /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                     public static MustNotBeEqual<T>($expected: T, $message: string): void;
+                    /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                     public static MustBeNull<T extends object>(): void;
+                    /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                     public static MustBeNull<T extends object>($message: string): void;
+                    /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                     public static MustNotBeNull<T extends object>(): void;
+                    /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
                     public static MustNotBeNull<T extends object>($message: string): void;
                 }
 
@@ -9371,17 +9668,20 @@ declare namespace CS {
     }
     namespace UnityEngine {
         namespace Categorization {
-            class ElementInfoAttribute extends System.Attribute {
+            class InfoAttribute extends System.Attribute {
                 protected [__keep_incompatibility]: never;
                 public Order: number;
                 public Name: string;
+                public Description: string;
+            }
+
+            class ElementInfoAttribute extends UnityEngine.Categorization.InfoAttribute {
+                protected [__keep_incompatibility]: never;
                 constructor();
             }
 
-            class CategoryInfoAttribute extends System.Attribute {
+            class CategoryInfoAttribute extends UnityEngine.Categorization.InfoAttribute {
                 protected [__keep_incompatibility]: never;
-                public Order: number;
-                public Name: string;
                 constructor();
             }
 
@@ -9447,6 +9747,7 @@ declare namespace CS {
                 public static get exitCancellationToken(): System.Threading.CancellationToken;
                 public static CanStreamedLevelBeLoaded($levelIndex: number): boolean;
                 public static CanStreamedLevelBeLoaded($levelName: string): boolean;
+                /** @deprecated Application.GetBuildTags is no longer supported and will be removed. */
                 public static GetBuildTags(): System.Array$1<string>;
                 public static GetStackTraceLogType($logType: UnityEngine.LogType): UnityEngine.StackTraceLogType;
                 public static HasProLicense(): boolean;
@@ -9457,6 +9758,7 @@ declare namespace CS {
                 public static Quit($exitCode: number): void;
                 public static RequestAdvertisingIdentifierAsync($delegateMethod: UnityEngine.Application.AdvertisingIdentifierCallback): boolean;
                 public static RequestUserAuthorization($mode: UnityEngine.UserAuthorization): UnityEngine.AsyncOperation;
+                /** @deprecated Application.SetBuildTags is no longer supported and will be removed. */
                 public static SetBuildTags($buildTags: System.Array$1<string>): void;
                 public static SetStackTraceLogType($logType: UnityEngine.LogType, $stackTraceType: UnityEngine.StackTraceLogType): void;
                 public static Unload(): void;
@@ -9504,8 +9806,10 @@ declare namespace CS {
                 public static get mainWindowDisplayInfo(): UnityEngine.DisplayInfo;
                 public static get msaaSamples(): number;
                 public static SetResolution($width: number, $height: number, $fullscreenMode: UnityEngine.FullScreenMode, $preferredRefreshRate: UnityEngine.RefreshRate): void;
+                /** @deprecated SetResolution(int, int, FullScreenMode, int) is obsolete. Use SetResolution(int, int, FullScreenMode, RefreshRate) instead. */
                 public static SetResolution($width: number, $height: number, $fullscreenMode: UnityEngine.FullScreenMode, $preferredRefreshRate: number): void;
                 public static SetResolution($width: number, $height: number, $fullscreenMode: UnityEngine.FullScreenMode): void;
+                /** @deprecated SetResolution(int, int, bool, int) is obsolete. Use SetResolution(int, int, FullScreenMode, RefreshRate) instead. */
                 public static SetResolution($width: number, $height: number, $fullscreen: boolean, $preferredRefreshRate: number): void;
                 public static SetResolution($width: number, $height: number, $fullscreen: boolean): void;
                 public static GetDisplayLayout($displayLayout: System.Collections.Generic.List$1<UnityEngine.DisplayInfo>): void;
@@ -9625,12 +9929,15 @@ declare namespace CS {
                 public static get supportsIndirectArgumentsBuffer(): boolean;
                 public static get supportsDepthFetchInRenderPass(): boolean;
                 public static get supportsDynamicResolution(): boolean;
+                public static get supportsBackbufferInMultipleRenderTargets(): boolean;
                 public static SupportsRenderTextureFormat($format: UnityEngine.RenderTextureFormat): boolean;
                 public static SupportsBlendingOnRenderTextureFormat($format: UnityEngine.RenderTextureFormat): boolean;
                 public static SupportsTextureFormat($format: UnityEngine.TextureFormat): boolean;
                 public static SupportsVertexAttributeFormat($format: UnityEngine.Rendering.VertexAttributeFormat, $dimension: number): boolean;
+                /** @deprecated Use overload with a GraphicsFormatUsage parameter instead */
                 public static IsFormatSupported($format: UnityEngine.Experimental.Rendering.GraphicsFormat, $usage: UnityEngine.Experimental.Rendering.FormatUsage): boolean;
                 public static IsFormatSupported($format: UnityEngine.Experimental.Rendering.GraphicsFormat, $usage: UnityEngine.Experimental.Rendering.GraphicsFormatUsage): boolean;
+                /** @deprecated Use overload with a GraphicsFormatUsage parameter instead */
                 public static GetCompatibleFormat($format: UnityEngine.Experimental.Rendering.GraphicsFormat, $usage: UnityEngine.Experimental.Rendering.FormatUsage): UnityEngine.Experimental.Rendering.GraphicsFormat;
                 public static GetCompatibleFormat($format: UnityEngine.Experimental.Rendering.GraphicsFormat, $usage: UnityEngine.Experimental.Rendering.GraphicsFormatUsage): UnityEngine.Experimental.Rendering.GraphicsFormat;
                 public static GetGraphicsFormat($format: UnityEngine.Experimental.Rendering.DefaultFormat): UnityEngine.Experimental.Rendering.GraphicsFormat;
@@ -9694,8 +10001,8 @@ declare namespace CS {
                 public GetPersistentListenerState($index: number): UnityEngine.Events.UnityEventCallState;
                 public RemoveAllListeners(): void;
                 public ToString(): string;
-                public static GetValidMethodInfo($obj: any, $functionName: string, $argumentTypes: System.Array$1<System.Type>): System.Reflection.MethodInfo;
-                public static GetValidMethodInfo($objectType: System.TypeLike, $functionName: string, $argumentTypes: System.Array$1<System.Type>): System.Reflection.MethodInfo;
+                public static GetValidMethodInfo($obj: any, $functionName: string, $argumentTypes: System.Array$1<System.TypeLike>): System.Reflection.MethodInfo;
+                public static GetValidMethodInfo($objectType: System.TypeLike, $functionName: string, $argumentTypes: System.Array$1<System.TypeLike>): System.Reflection.MethodInfo;
             }
 
             interface UnityAction {
@@ -9819,7 +10126,6 @@ declare namespace CS {
                     public color: UnityEngine.Experimental.GlobalIllumination.LinearColor;
                     public indirectColor: UnityEngine.Experimental.GlobalIllumination.LinearColor;
                     public penumbraWidthRadian: number;
-                    public instanceID: number;
                 }
 
                 class PointLight {
@@ -9834,7 +10140,6 @@ declare namespace CS {
                     public range: number;
                     public sphereRadius: number;
                     public falloff: UnityEngine.Experimental.GlobalIllumination.FalloffType;
-                    public instanceID: number;
                 }
 
                 class SpotLight {
@@ -9852,7 +10157,6 @@ declare namespace CS {
                     public innerConeAngle: number;
                     public falloff: UnityEngine.Experimental.GlobalIllumination.FalloffType;
                     public angularFalloff: UnityEngine.Experimental.GlobalIllumination.AngularFalloffType;
-                    public instanceID: number;
                 }
 
                 class RectangleLight {
@@ -9868,7 +10172,6 @@ declare namespace CS {
                     public width: number;
                     public height: number;
                     public falloff: UnityEngine.Experimental.GlobalIllumination.FalloffType;
-                    public instanceID: number;
                 }
 
                 class DiscLight {
@@ -9883,7 +10186,6 @@ declare namespace CS {
                     public range: number;
                     public radius: number;
                     public falloff: UnityEngine.Experimental.GlobalIllumination.FalloffType;
-                    public instanceID: number;
                 }
 
                 class SpotLightBoxShape {
@@ -9898,7 +10200,6 @@ declare namespace CS {
                     public range: number;
                     public width: number;
                     public height: number;
-                    public instanceID: number;
                 }
 
                 class SpotLightPyramidShape {
@@ -9914,7 +10215,6 @@ declare namespace CS {
                     public angle: number;
                     public aspectRatio: number;
                     public falloff: UnityEngine.Experimental.GlobalIllumination.FalloffType;
-                    public instanceID: number;
                 }
 
                 class Cookie {
@@ -9922,7 +10222,6 @@ declare namespace CS {
                     public entityId: UnityEngine.EntityId;
                     public scale: number;
                     public sizes: UnityEngine.Vector2;
-                    public instanceID: number;
                     public static Defaults(): UnityEngine.Experimental.GlobalIllumination.Cookie;
                 }
 
@@ -9944,8 +10243,6 @@ declare namespace CS {
                     public mode: UnityEngine.Experimental.GlobalIllumination.LightMode;
                     public shadow: number;
                     public falloff: UnityEngine.Experimental.GlobalIllumination.FalloffType;
-                    public instanceID: number;
-                    public cookieID: number;
                     public Init($light: $Ref<UnityEngine.Experimental.GlobalIllumination.DirectionalLight>, $cookie: $Ref<UnityEngine.Experimental.GlobalIllumination.Cookie>): void;
                     public Init($light: $Ref<UnityEngine.Experimental.GlobalIllumination.PointLight>, $cookie: $Ref<UnityEngine.Experimental.GlobalIllumination.Cookie>): void;
                     public Init($light: $Ref<UnityEngine.Experimental.GlobalIllumination.SpotLight>, $cookie: $Ref<UnityEngine.Experimental.GlobalIllumination.Cookie>): void;
@@ -9961,7 +10258,6 @@ declare namespace CS {
                     public Init($light: $Ref<UnityEngine.Experimental.GlobalIllumination.SpotLightBoxShape>): void;
                     public Init($light: $Ref<UnityEngine.Experimental.GlobalIllumination.SpotLightPyramidShape>): void;
                     public InitNoBake($lightEntityId: UnityEngine.EntityId): void;
-                    public InitNoBake($lightInstanceID: number): void;
                 }
 
                 class LightmapperUtils {
@@ -10099,6 +10395,7 @@ declare namespace CS {
                     IgnoreMipmapLimit = 2048
                 }
 
+                /** @deprecated Use GraphicsFormatUsage instead */
                 enum FormatUsage {
                     Sample = 0,
                     Linear = 1,
@@ -10364,7 +10661,9 @@ declare namespace CS {
                     public static IsBPTCFormat($format: UnityEngine.TextureFormat): boolean;
                     public static IsBCFormat($format: UnityEngine.Experimental.Rendering.GraphicsFormat): boolean;
                     public static IsBCFormat($format: UnityEngine.TextureFormat): boolean;
+                    /** @deprecated Texture compression format PVRTC has been deprecated and will be removed in a future release */
                     public static IsPVRTCFormat($format: UnityEngine.Experimental.Rendering.GraphicsFormat): boolean;
+                    /** @deprecated Texture compression format PVRTC has been deprecated and will be removed in a future release */
                     public static IsPVRTCFormat($format: UnityEngine.TextureFormat): boolean;
                     public static IsETCFormat($format: UnityEngine.Experimental.Rendering.GraphicsFormat): boolean;
                     public static IsETCFormat($format: UnityEngine.TextureFormat): boolean;
@@ -10397,86 +10696,6 @@ declare namespace CS {
                     public static ComputeMipmapSize($width: number, $height: number, $depth: number, $format: UnityEngine.TextureFormat): number;
                     public static ComputeMipChainSize($width: number, $height: number, $depth: number, $format: UnityEngine.Experimental.Rendering.GraphicsFormat, $mipCount?: number): number;
                     public static ComputeMipChainSize($width: number, $height: number, $depth: number, $format: UnityEngine.TextureFormat, $mipCount?: number): number;
-                }
-
-                class GraphicsStateCollection extends UnityEngine.Object {
-                    protected [__keep_incompatibility]: never;
-                    public get isTracing(): boolean;
-                    public version: number;
-                    public graphicsDeviceType: UnityEngine.Rendering.GraphicsDeviceType;
-                    public runtimePlatform: UnityEngine.RuntimePlatform;
-                    public qualityLevelName: string;
-                    public get totalGraphicsStateCount(): number;
-                    public get completedWarmupCount(): number;
-                    public get isWarmedUp(): boolean;
-                    public get variantCount(): number;
-                    constructor();
-                    constructor($filePath: string);
-                    public BeginTrace(): boolean;
-                    public EndTrace(): void;
-                    public LoadFromFile($filePath: string): boolean;
-                    public SaveToFile($filePath: string): boolean;
-                    public SendToEditor($fileName: string): boolean;
-                    public WarmUp($dependency?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
-                    public WarmUpProgressively($count: number, $dependency?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
-                    public GetVariants($results: System.Collections.Generic.List$1<UnityEngine.Experimental.Rendering.GraphicsStateCollection.ShaderVariant>): void;
-                    public GetGraphicsStatesForVariant($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>, $results: System.Collections.Generic.List$1<UnityEngine.Experimental.Rendering.GraphicsStateCollection.GraphicsState>): void;
-                    public GetGraphicsStateCountForVariant($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>): number;
-                    public AddVariant($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>): boolean;
-                    public AddVariant($mat: UnityEngine.Material, $passId: UnityEngine.Rendering.PassIdentifier): boolean;
-                    public AddVariants($mat: UnityEngine.Material, $subshaderIndex?: number): boolean;
-                    public RemoveVariant($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>): boolean;
-                    public RemoveVariant($mat: UnityEngine.Material, $passId: UnityEngine.Rendering.PassIdentifier): boolean;
-                    public ContainsVariant($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>): boolean;
-                    public ContainsVariant($mat: UnityEngine.Material, $passId: UnityEngine.Rendering.PassIdentifier): boolean;
-                    public ClearVariants(): void;
-                    public AddGraphicsStateForVariant($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>, $setup: UnityEngine.Experimental.Rendering.GraphicsStateCollection.GraphicsState): boolean;
-                    public RemoveGraphicsStatesForVariant($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>): boolean;
-                    public CopyGraphicsStatesForVariant($srcShader: UnityEngine.Shader, $srcPassId: UnityEngine.Rendering.PassIdentifier, $srcKeywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>, $dstShader: UnityEngine.Shader, $dstPassId: UnityEngine.Rendering.PassIdentifier, $dstKeywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>): boolean;
-                    public GetGraphicsStatesForVariant($variant: UnityEngine.Experimental.Rendering.GraphicsStateCollection.ShaderVariant, $results: System.Collections.Generic.List$1<UnityEngine.Experimental.Rendering.GraphicsStateCollection.GraphicsState>): void;
-                    public GetGraphicsStateCountForVariant($variant: UnityEngine.Experimental.Rendering.GraphicsStateCollection.ShaderVariant): number;
-                    public AddGraphicsStateForVariant($variant: UnityEngine.Experimental.Rendering.GraphicsStateCollection.ShaderVariant, $setup: UnityEngine.Experimental.Rendering.GraphicsStateCollection.GraphicsState): boolean;
-                    public RemoveGraphicsStatesForVariant($variant: UnityEngine.Experimental.Rendering.GraphicsStateCollection.ShaderVariant): boolean;
-                    public CopyGraphicsStatesForVariant($srcVariant: UnityEngine.Experimental.Rendering.GraphicsStateCollection.ShaderVariant, $dstVariant: UnityEngine.Experimental.Rendering.GraphicsStateCollection.ShaderVariant): boolean;
-                }
-                namespace GraphicsStateCollection {
-                    class GraphicsState {
-                        protected [__keep_incompatibility]: never;
-                        public vertexAttributes: System.Array$1<UnityEngine.Rendering.VertexAttributeDescriptor>;
-                        public attachments: System.Array$1<UnityEngine.Rendering.AttachmentDescriptor>;
-                        public subPasses: System.Array$1<UnityEngine.Rendering.SubPassDescriptor>;
-                        public renderState: UnityEngine.Rendering.RenderStateBlock;
-                        public topology: UnityEngine.MeshTopology;
-                        public forceCullMode: UnityEngine.Rendering.CullMode;
-                        public shadingRateCombinerPrimitive: UnityEngine.Rendering.ShadingRateCombiner;
-                        public shadingRateCombinerFragment: UnityEngine.Rendering.ShadingRateCombiner;
-                        public baseShadingRate: UnityEngine.Rendering.ShadingRateFragmentSize;
-                        public depthBias: number;
-                        public slopeDepthBias: number;
-                        public depthAttachmentIndex: number;
-                        public subPassIndex: number;
-                        public shadingRateIndex: number;
-                        public multiviewCount: number;
-                        public sampleCount: number;
-                        public hasEyeTexture: boolean;
-                        public wireframe: boolean;
-                        public invertCulling: boolean;
-                        public negativeScale: boolean;
-                        public invertProjection: boolean;
-                        public SetMeshData($mesh: UnityEngine.Mesh, $submesh: number, $renderer?: UnityEngine.Renderer): void;
-                        public SetRenderPassData($samples: number, $attachments: Unity.Collections.NativeArray$1<UnityEngine.Rendering.AttachmentDescriptor>, $subPasses: Unity.Collections.NativeArray$1<UnityEngine.Rendering.SubPassDescriptor>, $subPassIndex?: number, $depthAttachmentIndex?: number, $shadingRateIndex?: number): void;
-                        public SetRenderStateData($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier): void;
-                    }
-
-                    class ShaderVariant {
-                        protected [__keep_incompatibility]: never;
-                        public shader: UnityEngine.Shader;
-                        public passId: UnityEngine.Rendering.PassIdentifier;
-                        public keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>;
-                        constructor($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>);
-                        constructor($material: UnityEngine.Material, $passId: UnityEngine.Rendering.PassIdentifier);
-                    }
-
                 }
 
                 class ShaderWarmupSetup {
@@ -10512,6 +10731,7 @@ declare namespace CS {
     }
     namespace UnityEngine {
         namespace iOS {
+            /** @deprecated iOS.ADBannerView class is obsolete, Apple iAD service discontinued */
             class ADBannerView {
                 protected [__keep_incompatibility]: never;
                 public get loaded(): boolean;
@@ -10569,6 +10789,7 @@ declare namespace CS {
 
             }
 
+            /** @deprecated iOS.ADInterstitialAd class is obsolete, Apple iAD service discontinued */
             class ADInterstitialAd {
                 protected [__keep_incompatibility]: never;
                 public static get isAvailable(): boolean;
@@ -10709,6 +10930,7 @@ declare namespace CS {
                 iPhoneAir = 89,
                 iPhone17Pro = 90,
                 iPhone17ProMax = 91,
+                iPhone17e = 92,
                 iPhoneUnknown = 10001,
                 iPadUnknown = 10002,
                 iPodTouchUnknown = 10003
@@ -10794,7 +11016,6 @@ declare namespace CS {
                 public GetTransformHandle($index: number): UnityEngine.TransformHandle;
                 public SetTransformHandle($index: number, $transformHandle: UnityEngine.TransformHandle): void;
                 public Add($transform: UnityEngine.Transform): void;
-                public Add($instanceId: number): void;
                 public Add($transformHandle: UnityEngine.TransformHandle): void;
                 public Add($entityId: UnityEngine.EntityId): void;
                 public RemoveAtSwapBack($index: number): void;
@@ -10804,6 +11025,135 @@ declare namespace CS {
                 public set_Item($index: number, value: UnityEngine.Transform): void;
             }
 
+        }
+    }
+    namespace UnityEngine {
+        namespace LightTransport {
+            class BakeProgressState implements System.IDisposable {
+                protected [__keep_incompatibility]: never;
+                constructor();
+                public Dispose(): void;
+                public Cancel(): void;
+                public Progress(): number;
+                public SetTotalWorkSteps($total: bigint): void;
+                public IncrementCompletedWorkSteps($steps: bigint): void;
+                public WasCancelled(): boolean;
+            }
+
+            class BufferID implements System.IEquatable$1<UnityEngine.LightTransport.BufferID> {
+                protected [__keep_incompatibility]: never;
+                public Value: bigint;
+                constructor($value: bigint);
+                public Slice<T>($offset?: bigint): UnityEngine.LightTransport.BufferSlice$1<T>;
+                public GetHashCode(): number;
+                public Equals($other: UnityEngine.LightTransport.BufferID): boolean;
+                public Equals($obj: any): boolean;
+            }
+
+            class BufferSlice<T> implements System.IEquatable$1<UnityEngine.LightTransport.BufferSlice$1<T>> {
+                protected [__keep_incompatibility]: never;
+                public Id: UnityEngine.LightTransport.BufferID;
+                public Offset: bigint;
+                constructor($id: UnityEngine.LightTransport.BufferID, $offset: bigint);
+                public SafeReinterpret<U>(): UnityEngine.LightTransport.BufferSlice$1<U>;
+                public UnsafeReinterpret<U>(): UnityEngine.LightTransport.BufferSlice$1<U>;
+                public GetHashCode(): number;
+                public Equals($other: UnityEngine.LightTransport.BufferSlice$1<T>): boolean;
+                public Equals($obj: any): boolean;
+            }
+
+            class EventID implements System.IEquatable$1<UnityEngine.LightTransport.EventID> {
+                protected [__keep_incompatibility]: never;
+                public Value: bigint;
+                constructor($value: bigint);
+                public GetHashCode(): number;
+                public Equals($other: UnityEngine.LightTransport.EventID): boolean;
+                public Equals($obj: any): boolean;
+            }
+
+            interface IDeviceContext extends System.IDisposable {
+                Initialize(): boolean;
+                CreateBuffer($count: bigint, $stride: bigint): UnityEngine.LightTransport.BufferID;
+                DestroyBuffer($id: UnityEngine.LightTransport.BufferID): void;
+                WriteBuffer<T>($dst: UnityEngine.LightTransport.BufferSlice$1<T>, $src: Unity.Collections.NativeArray$1<T>): void;
+                ReadBuffer<T>($src: UnityEngine.LightTransport.BufferSlice$1<T>, $dst: Unity.Collections.NativeArray$1<T>): void;
+                WriteBuffer<T>($dst: UnityEngine.LightTransport.BufferSlice$1<T>, $src: Unity.Collections.NativeArray$1<T>, $id: UnityEngine.LightTransport.EventID): void;
+                ReadBuffer<T>($src: UnityEngine.LightTransport.BufferSlice$1<T>, $dst: Unity.Collections.NativeArray$1<T>, $id: UnityEngine.LightTransport.EventID): void;
+                CreateEvent(): UnityEngine.LightTransport.EventID;
+                DestroyEvent($id: UnityEngine.LightTransport.EventID): void;
+                IsCompleted($id: UnityEngine.LightTransport.EventID): boolean;
+                Wait($id: UnityEngine.LightTransport.EventID): boolean;
+                Flush(): boolean;
+            }
+
+            class ReferenceContext implements UnityEngine.LightTransport.IDeviceContext, System.IDisposable {
+                protected [__keep_incompatibility]: never;
+                constructor();
+                public Initialize(): boolean;
+                public Dispose(): void;
+                public CreateBuffer($count: bigint, $stride: bigint): UnityEngine.LightTransport.BufferID;
+                public DestroyBuffer($id: UnityEngine.LightTransport.BufferID): void;
+                public WriteBuffer<T>($dst: UnityEngine.LightTransport.BufferSlice$1<T>, $src: Unity.Collections.NativeArray$1<T>): void;
+                public ReadBuffer<T>($src: UnityEngine.LightTransport.BufferSlice$1<T>, $dst: Unity.Collections.NativeArray$1<T>): void;
+                public WriteBuffer<T>($dst: UnityEngine.LightTransport.BufferSlice$1<T>, $src: Unity.Collections.NativeArray$1<T>, $id: UnityEngine.LightTransport.EventID): void;
+                public ReadBuffer<T>($src: UnityEngine.LightTransport.BufferSlice$1<T>, $dst: Unity.Collections.NativeArray$1<T>, $id: UnityEngine.LightTransport.EventID): void;
+                public CreateEvent(): UnityEngine.LightTransport.EventID;
+                public DestroyEvent($id: UnityEngine.LightTransport.EventID): void;
+                public IsCompleted($id: UnityEngine.LightTransport.EventID): boolean;
+                public Wait($id: UnityEngine.LightTransport.EventID): boolean;
+                public GetNativeArray($id: UnityEngine.LightTransport.BufferID): Unity.Collections.NativeArray$1<number>;
+                public Flush(): boolean;
+            }
+
+            interface IProbeIntegrator extends System.IDisposable {
+                Prepare($context: UnityEngine.LightTransport.IDeviceContext, $world: UnityEngine.LightTransport.IWorld, $positions: UnityEngine.LightTransport.BufferSlice$1<UnityEngine.Vector3>, $pushoff: number, $bounceCount: number): void;
+                SetProgressReporter($progress: UnityEngine.LightTransport.BakeProgressState): void;
+                IntegrateDirectRadiance($context: UnityEngine.LightTransport.IDeviceContext, $positionOffset: number, $positionCount: number, $sampleCount: number, $ignoreEnvironment: boolean, $radianceEstimateOut: UnityEngine.LightTransport.BufferSlice$1<UnityEngine.Rendering.SphericalHarmonicsL2>): UnityEngine.LightTransport.IProbeIntegrator.Result;
+                IntegrateIndirectRadiance($context: UnityEngine.LightTransport.IDeviceContext, $positionOffset: number, $positionCount: number, $sampleCount: number, $ignoreEnvironment: boolean, $radianceEstimateOut: UnityEngine.LightTransport.BufferSlice$1<UnityEngine.Rendering.SphericalHarmonicsL2>): UnityEngine.LightTransport.IProbeIntegrator.Result;
+                IntegrateValidity($context: UnityEngine.LightTransport.IDeviceContext, $positionOffset: number, $positionCount: number, $sampleCount: number, $validityEstimateOut: UnityEngine.LightTransport.BufferSlice$1<number>): UnityEngine.LightTransport.IProbeIntegrator.Result;
+                IntegrateOcclusion($context: UnityEngine.LightTransport.IDeviceContext, $positionOffset: number, $positionCount: number, $sampleCount: number, $maxLightsPerProbe: number, $perProbeLightIndices: UnityEngine.LightTransport.BufferSlice$1<number>, $probeOcclusionEstimateOut: UnityEngine.LightTransport.BufferSlice$1<number>): UnityEngine.LightTransport.IProbeIntegrator.Result;
+            }
+            namespace IProbeIntegrator {
+                enum ResultType {
+                    Success = 0,
+                    Cancelled = 1,
+                    JobFailed = 2,
+                    OutOfMemory = 3,
+                    InvalidInput = 4,
+                    LowLevelAPIFailure = 5,
+                    IOFailed = 6,
+                    Undefined = 7
+                }
+
+                class Result {
+                    protected [__keep_incompatibility]: never;
+                    public type: UnityEngine.LightTransport.IProbeIntegrator.ResultType;
+                    public message: string;
+                    constructor($_type: UnityEngine.LightTransport.IProbeIntegrator.ResultType, $_message: string);
+                    public ToString(): string;
+                }
+
+            }
+
+            interface IWorld extends System.IDisposable {
+            }
+
+        }
+    }
+    namespace UnityEngine {
+        namespace LightTransport {
+            namespace PostProcessing {
+                interface IProbePostProcessor extends System.IDisposable {
+                    Initialize($context: UnityEngine.LightTransport.IDeviceContext): boolean;
+                    ConvolveRadianceToIrradiance($context: UnityEngine.LightTransport.IDeviceContext, $radianceIn: UnityEngine.LightTransport.BufferSlice$1<UnityEngine.Rendering.SphericalHarmonicsL2>, $irradianceOut: UnityEngine.LightTransport.BufferSlice$1<UnityEngine.Rendering.SphericalHarmonicsL2>, $probeCount: number): boolean;
+                    ConvertToUnityFormat($context: UnityEngine.LightTransport.IDeviceContext, $irradianceIn: UnityEngine.LightTransport.BufferSlice$1<UnityEngine.Rendering.SphericalHarmonicsL2>, $irradianceOut: UnityEngine.LightTransport.BufferSlice$1<UnityEngine.Rendering.SphericalHarmonicsL2>, $probeCount: number): boolean;
+                    AddSphericalHarmonicsL2($context: UnityEngine.LightTransport.IDeviceContext, $A: UnityEngine.LightTransport.BufferSlice$1<UnityEngine.Rendering.SphericalHarmonicsL2>, $B: UnityEngine.LightTransport.BufferSlice$1<UnityEngine.Rendering.SphericalHarmonicsL2>, $sum: UnityEngine.LightTransport.BufferSlice$1<UnityEngine.Rendering.SphericalHarmonicsL2>, $probeCount: number): boolean;
+                    ScaleSphericalHarmonicsL2($context: UnityEngine.LightTransport.IDeviceContext, $shIn: UnityEngine.LightTransport.BufferSlice$1<UnityEngine.Rendering.SphericalHarmonicsL2>, $shOut: UnityEngine.LightTransport.BufferSlice$1<UnityEngine.Rendering.SphericalHarmonicsL2>, $probeCount: number, $scale: number): boolean;
+                    WindowSphericalHarmonicsL2($context: UnityEngine.LightTransport.IDeviceContext, $shIn: UnityEngine.LightTransport.BufferSlice$1<UnityEngine.Rendering.SphericalHarmonicsL2>, $shOut: UnityEngine.LightTransport.BufferSlice$1<UnityEngine.Rendering.SphericalHarmonicsL2>, $probeCount: number): boolean;
+                    DeringSphericalHarmonicsL2($context: UnityEngine.LightTransport.IDeviceContext, $shIn: UnityEngine.LightTransport.BufferSlice$1<UnityEngine.Rendering.SphericalHarmonicsL2>, $shOut: UnityEngine.LightTransport.BufferSlice$1<UnityEngine.Rendering.SphericalHarmonicsL2>, $probeCount: number): boolean;
+                }
+
+            }
         }
     }
     namespace UnityEngine {
@@ -10838,12 +11188,14 @@ declare namespace CS {
     }
     namespace UnityEngine {
         namespace Lumin {
+            /** @deprecated Lumin is no longer supported in Unity 2022.2 */
             class UsesLuminPlatformLevelAttribute extends System.Attribute {
                 protected [__keep_incompatibility]: never;
                 public get platformLevel(): number;
                 constructor($platformLevel: number);
             }
 
+            /** @deprecated Lumin is no longer supported in Unity 2022.2 */
             class UsesLuminPrivilegeAttribute extends System.Attribute {
                 protected [__keep_incompatibility]: never;
                 public get privilege(): string;
@@ -11000,6 +11352,7 @@ declare namespace CS {
                 public OnGraphStop($playable: UnityEngine.Playables.Playable): void;
                 public OnPlayableCreate($playable: UnityEngine.Playables.Playable): void;
                 public OnPlayableDestroy($playable: UnityEngine.Playables.Playable): void;
+                /** @deprecated OnBehaviourDelay is obsolete; use a custom ScriptPlayable to implement this feature */
                 public OnBehaviourDelay($playable: UnityEngine.Playables.Playable, $info: UnityEngine.Playables.FrameData): void;
                 public OnBehaviourPlay($playable: UnityEngine.Playables.Playable, $info: UnityEngine.Playables.FrameData): void;
                 public OnBehaviourPause($playable: UnityEngine.Playables.Playable, $info: UnityEngine.Playables.FrameData): void;
@@ -11009,6 +11362,7 @@ declare namespace CS {
                 public Clone(): any;
             }
 
+            /** @deprecated DataStreamType is no longer required and will be removed in a future release. */
             enum DataStreamType {
                 Animation = 0,
                 Audio = 1,
@@ -11036,6 +11390,7 @@ declare namespace CS {
                 public static IsValid<U extends UnityEngine.Playables.IPlayable>(): boolean;
                 public static Destroy<U extends UnityEngine.Playables.IPlayable>(): void;
                 public static GetGraph<U extends UnityEngine.Playables.IPlayable>(): UnityEngine.Playables.PlayableGraph;
+                /** @deprecated SetPlayState() has been deprecated. Use Play(), Pause() or SetDelay() instead */
                 public static SetPlayState<U extends UnityEngine.Playables.IPlayable>($value: UnityEngine.Playables.PlayState): void;
                 public static GetPlayState<U extends UnityEngine.Playables.IPlayable>(): UnityEngine.Playables.PlayState;
                 public static Play<U extends UnityEngine.Playables.IPlayable>(): void;
@@ -11067,8 +11422,11 @@ declare namespace CS {
                 public static ConnectInput<U extends UnityEngine.Playables.IPlayable, V extends UnityEngine.Playables.IPlayable>($inputIndex: number, $sourcePlayable: V, $sourceOutputIndex: number, $weight: number): void;
                 public static DisconnectInput<U extends UnityEngine.Playables.IPlayable>($inputPort: number): void;
                 public static AddInput<U extends UnityEngine.Playables.IPlayable, V extends UnityEngine.Playables.IPlayable>($sourcePlayable: V, $sourceOutputIndex: number, $weight?: number): number;
+                /** @deprecated SetDelay is obsolete; use a custom ScriptPlayable to implement this feature */
                 public static SetDelay<U extends UnityEngine.Playables.IPlayable>($delay: number): void;
+                /** @deprecated GetDelay is obsolete; use a custom ScriptPlayable to implement this feature */
                 public static GetDelay<U extends UnityEngine.Playables.IPlayable>(): number;
+                /** @deprecated IsDelayed is obsolete; use a custom ScriptPlayable to implement this feature */
                 public static IsDelayed<U extends UnityEngine.Playables.IPlayable>(): boolean;
                 public static SetLeadTime<U extends UnityEngine.Playables.IPlayable>($value: number): void;
                 public static GetLeadTime<U extends UnityEngine.Playables.IPlayable>(): number;
@@ -11155,8 +11513,11 @@ declare namespace CS {
                 public static GetNotificationReceivers<U extends UnityEngine.Playables.IPlayableOutput>(): System.Array$1<UnityEngine.Playables.INotificationReceiver>;
                 public static AddNotificationReceiver<U extends UnityEngine.Playables.IPlayableOutput>($receiver: UnityEngine.Playables.INotificationReceiver): void;
                 public static RemoveNotificationReceiver<U extends UnityEngine.Playables.IPlayableOutput>($receiver: UnityEngine.Playables.INotificationReceiver): void;
+                /** @deprecated Method GetSourceInputPort has been renamed to GetSourceOutputPort (UnityUpgradable) -> GetSourceOutputPort<U>(*) */
                 public static GetSourceInputPort<U extends UnityEngine.Playables.IPlayableOutput>(): number;
+                /** @deprecated Method SetSourceInputPort has been deprecated. Use SetSourcePlayable(Playable, Port) instead. */
                 public static SetSourceInputPort<U extends UnityEngine.Playables.IPlayableOutput>($value: number): void;
+                /** @deprecated Method SetSourceOutputPort has been deprecated. Use SetSourcePlayable(Playable, Port) instead. */
                 public static SetSourceOutputPort<U extends UnityEngine.Playables.IPlayableOutput>($value: number): void;
             }
 
@@ -11202,6 +11563,7 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                 }
 
+                /** @deprecated ProfilerStartFrame player loop component has been moved to the Initialization category. (UnityUpgradable) -> UnityEngine.PlayerLoop.Initialization/ProfilerStartFrame */
                 class ProfilerStartFrame {
                     protected [__keep_incompatibility]: never;
                 }
@@ -11216,6 +11578,7 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                 }
 
+                /** @deprecated PlayerUpdateTime player loop component has been moved to its own category called TimeUpdate. (UnityUpgradable) -> UnityEngine.PlayerLoop.TimeUpdate/WaitForLastPresentationAndUpdateTime */
                 class PlayerUpdateTime {
                     protected [__keep_incompatibility]: never;
                 }
@@ -11254,6 +11617,7 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                 }
 
+                /** @deprecated ProfilerStartFrame player loop component has been moved to the Initialization category. (UnityUpgradable) -> UnityEngine.PlayerLoop.Initialization/ProfilerStartFrame */
                 class ProfilerStartFrame {
                     protected [__keep_incompatibility]: never;
                 }
@@ -11370,6 +11734,10 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                 }
 
+                class PhysicsCore2DEarlyUpdate {
+                    protected [__keep_incompatibility]: never;
+                }
+
                 class Physics2DEarlyUpdate {
                     protected [__keep_incompatibility]: never;
                 }
@@ -11382,6 +11750,7 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                 }
 
+                /** @deprecated TangoUpdate has been deprecated. Use ARCoreUpdate instead (UnityUpgradable) -> UnityEngine.PlayerLoop.EarlyUpdate/ARCoreUpdate */
                 class TangoUpdate {
                     protected [__keep_incompatibility]: never;
                 }
@@ -11436,6 +11805,10 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                 }
 
+                class PhysicsCore2DFixedUpdate {
+                    protected [__keep_incompatibility]: never;
+                }
+
                 class Physics2DFixedUpdate {
                     protected [__keep_incompatibility]: never;
                 }
@@ -11459,6 +11832,10 @@ declare namespace CS {
             }
             namespace PreUpdate {
                 class PhysicsUpdate {
+                    protected [__keep_incompatibility]: never;
+                }
+
+                class PhysicsCore2DUpdate {
                     protected [__keep_incompatibility]: never;
                 }
 
@@ -11526,6 +11903,10 @@ declare namespace CS {
                 protected [__keep_incompatibility]: never;
             }
             namespace PreLateUpdate {
+                class PhysicsCore2DLateUpdate {
+                    protected [__keep_incompatibility]: never;
+                }
+
                 class Physics2DLateUpdate {
                     protected [__keep_incompatibility]: never;
                 }
@@ -11764,6 +12145,10 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                 }
 
+                class GraphicsStateCollectionWarmup {
+                    protected [__keep_incompatibility]: never;
+                }
+
                 class GraphicsWarmupPreloadedShaders {
                     protected [__keep_incompatibility]: never;
                 }
@@ -11911,18 +12296,24 @@ declare namespace CS {
                 public static BeginSample($name: string): void;
                 public static BeginSample($name: string, $targetObject: UnityEngine.Object): void;
                 public static EndSample(): void;
+                /** @deprecated GetRuntimeMemorySize has been deprecated since it is limited to 2GB. Please use GetRuntimeMemorySizeLong() instead. */
                 public static GetRuntimeMemorySize($o: UnityEngine.Object): number;
                 public static GetRuntimeMemorySizeLong($o: UnityEngine.Object): bigint;
+                /** @deprecated GetMonoHeapSize has been deprecated since it is limited to 4GB. Please use GetMonoHeapSizeLong() instead. */
                 public static GetMonoHeapSize(): number;
                 public static GetMonoHeapSizeLong(): bigint;
+                /** @deprecated GetMonoUsedSize has been deprecated since it is limited to 4GB. Please use GetMonoUsedSizeLong() instead. */
                 public static GetMonoUsedSize(): number;
                 public static GetMonoUsedSizeLong(): bigint;
                 public static SetTempAllocatorRequestedSize($size: number): boolean;
                 public static GetTempAllocatorSize(): number;
+                /** @deprecated GetTotalAllocatedMemory has been deprecated since it is limited to 4GB. Please use GetTotalAllocatedMemoryLong() instead. */
                 public static GetTotalAllocatedMemory(): number;
                 public static GetTotalAllocatedMemoryLong(): bigint;
+                /** @deprecated GetTotalUnusedReservedMemory has been deprecated since it is limited to 4GB. Please use GetTotalUnusedReservedMemoryLong() instead. */
                 public static GetTotalUnusedReservedMemory(): number;
                 public static GetTotalUnusedReservedMemoryLong(): bigint;
+                /** @deprecated GetTotalReservedMemory has been deprecated since it is limited to 4GB. Please use GetTotalReservedMemoryLong() instead. */
                 public static GetTotalReservedMemory(): number;
                 public static GetTotalReservedMemoryLong(): bigint;
                 public static GetTotalFragmentationInfo($stats: Unity.Collections.NativeArray$1<number>): bigint;
@@ -11975,6 +12366,7 @@ declare namespace CS {
     namespace UnityEngine {
         namespace Profiling {
             namespace Experimental {
+                /** @deprecated UnityEngine.Profiling.Experimental.DebugScreenCapture has been deprecated use Unity.Profiling.DebugScreenCapture instead (UnityUpgradable) -> Unity.Profiling.DebugScreenCapture */
                 class DebugScreenCapture {
                     protected [__keep_incompatibility]: never;
                 }
@@ -11986,12 +12378,14 @@ declare namespace CS {
         namespace Profiling {
             namespace Memory {
                 namespace Experimental {
+                    /** @deprecated UnityEngine.Profiling.Memory.Experimental.MetaData has been deprecated use Unity.Profiling.Memory.MemorySnapshotMetadata instead (UnityUpgradable) -> Unity.Profiling.Memory.MemorySnapshotMetadata */
                     class MetaData {
                         protected [__keep_incompatibility]: never;
                         public platform: string;
                         constructor();
                     }
 
+                    /** @deprecated UnityEngine.Profiling.Memory.Experimental.CaptureFlags has been deprecated use Unity.Profiling.Memory.CaptureFlags instead (UnityUpgradable) -> Unity.Profiling.Memory.CaptureFlags */
                     enum CaptureFlags {
                         ManagedObjects = 1,
                         NativeObjects = 2,
@@ -12000,6 +12394,7 @@ declare namespace CS {
                         NativeStackTraces = 16
                     }
 
+                    /** @deprecated UnityEngine.Profiling.Memory.Experimental.MemoryProfiler has been deprecated use Unity.Profiling.Memory.MemoryProfiler instead (UnityUpgradable) -> Unity.Profiling.Memory.MemoryProfiler */
                     class MemoryProfiler {
                         protected [__keep_incompatibility]: never;
                     }
@@ -12101,6 +12496,7 @@ declare namespace CS {
                 PixelProcessing = 1
             }
 
+            /** @deprecated GPUFence has been deprecated. Use GraphicsFence instead (UnityUpgradable) -> GraphicsFence */
             class GPUFence {
                 protected [__keep_incompatibility]: never;
                 public get passed(): boolean;
@@ -12119,6 +12515,7 @@ declare namespace CS {
                 public static LoadStoreDebugModeEnabled: boolean;
             }
 
+            /** @deprecated ShaderHardwareTier was renamed to GraphicsTier (UnityUpgradable) -> GraphicsTier */
             enum ShaderHardwareTier {
                 Tier1 = 0,
                 Tier2 = 1,
@@ -12890,16 +13287,119 @@ declare namespace CS {
                 public static Subscribe<TChild extends UnityEngine.Rendering.IRenderPipelineGraphicsSettings>($callback: System.Action$2<TChild, string>): void;
                 public static Unsubscribe<TChild extends UnityEngine.Rendering.IRenderPipelineGraphicsSettings>($callback: System.Action$2<TChild, string>): void;
                 public static ForEach($callback: System.Action$1<UnityEngine.Rendering.IRenderPipelineGraphicsSettings>): void;
+                /** @deprecated Please use EditorGraphicsSettings.SetRenderPipelineGlobalSettingsAsset(renderPipelineType, newSettings). #from(23.2) */
                 public static UpdateGraphicsSettings($newSettings: UnityEngine.Rendering.RenderPipelineGlobalSettings, $renderPipelineType: System.TypeLike): void;
+                /** @deprecated Please use EditorGraphicsSettings.SetRenderPipelineGlobalSettingsAsset(renderPipelineType, settings). #from(23.2) */
                 public static RegisterRenderPipelineSettings($renderPipelineType: System.TypeLike, $settings: UnityEngine.Rendering.RenderPipelineGlobalSettings): void;
+                /** @deprecated Please use EditorGraphicsSettings.SetRenderPipelineGlobalSettingsAsset<TRenderPipelineType>(settings). #from(23.2) */
                 public static RegisterRenderPipelineSettings<T extends UnityEngine.Rendering.RenderPipeline>($settings: UnityEngine.Rendering.RenderPipelineGlobalSettings): void;
+                /** @deprecated Please use EditorGraphicsSettings.SetRenderPipelineGlobalSettingsAsset<TRenderPipelineType>(null). #from(23.2) */
                 public static UnregisterRenderPipelineSettings<T extends UnityEngine.Rendering.RenderPipeline>(): void;
+                /** @deprecated Please use EditorGraphicsSettings.SetRenderPipelineGlobalSettingsAsset(renderPipelineType, null). #from(23.2) */
                 public static UnregisterRenderPipelineSettings($renderPipelineType: System.TypeLike): void;
                 public static GetSettingsForRenderPipeline<T extends UnityEngine.Rendering.RenderPipeline>(): UnityEngine.Rendering.RenderPipelineGlobalSettings;
                 public static GetSettingsForRenderPipeline($renderPipelineType: System.TypeLike): UnityEngine.Rendering.RenderPipelineGlobalSettings;
+                public static TrySetCurrentRenderPipelineGlobalSettings($asset: UnityEngine.Rendering.RenderPipelineGlobalSettings): boolean;
                 public static TryGetCurrentRenderPipelineGlobalSettings($asset: $Out<UnityEngine.Rendering.RenderPipelineGlobalSettings>): boolean;
                 public static GetRenderPipelineSettings<T extends UnityEngine.Rendering.IRenderPipelineGraphicsSettings>(): T;
                 public static TryGetRenderPipelineSettings<T extends UnityEngine.Rendering.IRenderPipelineGraphicsSettings>($settings: $Out<T>): boolean;
+            }
+
+            class GraphicsStateCollection extends UnityEngine.Object {
+                protected [__keep_incompatibility]: never;
+                public get isTracing(): boolean;
+                public version: number;
+                public graphicsDeviceType: UnityEngine.Rendering.GraphicsDeviceType;
+                public runtimePlatform: UnityEngine.RuntimePlatform;
+                public qualityLevelName: string;
+                public get totalGraphicsStateCount(): number;
+                public get completedWarmupCount(): number;
+                public get isWarmedUp(): boolean;
+                public get variantCount(): number;
+                public get isTracingCacheMisses(): boolean;
+                public get cacheMissCollection(): UnityEngine.Rendering.GraphicsStateCollection;
+                constructor();
+                constructor($filePath: string);
+                public BeginTrace(): boolean;
+                public EndTrace(): void;
+                public LoadFromFile($filePath: string): boolean;
+                public LoadFromJson($json: string): boolean;
+                public SaveToFile($filePath: string): boolean;
+                public SendToEditor($fileName: string): boolean;
+                public WarmUp($dependency?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
+                public WarmUpProgressively($count: number, $dependency?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
+                public WarmUp($dependency: Unity.Jobs.JobHandle, $traceCacheMisses: boolean): Unity.Jobs.JobHandle;
+                public WarmUpProgressively($count: number, $dependency: Unity.Jobs.JobHandle, $traceCacheMisses: boolean): Unity.Jobs.JobHandle;
+                public GetVariants($results: System.Collections.Generic.List$1<UnityEngine.Rendering.GraphicsStateCollection.ShaderVariant>): void;
+                public GetGraphicsStatesForVariant($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>, $results: System.Collections.Generic.List$1<UnityEngine.Rendering.GraphicsStateCollection.GraphicsState>): void;
+                public GetGraphicsStateCountForVariant($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>): number;
+                public AddVariant($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>): boolean;
+                public AddVariant($mat: UnityEngine.Material, $passId: UnityEngine.Rendering.PassIdentifier): boolean;
+                public AddVariant($mat: UnityEngine.Material, $passId: UnityEngine.Rendering.PassIdentifier, $globalKeywords: System.Array$1<UnityEngine.Rendering.GlobalKeyword>): boolean;
+                public AddVariants($mat: UnityEngine.Material, $subshaderIndex?: number): boolean;
+                public AddVariants($mat: UnityEngine.Material, $globalKeywords: System.Array$1<UnityEngine.Rendering.GlobalKeyword>, $subshaderIndex?: number): boolean;
+                public RemoveVariant($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>): boolean;
+                public RemoveVariant($mat: UnityEngine.Material, $passId: UnityEngine.Rendering.PassIdentifier): boolean;
+                public RemoveVariant($mat: UnityEngine.Material, $passId: UnityEngine.Rendering.PassIdentifier, $globalKeywords: System.Array$1<UnityEngine.Rendering.GlobalKeyword>): boolean;
+                public ContainsVariant($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>): boolean;
+                public ContainsVariant($mat: UnityEngine.Material, $passId: UnityEngine.Rendering.PassIdentifier): boolean;
+                public ContainsVariant($mat: UnityEngine.Material, $passId: UnityEngine.Rendering.PassIdentifier, $globalKeywords: System.Array$1<UnityEngine.Rendering.GlobalKeyword>): boolean;
+                public ClearVariants(): void;
+                public AddGraphicsStateForVariant($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>, $setup: UnityEngine.Rendering.GraphicsStateCollection.GraphicsState): boolean;
+                public RemoveGraphicsStatesForVariant($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>): boolean;
+                public CopyGraphicsStatesForVariant($srcShader: UnityEngine.Shader, $srcPassId: UnityEngine.Rendering.PassIdentifier, $srcKeywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>, $dstShader: UnityEngine.Shader, $dstPassId: UnityEngine.Rendering.PassIdentifier, $dstKeywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>): boolean;
+                public EraseCacheMissCollection(): void;
+                public Append($collection: UnityEngine.Rendering.GraphicsStateCollection): boolean;
+                public AddGraphicsStates($meshes: System.Array$1<UnityEngine.Mesh>, $materials: System.Array$1<UnityEngine.Material>, $samples: number, $attachments: Unity.Collections.NativeArray$1<UnityEngine.Rendering.AttachmentDescriptor>, $subPasses: Unity.Collections.NativeArray$1<UnityEngine.Rendering.SubPassDescriptor>, $subPassIndex?: number, $depthAttachmentIndex?: number, $shadingRateIndex?: number): boolean;
+                public AddGraphicsStates($meshes: System.Array$1<UnityEngine.Mesh>, $materials: System.Array$1<UnityEngine.Material>, $globalKeywords: System.Array$1<UnityEngine.Rendering.GlobalKeyword>, $samples: number, $attachments: Unity.Collections.NativeArray$1<UnityEngine.Rendering.AttachmentDescriptor>, $subPasses: Unity.Collections.NativeArray$1<UnityEngine.Rendering.SubPassDescriptor>, $subPassIndex?: number, $depthAttachmentIndex?: number, $shadingRateIndex?: number): boolean;
+                public AddGraphicsStatesFromReference($refState: UnityEngine.Rendering.GraphicsStateCollection.GraphicsState, $meshes: System.Array$1<UnityEngine.Mesh>, $materials: System.Array$1<UnityEngine.Material>, $samples: number, $attachments: Unity.Collections.NativeArray$1<UnityEngine.Rendering.AttachmentDescriptor>, $subPasses: Unity.Collections.NativeArray$1<UnityEngine.Rendering.SubPassDescriptor>, $subPassIndex?: number, $depthAttachmentIndex?: number, $shadingRateIndex?: number): boolean;
+                public AddGraphicsStatesFromReference($refState: UnityEngine.Rendering.GraphicsStateCollection.GraphicsState, $meshes: System.Array$1<UnityEngine.Mesh>, $materials: System.Array$1<UnityEngine.Material>, $globalKeywords: System.Array$1<UnityEngine.Rendering.GlobalKeyword>, $samples: number, $attachments: Unity.Collections.NativeArray$1<UnityEngine.Rendering.AttachmentDescriptor>, $subPasses: Unity.Collections.NativeArray$1<UnityEngine.Rendering.SubPassDescriptor>, $subPassIndex?: number, $depthAttachmentIndex?: number, $shadingRateIndex?: number): boolean;
+                public AddGraphicsStatesFromReference($refState: UnityEngine.Rendering.GraphicsStateCollection.GraphicsState, $meshes: System.Array$1<UnityEngine.Mesh>, $materials: System.Array$1<UnityEngine.Material>): boolean;
+                public AddGraphicsStatesFromReference($refState: UnityEngine.Rendering.GraphicsStateCollection.GraphicsState, $meshes: System.Array$1<UnityEngine.Mesh>, $materials: System.Array$1<UnityEngine.Material>, $globalKeywords: System.Array$1<UnityEngine.Rendering.GlobalKeyword>): boolean;
+                public GetGraphicsStatesForVariant($variant: UnityEngine.Rendering.GraphicsStateCollection.ShaderVariant, $results: System.Collections.Generic.List$1<UnityEngine.Rendering.GraphicsStateCollection.GraphicsState>): void;
+                public GetGraphicsStateCountForVariant($variant: UnityEngine.Rendering.GraphicsStateCollection.ShaderVariant): number;
+                public AddGraphicsStateForVariant($variant: UnityEngine.Rendering.GraphicsStateCollection.ShaderVariant, $setup: UnityEngine.Rendering.GraphicsStateCollection.GraphicsState): boolean;
+                public RemoveGraphicsStatesForVariant($variant: UnityEngine.Rendering.GraphicsStateCollection.ShaderVariant): boolean;
+                public CopyGraphicsStatesForVariant($srcVariant: UnityEngine.Rendering.GraphicsStateCollection.ShaderVariant, $dstVariant: UnityEngine.Rendering.GraphicsStateCollection.ShaderVariant): boolean;
+            }
+            namespace GraphicsStateCollection {
+                class GraphicsState {
+                    protected [__keep_incompatibility]: never;
+                    public vertexAttributes: System.Array$1<UnityEngine.Rendering.VertexAttributeDescriptor>;
+                    public attachments: System.Array$1<UnityEngine.Rendering.AttachmentDescriptor>;
+                    public subPasses: System.Array$1<UnityEngine.Rendering.SubPassDescriptor>;
+                    public renderState: UnityEngine.Rendering.RenderStateBlock;
+                    public topology: UnityEngine.MeshTopology;
+                    public forceCullMode: UnityEngine.Rendering.CullMode;
+                    public shadingRateCombinerPrimitive: UnityEngine.Rendering.ShadingRateCombiner;
+                    public shadingRateCombinerFragment: UnityEngine.Rendering.ShadingRateCombiner;
+                    public baseShadingRate: UnityEngine.Rendering.ShadingRateFragmentSize;
+                    public depthBias: number;
+                    public slopeDepthBias: number;
+                    public depthAttachmentIndex: number;
+                    public subPassIndex: number;
+                    public shadingRateIndex: number;
+                    public multiviewCount: number;
+                    public sampleCount: number;
+                    public hasEyeTexture: boolean;
+                    public wireframe: boolean;
+                    public invertCulling: boolean;
+                    public negativeScale: boolean;
+                    public invertProjection: boolean;
+                    public SetMeshData($mesh: UnityEngine.Mesh, $submesh: number, $renderer?: UnityEngine.Renderer): void;
+                    public SetRenderPassData($samples: number, $attachments: Unity.Collections.NativeArray$1<UnityEngine.Rendering.AttachmentDescriptor>, $subPasses: Unity.Collections.NativeArray$1<UnityEngine.Rendering.SubPassDescriptor>, $subPassIndex?: number, $depthAttachmentIndex?: number, $shadingRateIndex?: number): void;
+                    public SetRenderStateData($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier): void;
+                }
+
+                class ShaderVariant {
+                    protected [__keep_incompatibility]: never;
+                    public shader: UnityEngine.Shader;
+                    public passId: UnityEngine.Rendering.PassIdentifier;
+                    public keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>;
+                    constructor($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>);
+                    constructor($material: UnityEngine.Material, $passId: UnityEngine.Rendering.PassIdentifier);
+                }
+
             }
 
             enum GraphicsTextureDescriptorFlags {
@@ -13157,7 +13657,7 @@ declare namespace CS {
 
             class RayTracingInstanceMaterialCRC {
                 protected [__keep_incompatibility]: never;
-                public instanceID: number;
+                public entityId: UnityEngine.EntityId;
                 public crc: number;
             }
 
@@ -13299,6 +13799,7 @@ declare namespace CS {
                 public UpdateInstanceID($handle: number, $instanceID: number): void;
                 public UpdateInstanceMask($renderer: UnityEngine.Renderer, $mask: number): void;
                 public UpdateInstanceMask($handle: number, $mask: number): void;
+                public GetNativeBufferPtr(): number;
                 public Build($buildSettings: UnityEngine.Rendering.RayTracingAccelerationStructure.BuildSettings): void;
                 public AddVFXInstances($targetRenderer: UnityEngine.Renderer, $vfxSystemMasks: System.Array$1<number>): void;
                 public RemoveVFXInstances($targetRenderer: UnityEngine.Renderer): void;
@@ -13332,6 +13833,7 @@ declare namespace CS {
                     constructor($buildFlags: UnityEngine.Rendering.RayTracingAccelerationStructureBuildFlags, $relativeOrigin: UnityEngine.Vector3);
                 }
 
+                /** @deprecated RayTracingAccelerationStructure.RASSettings is deprecated. Use RayTracingAccelerationStructure.Settings instead. (UnityUpgradable) -> RayTracingAccelerationStructure/Settings */
                 class RASSettings {
                     protected [__keep_incompatibility]: never;
                     public managementMode: UnityEngine.Rendering.RayTracingAccelerationStructure.ManagementMode;
@@ -13705,14 +14207,20 @@ declare namespace CS {
                 public IssuePluginEventAndData($callback: number, $eventID: number, $data: number): void;
                 public IssuePluginEventAndDataWithFlags($callback: number, $eventID: number, $flags: UnityEngine.Rendering.CustomMarkerCallbackFlags, $data: number): void;
                 public IssuePluginCustomBlit($callback: number, $command: number, $source: UnityEngine.Rendering.RenderTargetIdentifier, $dest: UnityEngine.Rendering.RenderTargetIdentifier, $commandParam: number, $commandFlags: number): void;
+                /** @deprecated Use IssuePluginCustomTextureUpdateV2 to register TextureUpdate callbacks instead. Callbacks will be passed event IDs kUnityRenderingExtEventUpdateTextureBeginV2 or kUnityRenderingExtEventUpdateTextureEndV2, and data parameter of type UnityRenderingExtTextureUpdateParamsV2. */
                 public IssuePluginCustomTextureUpdate($callback: number, $targetTexture: UnityEngine.Texture, $userData: number): void;
+                /** @deprecated Use IssuePluginCustomTextureUpdateV2 to register TextureUpdate callbacks instead. Callbacks will be passed event IDs kUnityRenderingExtEventUpdateTextureBeginV2 or kUnityRenderingExtEventUpdateTextureEndV2, and data parameter of type UnityRenderingExtTextureUpdateParamsV2. */
                 public IssuePluginCustomTextureUpdateV1($callback: number, $targetTexture: UnityEngine.Texture, $userData: number): void;
                 public IssuePluginCustomTextureUpdateV2($callback: number, $targetTexture: UnityEngine.Texture, $userData: number): void;
                 public ProcessVTFeedback($rt: UnityEngine.Rendering.RenderTargetIdentifier, $resolver: number, $slice: number, $x: number, $width: number, $y: number, $height: number, $mip: number): void;
                 public CopyBuffer($source: UnityEngine.GraphicsBuffer, $dest: UnityEngine.GraphicsBuffer): void;
+                /** @deprecated CommandBuffer.CreateGPUFence has been deprecated. Use CreateGraphicsFence instead (UnityUpgradable) -> CreateAsyncGraphicsFence(*) */
                 public CreateGPUFence($stage: UnityEngine.Rendering.SynchronisationStage): UnityEngine.Rendering.GPUFence;
+                /** @deprecated CommandBuffer.CreateGPUFence has been deprecated. Use CreateGraphicsFence instead (UnityUpgradable) -> CreateAsyncGraphicsFence() */
                 public CreateGPUFence(): UnityEngine.Rendering.GPUFence;
+                /** @deprecated CommandBuffer.WaitOnGPUFence has been deprecated. Use WaitOnGraphicsFence instead (UnityUpgradable) -> WaitOnAsyncGraphicsFence(*) */
                 public WaitOnGPUFence($fence: UnityEngine.Rendering.GPUFence, $stage: UnityEngine.Rendering.SynchronisationStage): void;
+                /** @deprecated CommandBuffer.WaitOnGPUFence has been deprecated. Use WaitOnGraphicsFence instead (UnityUpgradable) -> WaitOnAsyncGraphicsFence(*) */
                 public WaitOnGPUFence($fence: UnityEngine.Rendering.GPUFence): void;
             }
 
@@ -13892,12 +14400,10 @@ declare namespace CS {
 
             class BatchPackedCullingViewID implements System.IEquatable$1<UnityEngine.Rendering.BatchPackedCullingViewID> {
                 protected [__keep_incompatibility]: never;
-                constructor($instanceID: number, $sliceIndex: number);
                 public GetHashCode(): number;
                 public Equals($other: UnityEngine.Rendering.BatchPackedCullingViewID): boolean;
                 public Equals($obj: any): boolean;
-                public GetInstanceID(): number;
-                public GetSliceIndex(): number;
+                public GetEntityId(): UnityEngine.EntityId;
             }
 
             class BatchDrawCommand {
@@ -14605,10 +15111,15 @@ declare namespace CS {
                 public Submit(): void;
                 public SubmitForRenderPassValidation(): boolean;
                 public HasInvokeOnRenderObjectCallbacks(): boolean;
+                /** @deprecated DrawRenderers is obsolete and replaced with the RendererList API: construct a RendererList using ScriptableRenderContext.CreateRendererList and execture it using CommandBuffer.DrawRendererList. */
                 public DrawRenderers($cullingResults: UnityEngine.Rendering.CullingResults, $drawingSettings: $Ref<UnityEngine.Rendering.DrawingSettings>, $filteringSettings: $Ref<UnityEngine.Rendering.FilteringSettings>): void;
+                /** @deprecated DrawRenderers is obsolete and replaced with the RendererList API: construct a RendererList using ScriptableRenderContext.CreateRendererList and execture it using CommandBuffer.DrawRendererList. */
                 public DrawRenderers($cullingResults: UnityEngine.Rendering.CullingResults, $drawingSettings: $Ref<UnityEngine.Rendering.DrawingSettings>, $filteringSettings: $Ref<UnityEngine.Rendering.FilteringSettings>, $stateBlock: $Ref<UnityEngine.Rendering.RenderStateBlock>): void;
+                /** @deprecated DrawRenderers is obsolete and replaced with the RendererList API: construct a RendererList using ScriptableRenderContext.CreateRendererList and execture it using CommandBuffer.DrawRendererList. */
                 public DrawRenderers($cullingResults: UnityEngine.Rendering.CullingResults, $drawingSettings: $Ref<UnityEngine.Rendering.DrawingSettings>, $filteringSettings: $Ref<UnityEngine.Rendering.FilteringSettings>, $renderTypes: Unity.Collections.NativeArray$1<UnityEngine.Rendering.ShaderTagId>, $stateBlocks: Unity.Collections.NativeArray$1<UnityEngine.Rendering.RenderStateBlock>): void;
+                /** @deprecated DrawRenderers is obsolete and replaced with the RendererList API: construct a RendererList using ScriptableRenderContext.CreateRendererList and execture it using CommandBuffer.DrawRendererList. */
                 public DrawRenderers($cullingResults: UnityEngine.Rendering.CullingResults, $drawingSettings: $Ref<UnityEngine.Rendering.DrawingSettings>, $filteringSettings: $Ref<UnityEngine.Rendering.FilteringSettings>, $tagName: UnityEngine.Rendering.ShaderTagId, $isPassTagName: boolean, $tagValues: Unity.Collections.NativeArray$1<UnityEngine.Rendering.ShaderTagId>, $stateBlocks: Unity.Collections.NativeArray$1<UnityEngine.Rendering.RenderStateBlock>): void;
+                /** @deprecated DrawShadows is obsolete and replaced with the RendererList API: construct a RendererList using ScriptableRenderContext.CreateShadowRendererList and execture it using CommandBuffer.DrawRendererList. */
                 public DrawShadows($settings: $Ref<UnityEngine.Rendering.ShadowDrawingSettings>): void;
                 public ExecuteCommandBuffer($commandBuffer: UnityEngine.Rendering.CommandBuffer): void;
                 public ExecuteCommandBufferAsync($commandBuffer: UnityEngine.Rendering.CommandBuffer, $queueType: UnityEngine.Rendering.ComputeQueueType): void;
@@ -14620,6 +15131,7 @@ declare namespace CS {
                 public StartMultiEye($camera: UnityEngine.Camera): void;
                 public StartMultiEye($camera: UnityEngine.Camera, $eye: number): void;
                 public StopMultiEye($camera: UnityEngine.Camera): void;
+                /** @deprecated DrawSkybox is obsolete and replaced with the RendererList API: construct a RendererList using ScriptableRenderContext.CreateSkyboxRendererList and execture it using CommandBuffer.DrawRendererList. */
                 public DrawSkybox($camera: UnityEngine.Camera): void;
                 public InvokeOnRenderObjectCallback(): void;
                 public DrawGizmos($camera: UnityEngine.Camera, $gizmoSubset: UnityEngine.Rendering.GizmoSubset): void;
@@ -14829,6 +15341,7 @@ declare namespace CS {
                 public spotAngle: number;
                 public innerSpotAngle: number;
                 public areaSize: UnityEngine.Vector2;
+                public shapeRadius: number;
                 public intersectsNearPlane: boolean;
                 public intersectsFarPlane: boolean;
                 public get forcedVisible(): boolean;
@@ -14979,7 +15492,9 @@ declare namespace CS {
                 public IsValid($shader: UnityEngine.ComputeShader): boolean;
                 public IsValid($shader: UnityEngine.Shader): boolean;
                 public ToString(): string;
+                /** @deprecated GetKeywordType is deprecated. Only global keywords can have a type. This method always returns ShaderKeywordType.UserDefined. */
                 public static GetKeywordType($shader: UnityEngine.Shader, $index: UnityEngine.Rendering.ShaderKeyword): UnityEngine.Rendering.ShaderKeywordType;
+                /** @deprecated GetKeywordType is deprecated. Only global keywords can have a type. This method always returns ShaderKeywordType.UserDefined. */
                 public static GetKeywordType($shader: UnityEngine.ComputeShader, $index: UnityEngine.Rendering.ShaderKeyword): UnityEngine.Rendering.ShaderKeywordType;
             }
 
@@ -15065,7 +15580,7 @@ declare namespace CS {
                 public Equals($other: any): boolean;
             }
 
-            class SceneHandle implements System.IEquatable$1<UnityEngine.SceneManagement.SceneHandle> {
+            class SceneHandle implements System.IEquatable$1<UnityEngine.SceneManagement.SceneHandle>, System.IFormattable {
                 protected [__keep_incompatibility]: never;
                 public static get None(): UnityEngine.SceneManagement.SceneHandle;
                 public Equals($obj: any): boolean;
@@ -15073,6 +15588,9 @@ declare namespace CS {
                 public GetHashCode(): number;
                 public ToString(): string;
                 public ToString($format: string): string;
+                public ToString($format: string, $formatProvider: System.IFormatProvider): string;
+                public GetRawData(): bigint;
+                public static FromRawData($rawdata: bigint): UnityEngine.SceneManagement.SceneHandle;
             }
 
             class SceneManagerAPI {
@@ -15095,8 +15613,8 @@ declare namespace CS {
                 public static CreateScene($sceneName: string, $parameters: UnityEngine.SceneManagement.CreateSceneParameters): UnityEngine.SceneManagement.Scene;
                 public static MergeScenes($sourceScene: UnityEngine.SceneManagement.Scene, $destinationScene: UnityEngine.SceneManagement.Scene): void;
                 public static MoveGameObjectToScene($go: UnityEngine.GameObject, $scene: UnityEngine.SceneManagement.Scene): void;
-                public static MoveGameObjectsToScene($instanceIDs: Unity.Collections.NativeArray$1<number>, $scene: UnityEngine.SceneManagement.Scene): void;
                 public static MoveGameObjectsToScene($entityIds: Unity.Collections.NativeArray$1<UnityEngine.EntityId>, $scene: UnityEngine.SceneManagement.Scene): void;
+                /** @deprecated Use SceneManager.sceneCount and SceneManager.GetSceneAt(int index) to loop the all scenes instead. */
                 public static GetAllScenes(): System.Array$1<UnityEngine.SceneManagement.Scene>;
                 public static CreateScene($sceneName: string): UnityEngine.SceneManagement.Scene;
                 public static LoadScene($sceneName: string, $mode: UnityEngine.SceneManagement.LoadSceneMode): void;
@@ -15111,8 +15629,11 @@ declare namespace CS {
                 public static LoadSceneAsync($sceneName: string, $mode: UnityEngine.SceneManagement.LoadSceneMode): UnityEngine.AsyncOperation;
                 public static LoadSceneAsync($sceneName: string): UnityEngine.AsyncOperation;
                 public static LoadSceneAsync($sceneName: string, $parameters: UnityEngine.SceneManagement.LoadSceneParameters): UnityEngine.AsyncOperation;
+                /** @deprecated Use SceneManager.UnloadSceneAsync. This function is not safe to use during triggers and under other circumstances. See Scripting reference for more details. */
                 public static UnloadScene($scene: UnityEngine.SceneManagement.Scene): boolean;
+                /** @deprecated Use SceneManager.UnloadSceneAsync. This function is not safe to use during triggers and under other circumstances. See Scripting reference for more details. */
                 public static UnloadScene($sceneBuildIndex: number): boolean;
+                /** @deprecated Use SceneManager.UnloadSceneAsync. This function is not safe to use during triggers and under other circumstances. See Scripting reference for more details. */
                 public static UnloadScene($sceneName: string): boolean;
                 public static UnloadSceneAsync($sceneBuildIndex: number): UnityEngine.AsyncOperation;
                 public static UnloadSceneAsync($sceneName: string): UnityEngine.AsyncOperation;
@@ -15168,11 +15689,6 @@ declare namespace CS {
     }
     namespace UnityEngine {
         namespace Scripting {
-            class AlwaysLinkAssemblyAttribute extends System.Attribute {
-                protected [__keep_incompatibility]: never;
-                constructor();
-            }
-
             class GarbageCollector {
                 protected [__keep_incompatibility]: never;
                 public static GCMode: UnityEngine.Scripting.GarbageCollector.Mode;
@@ -15189,36 +15705,6 @@ declare namespace CS {
                     Manual = 2
                 }
 
-            }
-
-            class PreserveAttribute extends System.Attribute {
-                protected [__keep_incompatibility]: never;
-                constructor();
-            }
-
-            class RequireAttributeUsagesAttribute extends System.Attribute {
-                protected [__keep_incompatibility]: never;
-                constructor();
-            }
-
-            class RequireDerivedAttribute extends System.Attribute {
-                protected [__keep_incompatibility]: never;
-                constructor();
-            }
-
-            class RequiredInterfaceAttribute extends System.Attribute {
-                protected [__keep_incompatibility]: never;
-                constructor($interfaceType: System.TypeLike);
-            }
-
-            class RequiredMemberAttribute extends System.Attribute {
-                protected [__keep_incompatibility]: never;
-                constructor();
-            }
-
-            class RequireImplementorsAttribute extends System.Attribute {
-                protected [__keep_incompatibility]: never;
-                constructor();
             }
 
         }
@@ -15285,6 +15771,7 @@ declare namespace CS {
     }
     namespace UnityEngine {
         namespace SearchService {
+            /** @deprecated ObjectSelectorHandlerWithLabelsAttribute has been deprecated. Use SearchContextAttribute instead. */
             class ObjectSelectorHandlerWithLabelsAttribute extends System.Attribute {
                 protected [__keep_incompatibility]: never;
                 public get labels(): System.Array$1<string>;
@@ -15293,6 +15780,7 @@ declare namespace CS {
                 constructor($matchAll: boolean, ...labels: string[]);
             }
 
+            /** @deprecated ObjectSelectorHandlerWithTagsAttribute has been deprecated. Use SearchContextAttribute instead. */
             class ObjectSelectorHandlerWithTagsAttribute extends System.Attribute {
                 protected [__keep_incompatibility]: never;
                 public get tags(): System.Array$1<string>;
@@ -15326,6 +15814,100 @@ declare namespace CS {
                 public GetSurrogate($type: System.TypeLike, $context: System.Runtime.Serialization.StreamingContext, $selector: $Out<System.Runtime.Serialization.ISurrogateSelector>): System.Runtime.Serialization.ISerializationSurrogate;
                 public ChainSelector($selector: System.Runtime.Serialization.ISurrogateSelector): void;
                 public GetNextSelector(): System.Runtime.Serialization.ISurrogateSelector;
+            }
+
+        }
+    }
+    namespace UnityEngine {
+        namespace Shaders {
+            enum ShaderResourceType {
+                ConstantBuffer = 0,
+                Buffer = 1,
+                TypedBuffer = 2,
+                Texture = 3,
+                CombinedTextureSampler = 4,
+                Sampler = 5,
+                RayTracingAccelerationStructure = 6,
+                InputTarget = 7
+            }
+
+            enum ShaderResourceOptions {
+                None = 0,
+                Readable = 1,
+                Writable = 2
+            }
+
+            enum ShaderType {
+                Graphics = 0,
+                FirstStage = 0,
+                Compute = 1,
+                RayTracing = 2,
+                Count = 4
+            }
+
+            enum ShaderStage {
+                Vertex = 0,
+                FirstStage = 0,
+                Fragment = 1,
+                Hull = 2,
+                Domain = 3,
+                Geometry = 4,
+                Compute = 5,
+                GraphicsStageCount = 5,
+                RayTracing = 6,
+                Count = 7
+            }
+
+            enum ShaderStageFlags {
+                None = 0,
+                Vertex = 1,
+                Fragment = 2,
+                Basic = 3,
+                Hull = 4,
+                Domain = 8,
+                Tessellation = 12,
+                Geometry = 16,
+                Graphics = 31,
+                Compute = 32,
+                RayTracing = 64,
+                Any = 127
+            }
+
+            enum ShaderTypeFlags {
+                None = 0,
+                Graphics = 1,
+                Compute = 2,
+                RayTracing = 4,
+                Any = 7
+            }
+
+            class Utility {
+                protected [__keep_incompatibility]: never;
+                constructor();
+                public static IsShaderStageEnabled($flags: UnityEngine.Shaders.ShaderStageFlags, $stage: UnityEngine.Shaders.ShaderStage): boolean;
+                public static IsShaderTypeEnabled($flags: UnityEngine.Shaders.ShaderTypeFlags, $type: UnityEngine.Shaders.ShaderType): boolean;
+                public static ShaderStageToFlags($stage: UnityEngine.Shaders.ShaderStage): UnityEngine.Shaders.ShaderStageFlags;
+                public static ShaderTypeToFlags($type: UnityEngine.Shaders.ShaderType): UnityEngine.Shaders.ShaderTypeFlags;
+                public static GetPreviousStage($stage: UnityEngine.Shaders.ShaderStage): UnityEngine.Shaders.ShaderStage;
+                public static GetNextStage($stage: UnityEngine.Shaders.ShaderStage): UnityEngine.Shaders.ShaderStage;
+            }
+
+            class VariantsUploadedToGpuLastFrame {
+                protected [__keep_incompatibility]: never;
+                public static get count(): number;
+                public static GetUploadData($index: number): UnityEngine.Shaders.VariantsUploadedToGpuLastFrame.UploadData;
+                public static TryGetUploadData($index: number, $uploadData: $Out<UnityEngine.Shaders.VariantsUploadedToGpuLastFrame.UploadData>): boolean;
+            }
+            namespace VariantsUploadedToGpuLastFrame {
+                class UploadData {
+                    protected [__keep_incompatibility]: never;
+                    public readonly keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>;
+                    public readonly shader: UnityEngine.Shader;
+                    public readonly passIdentifier: UnityEngine.Rendering.PassIdentifier;
+                    public readonly uploadTimeInMilliseconds: number;
+                    public readonly stages: UnityEngine.Shaders.ShaderStageFlags;
+                }
+
             }
 
         }
@@ -15458,11 +16040,45 @@ declare namespace CS {
             class SpriteRendererDataAccessExtensions {
                 protected [__keep_incompatibility]: never;
                 public static DeactivateDeformableBuffer(): void;
+                public static SetShaderUserValue($v: number): void;
+                public static GetShaderUserValue(): number;
+            }
+
+            class SpriteBlendShapeVertex {
+                protected [__keep_incompatibility]: never;
+                public index: number;
+                public vertex: UnityEngine.Vector3;
+                public normal: UnityEngine.Vector3;
+                public tangent: UnityEngine.Vector3;
+            }
+
+            class ObjectData {
+                protected [__keep_incompatibility]: never;
+                public asset: UnityEngine.EntityId;
+                public packInfo: UnityEngine.Vector4;
+            }
+
+            class TextureData {
+                protected [__keep_incompatibility]: never;
+                public texture: UnityEngine.EntityId;
+                public mapName: string;
+            }
+
+            class AtlasPage {
+                protected [__keep_incompatibility]: never;
+                public assets: System.Array$1<UnityEngine.U2D.ObjectData>;
+                public packedTextures: System.Array$1<UnityEngine.U2D.TextureData>;
+            }
+
+            class SpriteAtlasRuntimeConfig {
+                protected [__keep_incompatibility]: never;
+                public scaleMultiplier: number;
             }
 
             class SpriteAtlasManager {
                 protected [__keep_incompatibility]: never;
                 constructor();
+                public static CreateSpriteAtlas($name: string, $config: UnityEngine.U2D.SpriteAtlasRuntimeConfig, $pages: System.Array$1<UnityEngine.U2D.AtlasPage>): UnityEngine.U2D.SpriteAtlas;
                 public static add_atlasRequested(handler: System.Action$2<string, System.Action$1<UnityEngine.U2D.SpriteAtlas>>): void;
                 public static remove_atlasRequested(handler: System.Action$2<string, System.Action$1<UnityEngine.U2D.SpriteAtlas>>): void;
                 public static add_atlasRegistered(handler: System.Action$1<UnityEngine.U2D.SpriteAtlas>): void;
@@ -16170,6 +16786,10 @@ declare namespace CS {
         class APIUpdaterRuntimeServices {
             protected [__keep_incompatibility]: never;
             constructor();
+            /** @deprecated AddComponent(string) has been deprecated. Use GameObject.AddComponent<T>() / GameObject.AddComponent(Type) instead.
+API Updater could not automatically update the original call to AddComponent(string name), because it was unable to resolve the type specified in parameter 'name'.
+Instead, this call has been replaced with a call to APIUpdaterRuntimeServices.AddComponent() so you can try to test your game in the editor.
+In order to be able to build the game, replace this call (APIUpdaterRuntimeServices.AddComponent()) with a call to GameObject.AddComponent<T>() / GameObject.AddComponent(Type). */
             public static AddComponent($go: UnityEngine.GameObject, $sourceInfo: string, $name: string): UnityEngine.Component;
         }
 

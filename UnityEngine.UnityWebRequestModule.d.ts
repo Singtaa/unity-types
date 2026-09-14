@@ -89,10 +89,24 @@ declare namespace CS {
                 constructor($data: string, $fileName: string);
             }
 
+            class UnityHttpMessageHandler extends System.Net.Http.HttpMessageHandler {
+                protected [__keep_incompatibility]: never;
+                public HttpForcedVersion: UnityEngine.Networking.HttpForcedVersion;
+                public CertificateHandler: UnityEngine.Networking.CertificateHandler;
+                constructor();
+            }
+
             class UnityWebRequestAsyncOperation extends UnityEngine.AsyncOperation {
                 protected [__keep_incompatibility]: never;
                 public get webRequest(): UnityEngine.Networking.UnityWebRequest;
                 constructor();
+            }
+
+            enum HttpForcedVersion {
+                NotForced = 0,
+                HTTP1_0 = 1,
+                HTTP1_1 = 2,
+                HTTP2 = 3
             }
 
             class UnityWebRequest implements System.IDisposable {
@@ -127,6 +141,7 @@ declare namespace CS {
                 public downloadHandler: UnityEngine.Networking.DownloadHandler;
                 public certificateHandler: UnityEngine.Networking.CertificateHandler;
                 public timeout: number;
+                public httpForcedVersion: UnityEngine.Networking.HttpForcedVersion;
                 public get isError(): boolean;
                 constructor();
                 constructor($url: string);
@@ -138,6 +153,7 @@ declare namespace CS {
                 public static ClearCookieCache(): void;
                 public static ClearCookieCache($uri: System.Uri): void;
                 public Dispose(): void;
+                /** @deprecated Use SendWebRequest.  It returns a UnityWebRequestAsyncOperation which contains a reference to the WebRequest object. */
                 public Send(): UnityEngine.AsyncOperation;
                 public SendWebRequest(): UnityEngine.Networking.UnityWebRequestAsyncOperation;
                 public Abort(): void;
@@ -145,6 +161,8 @@ declare namespace CS {
                 public SetRequestHeader($name: string, $value: string): void;
                 public GetResponseHeader($name: string): string;
                 public GetResponseHeaders(): System.Collections.Generic.Dictionary$2<string, string>;
+                public GetResponseTrailer($name: string): string;
+                public GetResponseTrailers(): System.Collections.Generic.Dictionary$2<string, string>;
                 public static Get($uri: string): UnityEngine.Networking.UnityWebRequest;
                 public static Get($uri: System.Uri): UnityEngine.Networking.UnityWebRequest;
                 public static Delete($uri: string): UnityEngine.Networking.UnityWebRequest;
@@ -155,7 +173,9 @@ declare namespace CS {
                 public static Put($uri: System.Uri, $bodyData: System.Array$1<number>): UnityEngine.Networking.UnityWebRequest;
                 public static Put($uri: string, $bodyData: string): UnityEngine.Networking.UnityWebRequest;
                 public static Put($uri: System.Uri, $bodyData: string): UnityEngine.Networking.UnityWebRequest;
+                /** @deprecated UnityWebRequest.Post with only a string data is obsolete. Use UnityWebRequest.Post with content type argument or UnityWebRequest.PostWwwForm instead (UnityUpgradable) -> [UnityEngine] UnityWebRequest.PostWwwForm(*) */
                 public static Post($uri: string, $postData: string): UnityEngine.Networking.UnityWebRequest;
+                /** @deprecated UnityWebRequest.Post with only a string data is obsolete. Use UnityWebRequest.Post with content type argument or UnityWebRequest.PostWwwForm instead (UnityUpgradable) -> [UnityEngine] UnityWebRequest.PostWwwForm(*) */
                 public static Post($uri: System.Uri, $postData: string): UnityEngine.Networking.UnityWebRequest;
                 public static PostWwwForm($uri: string, $form: string): UnityEngine.Networking.UnityWebRequest;
                 public static PostWwwForm($uri: System.Uri, $form: string): UnityEngine.Networking.UnityWebRequest;

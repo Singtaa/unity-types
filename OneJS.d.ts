@@ -1,6 +1,10 @@
 declare namespace CS {
     const __keep_incompatibility: symbol;
 
+    class MyEditorUpdater {
+        protected [__keep_incompatibility]: never;
+    }
+
     namespace OneJS {
         class AssetLoader {
             protected [__keep_incompatibility]: never;
@@ -10,7 +14,9 @@ declare namespace CS {
 
         class CartridgeTypeGenerator {
             protected [__keep_incompatibility]: never;
+            public static readonly VersionLinePrefix: string;
             public static Generate($cartridge: OneJS.UICartridge): string;
+            public static ParseVersion($dtsText: string): string;
         }
 
         class CartridgeUtils {
@@ -18,6 +24,7 @@ declare namespace CS {
             public static EscapeJsString($s: string): string;
             public static GetCartridgePath($baseDir: string, $cartridge: OneJS.UICartridge): string;
             public static ExtractCartridges($baseDir: string, $cartridges: System.Collections.Generic.IReadOnlyList$1<OneJS.UICartridge>, $overwriteExisting: boolean, $logPrefix?: string): System.Collections.Generic.List$1<string>;
+            public static GetExtractedVersion($baseDir: string, $cartridge: OneJS.UICartridge): string;
             public static InjectCartridgeGlobals($bridge: OneJS.QuickJSUIBridge, $cartridges: System.Collections.Generic.IReadOnlyList$1<OneJS.UICartridge>): void;
             public static ApplyStylesheets($root: UnityEngine.UIElements.VisualElement, $stylesheets: System.Collections.Generic.IReadOnlyList$1<UnityEngine.UIElements.StyleSheet>): void;
             public static InjectPlatformDefines($bridge: OneJS.QuickJSUIBridge): void;
@@ -37,7 +44,7 @@ declare namespace CS {
         }
         namespace CodeField {
             interface ISyntaxHighlighter {
-                Highlight($text: string): any;
+                Highlight($text: string): System.Array$1<UnityEngine.Color32>;
             }
 
             class SimpleKeywordHighlighter implements OneJS.CodeField.ISyntaxHighlighter {
@@ -50,7 +57,7 @@ declare namespace CS {
                 public JsxTagColor: UnityEngine.Color32;
                 public JsxAttributeColor: UnityEngine.Color32;
                 constructor();
-                public Highlight($text: string): any;
+                public Highlight($text: string): System.Array$1<UnityEngine.Color32>;
             }
 
             type UxmlSerializedData = any;
@@ -188,6 +195,7 @@ declare namespace CS {
             public get TypingsFullPath(): string;
             public get Cartridges(): System.Collections.Generic.IReadOnlyList$1<OneJS.UICartridge>;
             constructor();
+            public GetJSFunction<TDelegate extends Function>($globalName: string): TDelegate;
             public SetPanelSettings($panelSettings: UnityEngine.UIElements.PanelSettings): void;
             public SetVisualTreeAsset($visualTreeAsset: UnityEngine.UIElements.VisualTreeAsset): void;
             public SetBundleAsset($asset: UnityEngine.TextAsset): void;
@@ -206,12 +214,32 @@ declare namespace CS {
             public RestoreDefaultFile($index: number): boolean;
             public static add_EditModePreviewStarted(handler: System.Action$1<OneJS.JSRunner>): void;
             public static remove_EditModePreviewStarted(handler: System.Action$1<OneJS.JSRunner>): void;
+            public add_Reloaded(handler: System.Action$1<OneJS.JSRunner>): void;
+            public remove_Reloaded(handler: System.Action$1<OneJS.JSRunner>): void;
         }
 
         class Janitor extends UnityEngine.MonoBehaviour {
             protected [__keep_incompatibility]: never;
             constructor();
             public Clean(): void;
+        }
+
+        class JsLog {
+            protected [__keep_incompatibility]: never;
+            public static readonly LevelMarker: number;
+            public static get ErrorCount(): number;
+            public static get LastError(): string;
+            public static ResetErrorCount(): void;
+            public static SplitLevel($raw: string, $body: $Out<string>): OneJS.JsLog.Level;
+            public static Route($msg: string): void;
+        }
+        namespace JsLog {
+            enum Level {
+                Log = 0,
+                Warn = 1,
+                Error = 2
+            }
+
         }
 
         class Network {
@@ -269,7 +297,7 @@ declare namespace CS {
             public max: number;
             public space: number;
             public seed: number;
-            public emitters: any;
+            public emitters: System.Array$1<OneJS.WireEmitter>;
             constructor();
         }
 
@@ -314,9 +342,9 @@ declare namespace CS {
             public sheetFps: number;
             public sheetFrames: number;
             public sheetRandomStart: boolean;
-            public colorKeys: any;
-            public sizeKeys: any;
-            public tintPalette: any;
+            public colorKeys: System.Array$1<OneJS.WireColorKey>;
+            public sizeKeys: System.Array$1<OneJS.WireFloatKey>;
+            public tintPalette: System.Array$1<OneJS.WireRGBA>;
             constructor();
         }
 
@@ -367,9 +395,82 @@ declare namespace CS {
             public static UnregisterHandler($element: UnityEngine.UIElements.VisualElement, $eventType: string, $contextId: number): void;
         }
 
+        class Physics2DBridge {
+            protected [__keep_incompatibility]: never;
+            public static get LiveWorldCount(): number;
+            public static Create($host: UnityEngine.UIElements.VisualElement, $json: string): OneJS.PhysicsWorld2D;
+            public static TickAll(): void;
+            public static DisposeAll(): void;
+        }
+
+        class Physics2DWireDoc {
+            protected [__keep_incompatibility]: never;
+            public v: number;
+            public pixelsPerUnit: number;
+            public gravityX: number;
+            public gravityY: number;
+            public velocityIterations: number;
+            public positionIterations: number;
+            public bounds: boolean;
+            public boundsRestitution: number;
+            public boundsFriction: number;
+            public bodies: System.Array$1<OneJS.WireBody>;
+            constructor();
+        }
+
+        class WireBody {
+            protected [__keep_incompatibility]: never;
+            public type: number;
+            public x: number;
+            public y: number;
+            public rotation: number;
+            public shape: number;
+            public w: number;
+            public h: number;
+            public density: number;
+            public friction: number;
+            public restitution: number;
+            public linearDamping: number;
+            public angularDamping: number;
+            public fixedRotation: boolean;
+            public reportCollisions: boolean;
+            public sensor: boolean;
+            public tag: number;
+            public vx: number;
+            public vy: number;
+            public angularVelocity: number;
+            constructor();
+        }
+
+        class Physics2DWire {
+            protected [__keep_incompatibility]: never;
+            public static readonly Version: number;
+            public static Parse($json: string): OneJS.Physics2DWireDoc;
+        }
+
+        class PhysicsWorld2D implements System.IDisposable {
+            protected [__keep_incompatibility]: never;
+            public static readonly EventStride: number;
+            public get IsDisposed(): boolean;
+            public get BodyCount(): number;
+            public get PendingEventCount(): number;
+            constructor($host: UnityEngine.UIElements.VisualElement, $doc: OneJS.Physics2DWireDoc);
+            public Bind($index: number, $element: UnityEngine.UIElements.VisualElement): void;
+            public Tick($dt: number): void;
+            public DrainEvents(): string;
+            public ApplyImpulse($index: number, $x: number, $y: number): void;
+            public SetVelocity($index: number, $x: number, $y: number): void;
+            public SetPosition($index: number, $x: number, $y: number): void;
+            public SetGravity($x: number, $y: number): void;
+            public SetBodyEnabled($index: number, $enabled: boolean): void;
+            public ReadTransforms(): string;
+            public Dispose(): void;
+        }
+
         class QuickJSContext implements System.IDisposable {
             protected [__keep_incompatibility]: never;
             public get NativePtr(): number;
+            public get IsAlive(): boolean;
             constructor($bufferSize?: number);
             public Eval($code: string, $filename?: string, $evalFlags?: number): string;
             public RunGC(): void;
@@ -394,6 +495,7 @@ declare namespace CS {
             public InvokeCallbackNoAlloc($handle: number, $arg0: number, $arg1: number, $arg2: number, $arg3: number): void;
             public InvokeCallbackNoAlloc($handle: number, $arg0: number, $arg1: number, $arg2: number, $arg3: number, $arg4: number, $arg5: number): void;
             public InvokeCallbackReturnInt($handle: number, $arg0: number, $arg1: number, $arg2: number, $arg3: number, $arg4: number, $arg5: number): number;
+            public GetJSFunction<TDelegate extends Function>($globalName: string): TDelegate;
         }
 
         class QuickJSNative {
@@ -489,8 +591,8 @@ declare namespace CS {
                 public static IsTypeRegistered($type: System.TypeLike): boolean;
                 public static IsRegistered<T>($memberName: string): boolean;
                 public static IsRegistered($type: System.TypeLike, $memberName: string): boolean;
-                public static GetRegisteredMembers<T>(): any;
-                public static GetRegisteredMembers($type: System.TypeLike): any;
+                public static GetRegisteredMembers<T>(): System.Array$1<string>;
+                public static GetRegisteredMembers($type: System.TypeLike): System.Array$1<string>;
                 public static Clear(): void;
             }
 
@@ -517,6 +619,12 @@ declare namespace CS {
                 Invoke?: ($handle: number) => void;
             }
             var CsReleaseHandleCallback: { new (func: ($handle: number) => void): CsReleaseHandleCallback; };
+
+            interface CsFreeCallback {
+                ($ptr: number): void;
+                Invoke?: ($ptr: number) => void;
+            }
+            var CsFreeCallback: { new (func: ($ptr: number) => void): CsFreeCallback; };
 
             interface CsZeroAllocCallback {
                 ($bindingId: number, $args: any, $argCount: number, $outResult: any): void;
@@ -599,6 +707,7 @@ declare namespace CS {
             public get Root(): UnityEngine.UIElements.VisualElement;
             public get WorkingDir(): string;
             public get WebSocketContextId(): number;
+            public get LastStyleDiagnostics(): System.Collections.Generic.IReadOnlyList$1<OneJS.CustomStyleSheets.UssCompiler.UssDiagnostic>;
             constructor($root: UnityEngine.UIElements.VisualElement, $workingDir?: string, $bufferSize?: number);
             public LoadStyleSheet($path: string): boolean;
             public CompileStyleSheet($ussContent: string, $name?: string): boolean;
@@ -607,8 +716,10 @@ declare namespace CS {
             public GetStyleSheetNames(): System.Collections.Generic.IEnumerable$1<string>;
             public Dispose(): void;
             public Eval($code: string, $filename?: string): string;
+            public GetJSFunction<TDelegate extends Function>($globalName: string): TDelegate;
             public CacheTickCallback(): void;
             public CacheEventDispatchCallback(): void;
+            public TickSystems(): void;
             public Tick(): void;
         }
 
@@ -636,6 +747,13 @@ declare namespace CS {
             public static AddClassesBatch($element: UnityEngine.UIElements.VisualElement, $classesObj: any): void;
         }
 
+        class TreeViewBridge {
+            protected [__keep_incompatibility]: never;
+            public static SetRootItems($treeView: UnityEngine.UIElements.BaseTreeView, $ids: System.Array$1<number>, $parentIds: System.Array$1<number>): void;
+            public static GetSelectedIds($treeView: UnityEngine.UIElements.BaseTreeView): System.Array$1<number>;
+            public static GetSelectedIndices($view: UnityEngine.UIElements.BaseVerticalCollectionView): System.Array$1<number>;
+        }
+
         class CartridgeFileEntry {
             protected [__keep_incompatibility]: never;
             public path: string;
@@ -656,10 +774,16 @@ declare namespace CS {
             public get Slug(): string;
             public get DisplayName(): string;
             public get Description(): string;
+            public get Version(): string;
             public get Files(): System.Collections.Generic.IReadOnlyList$1<OneJS.CartridgeFileEntry>;
             public get Objects(): System.Collections.Generic.IReadOnlyList$1<OneJS.CartridgeObjectEntry>;
             public get RelativePath(): string;
             constructor();
+        }
+
+        class RenderTextureUtils {
+            protected [__keep_incompatibility]: never;
+            public static EnsureCreated($rt: UnityEngine.RenderTexture): void;
         }
 
         class SVGUtils {
@@ -692,6 +816,32 @@ declare namespace CS {
 
     }
     namespace OneJS {
+        namespace Audio {
+            class AudioBridge {
+                protected [__keep_incompatibility]: never;
+                public static LoadClip($url: string): $Task;
+                public static UnloadClip($clip: number): void;
+                public static GetClipCount(): number;
+                public static GetClipLength($clip: number): number;
+                public static Play($clip: number, $volume: number, $pitch: number): number;
+                public static PlayLooping($clip: number, $volume: number, $pitch: number): number;
+                public static Stop($voice: number): void;
+                public static StopAll(): void;
+                public static IsPlaying($voice: number): boolean;
+                public static SetVoiceVolume($voice: number, $volume: number): void;
+                public static SetVoicePitch($voice: number, $pitch: number): void;
+                public static PauseVoice($voice: number, $paused: boolean): void;
+                public static SetMasterVolume($volume: number): void;
+                public static GetMasterVolume(): number;
+                public static SetPaused($paused: boolean): void;
+                public static GetVoiceCount(): number;
+                public static GetActiveVoiceCount(): number;
+                public static Dispose(): void;
+            }
+
+        }
+    }
+    namespace OneJS {
         namespace CustomStyleSheets {
             class StyleSheetBuilderWrapper {
                 protected [__keep_incompatibility]: never;
@@ -701,7 +851,7 @@ declare namespace CS {
                 public BeginRule($line: number): void;
                 public EndRule(): void;
                 public BeginComplexSelector($specificity: number): System.IDisposable;
-                public AddSimpleSelector($parts: any, $relationship: OneJS.CustomStyleSheets.SelectorRelationship): void;
+                public AddSimpleSelector($parts: System.Array$1<OneJS.CustomStyleSheets.SelectorPart>, $relationship: OneJS.CustomStyleSheets.SelectorRelationship): void;
                 public BeginProperty($name: string, $line: number): void;
                 public EndProperty(): void;
                 public AddCommaSeparator(): void;
@@ -789,14 +939,45 @@ declare namespace CS {
 
             class UssCompiler {
                 protected [__keep_incompatibility]: never;
+                public get Diagnostics(): System.Collections.Generic.List$1<OneJS.CustomStyleSheets.UssCompiler.UssDiagnostic>;
                 constructor($workingDir?: string);
                 public Compile($asset: UnityEngine.UIElements.StyleSheet, $ussContent: string): void;
+            }
+            namespace UssCompiler {
+                class UssDiagnostic {
+                    protected [__keep_incompatibility]: never;
+                    public Line: number;
+                    public Property: string;
+                    public Message: string;
+                    public ToString(): string;
+                }
+
             }
 
         }
     }
     namespace OneJS {
         namespace Editor {
+            class AISkillsInstaller {
+                protected [__keep_incompatibility]: never;
+                public static InstallSkillsMenu(): void;
+                public static InstallSkillsBatch(): void;
+                public static Install($interactive: boolean): OneJS.Editor.AISkillsInstaller.Result;
+                public static FindPackageRoot(): string;
+            }
+            namespace AISkillsInstaller {
+                class Result {
+                    protected [__keep_incompatibility]: never;
+                    public Installed: System.Collections.Generic.List$1<string>;
+                    public AlreadyCurrent: System.Collections.Generic.List$1<string>;
+                    public Kept: System.Collections.Generic.List$1<string>;
+                    public Failed: System.Collections.Generic.List$1<string>;
+                    public Destination: string;
+                    public Found: boolean;
+                }
+
+            }
+
             class CartridgeFileEntryDrawer extends UnityEditor.PropertyDrawer {
                 protected [__keep_incompatibility]: never;
                 constructor();
@@ -948,6 +1129,7 @@ declare namespace CS {
                     public static readonly Output: string;
                     public static readonly Extracted: string;
                     public static readonly NotExtracted: string;
+                    public static readonly Outdated: string;
                     public static readonly NoSlug: string;
                     public static readonly NotGenerated: string;
                     public static readonly Processing: string;
@@ -975,7 +1157,7 @@ declare namespace CS {
             class CursorOverlay {
                 protected [__keep_incompatibility]: never;
                 constructor($heightPx: number);
-                public Composite($frame: any, $frameW: number, $frameH: number, $pos: UnityEngine.Vector2, $pressed: boolean, $timeSincePress: number): void;
+                public Composite($frame: System.Array$1<number>, $frameW: number, $frameH: number, $pos: UnityEngine.Vector2, $pressed: boolean, $timeSincePress: number): void;
             }
 
             class FfmpegLocator {
@@ -1038,6 +1220,24 @@ declare namespace CS {
                 public static Record($runner: OneJS.JSRunner, $options: OneJS.Editor.PanelRecordingOptions): string;
             }
 
+            class SLShaderGenerator {
+                protected [__keep_incompatibility]: never;
+                public static readonly OutputDir: string;
+                public static readonly RecordedManifest: string;
+                public static readonly RootInclude: string;
+                public static Includes(): System.Array$1<string>;
+                public static GenerateAll(): void;
+                public static Record($hash: string, $hlsl: string): void;
+                public static FlushRecorded(): number;
+                public static FindManifests(): System.Array$1<string>;
+                public static Generate($manifestPaths: System.Array$1<string>): number;
+            }
+
+            class SLShaderPostprocessor extends UnityEditor.AssetPostprocessor {
+                protected [__keep_incompatibility]: never;
+                constructor();
+            }
+
             class UICartridgeEditor extends UnityEditor.Editor {
                 protected [__keep_incompatibility]: never;
                 constructor();
@@ -1087,6 +1287,7 @@ declare namespace CS {
                     public IncludeDocumentation: boolean;
                     public IncludeObsoleteWarnings: boolean;
                     public EmitModuleDeclaration: boolean;
+                    public EmitNamespaceModules: boolean;
                     public EmitIncompatibilityMarker: boolean;
                     public UseAccessorSyntax: boolean;
                     public SkipHeader: boolean;
@@ -1291,14 +1492,14 @@ declare namespace CS {
                 class TypeGenerator {
                     protected [__keep_incompatibility]: never;
                     public static readonly DefaultOutputPath: string;
-                    public static Generate($outputPath: string, ...types: any[]): void;
+                    public static Generate($outputPath: string, ...types: System.TypeLike[]): void;
                     public static GenerateFromAssembly($outputPath: string, $assemblyNamePattern: string): void;
-                    public static GenerateFromAssemblies($outputPath: string, ...assemblyNamePatterns: any[]): void;
+                    public static GenerateFromAssemblies($outputPath: string, ...assemblyNamePatterns: string[]): void;
                     public static GenerateFromNamespace($outputPath: string, $namespaceName: string): void;
                     public static GenerateProjectTypes($outputPath?: string): void;
-                    public static GenerateToResult(...types: any[]): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
+                    public static GenerateToResult(...types: System.TypeLike[]): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
                     public static Create(): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
-                    public static CombinePresets(...results: any[]): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
+                    public static CombinePresets(...results: OneJS.Editor.TypeGenerator.TypeGeneratorResult[]): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
                     public static GetAssemblies($namePattern: string): System.Collections.Generic.IEnumerable$1<System.Reflection.Assembly>;
                     public static GetTypesFromAssembly($assemblyPattern: string): System.Collections.Generic.IEnumerable$1<System.Type>;
                     public static GetTypesFromNamespace($namespaceName: string): System.Collections.Generic.IEnumerable$1<System.Type>;
@@ -1325,7 +1526,7 @@ declare namespace CS {
                     public AddType<T>(): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
                     public AddType($type: System.TypeLike): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
                     public AddTypeByName($fullTypeName: string): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
-                    public AddTypes(...types: any[]): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
+                    public AddTypes(...types: System.TypeLike[]): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
                     public AddTypes($types: System.Collections.Generic.IEnumerable$1<System.Type>): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
                     public AddAssemblyByName($assemblyNamePattern: string): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
                     public AddAssembly($assembly: System.Reflection.Assembly): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
@@ -1340,6 +1541,7 @@ declare namespace CS {
                     public IncludeDocumentation(): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
                     public ExcludeDocumentation(): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
                     public EmitModuleDeclaration(): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
+                    public EmitNamespaceModules($emit?: boolean): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
                     public EmitIncompatibilityMarker($emit?: boolean): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
                     public UseAccessorSyntax($use?: boolean): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
                     public SkipHeader(): OneJS.Editor.TypeGenerator.TypeGeneratorBuilder;
@@ -1355,7 +1557,7 @@ declare namespace CS {
                     public static Audio(): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
                     public static InputSystem(): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
                     public static All(): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
-                    public static CreateCustom($name: string, ...types: any[]): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
+                    public static CreateCustom($name: string, ...types: System.TypeLike[]): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
                     public static FromNamespace($namespaceName: string): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
                     public static FromAssembly($assemblyPattern: string): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
                 }
@@ -1371,7 +1573,7 @@ declare namespace CS {
                     public WriteTo($path: string, $refreshAssetDatabase?: boolean): void;
                     public WriteTo($writer: System.IO.TextWriter): void;
                     public ToString(): string;
-                    public static Combine(...results: any[]): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
+                    public static Combine(...results: OneJS.Editor.TypeGenerator.TypeGeneratorResult[]): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
                     public CombineWith($other: OneJS.Editor.TypeGenerator.TypeGeneratorResult): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
                     public Filter($predicate: System.Func$2<System.Type, boolean>): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
                     public Exclude($predicate: System.Func$2<System.Type, boolean>): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
@@ -1427,6 +1629,9 @@ declare namespace CS {
                         public GeneratedContent_HasHeader(): void;
                         public GeneratedContent_HasHelperTypes(): void;
                         public GeneratedContent_HasNamespaceWrapper(): void;
+                        public NamespaceModules_AreOffByDefault(): void;
+                        public NamespaceModules_LetProjectCodeBeImported(): void;
+                        public NamespaceModules_SeparateNestedNamespacesWithSlashes(): void;
                         public GeneratedContent_HasIncompatibilityMarker(): void;
                         public GeneratedContent_HasClassDeclaration(): void;
                         public GeneratedContent_HasStaticMembers(): void;
@@ -1434,10 +1639,40 @@ declare namespace CS {
                         public GenerateToResult_WithNullType_SkipsNull(): void;
                         public Builder_AddType_WithNull_DoesNotThrow(): void;
                         public Builder_DuplicateTypes_DeduplicatesAutomatically(): void;
+                        public MapType_Array_IsAnArrayNotAny(): void;
+                        public MapType_ArrayOfReferenceType_KeepsItsElementType(): void;
+                        public MapType_ArrayOfPointer_KeepsTheArrayAndDegradesTheElement(): void;
+                        public MapType_NestedArray_NestsBothLevels(): void;
+                        public Generate_MethodTakingAnArray_TypesTheParameter(): void;
+                        public Emit_TypeParameter_WidensToTypeLike(): void;
+                        public Emit_ParamsArrayOfType_WidensItsElement(): void;
+                        public Emit_TypeReturn_StaysType(): void;
+                        public Emit_NonTypeParameter_IsUntouched(): void;
                     }
 
                 }
             }
+        }
+    }
+    namespace OneJS {
+        namespace Fx {
+            class FxBridge {
+                protected [__keep_incompatibility]: never;
+                public static readonly WireVersion: number;
+                public static readonly MaxFusedOps: number;
+                public static readonly MaxFilterTaps: number;
+                public static readonly MaxGradientStops: number;
+                public static get LiveHandleCount(): number;
+                public static get PooledTargetCount(): number;
+                public static GetTexture($handle: number): UnityEngine.Texture;
+                public static LoadTexture($path: string): number;
+                public static Release($handle: number): void;
+                public static CreateTarget($width: number, $height: number): number;
+                public static ExecuteInto($dstHandle: number, $bufferObj: any): void;
+                public static Execute($bufferObj: any): number;
+                public static DisposeAll(): void;
+            }
+
         }
     }
     namespace OneJS {
@@ -1451,7 +1686,7 @@ declare namespace CS {
 
             class ComputeShaderProvider extends UnityEngine.MonoBehaviour {
                 protected [__keep_incompatibility]: never;
-                public shaders: any;
+                public shaders: System.Array$1<OneJS.GPU.ComputeShaderProvider.ShaderEntry>;
                 public registerOnAwake: boolean;
                 constructor();
                 public Register(): void;
@@ -1556,14 +1791,24 @@ declare namespace CS {
     }
     namespace OneJS {
         namespace Input {
+            class PointerEvents {
+                protected [__keep_incompatibility]: never;
+                public static get MoveEventsEnabled(): boolean;
+                public static SetMoveEventsEnabled($enabled: boolean): void;
+            }
+
             class InputBridge {
                 protected [__keep_incompatibility]: never;
                 public static get PointerMoveEventsEnabled(): boolean;
                 public static SetPointerMoveEventsEnabled($enabled: boolean): void;
+                public static GetKeyHeld($keyName: string): boolean;
+                /** @deprecated GetKeyDown returns held state, not Unity's went-down-this-frame. Use GetKeyHeld for held, GetKeyPressed for the edge. */
                 public static GetKeyDown($keyName: string): boolean;
                 public static GetKeyPressed($keyName: string): boolean;
                 public static GetKeyReleased($keyName: string): boolean;
                 public static GetKeyId($keyName: string): number;
+                public static GetKeyHeldById($keyId: number): boolean;
+                /** @deprecated GetKeyDownById returns held state, not Unity's went-down-this-frame. Use GetKeyHeldById for held, GetKeyPressedById for the edge. */
                 public static GetKeyDownById($keyId: number): boolean;
                 public static GetKeyPressedById($keyId: number): boolean;
                 public static GetKeyReleasedById($keyId: number): boolean;
@@ -1693,7 +1938,7 @@ declare namespace CS {
                 public static TickAll(): void;
                 public static DisposeAll(): void;
                 public static GetBuiltinTexture($name: string): UnityEngine.Texture2D;
-                public static BuildRamp($rgba: any): UnityEngine.Texture2D;
+                public static BuildRamp($rgba: System.Array$1<number>): UnityEngine.Texture2D;
             }
 
             class ShaderEffectElement extends UnityEngine.UIElements.VisualElement {
@@ -1703,13 +1948,18 @@ declare namespace CS {
                 public get RenderHeight(): number;
                 constructor();
                 public SetShader($shaderName: string): void;
+                public SetProgram($dataObj: any, $instructionCount: number, $resultRegister: number, $hash: string, $uniformNamesObj?: any): boolean;
+                public RecordProgram($hash: string, $hlsl: string): void;
+                public SetUniform($slot: number, $x: number, $y: number, $z: number, $w: number): void;
+                public SetProgramTexture($slot: number, $tex: UnityEngine.Texture): void;
+                public SetProgramBuiltinTexture($slot: number, $builtin: string): void;
                 public SetFloat($name: string, $value: number): void;
                 public SetVector($name: string, $x: number, $y: number, $z: number, $w: number): void;
                 public SetColor($name: string, $r: number, $g: number, $b: number, $a: number): void;
                 public SetTexture($name: string, $tex: UnityEngine.Texture): void;
                 public SetVectorArray($name: string, $flatObj: any): void;
                 public SetBuiltinTexture($name: string, $builtin: string): void;
-                public SetRamp($name: string, $rgba: any): void;
+                public SetRamp($name: string, $rgba: System.Array$1<number>): void;
                 public SetResolution($w: number, $h: number): void;
                 public Pause(): void;
                 public Resume(): void;
@@ -1717,11 +1967,33 @@ declare namespace CS {
                 public Dispose(): void;
             }
             namespace ShaderEffectElement {
-                class UxmlFactory extends UnityEngine.UIElements.UxmlFactory$1<OneJS.ShaderFX.ShaderEffectElement> {
-                    protected [__keep_incompatibility]: never;
-                    constructor();
-                }
+                type UxmlSerializedData = any;
 
+            }
+
+        }
+    }
+    namespace OneJS {
+        namespace SL {
+            class SLProgramBridge {
+                protected [__keep_incompatibility]: never;
+                public static readonly Registers: number;
+                public static readonly MaxInstructions: number;
+                public static SourceRecorder: System.Action$2<string, string>;
+                public static get LiveProgramCount(): number;
+                public static GeneratedShaderName($hash: string): string;
+                public static IsNative($handle: number): boolean;
+                public static WantsSource($hash: string): boolean;
+                public static RecordSource($hash: string, $hlsl: string): void;
+                public static AdoptGenerated(): number;
+                public static CreateMaterial($data: System.Array$1<number>, $instructionCount: number, $resultRegister: number, $hash: string, $native: $Out<boolean>): UnityEngine.Material;
+                public static CreateMaterial($data: System.Array$1<number>, $instructionCount: number, $resultRegister: number, $hash: string, $native: $Out<boolean>, $handle: $Out<number>, $uniformNames?: System.Array$1<string>): UnityEngine.Material;
+                public static Upload($data: System.Array$1<number>, $instructionCount: number, $resultRegister: number, $hash?: string, $uniformNames?: System.Array$1<string>): number;
+                public static SetUniform($handle: number, $slot: number, $x: number, $y: number, $z: number, $w: number): void;
+                public static SetTexture($handle: number, $slot: number, $tex: UnityEngine.Texture): void;
+                public static Render($handle: number, $target: UnityEngine.RenderTexture, $seconds: number): void;
+                public static Release($handle: number): void;
+                public static DisposeAll(): void;
             }
 
         }
@@ -1864,6 +2136,18 @@ declare namespace CS {
                 public Placeholder_JSRunnerTestsNeedUpdate(): void;
             }
 
+            class JsLogSeverityPlaymodeTests {
+                protected [__keep_incompatibility]: never;
+                constructor();
+                public SetUp(): System.Collections.IEnumerator;
+                public TearDown(): System.Collections.IEnumerator;
+                public ConsoleError_ArrivesAsAUnityError(): System.Collections.IEnumerator;
+                public ConsoleWarn_ArrivesAsAUnityWarning_AndIsNotAnError(): System.Collections.IEnumerator;
+                public ConsoleLog_StaysAtLogLevel(): System.Collections.IEnumerator;
+                public MultipleArguments_ArriveAsOneLine(): System.Collections.IEnumerator;
+                public AThrowingCallbackIsReportedAsAnError(): System.Collections.IEnumerator;
+            }
+
             class ParticleTests {
                 protected [__keep_incompatibility]: never;
                 constructor();
@@ -1932,6 +2216,21 @@ declare namespace CS {
                 public TextureData_HasValidRGBAFormat(): System.Collections.IEnumerator;
             }
 
+            class QuickJSAbortTests {
+                protected [__keep_incompatibility]: never;
+                constructor();
+                public SetUp(): System.Collections.IEnumerator;
+                public TearDown(): System.Collections.IEnumerator;
+                public Globals_Exist(): System.Collections.IEnumerator;
+                public FreshSignal_IsNotAborted(): System.Collections.IEnumerator;
+                public Abort_SetsAbortedAndAbortErrorReason(): System.Collections.IEnumerator;
+                public Abort_CarriesCustomReason(): System.Collections.IEnumerator;
+                public Listeners_FireOnceAndRespectRemoval(): System.Collections.IEnumerator;
+                public ThrowIfAborted_ThrowsTheReason(): System.Collections.IEnumerator;
+                public StaticAbort_ReturnsPreAbortedSignal(): System.Collections.IEnumerator;
+                public StaticTimeout_AbortsThroughTheTimerQueue(): System.Collections.IEnumerator;
+            }
+
             class QuickJSAssetLoaderTests {
                 protected [__keep_incompatibility]: never;
                 constructor();
@@ -1992,6 +2291,48 @@ declare namespace CS {
                 public CsHelpers_ExposeInteropFunctions(): void;
             }
 
+            class CallbackBindingFixture {
+                protected [__keep_incompatibility]: never;
+                public static OnPing: System.Action;
+                public static OnScore: System.Action$1<number>;
+                public static Doubler: System.Func$2<number, number>;
+                public static GetLabel: System.Func$1<string>;
+                public static Halver: System.Func$2<number, number>;
+                public static IsGreater: System.Func$3<number, number, boolean>;
+                public static Reset(): void;
+            }
+
+            class QuickJSCallbackBindingTests {
+                protected [__keep_incompatibility]: never;
+                constructor();
+                public SetUp(): System.Collections.IEnumerator;
+                public TearDown(): System.Collections.IEnumerator;
+                public FuncDelegate_IntReturn_MarshalsBack(): System.Collections.IEnumerator;
+                public FuncDelegate_StringReturn_MarshalsBack(): System.Collections.IEnumerator;
+                public FuncDelegate_FloatReturn_MarshalsBack(): System.Collections.IEnumerator;
+                public FuncDelegate_BoolReturn_MarshalsBack(): System.Collections.IEnumerator;
+                public InvokeCallback_ArrayReturn_MarshalsAsArray(): System.Collections.IEnumerator;
+                public InvokeCallback_PlainObjectReturn_MarshalsAsDictionary(): System.Collections.IEnumerator;
+                public StaleHandle_FromDisposedContext_FailsLoudlyOnNewContext(): System.Collections.IEnumerator;
+                public StaleDelegate_InvokedAfterContextDisposed_WarnsOnceAndNoOps(): System.Collections.IEnumerator;
+                public GetJSFunction_FuncWithArgs_CallsAndReturns(): System.Collections.IEnumerator;
+                public GetJSFunction_Action_CallsIntoJs(): System.Collections.IEnumerator;
+                public GetJSFunction_DottedPath_Resolves(): System.Collections.IEnumerator;
+                public GetJSFunction_IsLazy_MissingGlobalThrowsOnInvoke(): System.Collections.IEnumerator;
+                public GetJSFunction_SameNameAndType_ReturnsCachedDelegate(): System.Collections.IEnumerator;
+                public GetJSFunction_VectorReturn_Converts(): System.Collections.IEnumerator;
+                public GetJSFunction_AfterDispose_ThrowsInvalidOperation(): System.Collections.IEnumerator;
+            }
+
+            class QuickJSExtensionDispatchTests {
+                protected [__keep_incompatibility]: never;
+                constructor();
+                public SetUp(): System.Collections.IEnumerator;
+                public TearDown(): System.Collections.IEnumerator;
+                public Q_DispatchesWithOmittedOptionals(): System.Collections.IEnumerator;
+                public Q_ReturnsNullForNoMatchInsteadOfThrowing(): System.Collections.IEnumerator;
+            }
+
             class QuickJSFastPathPlaymodeTests {
                 protected [__keep_incompatibility]: never;
                 constructor();
@@ -2007,8 +2348,14 @@ declare namespace CS {
                 public FastPath_GameObjectSetActive_Works(): System.Collections.IEnumerator;
                 public FastCtor_Vector2_ReturnsComponents(): System.Collections.IEnumerator;
                 public FastCtor_Vector3_TwoArg_ZeroFillsZ(): System.Collections.IEnumerator;
-                public FastCtor_Color_FourArg_ReturnsRGBA(): System.Collections.IEnumerator;
+                public FastCtor_Color_FourArg_ReadsRGBA(): System.Collections.IEnumerator;
                 public FastCtor_Color_ThreeArg_DefaultsAlphaToOne(): System.Collections.IEnumerator;
+                public Color_StaticProperty_ReadsRGBA(): System.Collections.IEnumerator;
+                public Color_StaticMethod_ReadsRGBA(): System.Collections.IEnumerator;
+                public Color_CallbackArgument_ReadsRGBA(): System.Collections.IEnumerator;
+                public Color_ZeroAllocBinding_ReadsRGBA(): System.Collections.IEnumerator;
+                public ZeroAllocBinding_StringResult_ReadsWhole(): System.Collections.IEnumerator;
+                public ZeroAllocBinding_HandleResult_KeepsItsType(): System.Collections.IEnumerator;
                 public FastCtor_Quaternion_ReturnsComponents(): System.Collections.IEnumerator;
                 public FastCtor_Element_ConstructsUsableElement(): System.Collections.IEnumerator;
                 public FastCtor_Element_NonNumericArgFallsThrough(): System.Collections.IEnumerator;
@@ -2018,6 +2365,7 @@ declare namespace CS {
                 public NodeBridge_Add_ReportsUnresolvableHandle(): System.Collections.IEnumerator;
                 public NodeBridge_RemoveFromHierarchy_ToleratesMissingHandle(): System.Collections.IEnumerator;
                 public StyleBridge_ApplyStyles_FastFloatEnumAndFallback(): System.Collections.IEnumerator;
+                public StyleBridge_LetterSpacing_SwitchesToStandardGenerator(): System.Collections.IEnumerator;
                 public StyleBridge_ApplyStyles_ColorAndLengthDoNotThrow(): System.Collections.IEnumerator;
                 public FastPath_ScreenWidth_ReturnsPositiveInt(): System.Collections.IEnumerator;
                 public FastPath_PropertyGet_LowAllocation(): System.Collections.IEnumerator;
@@ -2035,6 +2383,9 @@ declare namespace CS {
                 constructor();
                 public SetUp(): System.Collections.IEnumerator;
                 public TearDown(): System.Collections.IEnumerator;
+                public DeleteDirectoryWithRetry_OutwaitsTransientReadHandle(): void;
+                public DeleteDirectoryWithRetry_RemovesATreeOnEveryPlatform(): void;
+                public DeleteDirectoryWithRetry_IsFineWithAPathThatDoesNotExist(): void;
                 public PathGlobals_PersistentDataPath_Exists(): System.Collections.IEnumerator;
                 public PathGlobals_StreamingAssetsPath_Exists(): System.Collections.IEnumerator;
                 public PathGlobals_DataPath_Exists(): System.Collections.IEnumerator;
@@ -2094,7 +2445,7 @@ declare namespace CS {
                 public static GetModeAsInt(): number;
                 public static GetState(): OneJS.Tests.InteropTestState;
                 public static GetItems(): System.Collections.Generic.List$1<string>;
-                public static GetItemsAsArray(): any;
+                public static GetItemsAsArray(): System.Array$1<string>;
                 public static GetInventory(): System.Collections.Generic.List$1<OneJS.Tests.InteropTestItem>;
                 public static Init($name: string, $version: number): void;
                 public static SetName($name: string): void;
@@ -2152,9 +2503,13 @@ declare namespace CS {
                 public TypedCollection_MultiplePropertyChanges_AllDetected(): System.Collections.IEnumerator;
             }
 
-            class QuickJSNetworkTests {
+            class QuickJSNetworkTests implements UnityEngine.TestTools.IPostBuildCleanup, UnityEngine.TestTools.IPrebuildSetup {
                 protected [__keep_incompatibility]: never;
                 constructor();
+                public Setup(): void;
+                public Cleanup(): void;
+                public FixtureSetUp(): void;
+                public FixtureTearDown(): void;
                 public SetUp(): System.Collections.IEnumerator;
                 public TearDown(): System.Collections.IEnumerator;
                 public Fetch_GlobalExists(): System.Collections.IEnumerator;
@@ -2165,9 +2520,14 @@ declare namespace CS {
                 public Headers_Append_Works(): System.Collections.IEnumerator;
                 public Headers_Delete_Works(): System.Collections.IEnumerator;
                 public Headers_Keys_Works(): System.Collections.IEnumerator;
+                public Headers_PairArrayInit_Works(): System.Collections.IEnumerator;
+                public Headers_HeadersInit_CopiesEntries(): System.Collections.IEnumerator;
                 public Fetch_SimpleGet_ReturnsResponse(): System.Collections.IEnumerator;
                 public Fetch_GetJson_ParsesCorrectly(): System.Collections.IEnumerator;
                 public Fetch_PostJson_SendsBody(): System.Collections.IEnumerator;
+                public Fetch_HeadersInstance_SendsHeaders(): System.Collections.IEnumerator;
+                public Fetch_HeaderPairsArray_SendsHeaders(): System.Collections.IEnumerator;
+                public Fetch_ObjectBody_KeepsExistingContentType(): System.Collections.IEnumerator;
                 public Response_TextMethod_Works(): System.Collections.IEnumerator;
                 public Response_Headers_Accessible(): System.Collections.IEnumerator;
                 public Fetch_404_SetsOkFalse(): System.Collections.IEnumerator;
@@ -2218,8 +2578,8 @@ declare namespace CS {
             class TestStructWithArrays {
                 protected [__keep_incompatibility]: never;
                 public name: string;
-                public streak: any;
-                public history: any;
+                public streak: System.Array$1<number>;
+                public history: System.Array$1<OneJS.Tests.TestHistoryEntry>;
                 public tags: System.Collections.Generic.List$1<string>;
             }
 
@@ -2303,11 +2663,11 @@ declare namespace CS {
 
             class ArrayTestHelper {
                 protected [__keep_incompatibility]: never;
-                public static SumFloatArray($arr: any): number;
-                public static SumIntArray($arr: any): number;
-                public static SumVector3Array($arr: any): UnityEngine.Vector3;
-                public static AverageColors($arr: any): UnityEngine.Color;
-                public static JoinStrings($arr: any): string;
+                public static SumFloatArray($arr: System.Array$1<number>): number;
+                public static SumIntArray($arr: System.Array$1<number>): number;
+                public static SumVector3Array($arr: System.Array$1<UnityEngine.Vector3>): UnityEngine.Vector3;
+                public static AverageColors($arr: System.Array$1<UnityEngine.Color>): UnityEngine.Color;
+                public static JoinStrings($arr: System.Array$1<string>): string;
             }
 
             class Int64TestHelper {
@@ -2322,6 +2682,26 @@ declare namespace CS {
                 public static GetULongLarge(): bigint;
                 public static EchoLong($value: bigint): bigint;
                 public static EchoULong($value: bigint): bigint;
+            }
+
+            class QuickJSSchedulerTests {
+                protected [__keep_incompatibility]: never;
+                constructor();
+                public SetUp(): void;
+                public TearDown(): void;
+                public TimerIds_StartAboveNativeIdRange(): void;
+                public ZeroDelayReschedule_RunsOncePerPass(): void;
+                public Timeout_ClearedDuringPass_DoesNotRun(): void;
+                public Interval_StalledPass_FiresOnceAndRebases(): void;
+                public TeardownTimers_OnlyDefined_WhenNativeRafExists(): void;
+                public TeardownTimers_RestoresPlantedNatives(): void;
+                public TeardownTimers_MigratesPendingTimers_AndMapsIds(): void;
+                public WebGLClock_SeedsFromPerformanceNow(): void;
+                public Teardown_AfterRestart_StillStopsTick(): void;
+                public WebGLTick_MidPassTeardown_StopsAndMigrates(): void;
+                public BootstrapReEval_RetiresPreviousGeneration(): void;
+                public CleanTeardown_RestoresRawNatives(): void;
+                public OverrideClears_FallThrough_ForForeignIds(): void;
             }
 
             class QuickJSStabilityTests {
@@ -2390,6 +2770,18 @@ declare namespace CS {
                 public SessionStorage_SharesData_WithLocalStorage(): System.Collections.IEnumerator;
             }
 
+            class QuickJSTypeResolutionTests {
+                protected [__keep_incompatibility]: never;
+                constructor();
+                public SetUp(): System.Collections.IEnumerator;
+                public TearDown(): System.Collections.IEnumerator;
+                public NestedEnum_ReadsByDottedPathAndByClrName(): System.Collections.IEnumerator;
+                public NestedEnum_AssignsThroughProperty(): System.Collections.IEnumerator;
+                public WrongPathAssignedToEnum_Warns(): System.Collections.IEnumerator;
+                public WrongPathReadAsNumber_Warns(): System.Collections.IEnumerator;
+                public StaticClassQ_SkipsGenericTwin(): System.Collections.IEnumerator;
+            }
+
             class QuickJSUIBridgePlaymodeTests {
                 protected [__keep_incompatibility]: never;
                 constructor();
@@ -2412,6 +2804,7 @@ declare namespace CS {
                 public Event_RemoveEventListener_Works(): System.Collections.IEnumerator;
                 public Event_RemoveAllEventListeners_ClearsAllHandlers(): System.Collections.IEnumerator;
                 public PointerCapture_UseExtensions_CaptureAndRelease_Works(): System.Collections.IEnumerator;
+                public Event_LocalXY_AreRelativeToCurrentTarget(): System.Collections.IEnumerator;
                 public Event_EventData_PassedCorrectly(): System.Collections.IEnumerator;
                 public PointerCapture_PointerMove_JSHandlerFiresDuringCapture(): System.Collections.IEnumerator;
                 public Wheel_DispatchedToJsHandlerWithDelta(): System.Collections.IEnumerator;
@@ -2531,6 +2924,9 @@ declare namespace CS {
                 public JS_GetZeroAllocBindingIds_Works(): System.Collections.IEnumerator;
                 public JS_PropertyToID_Works(): System.Collections.IEnumerator;
                 public JS_ScreenDimensions_Works(): System.Collections.IEnumerator;
+                public MethodBinding_GenericOnlyMethod_FailsAtBindTime(): System.Collections.IEnumerator;
+                public MethodBinding_PrefersNonGenericTwin(): System.Collections.IEnumerator;
+                public MethodBinding_UnknownType_FailsCleanly(): System.Collections.IEnumerator;
             }
 
             class QuickJSZeroAllocPerformanceTests {
@@ -2557,6 +2953,18 @@ declare namespace CS {
                 public BuiltinTexture_UnknownNameWarnsAndReturnsNull(): void;
                 public BuiltinTexture_NoiseIsCachedPerSeed(): void;
                 public BuiltinTexture_MasksClampSoScrollingCannotWrapThem(): void;
+            }
+
+            class TreeViewBridgeTests {
+                protected [__keep_incompatibility]: never;
+                constructor();
+                public SetRootItems_BuildsNestedStructure(): void;
+                public SetRootItems_PreservesSiblingOrder(): void;
+                public SetRootItems_FlatListIsAllRoots(): void;
+                public SetRootItems_EmptyArraysClearTree(): void;
+                public SetRootItems_RejectsDuplicateIds(): void;
+                public SetRootItems_RejectsParentAppearingAfterChild(): void;
+                public SetRootItems_RejectsMismatchedLengths(): void;
             }
 
             class UIToolkitJSPlaymodeTests {
@@ -2611,6 +3019,19 @@ declare namespace CS {
     namespace OneJS {
         namespace Tests {
             namespace Editor {
+                class AISkillContractTests {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                    public SkillAssetVersion_MatchesPackageJson(): void;
+                    public SkillMinimumUnity_MatchesPackageJson(): void;
+                    public SkillLastVerified_IsAParseableDate(): void;
+                }
+
+                class BuildValidationSceneSetup {
+                    protected [__keep_incompatibility]: never;
+                    public static Configure(): void;
+                }
+
                 class BuildValidationTests {
                     protected [__keep_incompatibility]: never;
                     constructor();
@@ -2665,6 +3086,29 @@ declare namespace CS {
                     public ExtractCartridges_ReturnsCreatedFilePaths(): void;
                     public ExtractCartridges_SkipsExisting_ReturnsEmptyList(): void;
                     public ExtractCartridges_NullInputs_ReturnsEmptyList(): void;
+                    public Generate_WithVersion_WritesVersionLineInHeader(): void;
+                    public Generate_WithoutVersion_OmitsVersionLine(): void;
+                    public ParseVersion_RoundTripsThroughGenerate(): void;
+                    public ParseVersion_OnlyScansTheCommentHeader(): void;
+                    public GetExtractedVersion_AfterExtract_MatchesAssetVersion(): void;
+                    public GetExtractedVersion_UnversionedExtraction_ReturnsNull(): void;
+                    public ExtractCartridges_SkipExisting_WarnsWhenVersionDiffers(): void;
+                    public ExtractCartridges_SkipExisting_NoWarningWhenVersionMatches(): void;
+                }
+
+                class EventIdContractTests {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                    public EventTypeIds_AgreeBetweenTheBridgeAndTheBootstrap(): void;
+                    public EventTypeIds_AreUnique(): void;
+                }
+
+                class InputBridgeNamingTests {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                    public GetKeyDown_IsADeprecatedAliasOf_GetKeyHeld(): void;
+                    public GetKeyDownById_IsADeprecatedAliasOf_GetKeyHeldById(): void;
+                    public GetKeyPressed_And_GetKeyReleased_AreNotDeprecated(): void;
                 }
 
                 class JSRunnerBuildProcessorTests {
@@ -2676,6 +3120,18 @@ declare namespace CS {
                     public CopyDirectoryRecursive_PreservesContent(): void;
                     public CopyDirectoryRecursive_CreatesDestinationDirectory(): void;
                     public CopyDirectoryRecursive_SkipsMetaFiles(): void;
+                }
+
+                class JsLogSeverityTests {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                    public ResetTally(): void;
+                    public PlainLine_IsLog_AndKeepsItsText(): void;
+                    public MarkedLines_SplitIntoLevelAndBody(): void;
+                    public UnknownOrAbsentMarker_FallsBackToLogWithTextIntact(): void;
+                    public ErrorLine_LogsAsError_AndIsCounted(): void;
+                    public WarnLine_LogsAsWarning_AndIsNotCountedAsAnError(): void;
+                    public PlainLines_StayAtLogLevel_AndLeaveTheErrorTallyAtZero(): void;
                 }
 
                 class PremadeCartridgeTests {
@@ -2694,6 +3150,42 @@ declare namespace CS {
                     public Extract_WithoutOverwrite_LeavesUserEditsAlone($path: string): void;
                 }
 
+                class StructSerializationTests {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                    public ComputedPropertyIsSerialized(): void;
+                    public ComputedPropertySurvivesAFieldOfTheSameNameInAnotherCase(): void;
+                    public AWritablePropertyStillRoundTrips(): void;
+                    public AReadOnlyPropertyComesBackWithoutBeingWritten(): void;
+                    public OneThrowingPropertyDoesNotTakeTheStructWithIt(): void;
+                    public AStructThatIsNothingButComputedMembersStillSerializes(): void;
+                    public AUnityValueTypeNestedInADataStructTerminates(): void;
+                    public APropertyReturningItsOwnTypeIsLeftOut(): void;
+                    public ACycleBetweenTwoStructsStops(): void;
+                    public ATreeOfStructsStillNestsAllTheWayDown(): void;
+                    public AComputedCollectionOfItsOwnTypeIsLeftOut(): void;
+                }
+
+                class StyleBridgeTests {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                    public UnknownKey_WarnsOnce_ThenStaysQuiet(): void;
+                    public TwoUnknownKeys_EachGetTheirOwnWarning(): void;
+                    public KnownReflectiveKey_AppliesWithoutWarning(): void;
+                }
+
+                class UssCompilerDiagnosticsTests {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                    public CreateAsset(): void;
+                    public DestroyAsset(): void;
+                    public TypodProperty_YieldsOneDiagnosticNamingIt(): void;
+                    public ValidSheet_UnityPrefixedPropertiesIncluded_YieldsNoDiagnostics(): void;
+                    public CustomVariableDeclarations_AreNotFlagged(): void;
+                    public DiagnosticsClear_BetweenCompiles(): void;
+                    public DiagnosticCarriesTheRuleLine(): void;
+                }
+
             }
         }
     }
@@ -2701,8 +3193,8 @@ declare namespace CS {
         namespace Utils {
             class FindCompat {
                 protected [__keep_incompatibility]: never;
-                public static FindObjectsByType<T extends UnityEngine.Object>(): any;
-                public static FindObjectsByTypeIncludingInactive<T extends UnityEngine.Object>(): any;
+                public static FindObjectsByType<T extends UnityEngine.Object>(): System.Array$1<T>;
+                public static FindObjectsByTypeIncludingInactive<T extends UnityEngine.Object>(): System.Array$1<T>;
             }
 
             class UIDebugger {
@@ -2760,8 +3252,21 @@ declare namespace CS {
                 public static ContactSheet(): void;
             }
 
+            class MarketingStills {
+                protected [__keep_incompatibility]: never;
+                public static CaptureThemeStills(): void;
+                public static CaptureDemo($demoKey: string, $width: number, $height: number, $scaleMul: number, $name?: string): string;
+                public static CaptureHero($name: string, $width: number, $height: number, $scaleMul: number, $t: number, $poster?: boolean): string;
+                public static HeroBeat($key: string, $offset?: number): number;
+            }
+
             class EditorUpdateBackgroundTest {
                 protected [__keep_incompatibility]: never;
+            }
+
+            class StandaloneSmokeBuild {
+                protected [__keep_incompatibility]: never;
+                public static Build(): void;
             }
 
             class UnityTypesGenerator {
@@ -2769,6 +3274,81 @@ declare namespace CS {
                 public static GenerateAll(): void;
                 public static GenerateForAssembly($assemblyName: string): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
                 public static GenerateForOneJS(): OneJS.Editor.TypeGenerator.TypeGeneratorResult;
+            }
+
+            class WebGLSmokeBuild {
+                protected [__keep_incompatibility]: never;
+                public static Build(): void;
+            }
+
+        }
+    }
+    namespace OneJSContainer {
+        namespace Tests {
+            class ContractSources {
+                protected [__keep_incompatibility]: never;
+                public static get Root(): string;
+                public static Read($relativePath: string): string;
+            }
+
+            class PainterOpcodeContractTests {
+                protected [__keep_incompatibility]: never;
+                constructor();
+                public OpcodeNumbers_AgreeAcrossTheBoundary(): void;
+                public OperandCounts_AgreeAcrossTheBoundary(): void;
+            }
+
+            class ParticleWireContractTests {
+                protected [__keep_incompatibility]: never;
+                constructor();
+                public EveryWireType_HasTheSameFieldsOnBothSides(): void;
+                public WireVersion_AgreesAcrossTheBoundary(): void;
+            }
+
+            class Physics2DWireContractTests {
+                protected [__keep_incompatibility]: never;
+                constructor();
+                public BodyAndDocumentFields_AgreeAcrossTheBoundary(): void;
+                public WireVersion_AgreesAcrossTheBoundary(): void;
+            }
+
+            class SLCodegenGoldenTests {
+                protected [__keep_incompatibility]: never;
+                constructor();
+                public GeneratedShadersRenderWhatArithmeticSaysTheyShould(): void;
+            }
+
+            class SLEjectPathTests {
+                protected [__keep_incompatibility]: never;
+                constructor();
+                public AspectIsTheTargetsRatioAndNotTheWindows(): void;
+                public WithNoGeneratedShaderAProgramFallsBackToTheVm(): void;
+                public WithAGeneratedShaderPresentTheRuntimePicksItAndAgreesWithTheVm(): void;
+            }
+
+            class SLOpcodeContractTests {
+                protected [__keep_incompatibility]: never;
+                constructor();
+                public EveryOpcodeTheShaderHandlesHasTheSameNumberInTypeScript(): void;
+                public TheShaderImplementsEveryOpcodeTheEncoderCanEmit(): void;
+                public TheRegisterCountAgreesWithWhatPhaseZeroMeasured(): void;
+                public TheInstructionCeilingAgrees(): void;
+                public TheInputIdsAgree(): void;
+            }
+
+            class SLProgramGpuTests {
+                protected [__keep_incompatibility]: never;
+                constructor();
+                public EveryFixtureRendersWhatArithmeticSaysItShould(): void;
+                public ReleasingAProgramLeavesNothingBehind(): void;
+                public ABufferThatDisagreesWithItsInstructionCountIsRefused(): void;
+                public AProgramNamingARegisterTheVmLacksIsRefused(): void;
+            }
+
+            class SLRecordedProgramTests {
+                protected [__keep_incompatibility]: never;
+                constructor();
+                public AnInterpretedProgramIsRecordedGeneratedAndAdoptedInPlace(): void;
             }
 
         }
