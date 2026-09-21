@@ -100,7 +100,7 @@ Use semver ranges to get compatible updates:
 
 ```bash
 # Exact version
-npm install -D unity-types@6000.5.0
+npm install -D unity-types@6000.5.1
 
 # Compatible updates within Unity 6000.5
 npm install -D unity-types@~6000.5.0
