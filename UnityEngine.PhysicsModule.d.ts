@@ -884,10 +884,10 @@ declare namespace CS {
             public OverlapSphere($position: UnityEngine.Vector3, $radius: number, $results: System.Array$1<UnityEngine.Collider>, $layerMask: number, $queryTriggerInteraction: UnityEngine.QueryTriggerInteraction): number;
             public BoxCast($center: UnityEngine.Vector3, $halfExtents: UnityEngine.Vector3, $direction: UnityEngine.Vector3, $hitInfo: $Out<UnityEngine.RaycastHit>, $orientation: UnityEngine.Quaternion, $maxDistance?: number, $layerMask?: number, $queryTriggerInteraction?: UnityEngine.QueryTriggerInteraction): boolean;
             public BoxCast($center: UnityEngine.Vector3, $halfExtents: UnityEngine.Vector3, $direction: UnityEngine.Vector3, $hitInfo: $Out<UnityEngine.RaycastHit>): boolean;
-            public OverlapBox($center: UnityEngine.Vector3, $halfExtents: UnityEngine.Vector3, $results: System.Array$1<UnityEngine.Collider>, $orientation: UnityEngine.Quaternion, $layerMask?: number, $queryTriggerInteraction?: UnityEngine.QueryTriggerInteraction): number;
-            public OverlapBox($center: UnityEngine.Vector3, $halfExtents: UnityEngine.Vector3, $results: System.Array$1<UnityEngine.Collider>): number;
             public BoxCast($center: UnityEngine.Vector3, $halfExtents: UnityEngine.Vector3, $direction: UnityEngine.Vector3, $results: System.Array$1<UnityEngine.RaycastHit>, $orientation: UnityEngine.Quaternion, $maxDistance?: number, $layerMask?: number, $queryTriggerInteraction?: UnityEngine.QueryTriggerInteraction): number;
             public BoxCast($center: UnityEngine.Vector3, $halfExtents: UnityEngine.Vector3, $direction: UnityEngine.Vector3, $results: System.Array$1<UnityEngine.RaycastHit>): number;
+            public OverlapBox($center: UnityEngine.Vector3, $halfExtents: UnityEngine.Vector3, $results: System.Array$1<UnityEngine.Collider>, $orientation: UnityEngine.Quaternion, $layerMask?: number, $queryTriggerInteraction?: UnityEngine.QueryTriggerInteraction): number;
+            public OverlapBox($center: UnityEngine.Vector3, $halfExtents: UnityEngine.Vector3, $results: System.Array$1<UnityEngine.Collider>): number;
         }
 
         class PhysicsSceneExtensions {

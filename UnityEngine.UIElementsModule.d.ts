@@ -2309,8 +2309,8 @@ declare namespace CS {
                 constructor($lowValue: number, $highValue: number, $valueChanged: System.Action$1<number>, $direction?: UnityEngine.UIElements.SliderDirection);
                 public Adjust($factor: number): void;
                 public ScrollPageUp(): void;
-                public ScrollPageDown(): void;
                 public ScrollPageUp($factor: number): void;
+                public ScrollPageDown(): void;
                 public ScrollPageDown($factor: number): void;
                 public add_valueChanged(handler: System.Action$1<number>): void;
                 public remove_valueChanged(handler: System.Action$1<number>): void;
@@ -3208,11 +3208,11 @@ declare namespace CS {
             class CallbackEventHandler implements UnityEngine.UIElements.IEventHandler {
                 protected [__keep_incompatibility]: never;
                 public RegisterCallback<TEventType extends UnityEngine.UIElements.EventBase$1<TEventType>>($callback: UnityEngine.UIElements.EventCallback$1<TEventType>, $useTrickleDown?: UnityEngine.UIElements.TrickleDown): void;
-                public RegisterCallbackOnce<TEventType extends UnityEngine.UIElements.EventBase$1<TEventType>>($callback: UnityEngine.UIElements.EventCallback$1<TEventType>, $useTrickleDown?: UnityEngine.UIElements.TrickleDown): void;
                 public RegisterCallback<TEventType extends UnityEngine.UIElements.EventBase$1<TEventType>, TUserArgsType>($callback: UnityEngine.UIElements.EventCallback$2<TEventType, TUserArgsType>, $userArgs: TUserArgsType, $useTrickleDown?: UnityEngine.UIElements.TrickleDown): void;
-                public RegisterCallbackOnce<TEventType extends UnityEngine.UIElements.EventBase$1<TEventType>, TUserArgsType>($callback: UnityEngine.UIElements.EventCallback$2<TEventType, TUserArgsType>, $userArgs: TUserArgsType, $useTrickleDown?: UnityEngine.UIElements.TrickleDown): void;
                 public RegisterCallback<TEventType extends UnityEngine.UIElements.EventBase$1<TEventType>>($callback: UnityEngine.UIElements.EventCallback$1<TEventType>, $callbackOptions: UnityEngine.UIElements.CallbackOptions): void;
                 public RegisterCallback<TEventType extends UnityEngine.UIElements.EventBase$1<TEventType>, TUserArgsType>($callback: UnityEngine.UIElements.EventCallback$2<TEventType, TUserArgsType>, $userArgs: TUserArgsType, $callbackOptions: UnityEngine.UIElements.CallbackOptions): void;
+                public RegisterCallbackOnce<TEventType extends UnityEngine.UIElements.EventBase$1<TEventType>>($callback: UnityEngine.UIElements.EventCallback$1<TEventType>, $useTrickleDown?: UnityEngine.UIElements.TrickleDown): void;
+                public RegisterCallbackOnce<TEventType extends UnityEngine.UIElements.EventBase$1<TEventType>, TUserArgsType>($callback: UnityEngine.UIElements.EventCallback$2<TEventType, TUserArgsType>, $userArgs: TUserArgsType, $useTrickleDown?: UnityEngine.UIElements.TrickleDown): void;
                 public UnregisterCallback<TEventType extends UnityEngine.UIElements.EventBase$1<TEventType>>($callback: UnityEngine.UIElements.EventCallback$1<TEventType>, $useTrickleDown?: UnityEngine.UIElements.TrickleDown): void;
                 public UnregisterCallback<TEventType extends UnityEngine.UIElements.EventBase$1<TEventType>>($callback: UnityEngine.UIElements.EventCallback$1<TEventType>, $callbackOptions: UnityEngine.UIElements.CallbackOptions): void;
                 public UnregisterCallback<TEventType extends UnityEngine.UIElements.EventBase$1<TEventType>, TUserArgsType>($callback: UnityEngine.UIElements.EventCallback$2<TEventType, TUserArgsType>, $useTrickleDown?: UnityEngine.UIElements.TrickleDown): void;
@@ -4209,8 +4209,8 @@ declare namespace CS {
                 public static HasPointerCapture($pointerId: number): boolean;
                 public static CapturePointer($pointerId: number): void;
                 public static ReleasePointer($pointerId: number): void;
-                public static GetCapturingElement($pointerId: number): UnityEngine.UIElements.IEventHandler;
                 public static ReleasePointer($pointerId: number): void;
+                public static GetCapturingElement($pointerId: number): UnityEngine.UIElements.IEventHandler;
             }
 
             class PointerManipulator extends UnityEngine.UIElements.MouseManipulator {
@@ -4339,8 +4339,8 @@ declare namespace CS {
                 public Clear(): void;
                 public Dispose(): void;
                 public SetDashPattern($pattern: System.ReadOnlySpan$1<number>): void;
-                public GetDashPattern($values: System.Span$1<number>): number;
                 public SetDashPattern($dash: number, $gap: number): void;
+                public GetDashPattern($values: System.Span$1<number>): number;
                 public BeginPath(): void;
                 public ClosePath(): void;
                 public MoveTo($pos: UnityEngine.Vector2): void;
@@ -4427,6 +4427,7 @@ declare namespace CS {
             }
 
             interface ICustomStyle {
+                TryGetValue<T extends UnityEngine.Object>($property: UnityEngine.UIElements.CustomStyleProperty$1<T>, $value: $Out<T>): boolean;
                 TryGetValue($property: UnityEngine.UIElements.CustomStyleProperty$1<number>, $value: $Out<number>): boolean;
                 TryGetValue($property: UnityEngine.UIElements.CustomStyleProperty$1<number>, $value: $Out<number>): boolean;
                 TryGetValue($property: UnityEngine.UIElements.CustomStyleProperty$1<boolean>, $value: $Out<boolean>): boolean;
@@ -4434,7 +4435,6 @@ declare namespace CS {
                 TryGetValue($property: UnityEngine.UIElements.CustomStyleProperty$1<UnityEngine.Texture2D>, $value: $Out<UnityEngine.Texture2D>): boolean;
                 TryGetValue($property: UnityEngine.UIElements.CustomStyleProperty$1<UnityEngine.Sprite>, $value: $Out<UnityEngine.Sprite>): boolean;
                 TryGetValue($property: UnityEngine.UIElements.CustomStyleProperty$1<UnityEngine.UIElements.VectorImage>, $value: $Out<UnityEngine.UIElements.VectorImage>): boolean;
-                TryGetValue<T extends UnityEngine.Object>($property: UnityEngine.UIElements.CustomStyleProperty$1<T>, $value: $Out<T>): boolean;
                 TryGetValue($property: UnityEngine.UIElements.CustomStyleProperty$1<string>, $value: $Out<string>): boolean;
             }
 
@@ -5622,9 +5622,9 @@ declare namespace CS {
                 public ToList($results: System.Collections.Generic.List$1<T>): void;
                 public ToList(): System.Collections.Generic.List$1<T>;
                 public AtIndex($index: number): T;
-                public ForEach($funcCall: System.Action$1<T>): void;
                 public ForEach<T2>($result: System.Collections.Generic.List$1<T2>, $funcCall: System.Func$2<T, T2>): void;
                 public ForEach<T2>($funcCall: System.Func$2<T, T2>): System.Collections.Generic.List$1<T2>;
+                public ForEach($funcCall: System.Action$1<T>): void;
                 public GetEnumerator(): UnityEngine.UIElements.UQueryState$1.Enumerator$1<T>;
                 public Equals($other: UnityEngine.UIElements.UQueryState$1<T>): boolean;
                 public Equals($obj: any): boolean;
@@ -5686,13 +5686,13 @@ declare namespace CS {
             class UQueryExtensions {
                 protected [__keep_incompatibility]: never;
                 public static Q<T extends UnityEngine.UIElements.VisualElement>($name?: string, ...classes: string[]): T;
-                public static Q($name?: string, ...classes: string[]): UnityEngine.UIElements.VisualElement;
                 public static Q<T extends UnityEngine.UIElements.VisualElement>($name?: string, $className?: string): T;
+                public static Q($name?: string, ...classes: string[]): UnityEngine.UIElements.VisualElement;
                 public static Q($name?: string, $className?: string): UnityEngine.UIElements.VisualElement;
-                public static Query($name?: string, ...classes: string[]): UnityEngine.UIElements.UQueryBuilder$1<UnityEngine.UIElements.VisualElement>;
-                public static Query($name?: string, $className?: string): UnityEngine.UIElements.UQueryBuilder$1<UnityEngine.UIElements.VisualElement>;
                 public static Query<T extends UnityEngine.UIElements.VisualElement>($name?: string, ...classes: string[]): UnityEngine.UIElements.UQueryBuilder$1<T>;
                 public static Query<T extends UnityEngine.UIElements.VisualElement>($name?: string, $className?: string): UnityEngine.UIElements.UQueryBuilder$1<T>;
+                public static Query($name?: string, ...classes: string[]): UnityEngine.UIElements.UQueryBuilder$1<UnityEngine.UIElements.VisualElement>;
+                public static Query($name?: string, $className?: string): UnityEngine.UIElements.UQueryBuilder$1<UnityEngine.UIElements.VisualElement>;
                 public static Query(): UnityEngine.UIElements.UQueryBuilder$1<UnityEngine.UIElements.VisualElement>;
             }
 
@@ -6097,8 +6097,8 @@ declare namespace CS {
 
             class UxmlSerializedDataUtility {
                 protected [__keep_incompatibility]: never;
-                public static CopySerialized($value: any): any;
                 public static CopySerialized<T>($value: any): T;
+                public static CopySerialized($value: any): any;
             }
 
             class UxmlTypeRestriction implements System.IEquatable$1<UnityEngine.UIElements.UxmlTypeRestriction> {
@@ -6194,8 +6194,8 @@ declare namespace CS {
                 public static AddManipulator($manipulator: UnityEngine.UIElements.IManipulator): void;
                 public static RemoveManipulator($manipulator: UnityEngine.UIElements.IManipulator): void;
                 public static WorldToLocal($p: UnityEngine.Vector2): UnityEngine.Vector2;
-                public static LocalToWorld($p: UnityEngine.Vector2): UnityEngine.Vector2;
                 public static WorldToLocal($r: UnityEngine.Rect): UnityEngine.Rect;
+                public static LocalToWorld($p: UnityEngine.Vector2): UnityEngine.Vector2;
                 public static LocalToWorld($r: UnityEngine.Rect): UnityEngine.Rect;
                 public static ChangeCoordinatesTo($dest: UnityEngine.UIElements.VisualElement, $point: UnityEngine.Vector2): UnityEngine.Vector2;
                 public static ChangeCoordinatesTo($dest: UnityEngine.UIElements.VisualElement, $rect: UnityEngine.Rect): UnityEngine.Rect;
@@ -6320,10 +6320,10 @@ declare namespace CS {
                     public static OutElastic($t: number): number;
                     public static InOutElastic($t: number): number;
                     public static InBack($t: number): number;
-                    public static OutBack($t: number): number;
-                    public static InOutBack($t: number): number;
                     public static InBack($t: number, $s: number): number;
+                    public static OutBack($t: number): number;
                     public static OutBack($t: number, $s: number): number;
+                    public static InOutBack($t: number): number;
                     public static InOutBack($t: number, $s: number): number;
                     public static InCirc($t: number): number;
                     public static OutCirc($t: number): number;

@@ -582,20 +582,20 @@ declare namespace CS {
                         /** @deprecated Use GCHandle.Free instead. */
                         public static ReleaseGCObject($gcHandle: bigint): void;
                         public static IsBlittable<T>(): boolean;
+                        public static IsBlittable($type: System.TypeLike): boolean;
                         public static CheckForLeaks(): number;
                         public static ForgiveLeaks(): number;
                         public static GetLeakDetectionMode(): Unity.Collections.NativeLeakDetectionMode;
                         public static SetLeakDetectionMode($value: Unity.Collections.NativeLeakDetectionMode): void;
                         public static IsValidAllocator($allocator: Unity.Collections.Allocator): boolean;
-                        public static SizeOf($type: System.TypeLike): number;
-                        public static IsBlittable($type: System.TypeLike): boolean;
-                        public static IsUnmanaged($type: System.TypeLike): boolean;
-                        public static IsValidNativeContainerElementType($type: System.TypeLike): boolean;
-                        public static IsUnmanaged<T>(): boolean;
-                        public static IsNativeContainerType<T>(): boolean;
-                        public static IsValidNativeContainerElementType<T>(): boolean;
-                        public static AlignOf<T>(): number;
                         public static SizeOf<T>(): number;
+                        public static SizeOf($type: System.TypeLike): number;
+                        public static IsUnmanaged<T>(): boolean;
+                        public static IsUnmanaged($type: System.TypeLike): boolean;
+                        public static IsValidNativeContainerElementType<T>(): boolean;
+                        public static IsValidNativeContainerElementType($type: System.TypeLike): boolean;
+                        public static IsNativeContainerType<T>(): boolean;
+                        public static AlignOf<T>(): number;
                         public static As<U, T>($from: $Ref<U>): $Ref<T>;
                         public static EnumToInt<T extends System.IConvertible>($enumValue: T): number;
                         public static EnumEquals<T extends System.IConvertible>($lhs: T, $rhs: T): boolean;
@@ -949,14 +949,14 @@ declare namespace CS {
                         constructor($subsystems: System.Array$1<Unity.IO.LowLevel.Unsafe.AssetLoadingSubsystem>);
                         constructor($typeIDs: System.Array$1<bigint>, $states: System.Array$1<Unity.IO.LowLevel.Unsafe.ProcessingState>, $readTypes: System.Array$1<Unity.IO.LowLevel.Unsafe.FileReadType>, $priorityLevels: System.Array$1<Unity.IO.LowLevel.Unsafe.Priority>, $subsystems: System.Array$1<Unity.IO.LowLevel.Unsafe.AssetLoadingSubsystem>);
                         public SetTypeIDFilter($_typeIDs: System.Array$1<bigint>): void;
-                        public SetStateFilter($_states: System.Array$1<Unity.IO.LowLevel.Unsafe.ProcessingState>): void;
-                        public SetReadTypeFilter($_readTypes: System.Array$1<Unity.IO.LowLevel.Unsafe.FileReadType>): void;
-                        public SetPriorityFilter($_priorityLevels: System.Array$1<Unity.IO.LowLevel.Unsafe.Priority>): void;
-                        public SetSubsystemFilter($_subsystems: System.Array$1<Unity.IO.LowLevel.Unsafe.AssetLoadingSubsystem>): void;
                         public SetTypeIDFilter($_typeID: bigint): void;
+                        public SetStateFilter($_states: System.Array$1<Unity.IO.LowLevel.Unsafe.ProcessingState>): void;
                         public SetStateFilter($_state: Unity.IO.LowLevel.Unsafe.ProcessingState): void;
+                        public SetReadTypeFilter($_readTypes: System.Array$1<Unity.IO.LowLevel.Unsafe.FileReadType>): void;
                         public SetReadTypeFilter($_readType: Unity.IO.LowLevel.Unsafe.FileReadType): void;
+                        public SetPriorityFilter($_priorityLevels: System.Array$1<Unity.IO.LowLevel.Unsafe.Priority>): void;
                         public SetPriorityFilter($_priorityLevel: Unity.IO.LowLevel.Unsafe.Priority): void;
+                        public SetSubsystemFilter($_subsystems: System.Array$1<Unity.IO.LowLevel.Unsafe.AssetLoadingSubsystem>): void;
                         public SetSubsystemFilter($_subsystem: Unity.IO.LowLevel.Unsafe.AssetLoadingSubsystem): void;
                         public RemoveTypeIDFilter(): void;
                         public RemoveStateFilter(): void;
@@ -2234,12 +2234,12 @@ declare namespace CS {
             public ResetProjectionMatrix(): void;
             public CalculateObliqueMatrix($clipPlane: UnityEngine.Vector4): UnityEngine.Matrix4x4;
             public WorldToScreenPoint($position: UnityEngine.Vector3, $eye: UnityEngine.Camera.MonoOrStereoscopicEye): UnityEngine.Vector3;
-            public WorldToViewportPoint($position: UnityEngine.Vector3, $eye: UnityEngine.Camera.MonoOrStereoscopicEye): UnityEngine.Vector3;
-            public ViewportToWorldPoint($position: UnityEngine.Vector3, $eye: UnityEngine.Camera.MonoOrStereoscopicEye): UnityEngine.Vector3;
-            public ScreenToWorldPoint($position: UnityEngine.Vector3, $eye: UnityEngine.Camera.MonoOrStereoscopicEye): UnityEngine.Vector3;
             public WorldToScreenPoint($position: UnityEngine.Vector3): UnityEngine.Vector3;
+            public WorldToViewportPoint($position: UnityEngine.Vector3, $eye: UnityEngine.Camera.MonoOrStereoscopicEye): UnityEngine.Vector3;
             public WorldToViewportPoint($position: UnityEngine.Vector3): UnityEngine.Vector3;
+            public ViewportToWorldPoint($position: UnityEngine.Vector3, $eye: UnityEngine.Camera.MonoOrStereoscopicEye): UnityEngine.Vector3;
             public ViewportToWorldPoint($position: UnityEngine.Vector3): UnityEngine.Vector3;
+            public ScreenToWorldPoint($position: UnityEngine.Vector3, $eye: UnityEngine.Camera.MonoOrStereoscopicEye): UnityEngine.Vector3;
             public ScreenToWorldPoint($position: UnityEngine.Vector3): UnityEngine.Vector3;
             public ScreenToViewportPoint($position: UnityEngine.Vector3): UnityEngine.Vector3;
             public ViewportToScreenPoint($position: UnityEngine.Vector3): UnityEngine.Vector3;
@@ -2365,8 +2365,8 @@ declare namespace CS {
             public Dispose(): void;
             public SetBoundingSpheres($array: System.Array$1<UnityEngine.BoundingSphere>): void;
             public SetBoundingSphereCount($count: number): void;
-            public EraseSwapBack($index: number): void;
             public static EraseSwapBack<T>($index: number, $myArray: System.Array$1<T>, $size: $Ref<number>): void;
+            public EraseSwapBack($index: number): void;
             public QueryIndices($visible: boolean, $result: System.Array$1<number>, $firstIndex: number): number;
             public QueryIndices($distanceIndex: number, $result: System.Array$1<number>, $firstIndex: number): number;
             public QueryIndices($visible: boolean, $distanceIndex: number, $result: System.Array$1<number>, $firstIndex: number): number;
@@ -2994,14 +2994,6 @@ declare namespace CS {
             public static DrawWireCube($center: UnityEngine.Vector3, $size: UnityEngine.Vector3): void;
             public static DrawCube($center: UnityEngine.Vector3, $size: UnityEngine.Vector3): void;
             public static DrawMesh($mesh: UnityEngine.Mesh, $submeshIndex: number, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $scale: UnityEngine.Vector3): void;
-            public static DrawWireMesh($mesh: UnityEngine.Mesh, $submeshIndex: number, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $scale: UnityEngine.Vector3): void;
-            public static DrawIcon($center: UnityEngine.Vector3, $name: string, $allowScaling: boolean): void;
-            public static DrawIcon($center: UnityEngine.Vector3, $name: string, $allowScaling: boolean, $tint: UnityEngine.Color): void;
-            public static DrawGUITexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number, $mat: UnityEngine.Material): void;
-            public static DrawFrustum($center: UnityEngine.Vector3, $fov: number, $maxRange: number, $minRange: number, $aspect: number): void;
-            public static CalculateLOD($position: UnityEngine.Vector3, $radius: number): number;
-            public static DrawRay($r: UnityEngine.Ray): void;
-            public static DrawRay($from: UnityEngine.Vector3, $direction: UnityEngine.Vector3): void;
             public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion): void;
             public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3): void;
             public static DrawMesh($mesh: UnityEngine.Mesh): void;
@@ -3009,6 +3001,7 @@ declare namespace CS {
             public static DrawMesh($mesh: UnityEngine.Mesh, $submeshIndex: number, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion): void;
             public static DrawMesh($mesh: UnityEngine.Mesh, $submeshIndex: number, $position: UnityEngine.Vector3): void;
             public static DrawMesh($mesh: UnityEngine.Mesh, $submeshIndex: number): void;
+            public static DrawWireMesh($mesh: UnityEngine.Mesh, $submeshIndex: number, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $scale: UnityEngine.Vector3): void;
             public static DrawWireMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion): void;
             public static DrawWireMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3): void;
             public static DrawWireMesh($mesh: UnityEngine.Mesh): void;
@@ -3016,10 +3009,17 @@ declare namespace CS {
             public static DrawWireMesh($mesh: UnityEngine.Mesh, $submeshIndex: number, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion): void;
             public static DrawWireMesh($mesh: UnityEngine.Mesh, $submeshIndex: number, $position: UnityEngine.Vector3): void;
             public static DrawWireMesh($mesh: UnityEngine.Mesh, $submeshIndex: number): void;
+            public static DrawIcon($center: UnityEngine.Vector3, $name: string, $allowScaling: boolean): void;
+            public static DrawIcon($center: UnityEngine.Vector3, $name: string, $allowScaling: boolean, $tint: UnityEngine.Color): void;
             public static DrawIcon($center: UnityEngine.Vector3, $name: string): void;
+            public static DrawGUITexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number, $mat: UnityEngine.Material): void;
             public static DrawGUITexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture): void;
             public static DrawGUITexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $mat: UnityEngine.Material): void;
             public static DrawGUITexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number): void;
+            public static DrawFrustum($center: UnityEngine.Vector3, $fov: number, $maxRange: number, $minRange: number, $aspect: number): void;
+            public static CalculateLOD($position: UnityEngine.Vector3, $radius: number): number;
+            public static DrawRay($r: UnityEngine.Ray): void;
+            public static DrawRay($from: UnityEngine.Vector3, $direction: UnityEngine.Vector3): void;
         }
 
         class BeforeRenderOrderAttribute extends System.Attribute {
@@ -3263,9 +3263,17 @@ declare namespace CS {
             public static SetRenderTarget($colorBuffer: UnityEngine.RenderBuffer, $depthBuffer: UnityEngine.RenderBuffer, $mipLevel: number, $face: UnityEngine.CubemapFace, $depthSlice: number): void;
             public static SetRenderTarget($colorBuffers: System.Array$1<UnityEngine.RenderBuffer>, $depthBuffer: UnityEngine.RenderBuffer): void;
             public static SetRenderTarget($setup: UnityEngine.RenderTargetSetup): void;
+            public static SetRenderTarget($rt: UnityEngine.RenderTexture): void;
+            public static SetRenderTarget($rt: UnityEngine.RenderTexture, $mipLevel: number): void;
+            public static SetRenderTarget($rt: UnityEngine.RenderTexture, $mipLevel: number, $face: UnityEngine.CubemapFace): void;
+            public static SetRenderTarget($colorBuffer: UnityEngine.RenderBuffer, $depthBuffer: UnityEngine.RenderBuffer): void;
+            public static SetRenderTarget($colorBuffer: UnityEngine.RenderBuffer, $depthBuffer: UnityEngine.RenderBuffer, $mipLevel: number): void;
+            public static SetRenderTarget($colorBuffer: UnityEngine.RenderBuffer, $depthBuffer: UnityEngine.RenderBuffer, $mipLevel: number, $face: UnityEngine.CubemapFace): void;
             public static SetRandomWriteTarget($index: number, $uav: UnityEngine.RenderTexture): void;
             public static SetRandomWriteTarget($index: number, $uav: UnityEngine.ComputeBuffer, $preserveCounterValue: boolean): void;
             public static SetRandomWriteTarget($index: number, $uav: UnityEngine.GraphicsBuffer, $preserveCounterValue: boolean): void;
+            public static SetRandomWriteTarget($index: number, $uav: UnityEngine.ComputeBuffer): void;
+            public static SetRandomWriteTarget($index: number, $uav: UnityEngine.GraphicsBuffer): void;
             public static CopyTexture($src: UnityEngine.Texture, $dst: UnityEngine.Texture): void;
             public static CopyTexture($src: UnityEngine.Texture, $srcElement: number, $dst: UnityEngine.Texture, $dstElement: number): void;
             public static CopyTexture($src: UnityEngine.Texture, $srcElement: number, $srcMip: number, $dst: UnityEngine.Texture, $dstElement: number, $dstMip: number): void;
@@ -3288,6 +3296,14 @@ declare namespace CS {
             public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $sourceRect: UnityEngine.Rect, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number, $mat: UnityEngine.Material, $pass: number): void;
             public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number, $mat: UnityEngine.Material, $pass: number): void;
             public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $mat: UnityEngine.Material, $pass: number): void;
+            public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $sourceRect: UnityEngine.Rect, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number, $color: UnityEngine.Color, $mat: UnityEngine.Material): void;
+            public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $sourceRect: UnityEngine.Rect, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number, $color: UnityEngine.Color): void;
+            public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $sourceRect: UnityEngine.Rect, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number, $mat: UnityEngine.Material): void;
+            public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $sourceRect: UnityEngine.Rect, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number): void;
+            public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number, $mat: UnityEngine.Material): void;
+            public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number): void;
+            public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $mat: UnityEngine.Material): void;
+            public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture): void;
             public static RenderMesh($rparams: $Ref<UnityEngine.RenderParams>, $mesh: UnityEngine.Mesh, $submeshIndex: number, $objectToWorld: UnityEngine.Matrix4x4, $prevObjectToWorld?: UnityEngine.Matrix4x4 | null): void;
             public static RenderMeshInstanced<T>($rparams: $Ref<UnityEngine.RenderParams>, $mesh: UnityEngine.Mesh, $submeshIndex: number, $instanceData: System.Array$1<T>, $instanceCount?: number, $startInstance?: number): void;
             public static RenderMeshInstanced<T>($rparams: $Ref<UnityEngine.RenderParams>, $mesh: UnityEngine.Mesh, $submeshIndex: number, $instanceData: System.Collections.Generic.List$1<T>, $instanceCount?: number, $startInstance?: number): void;
@@ -3311,23 +3327,55 @@ declare namespace CS {
             public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $probeAnchor: UnityEngine.Transform, $useLightProbes: boolean): void;
             public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: boolean, $receiveShadows: boolean, $useLightProbes: boolean): void;
             public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $probeAnchor: UnityEngine.Transform, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage): void;
+            /** @deprecated This method is deprecated. Use DrawMesh without a LightProbeProxyVolume argument. #from(6000.5) */
+            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $probeAnchor: UnityEngine.Transform, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage, $lightProbeProxyVolume: UnityEngine.LightProbeProxyVolume): void;
+            public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number): void;
+            public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera): void;
+            public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number): void;
+            public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock): void;
+            public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: boolean): void;
+            public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: boolean, $receiveShadows: boolean): void;
+            public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode): void;
+            public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean): void;
+            public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $probeAnchor: UnityEngine.Transform): void;
+            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number): void;
+            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera): void;
+            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number): void;
+            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock): void;
+            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: boolean): void;
+            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: boolean, $receiveShadows: boolean): void;
+            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode): void;
+            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean): void;
+            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $probeAnchor: UnityEngine.Transform): void;
+            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $probeAnchor: UnityEngine.Transform, $useLightProbes: boolean): void;
             public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage): void;
             public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage): void;
-            public static DrawMeshInstancedProcedural($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $bounds: UnityEngine.Bounds, $count: number, $properties?: UnityEngine.MaterialPropertyBlock, $castShadows?: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows?: boolean, $layer?: number, $camera?: UnityEngine.Camera, $lightProbeUsage?: UnityEngine.Rendering.LightProbeUsage): void;
-            public static DrawMeshInstancedIndirect($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $bounds: UnityEngine.Bounds, $bufferWithArgs: UnityEngine.ComputeBuffer, $argsOffset?: number, $properties?: UnityEngine.MaterialPropertyBlock, $castShadows?: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows?: boolean, $layer?: number, $camera?: UnityEngine.Camera, $lightProbeUsage?: UnityEngine.Rendering.LightProbeUsage): void;
-            public static DrawMeshInstancedIndirect($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $bounds: UnityEngine.Bounds, $bufferWithArgs: UnityEngine.GraphicsBuffer, $argsOffset?: number, $properties?: UnityEngine.MaterialPropertyBlock, $castShadows?: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows?: boolean, $layer?: number, $camera?: UnityEngine.Camera, $lightProbeUsage?: UnityEngine.Rendering.LightProbeUsage): void;
-            /** @deprecated This method is deprecated. Use DrawMeshInstancedIndirect without a LightProbeProxyVolume argument. #from(6000.5) */
-            public static DrawMeshInstancedIndirect($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $bounds: UnityEngine.Bounds, $bufferWithArgs: UnityEngine.ComputeBuffer, $argsOffset: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage, $lightProbeProxyVolume: UnityEngine.LightProbeProxyVolume): void;
             /** @deprecated This method is deprecated. Use DrawMeshInstanced without a LightProbeProxyVolume argument. #from(6000.5) */
             public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage, $lightProbeProxyVolume: UnityEngine.LightProbeProxyVolume): void;
             /** @deprecated This method is deprecated. Use DrawMeshInstanced without a LightProbeProxyVolume argument. #from(6000.5) */
             public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage, $lightProbeProxyVolume: UnityEngine.LightProbeProxyVolume): void;
+            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>): void;
+            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number): void;
+            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number, $properties: UnityEngine.MaterialPropertyBlock): void;
+            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode): void;
+            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean): void;
+            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number): void;
+            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera): void;
+            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>): void;
+            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock): void;
+            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode): void;
+            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean): void;
+            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number): void;
+            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera): void;
+            public static DrawMeshInstancedProcedural($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $bounds: UnityEngine.Bounds, $count: number, $properties?: UnityEngine.MaterialPropertyBlock, $castShadows?: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows?: boolean, $layer?: number, $camera?: UnityEngine.Camera, $lightProbeUsage?: UnityEngine.Rendering.LightProbeUsage): void;
             /** @deprecated This method is deprecated. Use DrawMeshInstancedProcedural without a LightProbeProxyVolume argument. #from(6000.5) */
             public static DrawMeshInstancedProcedural($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $bounds: UnityEngine.Bounds, $count: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage, $lightProbeProxyVolume: UnityEngine.LightProbeProxyVolume): void;
+            public static DrawMeshInstancedIndirect($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $bounds: UnityEngine.Bounds, $bufferWithArgs: UnityEngine.ComputeBuffer, $argsOffset?: number, $properties?: UnityEngine.MaterialPropertyBlock, $castShadows?: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows?: boolean, $layer?: number, $camera?: UnityEngine.Camera, $lightProbeUsage?: UnityEngine.Rendering.LightProbeUsage): void;
+            public static DrawMeshInstancedIndirect($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $bounds: UnityEngine.Bounds, $bufferWithArgs: UnityEngine.GraphicsBuffer, $argsOffset?: number, $properties?: UnityEngine.MaterialPropertyBlock, $castShadows?: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows?: boolean, $layer?: number, $camera?: UnityEngine.Camera, $lightProbeUsage?: UnityEngine.Rendering.LightProbeUsage): void;
+            /** @deprecated This method is deprecated. Use DrawMeshInstancedIndirect without a LightProbeProxyVolume argument. #from(6000.5) */
+            public static DrawMeshInstancedIndirect($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $bounds: UnityEngine.Bounds, $bufferWithArgs: UnityEngine.ComputeBuffer, $argsOffset: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage, $lightProbeProxyVolume: UnityEngine.LightProbeProxyVolume): void;
             /** @deprecated This method is deprecated. Use DrawMeshInstancedIndirect without a LightProbeProxyVolume argument. #from(6000.5) */
             public static DrawMeshInstancedIndirect($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $bounds: UnityEngine.Bounds, $bufferWithArgs: UnityEngine.GraphicsBuffer, $argsOffset: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage, $lightProbeProxyVolume: UnityEngine.LightProbeProxyVolume): void;
-            /** @deprecated This method is deprecated. Use DrawMesh without a LightProbeProxyVolume argument. #from(6000.5) */
-            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $probeAnchor: UnityEngine.Transform, $lightProbeUsage: UnityEngine.Rendering.LightProbeUsage, $lightProbeProxyVolume: UnityEngine.LightProbeProxyVolume): void;
             public static DrawProceduralNow($topology: UnityEngine.MeshTopology, $vertexCount: number, $instanceCount?: number): void;
             public static DrawProceduralNow($topology: UnityEngine.MeshTopology, $indexBuffer: UnityEngine.GraphicsBuffer, $indexCount: number, $instanceCount?: number): void;
             public static DrawProceduralIndirectNow($topology: UnityEngine.MeshTopology, $bufferWithArgs: UnityEngine.ComputeBuffer, $argsOffset?: number): void;
@@ -3350,8 +3398,6 @@ declare namespace CS {
             public static Blit($source: UnityEngine.Texture, $mat: UnityEngine.Material, $pass: number): void;
             public static Blit($source: UnityEngine.Texture, $mat: UnityEngine.Material, $pass: number, $destDepthSlice: number): void;
             public static Blit($source: UnityEngine.Texture, $mat: UnityEngine.Material): void;
-            public static BlitMultiTap($source: UnityEngine.Texture, $dest: UnityEngine.RenderTexture, $mat: UnityEngine.Material, ...offsets: UnityEngine.Vector2[]): void;
-            public static BlitMultiTap($source: UnityEngine.Texture, $dest: UnityEngine.RenderTexture, $mat: UnityEngine.Material, $destDepthSlice: number, ...offsets: UnityEngine.Vector2[]): void;
             public static Blit($source: UnityEngine.Texture, $dest: UnityEngine.Rendering.GraphicsTexture): void;
             public static Blit($source: UnityEngine.Texture, $dest: UnityEngine.Rendering.GraphicsTexture, $sourceDepthSlice: number, $destDepthSlice: number): void;
             public static Blit($source: UnityEngine.Texture, $dest: UnityEngine.Rendering.GraphicsTexture, $scale: UnityEngine.Vector2, $offset: UnityEngine.Vector2): void;
@@ -3359,56 +3405,10 @@ declare namespace CS {
             public static Blit($source: UnityEngine.Texture, $dest: UnityEngine.Rendering.GraphicsTexture, $mat: UnityEngine.Material, $pass: number): void;
             public static Blit($source: UnityEngine.Texture, $dest: UnityEngine.Rendering.GraphicsTexture, $mat: UnityEngine.Material, $pass: number, $destDepthSlice: number): void;
             public static Blit($source: UnityEngine.Texture, $dest: UnityEngine.Rendering.GraphicsTexture, $mat: UnityEngine.Material): void;
+            public static BlitMultiTap($source: UnityEngine.Texture, $dest: UnityEngine.RenderTexture, $mat: UnityEngine.Material, ...offsets: UnityEngine.Vector2[]): void;
+            public static BlitMultiTap($source: UnityEngine.Texture, $dest: UnityEngine.RenderTexture, $mat: UnityEngine.Material, $destDepthSlice: number, ...offsets: UnityEngine.Vector2[]): void;
             public static BlitMultiTap($source: UnityEngine.Texture, $dest: UnityEngine.Rendering.GraphicsTexture, $mat: UnityEngine.Material, ...offsets: UnityEngine.Vector2[]): void;
             public static BlitMultiTap($source: UnityEngine.Texture, $dest: UnityEngine.Rendering.GraphicsTexture, $mat: UnityEngine.Material, $destDepthSlice: number, ...offsets: UnityEngine.Vector2[]): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: boolean): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: boolean, $receiveShadows: boolean): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $probeAnchor: UnityEngine.Transform): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: boolean): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: boolean, $receiveShadows: boolean): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $probeAnchor: UnityEngine.Transform): void;
-            public static DrawMesh($mesh: UnityEngine.Mesh, $matrix: UnityEngine.Matrix4x4, $material: UnityEngine.Material, $layer: number, $camera: UnityEngine.Camera, $submeshIndex: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $probeAnchor: UnityEngine.Transform, $useLightProbes: boolean): void;
-            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>): void;
-            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number): void;
-            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number, $properties: UnityEngine.MaterialPropertyBlock): void;
-            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode): void;
-            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean): void;
-            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number): void;
-            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Array$1<UnityEngine.Matrix4x4>, $count: number, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera): void;
-            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>): void;
-            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock): void;
-            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode): void;
-            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean): void;
-            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number): void;
-            public static DrawMeshInstanced($mesh: UnityEngine.Mesh, $submeshIndex: number, $material: UnityEngine.Material, $matrices: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>, $properties: UnityEngine.MaterialPropertyBlock, $castShadows: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows: boolean, $layer: number, $camera: UnityEngine.Camera): void;
-            public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $sourceRect: UnityEngine.Rect, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number, $color: UnityEngine.Color, $mat: UnityEngine.Material): void;
-            public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $sourceRect: UnityEngine.Rect, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number, $color: UnityEngine.Color): void;
-            public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $sourceRect: UnityEngine.Rect, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number, $mat: UnityEngine.Material): void;
-            public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $sourceRect: UnityEngine.Rect, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number): void;
-            public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number, $mat: UnityEngine.Material): void;
-            public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number): void;
-            public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $mat: UnityEngine.Material): void;
-            public static DrawTexture($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture): void;
-            public static SetRenderTarget($rt: UnityEngine.RenderTexture): void;
-            public static SetRenderTarget($rt: UnityEngine.RenderTexture, $mipLevel: number): void;
-            public static SetRenderTarget($rt: UnityEngine.RenderTexture, $mipLevel: number, $face: UnityEngine.CubemapFace): void;
-            public static SetRenderTarget($colorBuffer: UnityEngine.RenderBuffer, $depthBuffer: UnityEngine.RenderBuffer): void;
-            public static SetRenderTarget($colorBuffer: UnityEngine.RenderBuffer, $depthBuffer: UnityEngine.RenderBuffer, $mipLevel: number): void;
-            public static SetRenderTarget($colorBuffer: UnityEngine.RenderBuffer, $depthBuffer: UnityEngine.RenderBuffer, $mipLevel: number, $face: UnityEngine.CubemapFace): void;
-            public static SetRandomWriteTarget($index: number, $uav: UnityEngine.ComputeBuffer): void;
-            public static SetRandomWriteTarget($index: number, $uav: UnityEngine.GraphicsBuffer): void;
         }
 
         class GL {
@@ -3437,6 +3437,7 @@ declare namespace CS {
             public static MultMatrix($m: UnityEngine.Matrix4x4): void;
             /** @deprecated IssuePluginEvent(eventID) is deprecated. Use IssuePluginEvent(callback, eventID) instead. */
             public static IssuePluginEvent($eventID: number): void;
+            public static IssuePluginEvent($callback: number, $eventID: number): void;
             /** @deprecated SetRevertBackfacing(revertBackFaces) is deprecated. Use invertCulling property instead. (UnityUpgradable) -> invertCulling */
             public static SetRevertBackfacing($revertBackFaces: boolean): void;
             public static PushMatrix(): void;
@@ -3444,11 +3445,10 @@ declare namespace CS {
             public static LoadIdentity(): void;
             public static LoadOrtho(): void;
             public static LoadPixelMatrix(): void;
+            public static LoadPixelMatrix($left: number, $right: number, $bottom: number, $top: number): void;
             public static LoadProjectionMatrix($mat: UnityEngine.Matrix4x4): void;
             public static InvalidateState(): void;
             public static GetGPUProjectionMatrix($proj: UnityEngine.Matrix4x4, $renderIntoTexture: boolean): UnityEngine.Matrix4x4;
-            public static LoadPixelMatrix($left: number, $right: number, $bottom: number, $top: number): void;
-            public static IssuePluginEvent($callback: number, $eventID: number): void;
             public static Begin($mode: number): void;
             public static End(): void;
             public static Clear($clearDepth: boolean, $clearColor: boolean, $backgroundColor: UnityEngine.Color, $depth: number): void;
@@ -3707,10 +3707,11 @@ declare namespace CS {
             public static get desiredColorSpace(): UnityEngine.ColorSpace;
             public static get activeColorSpace(): UnityEngine.ColorSpace;
             public static IncreaseLevel($applyExpensiveChanges: boolean): void;
-            public static DecreaseLevel($applyExpensiveChanges: boolean): void;
-            public static SetQualityLevel($index: number): void;
             public static IncreaseLevel(): void;
+            public static DecreaseLevel($applyExpensiveChanges: boolean): void;
             public static DecreaseLevel(): void;
+            public static SetQualityLevel($index: number): void;
+            public static SetQualityLevel($index: number, $applyExpensiveChanges: boolean): void;
             public static ForEach($callback: System.Action): void;
             public static ForEach($callback: System.Action$2<number, string>): void;
             public static SetLODSettings($lodBias: number, $maximumLODLevel: number, $setDirty?: boolean): void;
@@ -3719,7 +3720,6 @@ declare namespace CS {
             public static GetRenderPipelineAssetAt($index: number): UnityEngine.Rendering.RenderPipelineAsset;
             public static GetQualityLevel(): number;
             public static GetQualitySettings(): UnityEngine.Object;
-            public static SetQualityLevel($index: number, $applyExpensiveChanges: boolean): void;
             public static IsPlatformIncluded($buildTargetGroupName: string, $index: number): boolean;
             public static TryIncludePlatformAt($buildTargetGroupName: string, $index: number, $error: $Out<System.Exception>): boolean;
             public static TryExcludePlatformAt($buildTargetGroupName: string, $index: number, $error: $Out<System.Exception>): boolean;
@@ -3819,6 +3819,7 @@ declare namespace CS {
             public GetAllBoneWeights(): Unity.Collections.NativeArray$1<UnityEngine.BoneWeight1>;
             public GetBonesPerVertex(): Unity.Collections.NativeArray$1<number>;
             public GetBindposes(): Unity.Collections.NativeArray$1<UnityEngine.Matrix4x4>;
+            public GetBindposes($bindposes: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>): void;
             public SetBindposes($poses: Unity.Collections.NativeArray$1<UnityEngine.Matrix4x4>): void;
             public SetSubMesh($index: number, $desc: UnityEngine.Rendering.SubMeshDescriptor, $flags?: UnityEngine.Rendering.MeshUpdateFlags): void;
             public GetSubMesh($index: number): UnityEngine.Rendering.SubMeshDescriptor;
@@ -3826,52 +3827,55 @@ declare namespace CS {
             public MarkModified(): void;
             public GetUVDistributionMetric($uvSetIndex: number): number;
             public GetVertices($vertices: System.Collections.Generic.List$1<UnityEngine.Vector3>): void;
+            public SetVertices<T>($inVertices: Unity.Collections.NativeArray$1<T>): void;
+            public SetVertices<T>($inVertices: Unity.Collections.NativeArray$1<T>, $start: number, $length: number): void;
+            public SetVertices<T>($inVertices: Unity.Collections.NativeArray$1<T>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
             public SetVertices($inVertices: System.Collections.Generic.List$1<UnityEngine.Vector3>): void;
             public SetVertices($inVertices: System.Collections.Generic.List$1<UnityEngine.Vector3>, $start: number, $length: number): void;
             public SetVertices($inVertices: System.Collections.Generic.List$1<UnityEngine.Vector3>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
             public SetVertices($inVertices: System.Array$1<UnityEngine.Vector3>): void;
             public SetVertices($inVertices: System.Array$1<UnityEngine.Vector3>, $start: number, $length: number): void;
             public SetVertices($inVertices: System.Array$1<UnityEngine.Vector3>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
-            public SetVertices<T>($inVertices: Unity.Collections.NativeArray$1<T>): void;
-            public SetVertices<T>($inVertices: Unity.Collections.NativeArray$1<T>, $start: number, $length: number): void;
-            public SetVertices<T>($inVertices: Unity.Collections.NativeArray$1<T>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
             public GetNormals($normals: System.Collections.Generic.List$1<UnityEngine.Vector3>): void;
+            public SetNormals<T>($inNormals: Unity.Collections.NativeArray$1<T>): void;
+            public SetNormals<T>($inNormals: Unity.Collections.NativeArray$1<T>, $start: number, $length: number): void;
+            public SetNormals<T>($inNormals: Unity.Collections.NativeArray$1<T>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
             public SetNormals($inNormals: System.Collections.Generic.List$1<UnityEngine.Vector3>): void;
             public SetNormals($inNormals: System.Collections.Generic.List$1<UnityEngine.Vector3>, $start: number, $length: number): void;
             public SetNormals($inNormals: System.Collections.Generic.List$1<UnityEngine.Vector3>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
             public SetNormals($inNormals: System.Array$1<UnityEngine.Vector3>): void;
             public SetNormals($inNormals: System.Array$1<UnityEngine.Vector3>, $start: number, $length: number): void;
             public SetNormals($inNormals: System.Array$1<UnityEngine.Vector3>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
-            public SetNormals<T>($inNormals: Unity.Collections.NativeArray$1<T>): void;
-            public SetNormals<T>($inNormals: Unity.Collections.NativeArray$1<T>, $start: number, $length: number): void;
-            public SetNormals<T>($inNormals: Unity.Collections.NativeArray$1<T>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
             public GetTangents($tangents: System.Collections.Generic.List$1<UnityEngine.Vector4>): void;
+            public SetTangents<T>($inTangents: Unity.Collections.NativeArray$1<T>): void;
+            public SetTangents<T>($inTangents: Unity.Collections.NativeArray$1<T>, $start: number, $length: number): void;
+            public SetTangents<T>($inTangents: Unity.Collections.NativeArray$1<T>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
             public SetTangents($inTangents: System.Collections.Generic.List$1<UnityEngine.Vector4>): void;
             public SetTangents($inTangents: System.Collections.Generic.List$1<UnityEngine.Vector4>, $start: number, $length: number): void;
             public SetTangents($inTangents: System.Collections.Generic.List$1<UnityEngine.Vector4>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
             public SetTangents($inTangents: System.Array$1<UnityEngine.Vector4>): void;
             public SetTangents($inTangents: System.Array$1<UnityEngine.Vector4>, $start: number, $length: number): void;
             public SetTangents($inTangents: System.Array$1<UnityEngine.Vector4>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
-            public SetTangents<T>($inTangents: Unity.Collections.NativeArray$1<T>): void;
-            public SetTangents<T>($inTangents: Unity.Collections.NativeArray$1<T>, $start: number, $length: number): void;
-            public SetTangents<T>($inTangents: Unity.Collections.NativeArray$1<T>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
             public GetColors($colors: System.Collections.Generic.List$1<UnityEngine.Color>): void;
+            public GetColors($colors: System.Collections.Generic.List$1<UnityEngine.Color32>): void;
+            public SetColors<T>($inColors: Unity.Collections.NativeArray$1<T>): void;
+            public SetColors<T>($inColors: Unity.Collections.NativeArray$1<T>, $start: number, $length: number): void;
+            public SetColors<T>($inColors: Unity.Collections.NativeArray$1<T>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
             public SetColors($inColors: System.Collections.Generic.List$1<UnityEngine.Color>): void;
             public SetColors($inColors: System.Collections.Generic.List$1<UnityEngine.Color>, $start: number, $length: number): void;
             public SetColors($inColors: System.Collections.Generic.List$1<UnityEngine.Color>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
             public SetColors($inColors: System.Array$1<UnityEngine.Color>): void;
             public SetColors($inColors: System.Array$1<UnityEngine.Color>, $start: number, $length: number): void;
             public SetColors($inColors: System.Array$1<UnityEngine.Color>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
-            public GetColors($colors: System.Collections.Generic.List$1<UnityEngine.Color32>): void;
             public SetColors($inColors: System.Collections.Generic.List$1<UnityEngine.Color32>): void;
             public SetColors($inColors: System.Collections.Generic.List$1<UnityEngine.Color32>, $start: number, $length: number): void;
             public SetColors($inColors: System.Collections.Generic.List$1<UnityEngine.Color32>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
             public SetColors($inColors: System.Array$1<UnityEngine.Color32>): void;
             public SetColors($inColors: System.Array$1<UnityEngine.Color32>, $start: number, $length: number): void;
             public SetColors($inColors: System.Array$1<UnityEngine.Color32>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
-            public SetColors<T>($inColors: Unity.Collections.NativeArray$1<T>): void;
-            public SetColors<T>($inColors: Unity.Collections.NativeArray$1<T>, $start: number, $length: number): void;
-            public SetColors<T>($inColors: Unity.Collections.NativeArray$1<T>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
+            public SetUVs<T>($channel: number, $uvs: Unity.Collections.NativeArray$1<T>): void;
+            public SetUVs<T>($channel: number, $uvs: Unity.Collections.NativeArray$1<T>, $start: number, $length: number): void;
+            public SetUVs<T>($channel: number, $uvs: Unity.Collections.NativeArray$1<T>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
             public SetUVs($channel: number, $uvs: System.Collections.Generic.List$1<UnityEngine.Vector2>): void;
             public SetUVs($channel: number, $uvs: System.Collections.Generic.List$1<UnityEngine.Vector3>): void;
             public SetUVs($channel: number, $uvs: System.Collections.Generic.List$1<UnityEngine.Vector4>): void;
@@ -3890,9 +3894,6 @@ declare namespace CS {
             public SetUVs($channel: number, $uvs: System.Array$1<UnityEngine.Vector3>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
             public SetUVs($channel: number, $uvs: System.Array$1<UnityEngine.Vector4>, $start: number, $length: number): void;
             public SetUVs($channel: number, $uvs: System.Array$1<UnityEngine.Vector4>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
-            public SetUVs<T>($channel: number, $uvs: Unity.Collections.NativeArray$1<T>): void;
-            public SetUVs<T>($channel: number, $uvs: Unity.Collections.NativeArray$1<T>, $start: number, $length: number): void;
-            public SetUVs<T>($channel: number, $uvs: Unity.Collections.NativeArray$1<T>, $start: number, $length: number, $flags: UnityEngine.Rendering.MeshUpdateFlags): void;
             public GetUVs($channel: number, $uvs: System.Collections.Generic.List$1<UnityEngine.Vector2>): void;
             public GetUVs($channel: number, $uvs: System.Collections.Generic.List$1<UnityEngine.Vector3>): void;
             public GetUVs($channel: number, $uvs: System.Collections.Generic.List$1<UnityEngine.Vector4>): void;
@@ -3964,6 +3965,10 @@ declare namespace CS {
             public SetTriangles($triangles: System.Collections.Generic.List$1<number>, $submesh: number, $meshLod: number, $calculateBounds?: boolean, $baseVertex?: number): void;
             public SetTriangles($triangles: System.Collections.Generic.List$1<number>, $trianglesStart: number, $trianglesLength: number, $submesh: number, $calculateBounds?: boolean, $baseVertex?: number): void;
             public SetTriangles($triangles: System.Collections.Generic.List$1<number>, $trianglesStart: number, $trianglesLength: number, $submesh: number, $meshLod: number, $calculateBounds?: boolean, $baseVertex?: number): void;
+            public SetIndices<T>($indices: Unity.Collections.NativeArray$1<T>, $topology: UnityEngine.MeshTopology, $submesh: number, $calculateBounds?: boolean, $baseVertex?: number): void;
+            public SetIndices<T>($indices: Unity.Collections.NativeArray$1<T>, $topology: UnityEngine.MeshTopology, $submesh: number, $meshLod: number, $calculateBounds?: boolean, $baseVertex?: number): void;
+            public SetIndices<T>($indices: Unity.Collections.NativeArray$1<T>, $indicesStart: number, $indicesLength: number, $topology: UnityEngine.MeshTopology, $submesh: number, $calculateBounds?: boolean, $baseVertex?: number): void;
+            public SetIndices<T>($indices: Unity.Collections.NativeArray$1<T>, $indicesStart: number, $indicesLength: number, $topology: UnityEngine.MeshTopology, $submesh: number, $meshLod: number, $calculateBounds?: boolean, $baseVertex?: number): void;
             public SetIndices($indices: System.Array$1<number>, $topology: UnityEngine.MeshTopology, $submesh: number): void;
             public SetIndices($indices: System.Array$1<number>, $topology: UnityEngine.MeshTopology, $submesh: number, $calculateBounds: boolean): void;
             public SetIndices($indices: System.Array$1<number>, $topology: UnityEngine.MeshTopology, $submesh: number, $calculateBounds: boolean, $baseVertex: number): void;
@@ -3974,10 +3979,6 @@ declare namespace CS {
             public SetIndices($indices: System.Array$1<number>, $topology: UnityEngine.MeshTopology, $submesh: number, $meshLod: number, $calculateBounds?: boolean, $baseVertex?: number): void;
             public SetIndices($indices: System.Array$1<number>, $indicesStart: number, $indicesLength: number, $topology: UnityEngine.MeshTopology, $submesh: number, $calculateBounds?: boolean, $baseVertex?: number): void;
             public SetIndices($indices: System.Array$1<number>, $indicesStart: number, $indicesLength: number, $topology: UnityEngine.MeshTopology, $submesh: number, $meshLod: number, $calculateBounds?: boolean, $baseVertex?: number): void;
-            public SetIndices<T>($indices: Unity.Collections.NativeArray$1<T>, $topology: UnityEngine.MeshTopology, $submesh: number, $calculateBounds?: boolean, $baseVertex?: number): void;
-            public SetIndices<T>($indices: Unity.Collections.NativeArray$1<T>, $topology: UnityEngine.MeshTopology, $submesh: number, $meshLod: number, $calculateBounds?: boolean, $baseVertex?: number): void;
-            public SetIndices<T>($indices: Unity.Collections.NativeArray$1<T>, $indicesStart: number, $indicesLength: number, $topology: UnityEngine.MeshTopology, $submesh: number, $calculateBounds?: boolean, $baseVertex?: number): void;
-            public SetIndices<T>($indices: Unity.Collections.NativeArray$1<T>, $indicesStart: number, $indicesLength: number, $topology: UnityEngine.MeshTopology, $submesh: number, $meshLod: number, $calculateBounds?: boolean, $baseVertex?: number): void;
             public SetIndices($indices: System.Collections.Generic.List$1<number>, $topology: UnityEngine.MeshTopology, $submesh: number, $calculateBounds?: boolean, $baseVertex?: number): void;
             public SetIndices($indices: System.Collections.Generic.List$1<number>, $topology: UnityEngine.MeshTopology, $submesh: number, $meshLod: number, $calculateBounds?: boolean, $baseVertex?: number): void;
             public SetIndices($indices: System.Collections.Generic.List$1<number>, $indicesStart: number, $indicesLength: number, $topology: UnityEngine.MeshTopology, $submesh: number, $calculateBounds?: boolean, $baseVertex?: number): void;
@@ -3986,12 +3987,12 @@ declare namespace CS {
             public SetIndices($indices: System.Collections.Generic.List$1<number>, $topology: UnityEngine.MeshTopology, $submesh: number, $meshLod: number, $calculateBounds?: boolean, $baseVertex?: number): void;
             public SetIndices($indices: System.Collections.Generic.List$1<number>, $indicesStart: number, $indicesLength: number, $topology: UnityEngine.MeshTopology, $submesh: number, $calculateBounds?: boolean, $baseVertex?: number): void;
             public SetIndices($indices: System.Collections.Generic.List$1<number>, $indicesStart: number, $indicesLength: number, $topology: UnityEngine.MeshTopology, $submesh: number, $meshLod: number, $calculateBounds?: boolean, $baseVertex?: number): void;
+            public SetSubMeshes<T>($desc: Unity.Collections.NativeArray$1<T>, $start: number, $count: number, $flags?: UnityEngine.Rendering.MeshUpdateFlags): void;
+            public SetSubMeshes<T>($desc: Unity.Collections.NativeArray$1<T>, $flags?: UnityEngine.Rendering.MeshUpdateFlags): void;
             public SetSubMeshes($desc: System.Array$1<UnityEngine.Rendering.SubMeshDescriptor>, $start: number, $count: number, $flags?: UnityEngine.Rendering.MeshUpdateFlags): void;
             public SetSubMeshes($desc: System.Array$1<UnityEngine.Rendering.SubMeshDescriptor>, $flags?: UnityEngine.Rendering.MeshUpdateFlags): void;
             public SetSubMeshes($desc: System.Collections.Generic.List$1<UnityEngine.Rendering.SubMeshDescriptor>, $start: number, $count: number, $flags?: UnityEngine.Rendering.MeshUpdateFlags): void;
             public SetSubMeshes($desc: System.Collections.Generic.List$1<UnityEngine.Rendering.SubMeshDescriptor>, $flags?: UnityEngine.Rendering.MeshUpdateFlags): void;
-            public SetSubMeshes<T>($desc: Unity.Collections.NativeArray$1<T>, $start: number, $count: number, $flags?: UnityEngine.Rendering.MeshUpdateFlags): void;
-            public SetSubMeshes<T>($desc: Unity.Collections.NativeArray$1<T>, $flags?: UnityEngine.Rendering.MeshUpdateFlags): void;
             public SetLod($submesh: number, $level: number, $levelRange: UnityEngine.MeshLodRange, $flags?: UnityEngine.Rendering.MeshUpdateFlags): void;
             public SetLods($levels: System.Collections.Generic.List$1<UnityEngine.MeshLodRange>, $submesh: number, $flags?: UnityEngine.Rendering.MeshUpdateFlags): void;
             public SetLods($levels: System.Collections.Generic.List$1<UnityEngine.MeshLodRange>, $start: number, $count: number, $submesh: number, $flags?: UnityEngine.Rendering.MeshUpdateFlags): void;
@@ -4001,15 +4002,14 @@ declare namespace CS {
             public SetLods($levels: Unity.Collections.NativeArray$1<UnityEngine.MeshLodRange>, $start: number, $count: number, $submesh: number, $flags?: UnityEngine.Rendering.MeshUpdateFlags): void;
             public GetLods($submesh: number): System.Array$1<UnityEngine.MeshLodRange>;
             public GetLods($levels: System.Collections.Generic.List$1<UnityEngine.MeshLodRange>, $submesh: number): void;
-            public GetBindposes($bindposes: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>): void;
             public GetBoneWeights($boneWeights: System.Collections.Generic.List$1<UnityEngine.BoneWeight>): void;
             public Clear($keepVertexLayout: boolean): void;
             public Clear(): void;
             public RecalculateBounds(): void;
-            public RecalculateNormals(): void;
-            public RecalculateTangents(): void;
             public RecalculateBounds($flags: UnityEngine.Rendering.MeshUpdateFlags): void;
+            public RecalculateNormals(): void;
             public RecalculateNormals($flags: UnityEngine.Rendering.MeshUpdateFlags): void;
+            public RecalculateTangents(): void;
             public RecalculateTangents($flags: UnityEngine.Rendering.MeshUpdateFlags): void;
             public RecalculateUVDistributionMetric($uvSetIndex: number, $uvAreaThreshold?: number): void;
             public RecalculateUVDistributionMetrics($uvAreaThreshold?: number): void;
@@ -4165,12 +4165,12 @@ declare namespace CS {
             public get subshaderCount(): number;
             public static Find($name: string): UnityEngine.Shader;
             public static EnableKeyword($keyword: string): void;
-            public static DisableKeyword($keyword: string): void;
-            public static IsKeywordEnabled($keyword: string): boolean;
             public static EnableKeyword($keyword: $Ref<UnityEngine.Rendering.GlobalKeyword>): void;
+            public static DisableKeyword($keyword: string): void;
             public static DisableKeyword($keyword: $Ref<UnityEngine.Rendering.GlobalKeyword>): void;
-            public static SetKeyword($keyword: $Ref<UnityEngine.Rendering.GlobalKeyword>, $value: boolean): void;
+            public static IsKeywordEnabled($keyword: string): boolean;
             public static IsKeywordEnabled($keyword: $Ref<UnityEngine.Rendering.GlobalKeyword>): boolean;
+            public static SetKeyword($keyword: $Ref<UnityEngine.Rendering.GlobalKeyword>, $value: boolean): void;
             public static WarmupAllShaders(): void;
             public static PropertyToID($name: string): number;
             public static TryConvertPropertyIDToName($propertyID: number, $name: $Out<string>): boolean;
@@ -4234,14 +4234,14 @@ declare namespace CS {
             public static GetGlobalTexture($nameID: number): UnityEngine.Texture;
             public static GetGlobalFloatArray($name: string): System.Array$1<number>;
             public static GetGlobalFloatArray($nameID: number): System.Array$1<number>;
-            public static GetGlobalVectorArray($name: string): System.Array$1<UnityEngine.Vector4>;
-            public static GetGlobalVectorArray($nameID: number): System.Array$1<UnityEngine.Vector4>;
-            public static GetGlobalMatrixArray($name: string): System.Array$1<UnityEngine.Matrix4x4>;
-            public static GetGlobalMatrixArray($nameID: number): System.Array$1<UnityEngine.Matrix4x4>;
             public static GetGlobalFloatArray($name: string, $values: System.Collections.Generic.List$1<number>): void;
             public static GetGlobalFloatArray($nameID: number, $values: System.Collections.Generic.List$1<number>): void;
+            public static GetGlobalVectorArray($name: string): System.Array$1<UnityEngine.Vector4>;
+            public static GetGlobalVectorArray($nameID: number): System.Array$1<UnityEngine.Vector4>;
             public static GetGlobalVectorArray($name: string, $values: System.Collections.Generic.List$1<UnityEngine.Vector4>): void;
             public static GetGlobalVectorArray($nameID: number, $values: System.Collections.Generic.List$1<UnityEngine.Vector4>): void;
+            public static GetGlobalMatrixArray($name: string): System.Array$1<UnityEngine.Matrix4x4>;
+            public static GetGlobalMatrixArray($nameID: number): System.Array$1<UnityEngine.Matrix4x4>;
             public static GetGlobalMatrixArray($name: string, $values: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>): void;
             public static GetGlobalMatrixArray($nameID: number, $values: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>): void;
             public GetPropertyCount(): number;
@@ -4298,16 +4298,16 @@ declare namespace CS {
             public BakeMesh($mesh: UnityEngine.Mesh, $useTransform?: boolean): void;
             public BakeMesh($mesh: UnityEngine.Mesh, $camera: UnityEngine.Camera, $useTransform?: boolean): void;
             public GetPositions($positions: $Out<System.Array$1<UnityEngine.Vector3>>): number;
-            public GetVisiblePositions($positions: $Out<System.Array$1<UnityEngine.Vector3>>): number;
-            public SetPositions($positions: System.Array$1<UnityEngine.Vector3>): void;
-            public AddPosition($position: UnityEngine.Vector3): void;
-            public AddPositions($positions: System.Array$1<UnityEngine.Vector3>): void;
-            public SetPositions($positions: Unity.Collections.NativeArray$1<UnityEngine.Vector3>): void;
-            public SetPositions($positions: Unity.Collections.NativeSlice$1<UnityEngine.Vector3>): void;
             public GetPositions($positions: $Out<Unity.Collections.NativeArray$1<UnityEngine.Vector3>>): number;
             public GetPositions($positions: $Out<Unity.Collections.NativeSlice$1<UnityEngine.Vector3>>): number;
+            public GetVisiblePositions($positions: $Out<System.Array$1<UnityEngine.Vector3>>): number;
             public GetVisiblePositions($positions: $Out<Unity.Collections.NativeArray$1<UnityEngine.Vector3>>): number;
             public GetVisiblePositions($positions: $Out<Unity.Collections.NativeSlice$1<UnityEngine.Vector3>>): number;
+            public SetPositions($positions: System.Array$1<UnityEngine.Vector3>): void;
+            public SetPositions($positions: Unity.Collections.NativeArray$1<UnityEngine.Vector3>): void;
+            public SetPositions($positions: Unity.Collections.NativeSlice$1<UnityEngine.Vector3>): void;
+            public AddPosition($position: UnityEngine.Vector3): void;
+            public AddPositions($positions: System.Array$1<UnityEngine.Vector3>): void;
             public AddPositions($positions: $Out<Unity.Collections.NativeArray$1<UnityEngine.Vector3>>): void;
             public AddPositions($positions: $Out<Unity.Collections.NativeSlice$1<UnityEngine.Vector3>>): void;
         }
@@ -4347,11 +4347,11 @@ declare namespace CS {
             public BakeMesh($mesh: UnityEngine.Mesh, $useTransform?: boolean): void;
             public BakeMesh($mesh: UnityEngine.Mesh, $camera: UnityEngine.Camera, $useTransform?: boolean): void;
             public GetPositions($positions: $Out<System.Array$1<UnityEngine.Vector3>>): number;
+            public GetPositions($positions: $Out<Unity.Collections.NativeArray$1<UnityEngine.Vector3>>): number;
+            public GetPositions($positions: $Out<Unity.Collections.NativeSlice$1<UnityEngine.Vector3>>): number;
             public SetPositions($positions: System.Array$1<UnityEngine.Vector3>): void;
             public SetPositions($positions: Unity.Collections.NativeArray$1<UnityEngine.Vector3>): void;
             public SetPositions($positions: Unity.Collections.NativeSlice$1<UnityEngine.Vector3>): void;
-            public GetPositions($positions: $Out<Unity.Collections.NativeArray$1<UnityEngine.Vector3>>): number;
-            public GetPositions($positions: $Out<Unity.Collections.NativeSlice$1<UnityEngine.Vector3>>): number;
         }
 
         class MaterialPropertyBlock {
@@ -4431,14 +4431,14 @@ declare namespace CS {
             public GetTexture($nameID: number): UnityEngine.Texture;
             public GetFloatArray($name: string): System.Array$1<number>;
             public GetFloatArray($nameID: number): System.Array$1<number>;
-            public GetVectorArray($name: string): System.Array$1<UnityEngine.Vector4>;
-            public GetVectorArray($nameID: number): System.Array$1<UnityEngine.Vector4>;
-            public GetMatrixArray($name: string): System.Array$1<UnityEngine.Matrix4x4>;
-            public GetMatrixArray($nameID: number): System.Array$1<UnityEngine.Matrix4x4>;
             public GetFloatArray($name: string, $values: System.Collections.Generic.List$1<number>): void;
             public GetFloatArray($nameID: number, $values: System.Collections.Generic.List$1<number>): void;
+            public GetVectorArray($name: string): System.Array$1<UnityEngine.Vector4>;
+            public GetVectorArray($nameID: number): System.Array$1<UnityEngine.Vector4>;
             public GetVectorArray($name: string, $values: System.Collections.Generic.List$1<UnityEngine.Vector4>): void;
             public GetVectorArray($nameID: number, $values: System.Collections.Generic.List$1<UnityEngine.Vector4>): void;
+            public GetMatrixArray($name: string): System.Array$1<UnityEngine.Matrix4x4>;
+            public GetMatrixArray($nameID: number): System.Array$1<UnityEngine.Matrix4x4>;
             public GetMatrixArray($name: string, $values: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>): void;
             public GetMatrixArray($nameID: number, $values: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>): void;
             public CopySHCoefficientArraysFrom($lightProbes: System.Collections.Generic.List$1<UnityEngine.Rendering.SphericalHarmonicsL2>): void;
@@ -4521,12 +4521,12 @@ declare namespace CS {
             public HasConstantBuffer($name: string): boolean;
             public HasConstantBuffer($nameID: number): boolean;
             public EnableKeyword($keyword: string): void;
-            public DisableKeyword($keyword: string): void;
-            public IsKeywordEnabled($keyword: string): boolean;
             public EnableKeyword($keyword: $Ref<UnityEngine.Rendering.LocalKeyword>): void;
+            public DisableKeyword($keyword: string): void;
             public DisableKeyword($keyword: $Ref<UnityEngine.Rendering.LocalKeyword>): void;
-            public SetKeyword($keyword: $Ref<UnityEngine.Rendering.LocalKeyword>, $value: boolean): void;
+            public IsKeywordEnabled($keyword: string): boolean;
             public IsKeywordEnabled($keyword: $Ref<UnityEngine.Rendering.LocalKeyword>): boolean;
+            public SetKeyword($keyword: $Ref<UnityEngine.Rendering.LocalKeyword>, $value: boolean): void;
             public SetShaderPassEnabled($passName: string, $enabled: boolean): void;
             public GetShaderPassEnabled($passName: string): boolean;
             public GetPassName($pass: number): string;
@@ -4540,22 +4540,22 @@ declare namespace CS {
             public CopyMatchingPropertiesFromMaterial($mat: UnityEngine.Material): void;
             public ComputeCRC(): number;
             public GetTexturePropertyNames(): System.Array$1<string>;
-            public GetTexturePropertyNameIDs(): System.Array$1<number>;
             public GetTexturePropertyNames($outNames: System.Collections.Generic.List$1<string>): void;
+            public GetTexturePropertyNameIDs(): System.Array$1<number>;
             public GetTexturePropertyNameIDs($outNames: System.Collections.Generic.List$1<number>): void;
             public IsChildOf($ancestor: UnityEngine.Material): boolean;
             public RevertAllPropertyOverrides(): void;
             public IsPropertyOverriden($nameID: number): boolean;
-            public IsPropertyLocked($nameID: number): boolean;
-            public IsPropertyLockedByAncestor($nameID: number): boolean;
             public IsPropertyOverriden($name: string): boolean;
+            public IsPropertyLocked($nameID: number): boolean;
             public IsPropertyLocked($name: string): boolean;
+            public IsPropertyLockedByAncestor($nameID: number): boolean;
             public IsPropertyLockedByAncestor($name: string): boolean;
             public SetPropertyLock($nameID: number, $value: boolean): void;
-            public ApplyPropertyOverride($destination: UnityEngine.Material, $nameID: number, $recordUndo?: boolean): void;
-            public RevertPropertyOverride($nameID: number): void;
             public SetPropertyLock($name: string, $value: boolean): void;
+            public ApplyPropertyOverride($destination: UnityEngine.Material, $nameID: number, $recordUndo?: boolean): void;
             public ApplyPropertyOverride($destination: UnityEngine.Material, $name: string, $recordUndo?: boolean): void;
+            public RevertPropertyOverride($nameID: number): void;
             public RevertPropertyOverride($name: string): void;
             public SetInt($name: string, $value: number): void;
             public SetInt($nameID: number, $value: number): void;
@@ -4615,18 +4615,18 @@ declare namespace CS {
             public GetConstantBuffer($name: string): UnityEngine.GraphicsBufferHandle;
             public GetFloatArray($name: string): System.Array$1<number>;
             public GetFloatArray($nameID: number): System.Array$1<number>;
-            public GetColorArray($name: string): System.Array$1<UnityEngine.Color>;
-            public GetColorArray($nameID: number): System.Array$1<UnityEngine.Color>;
-            public GetVectorArray($name: string): System.Array$1<UnityEngine.Vector4>;
-            public GetVectorArray($nameID: number): System.Array$1<UnityEngine.Vector4>;
-            public GetMatrixArray($name: string): System.Array$1<UnityEngine.Matrix4x4>;
-            public GetMatrixArray($nameID: number): System.Array$1<UnityEngine.Matrix4x4>;
             public GetFloatArray($name: string, $values: System.Collections.Generic.List$1<number>): void;
             public GetFloatArray($nameID: number, $values: System.Collections.Generic.List$1<number>): void;
+            public GetColorArray($name: string): System.Array$1<UnityEngine.Color>;
+            public GetColorArray($nameID: number): System.Array$1<UnityEngine.Color>;
             public GetColorArray($name: string, $values: System.Collections.Generic.List$1<UnityEngine.Color>): void;
             public GetColorArray($nameID: number, $values: System.Collections.Generic.List$1<UnityEngine.Color>): void;
+            public GetVectorArray($name: string): System.Array$1<UnityEngine.Vector4>;
+            public GetVectorArray($nameID: number): System.Array$1<UnityEngine.Vector4>;
             public GetVectorArray($name: string, $values: System.Collections.Generic.List$1<UnityEngine.Vector4>): void;
             public GetVectorArray($nameID: number, $values: System.Collections.Generic.List$1<UnityEngine.Vector4>): void;
+            public GetMatrixArray($name: string): System.Array$1<UnityEngine.Matrix4x4>;
+            public GetMatrixArray($nameID: number): System.Array$1<UnityEngine.Matrix4x4>;
             public GetMatrixArray($name: string, $values: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>): void;
             public GetMatrixArray($nameID: number, $values: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>): void;
             public SetTextureOffset($name: string, $value: UnityEngine.Vector2): void;
@@ -4662,12 +4662,12 @@ declare namespace CS {
             public Dispose(): void;
             public Release(): void;
             public IsValid(): boolean;
-            public SetData($data: System.Array): void;
             public SetData<T>($data: System.Collections.Generic.List$1<T>): void;
             public SetData<T>($data: Unity.Collections.NativeArray$1<T>): void;
-            public SetData($data: System.Array, $managedBufferStartIndex: number, $graphicsBufferStartIndex: number, $count: number): void;
             public SetData<T>($data: System.Collections.Generic.List$1<T>, $managedBufferStartIndex: number, $graphicsBufferStartIndex: number, $count: number): void;
             public SetData<T>($data: Unity.Collections.NativeArray$1<T>, $nativeBufferStartIndex: number, $graphicsBufferStartIndex: number, $count: number): void;
+            public SetData($data: System.Array): void;
+            public SetData($data: System.Array, $managedBufferStartIndex: number, $graphicsBufferStartIndex: number, $count: number): void;
             public GetData($data: System.Array): void;
             public GetData($data: System.Array, $managedBufferStartIndex: number, $computeBufferStartIndex: number, $count: number): void;
             public GetNativeBufferPtr(): number;
@@ -5652,9 +5652,12 @@ declare namespace CS {
             public IsRequestedMipmapLevelLoaded(): boolean;
             public ClearMinimumMipmapLevel(): void;
             public UpdateExternalTexture($nativeTex: number): void;
+            public GetRawTextureData<T>(): Unity.Collections.NativeArray$1<T>;
             public GetRawTextureData(): System.Array$1<number>;
             public GetPixels($x: number, $y: number, $blockWidth: number, $blockHeight: number, $miplevel: number): System.Array$1<UnityEngine.Color>;
             public GetPixels($x: number, $y: number, $blockWidth: number, $blockHeight: number): System.Array$1<UnityEngine.Color>;
+            public GetPixels($miplevel: number): System.Array$1<UnityEngine.Color>;
+            public GetPixels(): System.Array$1<UnityEngine.Color>;
             public GetPixels32($miplevel: number): System.Array$1<UnityEngine.Color32>;
             public GetPixels32(): System.Array$1<UnityEngine.Color32>;
             public PackTextures($textures: System.Array$1<UnityEngine.Texture2D>, $padding: number, $maximumAtlasSize: number, $makeNoLongerReadable: boolean): System.Array$1<UnityEngine.Rect>;
@@ -5671,13 +5674,12 @@ declare namespace CS {
             public GetPixel($x: number, $y: number, $mipLevel: number): UnityEngine.Color;
             public GetPixelBilinear($u: number, $v: number): UnityEngine.Color;
             public GetPixelBilinear($u: number, $v: number, $mipLevel: number): UnityEngine.Color;
+            public LoadRawTextureData<T>($data: Unity.Collections.NativeArray$1<T>): void;
             public LoadRawTextureData($data: number, $size: number): void;
             public LoadRawTextureData($data: System.Array$1<number>): void;
-            public LoadRawTextureData<T>($data: Unity.Collections.NativeArray$1<T>): void;
             public SetPixelData<T>($data: System.Array$1<T>, $mipLevel: number, $sourceDataStartIndex?: number): void;
             public SetPixelData<T>($data: Unity.Collections.NativeArray$1<T>, $mipLevel: number, $sourceDataStartIndex?: number): void;
             public GetPixelData<T>($mipLevel: number): Unity.Collections.NativeArray$1<T>;
-            public GetRawTextureData<T>(): Unity.Collections.NativeArray$1<T>;
             public Apply($updateMipmaps: boolean, $makeNoLongerReadable: boolean): void;
             public Apply($updateMipmaps: boolean): void;
             public Apply(): void;
@@ -5697,8 +5699,6 @@ declare namespace CS {
             public SetPixels32($colors: System.Array$1<UnityEngine.Color32>): void;
             public SetPixels32($x: number, $y: number, $blockWidth: number, $blockHeight: number, $colors: System.Array$1<UnityEngine.Color32>, $miplevel: number): void;
             public SetPixels32($x: number, $y: number, $blockWidth: number, $blockHeight: number, $colors: System.Array$1<UnityEngine.Color32>): void;
-            public GetPixels($miplevel: number): System.Array$1<UnityEngine.Color>;
-            public GetPixels(): System.Array$1<UnityEngine.Color>;
             public CopyPixels($src: UnityEngine.Texture): void;
             public CopyPixels($src: UnityEngine.Texture, $srcElement: number, $srcMip: number, $dstMip: number): void;
             public CopyPixels($src: UnityEngine.Texture, $srcElement: number, $srcMip: number, $srcX: number, $srcY: number, $srcWidth: number, $srcHeight: number, $dstMip: number, $dstX: number, $dstY: number): void;
@@ -5931,9 +5931,9 @@ declare namespace CS {
             public ApplyDynamicScale(): void;
             public GetNativeDepthBufferPtr(): number;
             public DiscardContents($discardColor: boolean, $discardDepth: boolean): void;
+            public DiscardContents(): void;
             /** @deprecated This function has no effect. */
             public MarkRestoreExpected(): void;
-            public DiscardContents(): void;
             public ResolveAntiAliasedSurface(): void;
             public ResolveAntiAliasedSurface($target: UnityEngine.RenderTexture): void;
             public SetGlobalShaderProperty($propertyName: string): void;
@@ -6115,9 +6115,9 @@ declare namespace CS {
             constructor($u32_0: number, $u32_1: number, $u32_2: number, $u32_3: number);
             constructor($u64_0: bigint, $u64_1: bigint);
             public CompareTo($rhs: UnityEngine.Hash128): number;
+            public CompareTo($obj: any): number;
             public ToString(): string;
             public static Parse($hashString: string): UnityEngine.Hash128;
-            public static Compute($data: string): UnityEngine.Hash128;
             public static Compute<T>($data: Unity.Collections.NativeArray$1<T>): UnityEngine.Hash128;
             public static Compute<T>($data: Unity.Collections.NativeArray$1<T>, $start: number, $count: number): UnityEngine.Hash128;
             public static Compute<T>($data: System.Array$1<T>): UnityEngine.Hash128;
@@ -6125,9 +6125,9 @@ declare namespace CS {
             public static Compute<T>($data: System.Collections.Generic.List$1<T>): UnityEngine.Hash128;
             public static Compute<T>($data: System.Collections.Generic.List$1<T>, $start: number, $count: number): UnityEngine.Hash128;
             public static Compute<T>($val: $Ref<T>): UnityEngine.Hash128;
+            public static Compute($data: string): UnityEngine.Hash128;
             public static Compute($val: number): UnityEngine.Hash128;
             public static Compute($val: number): UnityEngine.Hash128;
-            public Append($data: string): void;
             public Append<T>($data: Unity.Collections.NativeArray$1<T>): void;
             public Append<T>($data: Unity.Collections.NativeArray$1<T>, $start: number, $count: number): void;
             public Append<T>($data: System.Array$1<T>): void;
@@ -6135,12 +6135,12 @@ declare namespace CS {
             public Append<T>($data: System.Collections.Generic.List$1<T>): void;
             public Append<T>($data: System.Collections.Generic.List$1<T>, $start: number, $count: number): void;
             public Append<T>($val: $Ref<T>): void;
+            public Append($data: string): void;
             public Append($val: number): void;
             public Append($val: number): void;
             public Equals($obj: any): boolean;
             public Equals($obj: UnityEngine.Hash128): boolean;
             public GetHashCode(): number;
-            public CompareTo($obj: any): number;
         }
 
         class HashUtilities {
@@ -7294,12 +7294,12 @@ declare namespace CS {
             public static Inverse($rotation: UnityEngine.Quaternion): UnityEngine.Quaternion;
             public static Inverse($rotation: $Ref<UnityEngine.Quaternion>): UnityEngine.Quaternion;
             public static Slerp($a: UnityEngine.Quaternion, $b: UnityEngine.Quaternion, $t: number): UnityEngine.Quaternion;
-            public static SlerpUnclamped($a: UnityEngine.Quaternion, $b: UnityEngine.Quaternion, $t: number): UnityEngine.Quaternion;
-            public static Lerp($a: UnityEngine.Quaternion, $b: UnityEngine.Quaternion, $t: number): UnityEngine.Quaternion;
-            public static LerpUnclamped($a: UnityEngine.Quaternion, $b: UnityEngine.Quaternion, $t: number): UnityEngine.Quaternion;
             public static Slerp($a: $Ref<UnityEngine.Quaternion>, $b: $Ref<UnityEngine.Quaternion>, $t: number): UnityEngine.Quaternion;
+            public static SlerpUnclamped($a: UnityEngine.Quaternion, $b: UnityEngine.Quaternion, $t: number): UnityEngine.Quaternion;
             public static SlerpUnclamped($a: $Ref<UnityEngine.Quaternion>, $b: $Ref<UnityEngine.Quaternion>, $t: number): UnityEngine.Quaternion;
+            public static Lerp($a: UnityEngine.Quaternion, $b: UnityEngine.Quaternion, $t: number): UnityEngine.Quaternion;
             public static Lerp($a: $Ref<UnityEngine.Quaternion>, $b: $Ref<UnityEngine.Quaternion>, $t: number): UnityEngine.Quaternion;
+            public static LerpUnclamped($a: UnityEngine.Quaternion, $b: UnityEngine.Quaternion, $t: number): UnityEngine.Quaternion;
             public static LerpUnclamped($a: $Ref<UnityEngine.Quaternion>, $b: $Ref<UnityEngine.Quaternion>, $t: number): UnityEngine.Quaternion;
             public static AngleAxis($angle: number, $axis: UnityEngine.Vector3): UnityEngine.Quaternion;
             public static AngleAxis($angle: number, $axis: $Ref<UnityEngine.Vector3>): UnityEngine.Quaternion;
@@ -7873,19 +7873,20 @@ declare namespace CS {
         class Resources {
             protected [__keep_incompatibility]: never;
             constructor();
-            public static FindObjectsOfTypeAll($type: System.TypeLike): System.Array$1<UnityEngine.Object>;
             public static FindObjectsOfTypeAll<T extends UnityEngine.Object>(): System.Array$1<T>;
-            public static Load($path: string): UnityEngine.Object;
+            public static FindObjectsOfTypeAll($type: System.TypeLike): System.Array$1<UnityEngine.Object>;
             public static Load<T extends UnityEngine.Object>($path: string): T;
+            public static Load($path: string): UnityEngine.Object;
             public static Load($path: string, $systemTypeInstance: System.TypeLike): UnityEngine.Object;
-            public static LoadAsync($path: string): UnityEngine.ResourceRequest;
             public static LoadAsync<T extends UnityEngine.Object>($path: string): UnityEngine.ResourceRequest;
+            public static LoadAsync($path: string): UnityEngine.ResourceRequest;
             public static LoadAsync($path: string, $type: System.TypeLike): UnityEngine.ResourceRequest;
+            public static LoadAll<T extends UnityEngine.Object>($path: string): System.Array$1<T>;
             public static LoadAll($path: string, $systemTypeInstance: System.TypeLike): System.Array$1<UnityEngine.Object>;
             public static LoadAll($path: string): System.Array$1<UnityEngine.Object>;
-            public static LoadAll<T extends UnityEngine.Object>($path: string): System.Array$1<T>;
-            public static GetBuiltinResource($type: System.TypeLike, $path: string): UnityEngine.Object;
             public static GetBuiltinResource<T extends UnityEngine.Object>($path: string): T;
+            public static GetBuiltinResource<T extends UnityEngine.Object>($type: { new(...args: any[]): T }, $path: string): T;
+            public static GetBuiltinResource($type: System.TypeLike, $path: string): UnityEngine.Object;
             public static UnloadAsset($assetToUnload: UnityEngine.Object): void;
             public static UnloadUnusedAssets(): UnityEngine.AsyncOperation;
             public static EntityIdToObject($entityId: UnityEngine.EntityId): UnityEngine.Object;
@@ -8092,11 +8093,11 @@ declare namespace CS {
 
         class UnityEventAwaitableExtensions {
             protected [__keep_incompatibility]: never;
-            public static GetAwaiter(): UnityEngine.Awaitable.Awaiter;
             public static GetAwaiter<T>(): UnityEngine.Awaitable$1.Awaiter$1<T>;
             public static GetAwaiter<T0, T1>(): UnityEngine.Awaitable$1.Awaiter$1<System.ValueTuple$2<T0, T1>>;
             public static GetAwaiter<T0, T1, T2>(): UnityEngine.Awaitable$1.Awaiter$1<System.ValueTuple$3<T0, T1, T2>>;
             public static GetAwaiter<T0, T1, T2, T3>(): UnityEngine.Awaitable$1.Awaiter$1<System.ValueTuple$4<T0, T1, T2, T3>>;
+            public static GetAwaiter(): UnityEngine.Awaitable.Awaiter;
         }
 
         class AwaitableCompletionSource {
@@ -8155,34 +8156,39 @@ declare namespace CS {
             public get gameObject(): UnityEngine.GameObject;
             public tag: string;
             constructor();
-            public GetComponent($type: System.TypeLike): UnityEngine.Component;
             public GetComponent<T>(): T;
-            public TryGetComponent($type: System.TypeLike, $component: $Out<UnityEngine.Component>): boolean;
-            public TryGetComponent<T>($component: $Out<T>): boolean;
+            public GetComponent<T extends UnityEngine.Component>($type: { new(...args: any[]): T }): T;
+            public GetComponent($type: System.TypeLike): UnityEngine.Component;
             public GetComponent($type: string): UnityEngine.Component;
-            public GetComponentInChildren($t: System.TypeLike, $includeInactive: boolean): UnityEngine.Component;
-            public GetComponentInChildren($t: System.TypeLike): UnityEngine.Component;
+            public TryGetComponent<T>($component: $Out<T>): boolean;
+            public TryGetComponent($type: System.TypeLike, $component: $Out<UnityEngine.Component>): boolean;
             public GetComponentInChildren<T>($includeInactive: boolean): T;
             public GetComponentInChildren<T>(): T;
-            public GetComponentsInChildren($t: System.TypeLike, $includeInactive: boolean): System.Array$1<UnityEngine.Component>;
-            public GetComponentsInChildren($t: System.TypeLike): System.Array$1<UnityEngine.Component>;
+            public GetComponentInChildren<T extends UnityEngine.Component>($t: { new(...args: any[]): T }, $includeInactive: boolean): T;
+            public GetComponentInChildren<T extends UnityEngine.Component>($t: { new(...args: any[]): T }): T;
+            public GetComponentInChildren($t: System.TypeLike, $includeInactive: boolean): UnityEngine.Component;
+            public GetComponentInChildren($t: System.TypeLike): UnityEngine.Component;
             public GetComponentsInChildren<T>($includeInactive: boolean): System.Array$1<T>;
             public GetComponentsInChildren<T>($includeInactive: boolean, $result: System.Collections.Generic.List$1<T>): void;
             public GetComponentsInChildren<T>(): System.Array$1<T>;
             public GetComponentsInChildren<T>($results: System.Collections.Generic.List$1<T>): void;
-            public GetComponentInParent($t: System.TypeLike, $includeInactive: boolean): UnityEngine.Component;
-            public GetComponentInParent($t: System.TypeLike): UnityEngine.Component;
+            public GetComponentsInChildren($t: System.TypeLike, $includeInactive: boolean): System.Array$1<UnityEngine.Component>;
+            public GetComponentsInChildren($t: System.TypeLike): System.Array$1<UnityEngine.Component>;
             public GetComponentInParent<T>($includeInactive: boolean): T;
             public GetComponentInParent<T>(): T;
-            public GetComponentsInParent($t: System.TypeLike, $includeInactive: boolean): System.Array$1<UnityEngine.Component>;
-            public GetComponentsInParent($t: System.TypeLike): System.Array$1<UnityEngine.Component>;
+            public GetComponentInParent<T extends UnityEngine.Component>($t: { new(...args: any[]): T }, $includeInactive: boolean): T;
+            public GetComponentInParent<T extends UnityEngine.Component>($t: { new(...args: any[]): T }): T;
+            public GetComponentInParent($t: System.TypeLike, $includeInactive: boolean): UnityEngine.Component;
+            public GetComponentInParent($t: System.TypeLike): UnityEngine.Component;
             public GetComponentsInParent<T>($includeInactive: boolean): System.Array$1<T>;
             public GetComponentsInParent<T>($includeInactive: boolean, $results: System.Collections.Generic.List$1<T>): void;
             public GetComponentsInParent<T>(): System.Array$1<T>;
-            public GetComponents($type: System.TypeLike): System.Array$1<UnityEngine.Component>;
-            public GetComponents($type: System.TypeLike, $results: System.Collections.Generic.List$1<UnityEngine.Component>): void;
+            public GetComponentsInParent($t: System.TypeLike, $includeInactive: boolean): System.Array$1<UnityEngine.Component>;
+            public GetComponentsInParent($t: System.TypeLike): System.Array$1<UnityEngine.Component>;
             public GetComponents<T>($results: System.Collections.Generic.List$1<T>): void;
             public GetComponents<T>(): System.Array$1<T>;
+            public GetComponents($type: System.TypeLike): System.Array$1<UnityEngine.Component>;
+            public GetComponents($type: System.TypeLike, $results: System.Collections.Generic.List$1<UnityEngine.Component>): void;
             public GetComponentIndex(): number;
             public CompareTag($tag: string): boolean;
             public CompareTag($tag: UnityEngine.TagHandle): boolean;
@@ -8234,58 +8240,64 @@ declare namespace CS {
             constructor($name: string, ...components: System.TypeLike[]);
             public static CreatePrimitive($type: UnityEngine.PrimitiveType): UnityEngine.GameObject;
             public GetComponent<T>(): T;
+            public GetComponent<T extends UnityEngine.Component>($type: { new(...args: any[]): T }): T;
             public GetComponent($type: System.TypeLike): UnityEngine.Component;
             public GetComponent($type: string): UnityEngine.Component;
-            public GetComponentInChildren($type: System.TypeLike, $includeInactive: boolean): UnityEngine.Component;
-            public GetComponentInChildren($type: System.TypeLike): UnityEngine.Component;
             public GetComponentInChildren<T>(): T;
             public GetComponentInChildren<T>($includeInactive: boolean): T;
-            public GetComponentInParent($type: System.TypeLike, $includeInactive: boolean): UnityEngine.Component;
-            public GetComponentInParent($type: System.TypeLike): UnityEngine.Component;
+            public GetComponentInChildren<T extends UnityEngine.Component>($type: { new(...args: any[]): T }, $includeInactive: boolean): T;
+            public GetComponentInChildren<T extends UnityEngine.Component>($type: { new(...args: any[]): T }): T;
+            public GetComponentInChildren($type: System.TypeLike, $includeInactive: boolean): UnityEngine.Component;
+            public GetComponentInChildren($type: System.TypeLike): UnityEngine.Component;
             public GetComponentInParent<T>(): T;
             public GetComponentInParent<T>($includeInactive: boolean): T;
-            public GetComponents($type: System.TypeLike): System.Array$1<UnityEngine.Component>;
+            public GetComponentInParent<T extends UnityEngine.Component>($type: { new(...args: any[]): T }, $includeInactive: boolean): T;
+            public GetComponentInParent<T extends UnityEngine.Component>($type: { new(...args: any[]): T }): T;
+            public GetComponentInParent($type: System.TypeLike, $includeInactive: boolean): UnityEngine.Component;
+            public GetComponentInParent($type: System.TypeLike): UnityEngine.Component;
             public GetComponents<T>(): System.Array$1<T>;
-            public GetComponents($type: System.TypeLike, $results: System.Collections.Generic.List$1<UnityEngine.Component>): void;
             public GetComponents<T>($results: System.Collections.Generic.List$1<T>): void;
-            public GetComponentsInChildren($type: System.TypeLike): System.Array$1<UnityEngine.Component>;
-            public GetComponentsInChildren($type: System.TypeLike, $includeInactive: boolean): System.Array$1<UnityEngine.Component>;
+            public GetComponents($type: System.TypeLike): System.Array$1<UnityEngine.Component>;
+            public GetComponents($type: System.TypeLike, $results: System.Collections.Generic.List$1<UnityEngine.Component>): void;
             public GetComponentsInChildren<T>($includeInactive: boolean): System.Array$1<T>;
             public GetComponentsInChildren<T>($includeInactive: boolean, $results: System.Collections.Generic.List$1<T>): void;
             public GetComponentsInChildren<T>(): System.Array$1<T>;
             public GetComponentsInChildren<T>($results: System.Collections.Generic.List$1<T>): void;
-            public GetComponentsInParent($type: System.TypeLike): System.Array$1<UnityEngine.Component>;
-            public GetComponentsInParent($type: System.TypeLike, $includeInactive: boolean): System.Array$1<UnityEngine.Component>;
+            public GetComponentsInChildren($type: System.TypeLike): System.Array$1<UnityEngine.Component>;
+            public GetComponentsInChildren($type: System.TypeLike, $includeInactive: boolean): System.Array$1<UnityEngine.Component>;
             public GetComponentsInParent<T>($includeInactive: boolean, $results: System.Collections.Generic.List$1<T>): void;
             public GetComponentsInParent<T>($includeInactive: boolean): System.Array$1<T>;
             public GetComponentsInParent<T>(): System.Array$1<T>;
+            public GetComponentsInParent($type: System.TypeLike): System.Array$1<UnityEngine.Component>;
+            public GetComponentsInParent($type: System.TypeLike, $includeInactive: boolean): System.Array$1<UnityEngine.Component>;
             public TryGetComponent<T>($component: $Out<T>): boolean;
             public TryGetComponent($type: System.TypeLike, $component: $Out<UnityEngine.Component>): boolean;
             public static FindWithTag($tag: string): UnityEngine.GameObject;
             public static FindGameObjectsWithTag($tag: string, $results: System.Collections.Generic.List$1<UnityEngine.GameObject>): void;
+            public static FindGameObjectsWithTag($tag: string): System.Array$1<UnityEngine.GameObject>;
             public SendMessageUpwards($methodName: string, $options: UnityEngine.SendMessageOptions): void;
+            public SendMessageUpwards($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions): void;
+            public SendMessageUpwards($methodName: string, $value: any): void;
+            public SendMessageUpwards($methodName: string): void;
             public SendMessage($methodName: string, $options: UnityEngine.SendMessageOptions): void;
+            public SendMessage($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions): void;
+            public SendMessage($methodName: string, $value: any): void;
+            public SendMessage($methodName: string): void;
             public BroadcastMessage($methodName: string, $options: UnityEngine.SendMessageOptions): void;
-            public AddComponent($componentType: System.TypeLike): UnityEngine.Component;
+            public BroadcastMessage($methodName: string, $parameter: any, $options: UnityEngine.SendMessageOptions): void;
+            public BroadcastMessage($methodName: string, $parameter: any): void;
+            public BroadcastMessage($methodName: string): void;
             public AddComponent<T extends UnityEngine.Component>(): T;
+            public AddComponent<T extends UnityEngine.Component>($componentType: { new(...args: any[]): T }): T;
+            public AddComponent($componentType: System.TypeLike): UnityEngine.Component;
             public GetComponentCount(): number;
-            public GetComponentAtIndex($index: number): UnityEngine.Component;
             public GetComponentAtIndex<T extends UnityEngine.Component>($index: number): T;
+            public GetComponentAtIndex($index: number): UnityEngine.Component;
             public GetComponentIndex($component: UnityEngine.Component): number;
             public SetActive($value: boolean): void;
             public CompareTag($tag: string): boolean;
             public CompareTag($tag: UnityEngine.TagHandle): boolean;
             public static FindGameObjectWithTag($tag: string): UnityEngine.GameObject;
-            public static FindGameObjectsWithTag($tag: string): System.Array$1<UnityEngine.GameObject>;
-            public SendMessageUpwards($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions): void;
-            public SendMessageUpwards($methodName: string, $value: any): void;
-            public SendMessageUpwards($methodName: string): void;
-            public SendMessage($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions): void;
-            public SendMessage($methodName: string, $value: any): void;
-            public SendMessage($methodName: string): void;
-            public BroadcastMessage($methodName: string, $parameter: any, $options: UnityEngine.SendMessageOptions): void;
-            public BroadcastMessage($methodName: string, $parameter: any): void;
-            public BroadcastMessage($methodName: string): void;
             public static Find($name: string): UnityEngine.GameObject;
             public static SetGameObjectsActive($entityIds: Unity.Collections.NativeArray$1<UnityEngine.EntityId>, $active: boolean): void;
             public static SetGameObjectsActive($entityIds: System.ReadOnlySpan$1<UnityEngine.EntityId>, $active: boolean): void;
@@ -8353,11 +8365,11 @@ declare namespace CS {
             public runInEditMode: boolean;
             constructor();
             public IsInvoking(): boolean;
+            public IsInvoking($methodName: string): boolean;
             public CancelInvoke(): void;
+            public CancelInvoke($methodName: string): void;
             public Invoke($methodName: string, $time: number): void;
             public InvokeRepeating($methodName: string, $time: number, $repeatRate: number): void;
-            public CancelInvoke($methodName: string): void;
-            public IsInvoking($methodName: string): boolean;
             public StartCoroutine($methodName: string): UnityEngine.Coroutine;
             public StartCoroutine($methodName: string, $value: any): UnityEngine.Coroutine;
             public StartCoroutine($routine: System.Collections.IEnumerator): UnityEngine.Coroutine;
@@ -8405,9 +8417,10 @@ declare namespace CS {
             constructor();
             /** @deprecated Use EditorUtility.SetDirty instead */
             public SetDirty(): void;
+            public static CreateInstance<T extends UnityEngine.ScriptableObject>(): T;
+            public static CreateInstance<T extends UnityEngine.ScriptableObject>($type: { new(...args: any[]): T }): T;
             public static CreateInstance($className: string): UnityEngine.ScriptableObject;
             public static CreateInstance($type: System.TypeLike): UnityEngine.ScriptableObject;
-            public static CreateInstance<T extends UnityEngine.ScriptableObject>(): T;
         }
 
         class SelectionBaseAttribute extends System.Attribute {
@@ -8517,10 +8530,10 @@ declare namespace CS {
             public static get None(): UnityEngine.InstanceID;
             public Equals($obj: any): boolean;
             public Equals($other: UnityEngine.InstanceID): boolean;
+            public Equals($other: number): boolean;
             public CompareTo($other: UnityEngine.InstanceID): number;
             public GetHashCode(): number;
             public IsValid(): boolean;
-            public Equals($other: number): boolean;
             public ToString(): string;
             public ToString($format: string): string;
             public ToString($format: string, $formatProvider: System.IFormatProvider): string;
@@ -8531,11 +8544,11 @@ declare namespace CS {
             public static get None(): UnityEngine.EntityId;
             public Equals($obj: any): boolean;
             public Equals($other: UnityEngine.EntityId): boolean;
+            /** @deprecated EntityId will not be representable by an int in the future. This equals will be removed in a future version. */
+            public Equals($other: number): boolean;
             public CompareTo($other: UnityEngine.EntityId): number;
             public GetHashCode(): number;
             public IsValid(): boolean;
-            /** @deprecated EntityId will not be representable by an int in the future. This equals will be removed in a future version. */
-            public Equals($other: number): boolean;
             public ToString(): string;
             public ToString($format: string): string;
             public ToString($format: string, $formatProvider: System.IFormatProvider): string;
@@ -8570,27 +8583,37 @@ declare namespace CS {
             public static InstantiateAsync<T extends UnityEngine.Object>($original: T, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $parameters: UnityEngine.InstantiateParameters, $cancellationToken?: System.Threading.CancellationToken): UnityEngine.AsyncInstantiateOperation$1<T>;
             public static InstantiateAsync<T extends UnityEngine.Object>($original: T, $count: number, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $parameters: UnityEngine.InstantiateParameters, $cancellationToken?: System.Threading.CancellationToken): UnityEngine.AsyncInstantiateOperation$1<T>;
             public static InstantiateAsync<T extends UnityEngine.Object>($original: T, $count: number, $positions: System.ReadOnlySpan$1<UnityEngine.Vector3>, $rotations: System.ReadOnlySpan$1<UnityEngine.Quaternion>, $parameters: UnityEngine.InstantiateParameters, $cancellationToken?: System.Threading.CancellationToken): UnityEngine.AsyncInstantiateOperation$1<T>;
-            public static Instantiate($original: UnityEngine.Object, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion): UnityEngine.Object;
-            public static Instantiate($original: UnityEngine.Object, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $parent: UnityEngine.Transform): UnityEngine.Object;
-            public static Instantiate($original: UnityEngine.Object): UnityEngine.Object;
-            public static Instantiate($original: UnityEngine.Object, $scene: UnityEngine.SceneManagement.Scene): UnityEngine.Object;
             public static Instantiate<T extends UnityEngine.Object>($original: T, $parameters: UnityEngine.InstantiateParameters): T;
             public static Instantiate<T extends UnityEngine.Object>($original: T, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $parameters: UnityEngine.InstantiateParameters): T;
-            public static Instantiate($original: UnityEngine.Object, $parent: UnityEngine.Transform): UnityEngine.Object;
-            public static Instantiate($original: UnityEngine.Object, $parent: UnityEngine.Transform, $instantiateInWorldSpace: boolean): UnityEngine.Object;
             public static Instantiate<T extends UnityEngine.Object>($original: T): T;
             public static Instantiate<T extends UnityEngine.Object>($original: T, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion): T;
             public static Instantiate<T extends UnityEngine.Object>($original: T, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $parent: UnityEngine.Transform): T;
             public static Instantiate<T extends UnityEngine.Object>($original: T, $parent: UnityEngine.Transform): T;
             public static Instantiate<T extends UnityEngine.Object>($original: T, $parent: UnityEngine.Transform, $worldPositionStays: boolean): T;
+            public static Instantiate($original: UnityEngine.Object, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion): UnityEngine.Object;
+            public static Instantiate($original: UnityEngine.Object, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $parent: UnityEngine.Transform): UnityEngine.Object;
+            public static Instantiate($original: UnityEngine.Object): UnityEngine.Object;
+            public static Instantiate($original: UnityEngine.Object, $scene: UnityEngine.SceneManagement.Scene): UnityEngine.Object;
+            public static Instantiate($original: UnityEngine.Object, $parent: UnityEngine.Transform): UnityEngine.Object;
+            public static Instantiate($original: UnityEngine.Object, $parent: UnityEngine.Transform, $instantiateInWorldSpace: boolean): UnityEngine.Object;
             public static Destroy($obj: UnityEngine.Object, $t: number): void;
             public static Destroy($obj: UnityEngine.Object): void;
             public static DestroyImmediate($obj: UnityEngine.Object, $allowDestroyingAssets: boolean): void;
             public static DestroyImmediate($obj: UnityEngine.Object): void;
+            /** @deprecated Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster. */
+            public static FindObjectsOfType<T extends UnityEngine.Object>(): System.Array$1<T>;
+            /** @deprecated Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster. */
+            public static FindObjectsOfType<T extends UnityEngine.Object>($includeInactive: boolean): System.Array$1<T>;
             /** @deprecated Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID, but if you do not need this using FindObjectSortMode.None is considerably faster. */
             public static FindObjectsOfType($type: System.TypeLike): System.Array$1<UnityEngine.Object>;
             /** @deprecated Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster. */
             public static FindObjectsOfType($type: System.TypeLike, $includeInactive: boolean): System.Array$1<UnityEngine.Object>;
+            /** @deprecated FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained. */
+            public static FindObjectsByType<T extends UnityEngine.Object>($sortMode: UnityEngine.FindObjectsSortMode): System.Array$1<T>;
+            /** @deprecated FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained. */
+            public static FindObjectsByType<T extends UnityEngine.Object>($findObjectsInactive: UnityEngine.FindObjectsInactive, $sortMode: UnityEngine.FindObjectsSortMode): System.Array$1<T>;
+            public static FindObjectsByType<T extends UnityEngine.Object>(): System.Array$1<T>;
+            public static FindObjectsByType<T extends UnityEngine.Object>($findObjectsInactive: UnityEngine.FindObjectsInactive): System.Array$1<T>;
             /** @deprecated FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType(Type) or FindObjectsByType(Type, FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained. */
             public static FindObjectsByType($type: System.TypeLike, $sortMode: UnityEngine.FindObjectsSortMode): System.Array$1<UnityEngine.Object>;
             /** @deprecated FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType(Type) or FindObjectsByType(Type, FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained. */
@@ -8606,38 +8629,34 @@ declare namespace CS {
             public static FindSceneObjectsOfType($type: System.TypeLike): System.Array$1<UnityEngine.Object>;
             /** @deprecated use Resources.FindObjectsOfTypeAll instead. */
             public static FindObjectsOfTypeIncludingAssets($type: System.TypeLike): System.Array$1<UnityEngine.Object>;
-            /** @deprecated Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster. */
-            public static FindObjectsOfType<T extends UnityEngine.Object>(): System.Array$1<T>;
-            /** @deprecated FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained. */
-            public static FindObjectsByType<T extends UnityEngine.Object>($sortMode: UnityEngine.FindObjectsSortMode): System.Array$1<T>;
-            /** @deprecated Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster. */
-            public static FindObjectsOfType<T extends UnityEngine.Object>($includeInactive: boolean): System.Array$1<T>;
-            /** @deprecated FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained. */
-            public static FindObjectsByType<T extends UnityEngine.Object>($findObjectsInactive: UnityEngine.FindObjectsInactive, $sortMode: UnityEngine.FindObjectsSortMode): System.Array$1<T>;
             /** @deprecated Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead. */
             public static FindObjectOfType<T extends UnityEngine.Object>(): T;
             /** @deprecated Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead. */
             public static FindObjectOfType<T extends UnityEngine.Object>($includeInactive: boolean): T;
-            /** @deprecated FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering. */
-            public static FindFirstObjectByType<T extends UnityEngine.Object>(): T;
-            public static FindAnyObjectByType<T extends UnityEngine.Object>(): T;
-            /** @deprecated FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering. */
-            public static FindFirstObjectByType<T extends UnityEngine.Object>($findObjectsInactive: UnityEngine.FindObjectsInactive): T;
-            public static FindAnyObjectByType<T extends UnityEngine.Object>($findObjectsInactive: UnityEngine.FindObjectsInactive): T;
-            public static FindObjectsByType<T extends UnityEngine.Object>(): System.Array$1<T>;
-            public static FindObjectsByType<T extends UnityEngine.Object>($findObjectsInactive: UnityEngine.FindObjectsInactive): System.Array$1<T>;
-            /** @deprecated Please use Resources.FindObjectsOfTypeAll instead */
-            public static FindObjectsOfTypeAll($type: System.TypeLike): System.Array$1<UnityEngine.Object>;
+            public static FindObjectOfType<T extends UnityEngine.Object>($type: { new(...args: any[]): T }): T;
+            public static FindObjectOfType<T extends UnityEngine.Object>($type: { new(...args: any[]): T }, $includeInactive: boolean): T;
             /** @deprecated Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead. */
             public static FindObjectOfType($type: System.TypeLike): UnityEngine.Object;
-            /** @deprecated FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering. */
-            public static FindFirstObjectByType($type: System.TypeLike): UnityEngine.Object;
-            public static FindAnyObjectByType($type: System.TypeLike): UnityEngine.Object;
             /** @deprecated Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead. */
             public static FindObjectOfType($type: System.TypeLike, $includeInactive: boolean): UnityEngine.Object;
             /** @deprecated FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering. */
+            public static FindFirstObjectByType<T extends UnityEngine.Object>(): T;
+            /** @deprecated FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering. */
+            public static FindFirstObjectByType<T extends UnityEngine.Object>($findObjectsInactive: UnityEngine.FindObjectsInactive): T;
+            public static FindFirstObjectByType<T extends UnityEngine.Object>($type: { new(...args: any[]): T }): T;
+            public static FindFirstObjectByType<T extends UnityEngine.Object>($type: { new(...args: any[]): T }, $findObjectsInactive: UnityEngine.FindObjectsInactive): T;
+            /** @deprecated FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering. */
+            public static FindFirstObjectByType($type: System.TypeLike): UnityEngine.Object;
+            /** @deprecated FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering. */
             public static FindFirstObjectByType($type: System.TypeLike, $findObjectsInactive: UnityEngine.FindObjectsInactive): UnityEngine.Object;
+            public static FindAnyObjectByType<T extends UnityEngine.Object>(): T;
+            public static FindAnyObjectByType<T extends UnityEngine.Object>($findObjectsInactive: UnityEngine.FindObjectsInactive): T;
+            public static FindAnyObjectByType<T extends UnityEngine.Object>($type: { new(...args: any[]): T }): T;
+            public static FindAnyObjectByType<T extends UnityEngine.Object>($type: { new(...args: any[]): T }, $findObjectsInactive: UnityEngine.FindObjectsInactive): T;
+            public static FindAnyObjectByType($type: System.TypeLike): UnityEngine.Object;
             public static FindAnyObjectByType($type: System.TypeLike, $findObjectsInactive: UnityEngine.FindObjectsInactive): UnityEngine.Object;
+            /** @deprecated Please use Resources.FindObjectsOfTypeAll instead */
+            public static FindObjectsOfTypeAll($type: System.TypeLike): System.Array$1<UnityEngine.Object>;
             public ToString(): string;
         }
 
@@ -8745,12 +8764,12 @@ declare namespace CS {
             public Dispose(): void;
             public Release(): void;
             public IsValid(): boolean;
-            public SetData($data: System.Array): void;
             public SetData<T>($data: System.Collections.Generic.List$1<T>): void;
             public SetData<T>($data: Unity.Collections.NativeArray$1<T>): void;
-            public SetData($data: System.Array, $managedBufferStartIndex: number, $computeBufferStartIndex: number, $count: number): void;
             public SetData<T>($data: System.Collections.Generic.List$1<T>, $managedBufferStartIndex: number, $computeBufferStartIndex: number, $count: number): void;
             public SetData<T>($data: Unity.Collections.NativeArray$1<T>, $nativeBufferStartIndex: number, $computeBufferStartIndex: number, $count: number): void;
+            public SetData($data: System.Array): void;
+            public SetData($data: System.Array, $managedBufferStartIndex: number, $computeBufferStartIndex: number, $count: number): void;
             public GetData($data: System.Array): void;
             public GetData($data: System.Array, $managedBufferStartIndex: number, $computeBufferStartIndex: number, $count: number): void;
             public BeginWrite<T>($computeBufferStartIndex: number, $count: number): Unity.Collections.NativeArray$1<T>;
@@ -8768,47 +8787,47 @@ declare namespace CS {
             public FindKernel($name: string): number;
             public HasKernel($name: string): boolean;
             public SetFloat($nameID: number, $val: number): void;
+            public SetFloat($name: string, $val: number): void;
             public SetInt($nameID: number, $val: number): void;
+            public SetInt($name: string, $val: number): void;
             public SetVector($nameID: number, $val: UnityEngine.Vector4): void;
+            public SetVector($name: string, $val: UnityEngine.Vector4): void;
             public SetMatrix($nameID: number, $val: UnityEngine.Matrix4x4): void;
+            public SetMatrix($name: string, $val: UnityEngine.Matrix4x4): void;
             public SetVectorArray($nameID: number, $values: System.Array$1<UnityEngine.Vector4>): void;
+            public SetVectorArray($name: string, $values: System.Array$1<UnityEngine.Vector4>): void;
             public SetMatrixArray($nameID: number, $values: System.Array$1<UnityEngine.Matrix4x4>): void;
+            public SetMatrixArray($name: string, $values: System.Array$1<UnityEngine.Matrix4x4>): void;
             public SetTexture($kernelIndex: number, $nameID: number, $texture: UnityEngine.Texture, $mipLevel: number): void;
+            public SetTexture($kernelIndex: number, $nameID: number, $texture: UnityEngine.Texture): void;
+            public SetTexture($kernelIndex: number, $name: string, $texture: UnityEngine.Texture): void;
+            public SetTexture($kernelIndex: number, $name: string, $texture: UnityEngine.Texture, $mipLevel: number): void;
+            public SetTexture($kernelIndex: number, $nameID: number, $texture: UnityEngine.RenderTexture, $mipLevel: number, $element: UnityEngine.Rendering.RenderTextureSubElement): void;
+            public SetTexture($kernelIndex: number, $name: string, $texture: UnityEngine.RenderTexture, $mipLevel: number, $element: UnityEngine.Rendering.RenderTextureSubElement): void;
             public SetTextureFromGlobal($kernelIndex: number, $nameID: number, $globalTextureNameID: number): void;
+            public SetTextureFromGlobal($kernelIndex: number, $name: string, $globalTextureName: string): void;
             public SetRayTracingAccelerationStructure($kernelIndex: number, $nameID: number, $accelerationStructure: UnityEngine.Rendering.RayTracingAccelerationStructure): void;
+            public SetRayTracingAccelerationStructure($kernelIndex: number, $name: string, $accelerationStructure: UnityEngine.Rendering.RayTracingAccelerationStructure): void;
             public SetBuffer($kernelIndex: number, $nameID: number, $buffer: UnityEngine.ComputeBuffer): void;
             public SetBuffer($kernelIndex: number, $nameID: number, $buffer: UnityEngine.GraphicsBuffer): void;
+            public SetBuffer($kernelIndex: number, $name: string, $buffer: UnityEngine.ComputeBuffer): void;
+            public SetBuffer($kernelIndex: number, $name: string, $buffer: UnityEngine.GraphicsBuffer): void;
             public GetKernelThreadGroupSizes($kernelIndex: number, $x: $Out<number>, $y: $Out<number>, $z: $Out<number>): void;
             public Dispatch($kernelIndex: number, $threadGroupsX: number, $threadGroupsY: number, $threadGroupsZ: number): void;
             public EnableKeyword($keyword: string): void;
-            public DisableKeyword($keyword: string): void;
-            public IsKeywordEnabled($keyword: string): boolean;
             public EnableKeyword($keyword: $Ref<UnityEngine.Rendering.LocalKeyword>): void;
+            public DisableKeyword($keyword: string): void;
             public DisableKeyword($keyword: $Ref<UnityEngine.Rendering.LocalKeyword>): void;
-            public SetKeyword($keyword: $Ref<UnityEngine.Rendering.LocalKeyword>, $value: boolean): void;
+            public IsKeywordEnabled($keyword: string): boolean;
             public IsKeywordEnabled($keyword: $Ref<UnityEngine.Rendering.LocalKeyword>): boolean;
+            public SetKeyword($keyword: $Ref<UnityEngine.Rendering.LocalKeyword>, $value: boolean): void;
             public IsSupported($kernelIndex: number): boolean;
-            public SetFloat($name: string, $val: number): void;
-            public SetInt($name: string, $val: number): void;
-            public SetVector($name: string, $val: UnityEngine.Vector4): void;
-            public SetMatrix($name: string, $val: UnityEngine.Matrix4x4): void;
-            public SetVectorArray($name: string, $values: System.Array$1<UnityEngine.Vector4>): void;
-            public SetMatrixArray($name: string, $values: System.Array$1<UnityEngine.Matrix4x4>): void;
             public SetFloats($name: string, ...values: number[]): void;
             public SetFloats($nameID: number, ...values: number[]): void;
             public SetInts($name: string, ...values: number[]): void;
             public SetInts($nameID: number, ...values: number[]): void;
             public SetBool($name: string, $val: boolean): void;
             public SetBool($nameID: number, $val: boolean): void;
-            public SetTexture($kernelIndex: number, $nameID: number, $texture: UnityEngine.Texture): void;
-            public SetTexture($kernelIndex: number, $name: string, $texture: UnityEngine.Texture): void;
-            public SetTexture($kernelIndex: number, $name: string, $texture: UnityEngine.Texture, $mipLevel: number): void;
-            public SetTexture($kernelIndex: number, $nameID: number, $texture: UnityEngine.RenderTexture, $mipLevel: number, $element: UnityEngine.Rendering.RenderTextureSubElement): void;
-            public SetTexture($kernelIndex: number, $name: string, $texture: UnityEngine.RenderTexture, $mipLevel: number, $element: UnityEngine.Rendering.RenderTextureSubElement): void;
-            public SetTextureFromGlobal($kernelIndex: number, $name: string, $globalTextureName: string): void;
-            public SetBuffer($kernelIndex: number, $name: string, $buffer: UnityEngine.ComputeBuffer): void;
-            public SetBuffer($kernelIndex: number, $name: string, $buffer: UnityEngine.GraphicsBuffer): void;
-            public SetRayTracingAccelerationStructure($kernelIndex: number, $name: string, $accelerationStructure: UnityEngine.Rendering.RayTracingAccelerationStructure): void;
             public SetConstantBuffer($nameID: number, $buffer: UnityEngine.ComputeBuffer, $offset: number, $size: number): void;
             public SetConstantBuffer($name: string, $buffer: UnityEngine.ComputeBuffer, $offset: number, $size: number): void;
             public SetConstantBuffer($nameID: number, $buffer: UnityEngine.GraphicsBuffer, $offset: number, $size: number): void;
@@ -9306,6 +9325,8 @@ declare namespace CS {
             public Rotate($axis: UnityEngine.Vector3, $angle: number, $relativeTo: UnityEngine.Space): void;
             public Rotate($axis: UnityEngine.Vector3, $angle: number): void;
             public RotateAround($point: UnityEngine.Vector3, $axis: UnityEngine.Vector3, $angle: number): void;
+            /** @deprecated warning use Transform.Rotate instead. */
+            public RotateAround($axis: UnityEngine.Vector3, $angle: number): void;
             public LookAt($target: UnityEngine.Transform, $worldUp: UnityEngine.Vector3): void;
             public LookAt($target: UnityEngine.Transform): void;
             public LookAt($worldPosition: UnityEngine.Vector3, $worldUp: UnityEngine.Vector3): void;
@@ -9344,8 +9365,6 @@ declare namespace CS {
             /** @deprecated FindChild has been deprecated. Use Find instead (UnityUpgradable) -> Find([mscorlib] System.String) */
             public FindChild($n: string): UnityEngine.Transform;
             public GetEnumerator(): System.Collections.IEnumerator;
-            /** @deprecated warning use Transform.Rotate instead. */
-            public RotateAround($axis: UnityEngine.Vector3, $angle: number): void;
             /** @deprecated warning use Transform.Rotate instead. */
             public RotateAroundLocal($axis: UnityEngine.Vector3, $angle: number): void;
             public GetChild($index: number): UnityEngine.Transform;
@@ -9402,8 +9421,8 @@ declare namespace CS {
             public Rotate($xAngle: number, $yAngle: number, $zAngle: number, $relativeTo: UnityEngine.Space): void;
             public Rotate($xAngle: number, $yAngle: number, $zAngle: number): void;
             public Rotate($axis: UnityEngine.Vector3, $angle: number, $relativeTo: UnityEngine.Space): void;
-            public RotateAround($point: UnityEngine.Vector3, $axis: UnityEngine.Vector3, $angle: number): void;
             public Rotate($axis: UnityEngine.Vector3, $angle: number): void;
+            public RotateAround($point: UnityEngine.Vector3, $axis: UnityEngine.Vector3, $angle: number): void;
             public LookAt($target: UnityEngine.TransformHandle, $worldUp: UnityEngine.Vector3): void;
             public LookAt($target: UnityEngine.TransformHandle): void;
             public LookAt($worldPosition: UnityEngine.Vector3, $worldUp: UnityEngine.Vector3): void;
@@ -9539,52 +9558,52 @@ declare namespace CS {
                 public static AreEqual<T>($expected: T, $actual: T, $message: string): void;
                 public static AreEqual<T>($expected: T, $actual: T, $message: string, $comparer: System.Collections.Generic.IEqualityComparer$1<T>): void;
                 public static AreEqual($expected: UnityEngine.Object, $actual: UnityEngine.Object, $message: string): void;
+                public static AreEqual($expected: number, $actual: number): void;
+                public static AreEqual($expected: number, $actual: number, $message: string): void;
+                public static AreEqual($expected: number, $actual: number): void;
+                public static AreEqual($expected: number, $actual: number, $message: string): void;
+                public static AreEqual($expected: number, $actual: number): void;
+                public static AreEqual($expected: number, $actual: number, $message: string): void;
+                public static AreEqual($expected: number, $actual: number): void;
+                public static AreEqual($expected: number, $actual: number, $message: string): void;
+                public static AreEqual($expected: number, $actual: number): void;
+                public static AreEqual($expected: number, $actual: number, $message: string): void;
+                public static AreEqual($expected: number, $actual: number): void;
+                public static AreEqual($expected: number, $actual: number, $message: string): void;
+                public static AreEqual($expected: number, $actual: number): void;
+                public static AreEqual($expected: number, $actual: number, $message: string): void;
+                public static AreEqual($expected: bigint, $actual: bigint): void;
+                public static AreEqual($expected: bigint, $actual: bigint, $message: string): void;
+                public static AreEqual($expected: bigint, $actual: bigint): void;
+                public static AreEqual($expected: bigint, $actual: bigint, $message: string): void;
                 public static AreNotEqual<T>($expected: T, $actual: T): void;
                 public static AreNotEqual<T>($expected: T, $actual: T, $message: string): void;
                 public static AreNotEqual<T>($expected: T, $actual: T, $message: string, $comparer: System.Collections.Generic.IEqualityComparer$1<T>): void;
                 public static AreNotEqual($expected: UnityEngine.Object, $actual: UnityEngine.Object, $message: string): void;
+                public static AreNotEqual($expected: number, $actual: number): void;
+                public static AreNotEqual($expected: number, $actual: number, $message: string): void;
+                public static AreNotEqual($expected: number, $actual: number): void;
+                public static AreNotEqual($expected: number, $actual: number, $message: string): void;
+                public static AreNotEqual($expected: number, $actual: number): void;
+                public static AreNotEqual($expected: number, $actual: number, $message: string): void;
+                public static AreNotEqual($expected: number, $actual: number): void;
+                public static AreNotEqual($expected: number, $actual: number, $message: string): void;
+                public static AreNotEqual($expected: number, $actual: number): void;
+                public static AreNotEqual($expected: number, $actual: number, $message: string): void;
+                public static AreNotEqual($expected: number, $actual: number): void;
+                public static AreNotEqual($expected: number, $actual: number, $message: string): void;
+                public static AreNotEqual($expected: number, $actual: number): void;
+                public static AreNotEqual($expected: number, $actual: number, $message: string): void;
+                public static AreNotEqual($expected: bigint, $actual: bigint): void;
+                public static AreNotEqual($expected: bigint, $actual: bigint, $message: string): void;
+                public static AreNotEqual($expected: bigint, $actual: bigint): void;
+                public static AreNotEqual($expected: bigint, $actual: bigint, $message: string): void;
                 public static IsNull<T extends object>($value: T): void;
                 public static IsNull<T extends object>($value: T, $message: string): void;
                 public static IsNull($value: UnityEngine.Object, $message: string): void;
                 public static IsNotNull<T extends object>($value: T): void;
                 public static IsNotNull<T extends object>($value: T, $message: string): void;
                 public static IsNotNull($value: UnityEngine.Object, $message: string): void;
-                public static AreEqual($expected: number, $actual: number): void;
-                public static AreEqual($expected: number, $actual: number, $message: string): void;
-                public static AreNotEqual($expected: number, $actual: number): void;
-                public static AreNotEqual($expected: number, $actual: number, $message: string): void;
-                public static AreEqual($expected: number, $actual: number): void;
-                public static AreEqual($expected: number, $actual: number, $message: string): void;
-                public static AreNotEqual($expected: number, $actual: number): void;
-                public static AreNotEqual($expected: number, $actual: number, $message: string): void;
-                public static AreEqual($expected: number, $actual: number): void;
-                public static AreEqual($expected: number, $actual: number, $message: string): void;
-                public static AreNotEqual($expected: number, $actual: number): void;
-                public static AreNotEqual($expected: number, $actual: number, $message: string): void;
-                public static AreEqual($expected: number, $actual: number): void;
-                public static AreEqual($expected: number, $actual: number, $message: string): void;
-                public static AreNotEqual($expected: number, $actual: number): void;
-                public static AreNotEqual($expected: number, $actual: number, $message: string): void;
-                public static AreEqual($expected: number, $actual: number): void;
-                public static AreEqual($expected: number, $actual: number, $message: string): void;
-                public static AreNotEqual($expected: number, $actual: number): void;
-                public static AreNotEqual($expected: number, $actual: number, $message: string): void;
-                public static AreEqual($expected: number, $actual: number): void;
-                public static AreEqual($expected: number, $actual: number, $message: string): void;
-                public static AreNotEqual($expected: number, $actual: number): void;
-                public static AreNotEqual($expected: number, $actual: number, $message: string): void;
-                public static AreEqual($expected: number, $actual: number): void;
-                public static AreEqual($expected: number, $actual: number, $message: string): void;
-                public static AreNotEqual($expected: number, $actual: number): void;
-                public static AreNotEqual($expected: number, $actual: number, $message: string): void;
-                public static AreEqual($expected: bigint, $actual: bigint): void;
-                public static AreEqual($expected: bigint, $actual: bigint, $message: string): void;
-                public static AreNotEqual($expected: bigint, $actual: bigint): void;
-                public static AreNotEqual($expected: bigint, $actual: bigint, $message: string): void;
-                public static AreEqual($expected: bigint, $actual: bigint): void;
-                public static AreEqual($expected: bigint, $actual: bigint, $message: string): void;
-                public static AreNotEqual($expected: bigint, $actual: bigint): void;
-                public static AreNotEqual($expected: bigint, $actual: bigint, $message: string): void;
             }
 
             class AssertionException extends System.Exception {
@@ -10263,14 +10282,14 @@ declare namespace CS {
                 class LightmapperUtils {
                     protected [__keep_incompatibility]: never;
                     public static Extract($baketype: UnityEngine.LightmapBakeType): UnityEngine.Experimental.GlobalIllumination.LightMode;
-                    public static ExtractIndirect($l: UnityEngine.Light): UnityEngine.Experimental.GlobalIllumination.LinearColor;
-                    public static ExtractInnerCone($l: UnityEngine.Light): number;
                     public static Extract($l: UnityEngine.Light, $dir: $Ref<UnityEngine.Experimental.GlobalIllumination.DirectionalLight>): void;
                     public static Extract($l: UnityEngine.Light, $point: $Ref<UnityEngine.Experimental.GlobalIllumination.PointLight>): void;
                     public static Extract($l: UnityEngine.Light, $spot: $Ref<UnityEngine.Experimental.GlobalIllumination.SpotLight>): void;
                     public static Extract($l: UnityEngine.Light, $rect: $Ref<UnityEngine.Experimental.GlobalIllumination.RectangleLight>): void;
                     public static Extract($l: UnityEngine.Light, $disc: $Ref<UnityEngine.Experimental.GlobalIllumination.DiscLight>): void;
                     public static Extract($l: UnityEngine.Light, $cookie: $Out<UnityEngine.Experimental.GlobalIllumination.Cookie>): void;
+                    public static ExtractIndirect($l: UnityEngine.Light): UnityEngine.Experimental.GlobalIllumination.LinearColor;
+                    public static ExtractInnerCone($l: UnityEngine.Light): number;
                 }
 
                 class Lightmapping {
@@ -10602,12 +10621,12 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                     constructor();
                     public static GetGraphicsFormat($format: UnityEngine.TextureFormat, $isSRGB: boolean): UnityEngine.Experimental.Rendering.GraphicsFormat;
-                    public static GetTextureFormat($format: UnityEngine.Experimental.Rendering.GraphicsFormat): UnityEngine.TextureFormat;
                     public static GetGraphicsFormat($format: UnityEngine.RenderTextureFormat, $isSRGB: boolean): UnityEngine.Experimental.Rendering.GraphicsFormat;
                     public static GetGraphicsFormat($format: UnityEngine.RenderTextureFormat, $readWrite: UnityEngine.RenderTextureReadWrite): UnityEngine.Experimental.Rendering.GraphicsFormat;
+                    public static GetTextureFormat($format: UnityEngine.Experimental.Rendering.GraphicsFormat): UnityEngine.TextureFormat;
                     public static GetDepthStencilFormat($depthBits: number): UnityEngine.Experimental.Rendering.GraphicsFormat;
-                    public static GetDepthBits($format: UnityEngine.Experimental.Rendering.GraphicsFormat): number;
                     public static GetDepthStencilFormat($minimumDepthBits: number, $minimumStencilBits: number): UnityEngine.Experimental.Rendering.GraphicsFormat;
+                    public static GetDepthBits($format: UnityEngine.Experimental.Rendering.GraphicsFormat): number;
                     public static IsSRGBFormat($format: UnityEngine.Experimental.Rendering.GraphicsFormat): boolean;
                     public static IsSwizzleFormat($format: UnityEngine.Experimental.Rendering.GraphicsFormat): boolean;
                     public static IsSwizzleFormat($format: UnityEngine.TextureFormat): boolean;
@@ -10690,10 +10709,10 @@ declare namespace CS {
                     public static GetBlockHeight($format: UnityEngine.TextureFormat): number;
                     public static ComputeMipmapSize($width: number, $height: number, $format: UnityEngine.Experimental.Rendering.GraphicsFormat): number;
                     public static ComputeMipmapSize($width: number, $height: number, $format: UnityEngine.TextureFormat): number;
-                    public static ComputeMipChainSize($width: number, $height: number, $format: UnityEngine.Experimental.Rendering.GraphicsFormat, $mipCount?: number): number;
-                    public static ComputeMipChainSize($width: number, $height: number, $format: UnityEngine.TextureFormat, $mipCount?: number): number;
                     public static ComputeMipmapSize($width: number, $height: number, $depth: number, $format: UnityEngine.Experimental.Rendering.GraphicsFormat): number;
                     public static ComputeMipmapSize($width: number, $height: number, $depth: number, $format: UnityEngine.TextureFormat): number;
+                    public static ComputeMipChainSize($width: number, $height: number, $format: UnityEngine.Experimental.Rendering.GraphicsFormat, $mipCount?: number): number;
+                    public static ComputeMipChainSize($width: number, $height: number, $format: UnityEngine.TextureFormat, $mipCount?: number): number;
                     public static ComputeMipChainSize($width: number, $height: number, $depth: number, $format: UnityEngine.Experimental.Rendering.GraphicsFormat, $mipCount?: number): number;
                     public static ComputeMipChainSize($width: number, $height: number, $depth: number, $format: UnityEngine.TextureFormat, $mipCount?: number): number;
                 }
@@ -11076,8 +11095,8 @@ declare namespace CS {
                 CreateBuffer($count: bigint, $stride: bigint): UnityEngine.LightTransport.BufferID;
                 DestroyBuffer($id: UnityEngine.LightTransport.BufferID): void;
                 WriteBuffer<T>($dst: UnityEngine.LightTransport.BufferSlice$1<T>, $src: Unity.Collections.NativeArray$1<T>): void;
-                ReadBuffer<T>($src: UnityEngine.LightTransport.BufferSlice$1<T>, $dst: Unity.Collections.NativeArray$1<T>): void;
                 WriteBuffer<T>($dst: UnityEngine.LightTransport.BufferSlice$1<T>, $src: Unity.Collections.NativeArray$1<T>, $id: UnityEngine.LightTransport.EventID): void;
+                ReadBuffer<T>($src: UnityEngine.LightTransport.BufferSlice$1<T>, $dst: Unity.Collections.NativeArray$1<T>): void;
                 ReadBuffer<T>($src: UnityEngine.LightTransport.BufferSlice$1<T>, $dst: Unity.Collections.NativeArray$1<T>, $id: UnityEngine.LightTransport.EventID): void;
                 CreateEvent(): UnityEngine.LightTransport.EventID;
                 DestroyEvent($id: UnityEngine.LightTransport.EventID): void;
@@ -11094,8 +11113,8 @@ declare namespace CS {
                 public CreateBuffer($count: bigint, $stride: bigint): UnityEngine.LightTransport.BufferID;
                 public DestroyBuffer($id: UnityEngine.LightTransport.BufferID): void;
                 public WriteBuffer<T>($dst: UnityEngine.LightTransport.BufferSlice$1<T>, $src: Unity.Collections.NativeArray$1<T>): void;
-                public ReadBuffer<T>($src: UnityEngine.LightTransport.BufferSlice$1<T>, $dst: Unity.Collections.NativeArray$1<T>): void;
                 public WriteBuffer<T>($dst: UnityEngine.LightTransport.BufferSlice$1<T>, $src: Unity.Collections.NativeArray$1<T>, $id: UnityEngine.LightTransport.EventID): void;
+                public ReadBuffer<T>($src: UnityEngine.LightTransport.BufferSlice$1<T>, $dst: Unity.Collections.NativeArray$1<T>): void;
                 public ReadBuffer<T>($src: UnityEngine.LightTransport.BufferSlice$1<T>, $dst: Unity.Collections.NativeArray$1<T>, $id: UnityEngine.LightTransport.EventID): void;
                 public CreateEvent(): UnityEngine.LightTransport.EventID;
                 public DestroyEvent($id: UnityEngine.LightTransport.EventID): void;
@@ -11453,6 +11472,7 @@ declare namespace CS {
                 public GetOutput($index: number): UnityEngine.Playables.PlayableOutput;
                 public GetOutputByType<T extends UnityEngine.Playables.IPlayableOutput>($index: number): UnityEngine.Playables.PlayableOutput;
                 public Evaluate(): void;
+                public Evaluate($deltaTime: number): void;
                 public static Create(): UnityEngine.Playables.PlayableGraph;
                 public static Create($name: string): UnityEngine.Playables.PlayableGraph;
                 public Destroy(): void;
@@ -11461,7 +11481,6 @@ declare namespace CS {
                 public IsDone(): boolean;
                 public Play(): void;
                 public Stop(): void;
-                public Evaluate($deltaTime: number): void;
                 public GetTimeUpdateMode(): UnityEngine.Playables.DirectorUpdateMode;
                 public SetTimeUpdateMode($value: UnityEngine.Playables.DirectorUpdateMode): void;
                 public GetResolver(): UnityEngine.IExposedPropertyTable;
@@ -12318,12 +12337,12 @@ declare namespace CS {
                 public static GetTotalReservedMemoryLong(): bigint;
                 public static GetTotalFragmentationInfo($stats: Unity.Collections.NativeArray$1<number>): bigint;
                 public static GetAllocatedMemoryForGraphicsDriver(): bigint;
-                public static EmitFrameMetaData($id: System.Guid, $tag: number, $data: System.Array): void;
                 public static EmitFrameMetaData<T>($id: System.Guid, $tag: number, $data: System.Collections.Generic.List$1<T>): void;
                 public static EmitFrameMetaData<T>($id: System.Guid, $tag: number, $data: Unity.Collections.NativeArray$1<T>): void;
-                public static EmitSessionMetaData($id: System.Guid, $tag: number, $data: System.Array): void;
+                public static EmitFrameMetaData($id: System.Guid, $tag: number, $data: System.Array): void;
                 public static EmitSessionMetaData<T>($id: System.Guid, $tag: number, $data: System.Collections.Generic.List$1<T>): void;
                 public static EmitSessionMetaData<T>($id: System.Guid, $tag: number, $data: Unity.Collections.NativeArray$1<T>): void;
+                public static EmitSessionMetaData($id: System.Guid, $tag: number, $data: System.Array): void;
                 public static SetCategoryEnabled($category: Unity.Profiling.ProfilerCategory, $enabled: boolean): void;
                 public static IsCategoryEnabled($category: Unity.Profiling.ProfilerCategory): boolean;
                 public static GetCategoriesCount(): number;
@@ -12472,22 +12491,22 @@ declare namespace CS {
                 public static RequestAsync($src: UnityEngine.Texture, $mipIndex: number, $x: number, $width: number, $y: number, $height: number, $z: number, $depth: number, $dstFormat: UnityEngine.TextureFormat): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
                 public static RequestAsync($src: UnityEngine.Texture, $mipIndex: number, $x: number, $width: number, $y: number, $height: number, $z: number, $depth: number, $dstFormat: UnityEngine.Experimental.Rendering.GraphicsFormat): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
                 public static RequestIntoNativeArrayAsync<T>($output: $Ref<Unity.Collections.NativeArray$1<T>>, $src: UnityEngine.ComputeBuffer): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
-                public static RequestIntoNativeSliceAsync<T>($output: $Ref<Unity.Collections.NativeSlice$1<T>>, $src: UnityEngine.ComputeBuffer): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
                 public static RequestIntoNativeArrayAsync<T>($output: $Ref<Unity.Collections.NativeArray$1<T>>, $src: UnityEngine.ComputeBuffer, $size: number, $offset: number): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
-                public static RequestIntoNativeSliceAsync<T>($output: $Ref<Unity.Collections.NativeSlice$1<T>>, $src: UnityEngine.ComputeBuffer, $size: number, $offset: number): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
                 public static RequestIntoNativeArrayAsync<T>($output: $Ref<Unity.Collections.NativeArray$1<T>>, $src: UnityEngine.GraphicsBuffer): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
-                public static RequestIntoNativeSliceAsync<T>($output: $Ref<Unity.Collections.NativeSlice$1<T>>, $src: UnityEngine.GraphicsBuffer): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
                 public static RequestIntoNativeArrayAsync<T>($output: $Ref<Unity.Collections.NativeArray$1<T>>, $src: UnityEngine.GraphicsBuffer, $size: number, $offset: number): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
-                public static RequestIntoNativeSliceAsync<T>($output: $Ref<Unity.Collections.NativeSlice$1<T>>, $src: UnityEngine.GraphicsBuffer, $size: number, $offset: number): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
                 public static RequestIntoNativeArrayAsync<T>($output: $Ref<Unity.Collections.NativeArray$1<T>>, $src: UnityEngine.Texture, $mipIndex?: number): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
-                public static RequestIntoNativeSliceAsync<T>($output: $Ref<Unity.Collections.NativeSlice$1<T>>, $src: UnityEngine.Texture, $mipIndex?: number): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
                 public static RequestIntoNativeArrayAsync<T>($output: $Ref<Unity.Collections.NativeArray$1<T>>, $src: UnityEngine.Texture, $mipIndex: number, $dstFormat: UnityEngine.TextureFormat): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
-                public static RequestIntoNativeSliceAsync<T>($output: $Ref<Unity.Collections.NativeSlice$1<T>>, $src: UnityEngine.Texture, $mipIndex: number, $dstFormat: UnityEngine.TextureFormat): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
                 public static RequestIntoNativeArrayAsync<T>($output: $Ref<Unity.Collections.NativeArray$1<T>>, $src: UnityEngine.Texture, $mipIndex: number, $dstFormat: UnityEngine.Experimental.Rendering.GraphicsFormat): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
-                public static RequestIntoNativeSliceAsync<T>($output: $Ref<Unity.Collections.NativeSlice$1<T>>, $src: UnityEngine.Texture, $mipIndex: number, $dstFormat: UnityEngine.Experimental.Rendering.GraphicsFormat): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
                 public static RequestIntoNativeArrayAsync<T>($output: $Ref<Unity.Collections.NativeArray$1<T>>, $src: UnityEngine.Texture, $mipIndex: number, $x: number, $width: number, $y: number, $height: number, $z: number, $depth: number, $dstFormat: UnityEngine.TextureFormat): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
-                public static RequestIntoNativeSliceAsync<T>($output: $Ref<Unity.Collections.NativeSlice$1<T>>, $src: UnityEngine.Texture, $mipIndex: number, $x: number, $width: number, $y: number, $height: number, $z: number, $depth: number, $dstFormat: UnityEngine.TextureFormat): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
                 public static RequestIntoNativeArrayAsync<T>($output: $Ref<Unity.Collections.NativeArray$1<T>>, $src: UnityEngine.Texture, $mipIndex: number, $x: number, $width: number, $y: number, $height: number, $z: number, $depth: number, $dstFormat: UnityEngine.Experimental.Rendering.GraphicsFormat): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
+                public static RequestIntoNativeSliceAsync<T>($output: $Ref<Unity.Collections.NativeSlice$1<T>>, $src: UnityEngine.ComputeBuffer): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
+                public static RequestIntoNativeSliceAsync<T>($output: $Ref<Unity.Collections.NativeSlice$1<T>>, $src: UnityEngine.ComputeBuffer, $size: number, $offset: number): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
+                public static RequestIntoNativeSliceAsync<T>($output: $Ref<Unity.Collections.NativeSlice$1<T>>, $src: UnityEngine.GraphicsBuffer): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
+                public static RequestIntoNativeSliceAsync<T>($output: $Ref<Unity.Collections.NativeSlice$1<T>>, $src: UnityEngine.GraphicsBuffer, $size: number, $offset: number): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
+                public static RequestIntoNativeSliceAsync<T>($output: $Ref<Unity.Collections.NativeSlice$1<T>>, $src: UnityEngine.Texture, $mipIndex?: number): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
+                public static RequestIntoNativeSliceAsync<T>($output: $Ref<Unity.Collections.NativeSlice$1<T>>, $src: UnityEngine.Texture, $mipIndex: number, $dstFormat: UnityEngine.TextureFormat): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
+                public static RequestIntoNativeSliceAsync<T>($output: $Ref<Unity.Collections.NativeSlice$1<T>>, $src: UnityEngine.Texture, $mipIndex: number, $dstFormat: UnityEngine.Experimental.Rendering.GraphicsFormat): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
+                public static RequestIntoNativeSliceAsync<T>($output: $Ref<Unity.Collections.NativeSlice$1<T>>, $src: UnityEngine.Texture, $mipIndex: number, $x: number, $width: number, $y: number, $height: number, $z: number, $depth: number, $dstFormat: UnityEngine.TextureFormat): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
                 public static RequestIntoNativeSliceAsync<T>($output: $Ref<Unity.Collections.NativeSlice$1<T>>, $src: UnityEngine.Texture, $mipIndex: number, $x: number, $width: number, $y: number, $height: number, $z: number, $depth: number, $dstFormat: UnityEngine.Experimental.Rendering.GraphicsFormat): UnityEngine.Awaitable$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>;
             }
 
@@ -13289,10 +13308,10 @@ declare namespace CS {
                 public static ForEach($callback: System.Action$1<UnityEngine.Rendering.IRenderPipelineGraphicsSettings>): void;
                 /** @deprecated Please use EditorGraphicsSettings.SetRenderPipelineGlobalSettingsAsset(renderPipelineType, newSettings). #from(23.2) */
                 public static UpdateGraphicsSettings($newSettings: UnityEngine.Rendering.RenderPipelineGlobalSettings, $renderPipelineType: System.TypeLike): void;
-                /** @deprecated Please use EditorGraphicsSettings.SetRenderPipelineGlobalSettingsAsset(renderPipelineType, settings). #from(23.2) */
-                public static RegisterRenderPipelineSettings($renderPipelineType: System.TypeLike, $settings: UnityEngine.Rendering.RenderPipelineGlobalSettings): void;
                 /** @deprecated Please use EditorGraphicsSettings.SetRenderPipelineGlobalSettingsAsset<TRenderPipelineType>(settings). #from(23.2) */
                 public static RegisterRenderPipelineSettings<T extends UnityEngine.Rendering.RenderPipeline>($settings: UnityEngine.Rendering.RenderPipelineGlobalSettings): void;
+                /** @deprecated Please use EditorGraphicsSettings.SetRenderPipelineGlobalSettingsAsset(renderPipelineType, settings). #from(23.2) */
+                public static RegisterRenderPipelineSettings($renderPipelineType: System.TypeLike, $settings: UnityEngine.Rendering.RenderPipelineGlobalSettings): void;
                 /** @deprecated Please use EditorGraphicsSettings.SetRenderPipelineGlobalSettingsAsset<TRenderPipelineType>(null). #from(23.2) */
                 public static UnregisterRenderPipelineSettings<T extends UnityEngine.Rendering.RenderPipeline>(): void;
                 /** @deprecated Please use EditorGraphicsSettings.SetRenderPipelineGlobalSettingsAsset(renderPipelineType, null). #from(23.2) */
@@ -13327,12 +13346,14 @@ declare namespace CS {
                 public SaveToFile($filePath: string): boolean;
                 public SendToEditor($fileName: string): boolean;
                 public WarmUp($dependency?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
-                public WarmUpProgressively($count: number, $dependency?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
                 public WarmUp($dependency: Unity.Jobs.JobHandle, $traceCacheMisses: boolean): Unity.Jobs.JobHandle;
+                public WarmUpProgressively($count: number, $dependency?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
                 public WarmUpProgressively($count: number, $dependency: Unity.Jobs.JobHandle, $traceCacheMisses: boolean): Unity.Jobs.JobHandle;
                 public GetVariants($results: System.Collections.Generic.List$1<UnityEngine.Rendering.GraphicsStateCollection.ShaderVariant>): void;
                 public GetGraphicsStatesForVariant($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>, $results: System.Collections.Generic.List$1<UnityEngine.Rendering.GraphicsStateCollection.GraphicsState>): void;
+                public GetGraphicsStatesForVariant($variant: UnityEngine.Rendering.GraphicsStateCollection.ShaderVariant, $results: System.Collections.Generic.List$1<UnityEngine.Rendering.GraphicsStateCollection.GraphicsState>): void;
                 public GetGraphicsStateCountForVariant($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>): number;
+                public GetGraphicsStateCountForVariant($variant: UnityEngine.Rendering.GraphicsStateCollection.ShaderVariant): number;
                 public AddVariant($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>): boolean;
                 public AddVariant($mat: UnityEngine.Material, $passId: UnityEngine.Rendering.PassIdentifier): boolean;
                 public AddVariant($mat: UnityEngine.Material, $passId: UnityEngine.Rendering.PassIdentifier, $globalKeywords: System.Array$1<UnityEngine.Rendering.GlobalKeyword>): boolean;
@@ -13346,8 +13367,11 @@ declare namespace CS {
                 public ContainsVariant($mat: UnityEngine.Material, $passId: UnityEngine.Rendering.PassIdentifier, $globalKeywords: System.Array$1<UnityEngine.Rendering.GlobalKeyword>): boolean;
                 public ClearVariants(): void;
                 public AddGraphicsStateForVariant($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>, $setup: UnityEngine.Rendering.GraphicsStateCollection.GraphicsState): boolean;
+                public AddGraphicsStateForVariant($variant: UnityEngine.Rendering.GraphicsStateCollection.ShaderVariant, $setup: UnityEngine.Rendering.GraphicsStateCollection.GraphicsState): boolean;
                 public RemoveGraphicsStatesForVariant($shader: UnityEngine.Shader, $passId: UnityEngine.Rendering.PassIdentifier, $keywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>): boolean;
+                public RemoveGraphicsStatesForVariant($variant: UnityEngine.Rendering.GraphicsStateCollection.ShaderVariant): boolean;
                 public CopyGraphicsStatesForVariant($srcShader: UnityEngine.Shader, $srcPassId: UnityEngine.Rendering.PassIdentifier, $srcKeywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>, $dstShader: UnityEngine.Shader, $dstPassId: UnityEngine.Rendering.PassIdentifier, $dstKeywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>): boolean;
+                public CopyGraphicsStatesForVariant($srcVariant: UnityEngine.Rendering.GraphicsStateCollection.ShaderVariant, $dstVariant: UnityEngine.Rendering.GraphicsStateCollection.ShaderVariant): boolean;
                 public EraseCacheMissCollection(): void;
                 public Append($collection: UnityEngine.Rendering.GraphicsStateCollection): boolean;
                 public AddGraphicsStates($meshes: System.Array$1<UnityEngine.Mesh>, $materials: System.Array$1<UnityEngine.Material>, $samples: number, $attachments: Unity.Collections.NativeArray$1<UnityEngine.Rendering.AttachmentDescriptor>, $subPasses: Unity.Collections.NativeArray$1<UnityEngine.Rendering.SubPassDescriptor>, $subPassIndex?: number, $depthAttachmentIndex?: number, $shadingRateIndex?: number): boolean;
@@ -13356,11 +13380,6 @@ declare namespace CS {
                 public AddGraphicsStatesFromReference($refState: UnityEngine.Rendering.GraphicsStateCollection.GraphicsState, $meshes: System.Array$1<UnityEngine.Mesh>, $materials: System.Array$1<UnityEngine.Material>, $globalKeywords: System.Array$1<UnityEngine.Rendering.GlobalKeyword>, $samples: number, $attachments: Unity.Collections.NativeArray$1<UnityEngine.Rendering.AttachmentDescriptor>, $subPasses: Unity.Collections.NativeArray$1<UnityEngine.Rendering.SubPassDescriptor>, $subPassIndex?: number, $depthAttachmentIndex?: number, $shadingRateIndex?: number): boolean;
                 public AddGraphicsStatesFromReference($refState: UnityEngine.Rendering.GraphicsStateCollection.GraphicsState, $meshes: System.Array$1<UnityEngine.Mesh>, $materials: System.Array$1<UnityEngine.Material>): boolean;
                 public AddGraphicsStatesFromReference($refState: UnityEngine.Rendering.GraphicsStateCollection.GraphicsState, $meshes: System.Array$1<UnityEngine.Mesh>, $materials: System.Array$1<UnityEngine.Material>, $globalKeywords: System.Array$1<UnityEngine.Rendering.GlobalKeyword>): boolean;
-                public GetGraphicsStatesForVariant($variant: UnityEngine.Rendering.GraphicsStateCollection.ShaderVariant, $results: System.Collections.Generic.List$1<UnityEngine.Rendering.GraphicsStateCollection.GraphicsState>): void;
-                public GetGraphicsStateCountForVariant($variant: UnityEngine.Rendering.GraphicsStateCollection.ShaderVariant): number;
-                public AddGraphicsStateForVariant($variant: UnityEngine.Rendering.GraphicsStateCollection.ShaderVariant, $setup: UnityEngine.Rendering.GraphicsStateCollection.GraphicsState): boolean;
-                public RemoveGraphicsStatesForVariant($variant: UnityEngine.Rendering.GraphicsStateCollection.ShaderVariant): boolean;
-                public CopyGraphicsStatesForVariant($srcVariant: UnityEngine.Rendering.GraphicsStateCollection.ShaderVariant, $dstVariant: UnityEngine.Rendering.GraphicsStateCollection.ShaderVariant): boolean;
             }
             namespace GraphicsStateCollection {
                 class GraphicsState {
@@ -13777,6 +13796,7 @@ declare namespace CS {
                 public Release(): void;
                 public Build(): void;
                 public Build($relativeOrigin: UnityEngine.Vector3): void;
+                public Build($buildSettings: UnityEngine.Rendering.RayTracingAccelerationStructure.BuildSettings): void;
                 public AddInstance($targetRenderer: UnityEngine.Renderer, $subMeshFlags: System.Array$1<UnityEngine.Rendering.RayTracingSubMeshFlags>, $enableTriangleCulling?: boolean, $frontTriangleCounterClockwise?: boolean, $mask?: number, $id?: number): number;
                 public AddInstance($config: UnityEngine.Rendering.RayTracingAABBsInstanceConfig, $matrix: UnityEngine.Matrix4x4, $id?: number): number;
                 public AddInstance($config: $Ref<UnityEngine.Rendering.RayTracingMeshInstanceConfig>, $matrix: UnityEngine.Matrix4x4, $prevMatrix?: UnityEngine.Matrix4x4 | null, $id?: number): number;
@@ -13784,11 +13804,11 @@ declare namespace CS {
                 public AddInstances<T>($config: $Ref<UnityEngine.Rendering.RayTracingMeshInstanceConfig>, $instanceData: System.Array$1<T>, $instanceCount?: number, $startInstance?: number, $id?: number): number;
                 public AddInstances<T>($config: $Ref<UnityEngine.Rendering.RayTracingMeshInstanceConfig>, $instanceData: System.Collections.Generic.List$1<T>, $instanceCount?: number, $startInstance?: number, $id?: number): number;
                 public AddInstances<T>($config: $Ref<UnityEngine.Rendering.RayTracingMeshInstanceConfig>, $instanceData: Unity.Collections.NativeArray$1<T>, $instanceCount?: number, $startInstance?: number, $id?: number): number;
+                public AddInstances<T>($config: $Ref<UnityEngine.Rendering.RayTracingMeshInstanceConfig>, $instanceData: Unity.Collections.NativeSlice$1<T>, $id?: number): number;
+                public AddInstancesIndirect<T>($config: $Ref<UnityEngine.Rendering.RayTracingMultiGeometryInstanceConfig>, $instanceData: UnityEngine.GraphicsBuffer, $instanceIndices: UnityEngine.GraphicsBuffer, $maxInstanceCount: number, $argsBuffer: UnityEngine.GraphicsBuffer, $argsOffset?: number, $id?: number): number;
                 public AddInstancesIndirect($config: $Ref<UnityEngine.Rendering.RayTracingMeshInstanceConfig>, $instanceMatrices: UnityEngine.GraphicsBuffer, $maxInstanceCount: number, $argsBuffer: UnityEngine.GraphicsBuffer, $argsOffset?: number, $id?: number): number;
                 public AddInstancesIndirect($config: $Ref<UnityEngine.Rendering.RayTracingGeometryInstanceConfig>, $instanceMatrices: UnityEngine.GraphicsBuffer, $maxInstanceCount: number, $argsBuffer: UnityEngine.GraphicsBuffer, $argsOffset?: number, $id?: number): number;
                 public AddInstancesIndirect($config: $Ref<UnityEngine.Rendering.RayTracingMultiGeometryInstanceConfig>, $instanceData: UnityEngine.GraphicsBuffer, $instanceType: System.TypeLike, $instanceIndices: UnityEngine.GraphicsBuffer, $maxInstanceCount: number, $argsBuffer: UnityEngine.GraphicsBuffer, $argsOffset?: number, $id?: number): number;
-                public AddInstancesIndirect<T>($config: $Ref<UnityEngine.Rendering.RayTracingMultiGeometryInstanceConfig>, $instanceData: UnityEngine.GraphicsBuffer, $instanceIndices: UnityEngine.GraphicsBuffer, $maxInstanceCount: number, $argsBuffer: UnityEngine.GraphicsBuffer, $argsOffset?: number, $id?: number): number;
-                public AddInstances<T>($config: $Ref<UnityEngine.Rendering.RayTracingMeshInstanceConfig>, $instanceData: Unity.Collections.NativeSlice$1<T>, $id?: number): number;
                 public RemoveInstance($targetRenderer: UnityEngine.Renderer): void;
                 public RemoveInstance($handle: number): void;
                 public UpdateInstanceGeometry($renderer: UnityEngine.Renderer): void;
@@ -13800,7 +13820,6 @@ declare namespace CS {
                 public UpdateInstanceMask($renderer: UnityEngine.Renderer, $mask: number): void;
                 public UpdateInstanceMask($handle: number, $mask: number): void;
                 public GetNativeBufferPtr(): number;
-                public Build($buildSettings: UnityEngine.Rendering.RayTracingAccelerationStructure.BuildSettings): void;
                 public AddVFXInstances($targetRenderer: UnityEngine.Renderer, $vfxSystemMasks: System.Array$1<number>): void;
                 public RemoveVFXInstances($targetRenderer: UnityEngine.Renderer): void;
                 public UpdateInstancePropertyBlock($handle: number, $properties: UnityEngine.MaterialPropertyBlock): void;
@@ -13901,11 +13920,17 @@ declare namespace CS {
                 public RequestAsyncReadbackIntoNativeSlice<T>($output: $Ref<Unity.Collections.NativeSlice$1<T>>, $src: UnityEngine.Texture, $mipIndex: number, $x: number, $width: number, $y: number, $height: number, $z: number, $depth: number, $dstFormat: UnityEngine.Experimental.Rendering.GraphicsFormat, $callback: System.Action$1<UnityEngine.Rendering.AsyncGPUReadbackRequest>): void;
                 public SetInvertCulling($invertCulling: boolean): void;
                 public SetComputeFloatParam($computeShader: UnityEngine.ComputeShader, $nameID: number, $val: number): void;
+                public SetComputeFloatParam($computeShader: UnityEngine.ComputeShader, $name: string, $val: number): void;
                 public SetComputeIntParam($computeShader: UnityEngine.ComputeShader, $nameID: number, $val: number): void;
+                public SetComputeIntParam($computeShader: UnityEngine.ComputeShader, $name: string, $val: number): void;
                 public SetComputeVectorParam($computeShader: UnityEngine.ComputeShader, $nameID: number, $val: UnityEngine.Vector4): void;
+                public SetComputeVectorParam($computeShader: UnityEngine.ComputeShader, $name: string, $val: UnityEngine.Vector4): void;
                 public SetComputeVectorArrayParam($computeShader: UnityEngine.ComputeShader, $nameID: number, $values: System.Array$1<UnityEngine.Vector4>): void;
+                public SetComputeVectorArrayParam($computeShader: UnityEngine.ComputeShader, $name: string, $values: System.Array$1<UnityEngine.Vector4>): void;
                 public SetComputeMatrixParam($computeShader: UnityEngine.ComputeShader, $nameID: number, $val: UnityEngine.Matrix4x4): void;
+                public SetComputeMatrixParam($computeShader: UnityEngine.ComputeShader, $name: string, $val: UnityEngine.Matrix4x4): void;
                 public SetComputeMatrixArrayParam($computeShader: UnityEngine.ComputeShader, $nameID: number, $values: System.Array$1<UnityEngine.Matrix4x4>): void;
+                public SetComputeMatrixArrayParam($computeShader: UnityEngine.ComputeShader, $name: string, $values: System.Array$1<UnityEngine.Matrix4x4>): void;
                 public SetRayTracingShaderPass($rayTracingShader: UnityEngine.Rendering.RayTracingShader, $passName: string): void;
                 public Clear(): void;
                 public ClearRandomWriteTargets(): void;
@@ -13946,11 +13971,17 @@ declare namespace CS {
                 public ClearRenderTarget($clearFlags: UnityEngine.Rendering.RTClearFlags, $backgroundColor: UnityEngine.Color, $depth?: number, $stencil?: number): void;
                 public ClearRenderTarget($clearFlags: UnityEngine.Rendering.RTClearFlags, $backgroundColors: System.Array$1<UnityEngine.Color>, $depth?: number, $stencil?: number): void;
                 public SetGlobalFloat($nameID: number, $value: number): void;
+                public SetGlobalFloat($name: string, $value: number): void;
                 public SetGlobalInt($nameID: number, $value: number): void;
+                public SetGlobalInt($name: string, $value: number): void;
                 public SetGlobalInteger($nameID: number, $value: number): void;
+                public SetGlobalInteger($name: string, $value: number): void;
                 public SetGlobalVector($nameID: number, $value: UnityEngine.Vector4): void;
+                public SetGlobalVector($name: string, $value: UnityEngine.Vector4): void;
                 public SetGlobalColor($nameID: number, $value: UnityEngine.Color): void;
+                public SetGlobalColor($name: string, $value: UnityEngine.Color): void;
                 public SetGlobalMatrix($nameID: number, $value: UnityEngine.Matrix4x4): void;
+                public SetGlobalMatrix($name: string, $value: UnityEngine.Matrix4x4): void;
                 public EnableShaderKeyword($keyword: string): void;
                 public EnableKeyword($keyword: $Ref<UnityEngine.Rendering.GlobalKeyword>): void;
                 public EnableKeyword($material: UnityEngine.Material, $keyword: $Ref<UnityEngine.Rendering.LocalKeyword>): void;
@@ -13971,16 +14002,25 @@ declare namespace CS {
                 public SetGlobalDepthBias($bias: number, $slopeBias: number): void;
                 public SetExecutionFlags($flags: UnityEngine.Rendering.CommandBufferExecutionFlags): void;
                 public SetGlobalFloatArray($nameID: number, $values: System.Array$1<number>): void;
+                public SetGlobalFloatArray($propertyName: string, $values: System.Collections.Generic.List$1<number>): void;
+                public SetGlobalFloatArray($nameID: number, $values: System.Collections.Generic.List$1<number>): void;
+                public SetGlobalFloatArray($propertyName: string, $values: System.Array$1<number>): void;
                 public SetGlobalVectorArray($nameID: number, $values: System.Array$1<UnityEngine.Vector4>): void;
+                public SetGlobalVectorArray($propertyName: string, $values: System.Collections.Generic.List$1<UnityEngine.Vector4>): void;
+                public SetGlobalVectorArray($nameID: number, $values: System.Collections.Generic.List$1<UnityEngine.Vector4>): void;
+                public SetGlobalVectorArray($propertyName: string, $values: System.Array$1<UnityEngine.Vector4>): void;
                 public SetGlobalMatrixArray($nameID: number, $values: System.Array$1<UnityEngine.Matrix4x4>): void;
+                public SetGlobalMatrixArray($propertyName: string, $values: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>): void;
+                public SetGlobalMatrixArray($nameID: number, $values: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>): void;
+                public SetGlobalMatrixArray($propertyName: string, $values: System.Array$1<UnityEngine.Matrix4x4>): void;
                 public SetLateLatchProjectionMatrices($projectionMat: System.Array$1<UnityEngine.Matrix4x4>): void;
                 public MarkLateLatchMatrixShaderPropertyID($matrixPropertyType: UnityEngine.Rendering.CameraLateLatchMatrixType, $shaderPropertyID: number): void;
                 public UnmarkLateLatchMatrix($matrixPropertyType: UnityEngine.Rendering.CameraLateLatchMatrixType): void;
                 public BeginSample($name: string): void;
-                public EndSample($name: string): void;
                 public BeginSample($sampler: UnityEngine.Profiling.CustomSampler): void;
-                public EndSample($sampler: UnityEngine.Profiling.CustomSampler): void;
                 public BeginSample($marker: Unity.Profiling.ProfilerMarker): void;
+                public EndSample($name: string): void;
+                public EndSample($sampler: UnityEngine.Profiling.CustomSampler): void;
                 public EndSample($marker: Unity.Profiling.ProfilerMarker): void;
                 public IncrementUpdateCount($dest: UnityEngine.Rendering.RenderTargetIdentifier): void;
                 public SetInstanceMultiplier($multiplier: number): void;
@@ -14002,19 +14042,19 @@ declare namespace CS {
                 public SetRenderTarget($colors: System.Array$1<UnityEngine.Rendering.RenderTargetIdentifier>, $depth: UnityEngine.Rendering.RenderTargetIdentifier, $mipLevel: number, $cubemapFace: UnityEngine.CubemapFace, $depthSlice: number): void;
                 public SetRenderTarget($binding: UnityEngine.Rendering.RenderTargetBinding, $mipLevel: number, $cubemapFace: UnityEngine.CubemapFace, $depthSlice: number): void;
                 public SetRenderTarget($binding: UnityEngine.Rendering.RenderTargetBinding): void;
-                public SetBufferData($buffer: UnityEngine.ComputeBuffer, $data: System.Array): void;
                 public SetBufferData<T>($buffer: UnityEngine.ComputeBuffer, $data: System.Collections.Generic.List$1<T>): void;
                 public SetBufferData<T>($buffer: UnityEngine.ComputeBuffer, $data: Unity.Collections.NativeArray$1<T>): void;
-                public SetBufferData($buffer: UnityEngine.ComputeBuffer, $data: System.Array, $managedBufferStartIndex: number, $graphicsBufferStartIndex: number, $count: number): void;
                 public SetBufferData<T>($buffer: UnityEngine.ComputeBuffer, $data: System.Collections.Generic.List$1<T>, $managedBufferStartIndex: number, $graphicsBufferStartIndex: number, $count: number): void;
                 public SetBufferData<T>($buffer: UnityEngine.ComputeBuffer, $data: Unity.Collections.NativeArray$1<T>, $nativeBufferStartIndex: number, $graphicsBufferStartIndex: number, $count: number): void;
-                public SetBufferCounterValue($buffer: UnityEngine.ComputeBuffer, $counterValue: number): void;
-                public SetBufferData($buffer: UnityEngine.GraphicsBuffer, $data: System.Array): void;
                 public SetBufferData<T>($buffer: UnityEngine.GraphicsBuffer, $data: System.Collections.Generic.List$1<T>): void;
                 public SetBufferData<T>($buffer: UnityEngine.GraphicsBuffer, $data: Unity.Collections.NativeArray$1<T>): void;
-                public SetBufferData($buffer: UnityEngine.GraphicsBuffer, $data: System.Array, $managedBufferStartIndex: number, $graphicsBufferStartIndex: number, $count: number): void;
                 public SetBufferData<T>($buffer: UnityEngine.GraphicsBuffer, $data: System.Collections.Generic.List$1<T>, $managedBufferStartIndex: number, $graphicsBufferStartIndex: number, $count: number): void;
                 public SetBufferData<T>($buffer: UnityEngine.GraphicsBuffer, $data: Unity.Collections.NativeArray$1<T>, $nativeBufferStartIndex: number, $graphicsBufferStartIndex: number, $count: number): void;
+                public SetBufferData($buffer: UnityEngine.ComputeBuffer, $data: System.Array): void;
+                public SetBufferData($buffer: UnityEngine.ComputeBuffer, $data: System.Array, $managedBufferStartIndex: number, $graphicsBufferStartIndex: number, $count: number): void;
+                public SetBufferData($buffer: UnityEngine.GraphicsBuffer, $data: System.Array): void;
+                public SetBufferData($buffer: UnityEngine.GraphicsBuffer, $data: System.Array, $managedBufferStartIndex: number, $graphicsBufferStartIndex: number, $count: number): void;
+                public SetBufferCounterValue($buffer: UnityEngine.ComputeBuffer, $counterValue: number): void;
                 public SetBufferCounterValue($buffer: UnityEngine.GraphicsBuffer, $counterValue: number): void;
                 public BeginRenderPass($width: number, $height: number, $volumeDepth: number, $samples: number, $attachments: Unity.Collections.NativeArray$1<UnityEngine.Rendering.AttachmentDescriptor>, $depthAttachmentIndex: number, $subPasses: Unity.Collections.NativeArray$1<UnityEngine.Rendering.SubPassDescriptor>, $debugNameUtf8: System.ReadOnlySpan$1<number>): void;
                 public BeginRenderPass($width: number, $height: number, $samples: number, $attachments: Unity.Collections.NativeArray$1<UnityEngine.Rendering.AttachmentDescriptor>, $depthAttachmentIndex: number, $subPasses: Unity.Collections.NativeArray$1<UnityEngine.Rendering.SubPassDescriptor>, $debugNameUtf8: System.ReadOnlySpan$1<number>): void;
@@ -14040,12 +14080,6 @@ declare namespace CS {
                 public WaitOnAsyncGraphicsFence($fence: UnityEngine.Rendering.GraphicsFence): void;
                 public WaitOnAsyncGraphicsFence($fence: UnityEngine.Rendering.GraphicsFence, $stage: UnityEngine.Rendering.SynchronisationStage): void;
                 public WaitOnAsyncGraphicsFence($fence: UnityEngine.Rendering.GraphicsFence, $stage: UnityEngine.Rendering.SynchronisationStageFlags): void;
-                public SetComputeFloatParam($computeShader: UnityEngine.ComputeShader, $name: string, $val: number): void;
-                public SetComputeIntParam($computeShader: UnityEngine.ComputeShader, $name: string, $val: number): void;
-                public SetComputeVectorParam($computeShader: UnityEngine.ComputeShader, $name: string, $val: UnityEngine.Vector4): void;
-                public SetComputeVectorArrayParam($computeShader: UnityEngine.ComputeShader, $name: string, $values: System.Array$1<UnityEngine.Vector4>): void;
-                public SetComputeMatrixParam($computeShader: UnityEngine.ComputeShader, $name: string, $val: UnityEngine.Matrix4x4): void;
-                public SetComputeMatrixArrayParam($computeShader: UnityEngine.ComputeShader, $name: string, $values: System.Array$1<UnityEngine.Matrix4x4>): void;
                 public SetComputeFloatParams($computeShader: UnityEngine.ComputeShader, $name: string, ...values: number[]): void;
                 public SetComputeFloatParams($computeShader: UnityEngine.ComputeShader, $nameID: number, ...values: number[]): void;
                 public SetComputeIntParams($computeShader: UnityEngine.ComputeShader, $name: string, ...values: number[]): void;
@@ -14172,21 +14206,6 @@ declare namespace CS {
                 public Blit($source: UnityEngine.Rendering.RenderTargetIdentifier, $dest: UnityEngine.Rendering.RenderTargetIdentifier, $sourceDepthSlice: number, $destDepthSlice: number): void;
                 public Blit($source: UnityEngine.Rendering.RenderTargetIdentifier, $dest: UnityEngine.Rendering.RenderTargetIdentifier, $scale: UnityEngine.Vector2, $offset: UnityEngine.Vector2, $sourceDepthSlice: number, $destDepthSlice: number): void;
                 public Blit($source: UnityEngine.Rendering.RenderTargetIdentifier, $dest: UnityEngine.Rendering.RenderTargetIdentifier, $mat: UnityEngine.Material, $pass: number, $destDepthSlice: number): void;
-                public SetGlobalFloat($name: string, $value: number): void;
-                public SetGlobalInt($name: string, $value: number): void;
-                public SetGlobalInteger($name: string, $value: number): void;
-                public SetGlobalVector($name: string, $value: UnityEngine.Vector4): void;
-                public SetGlobalColor($name: string, $value: UnityEngine.Color): void;
-                public SetGlobalMatrix($name: string, $value: UnityEngine.Matrix4x4): void;
-                public SetGlobalFloatArray($propertyName: string, $values: System.Collections.Generic.List$1<number>): void;
-                public SetGlobalFloatArray($nameID: number, $values: System.Collections.Generic.List$1<number>): void;
-                public SetGlobalFloatArray($propertyName: string, $values: System.Array$1<number>): void;
-                public SetGlobalVectorArray($propertyName: string, $values: System.Collections.Generic.List$1<UnityEngine.Vector4>): void;
-                public SetGlobalVectorArray($nameID: number, $values: System.Collections.Generic.List$1<UnityEngine.Vector4>): void;
-                public SetGlobalVectorArray($propertyName: string, $values: System.Array$1<UnityEngine.Vector4>): void;
-                public SetGlobalMatrixArray($propertyName: string, $values: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>): void;
-                public SetGlobalMatrixArray($nameID: number, $values: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>): void;
-                public SetGlobalMatrixArray($propertyName: string, $values: System.Array$1<UnityEngine.Matrix4x4>): void;
                 public SetGlobalTexture($name: string, $value: UnityEngine.Rendering.RenderTargetIdentifier): void;
                 public SetGlobalTexture($nameID: number, $value: UnityEngine.Rendering.RenderTargetIdentifier): void;
                 public SetGlobalTexture($name: string, $value: UnityEngine.Rendering.RenderTargetIdentifier, $element: UnityEngine.Rendering.RenderTextureSubElement): void;
@@ -15425,49 +15444,49 @@ declare namespace CS {
                 public shaderKeywords: System.Array$1<string>;
                 public enabledKeywords: System.Array$1<UnityEngine.Rendering.LocalKeyword>;
                 public SetFloat($nameID: number, $val: number): void;
+                public SetFloat($name: string, $val: number): void;
                 public SetInt($nameID: number, $val: number): void;
+                public SetInt($name: string, $val: number): void;
                 public SetVector($nameID: number, $val: UnityEngine.Vector4): void;
+                public SetVector($name: string, $val: UnityEngine.Vector4): void;
                 public SetMatrix($nameID: number, $val: UnityEngine.Matrix4x4): void;
+                public SetMatrix($name: string, $val: UnityEngine.Matrix4x4): void;
                 public SetVectorArray($nameID: number, $values: System.Array$1<UnityEngine.Vector4>): void;
+                public SetVectorArray($name: string, $values: System.Array$1<UnityEngine.Vector4>): void;
                 public SetMatrixArray($nameID: number, $values: System.Array$1<UnityEngine.Matrix4x4>): void;
+                public SetMatrixArray($name: string, $values: System.Array$1<UnityEngine.Matrix4x4>): void;
                 public SetTexture($nameID: number, $texture: UnityEngine.Texture): void;
+                public SetTexture($name: string, $texture: UnityEngine.Texture): void;
                 public SetBuffer($nameID: number, $buffer: UnityEngine.ComputeBuffer): void;
-                public SetAccelerationStructure($nameID: number, $accelerationStructure: UnityEngine.Rendering.RayTracingAccelerationStructure): void;
-                public SetShaderPass($passName: string): void;
-                public SetTextureFromGlobal($nameID: number, $globalTextureNameID: number): void;
-                public Dispatch($rayGenFunctionName: string, $width: number, $height: number, $depth: number, $camera?: UnityEngine.Camera): void;
-                public DispatchIndirect($rayGenFunctionName: string, $argsBuffer: UnityEngine.GraphicsBuffer, $argsOffset?: number, $camera?: UnityEngine.Camera): void;
                 public SetBuffer($nameID: number, $buffer: UnityEngine.GraphicsBuffer): void;
                 public SetBuffer($nameID: number, $bufferHandle: UnityEngine.GraphicsBufferHandle): void;
+                public SetBuffer($name: string, $buffer: UnityEngine.ComputeBuffer): void;
+                public SetBuffer($name: string, $buffer: UnityEngine.GraphicsBuffer): void;
+                public SetBuffer($name: string, $bufferHandle: UnityEngine.GraphicsBufferHandle): void;
+                public SetAccelerationStructure($nameID: number, $accelerationStructure: UnityEngine.Rendering.RayTracingAccelerationStructure): void;
+                public SetAccelerationStructure($name: string, $accelerationStructure: UnityEngine.Rendering.RayTracingAccelerationStructure): void;
+                public SetShaderPass($passName: string): void;
+                public SetTextureFromGlobal($nameID: number, $globalTextureNameID: number): void;
+                public SetTextureFromGlobal($name: string, $globalTextureName: string): void;
+                public Dispatch($rayGenFunctionName: string, $width: number, $height: number, $depth: number, $camera?: UnityEngine.Camera): void;
+                public DispatchIndirect($rayGenFunctionName: string, $argsBuffer: UnityEngine.GraphicsBuffer, $argsOffset?: number, $camera?: UnityEngine.Camera): void;
                 public EnableKeyword($keyword: string): void;
-                public DisableKeyword($keyword: string): void;
-                public IsKeywordEnabled($keyword: string): boolean;
                 public EnableKeyword($keyword: $Ref<UnityEngine.Rendering.LocalKeyword>): void;
+                public DisableKeyword($keyword: string): void;
                 public DisableKeyword($keyword: $Ref<UnityEngine.Rendering.LocalKeyword>): void;
-                public SetKeyword($keyword: $Ref<UnityEngine.Rendering.LocalKeyword>, $value: boolean): void;
+                public IsKeywordEnabled($keyword: string): boolean;
                 public IsKeywordEnabled($keyword: $Ref<UnityEngine.Rendering.LocalKeyword>): boolean;
-                public SetFloat($name: string, $val: number): void;
-                public SetInt($name: string, $val: number): void;
-                public SetVector($name: string, $val: UnityEngine.Vector4): void;
-                public SetMatrix($name: string, $val: UnityEngine.Matrix4x4): void;
-                public SetVectorArray($name: string, $values: System.Array$1<UnityEngine.Vector4>): void;
-                public SetMatrixArray($name: string, $values: System.Array$1<UnityEngine.Matrix4x4>): void;
+                public SetKeyword($keyword: $Ref<UnityEngine.Rendering.LocalKeyword>, $value: boolean): void;
                 public SetFloats($name: string, ...values: number[]): void;
                 public SetFloats($nameID: number, ...values: number[]): void;
                 public SetInts($name: string, ...values: number[]): void;
                 public SetInts($nameID: number, ...values: number[]): void;
                 public SetBool($name: string, $val: boolean): void;
                 public SetBool($nameID: number, $val: boolean): void;
-                public SetTexture($name: string, $texture: UnityEngine.Texture): void;
-                public SetBuffer($name: string, $buffer: UnityEngine.ComputeBuffer): void;
-                public SetBuffer($name: string, $buffer: UnityEngine.GraphicsBuffer): void;
-                public SetBuffer($name: string, $bufferHandle: UnityEngine.GraphicsBufferHandle): void;
                 public SetConstantBuffer($nameID: number, $buffer: UnityEngine.ComputeBuffer, $offset: number, $size: number): void;
                 public SetConstantBuffer($name: string, $buffer: UnityEngine.ComputeBuffer, $offset: number, $size: number): void;
                 public SetConstantBuffer($nameID: number, $buffer: UnityEngine.GraphicsBuffer, $offset: number, $size: number): void;
                 public SetConstantBuffer($name: string, $buffer: UnityEngine.GraphicsBuffer, $offset: number, $size: number): void;
-                public SetAccelerationStructure($name: string, $accelerationStructure: UnityEngine.Rendering.RayTracingAccelerationStructure): void;
-                public SetTextureFromGlobal($name: string, $globalTextureName: string): void;
             }
 
             enum ShaderKeywordType {
@@ -15611,12 +15630,12 @@ declare namespace CS {
                 public static GetSceneByBuildIndex($buildIndex: number): UnityEngine.SceneManagement.Scene;
                 public static GetSceneAt($index: number): UnityEngine.SceneManagement.Scene;
                 public static CreateScene($sceneName: string, $parameters: UnityEngine.SceneManagement.CreateSceneParameters): UnityEngine.SceneManagement.Scene;
+                public static CreateScene($sceneName: string): UnityEngine.SceneManagement.Scene;
                 public static MergeScenes($sourceScene: UnityEngine.SceneManagement.Scene, $destinationScene: UnityEngine.SceneManagement.Scene): void;
                 public static MoveGameObjectToScene($go: UnityEngine.GameObject, $scene: UnityEngine.SceneManagement.Scene): void;
                 public static MoveGameObjectsToScene($entityIds: Unity.Collections.NativeArray$1<UnityEngine.EntityId>, $scene: UnityEngine.SceneManagement.Scene): void;
                 /** @deprecated Use SceneManager.sceneCount and SceneManager.GetSceneAt(int index) to loop the all scenes instead. */
                 public static GetAllScenes(): System.Array$1<UnityEngine.SceneManagement.Scene>;
-                public static CreateScene($sceneName: string): UnityEngine.SceneManagement.Scene;
                 public static LoadScene($sceneName: string, $mode: UnityEngine.SceneManagement.LoadSceneMode): void;
                 public static LoadScene($sceneName: string): void;
                 public static LoadScene($sceneName: string, $parameters: UnityEngine.SceneManagement.LoadSceneParameters): UnityEngine.SceneManagement.Scene;
@@ -16710,10 +16729,10 @@ declare namespace CS {
                 public static GetSecondary($tileId: string): UnityEngine.WSA.Tile;
                 public static GetSecondaries(): System.Array$1<UnityEngine.WSA.Tile>;
                 public Delete(): void;
-                public static DeleteSecondary($tileId: string): void;
                 public Delete($pos: UnityEngine.Vector2): void;
-                public static DeleteSecondary($tileId: string, $pos: UnityEngine.Vector2): void;
                 public Delete($area: UnityEngine.Rect): void;
+                public static DeleteSecondary($tileId: string): void;
+                public static DeleteSecondary($tileId: string, $pos: UnityEngine.Vector2): void;
                 public static DeleteSecondary($tileId: string, $area: UnityEngine.Rect): void;
             }
 

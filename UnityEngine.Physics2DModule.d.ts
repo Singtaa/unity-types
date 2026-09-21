@@ -168,6 +168,14 @@ declare namespace CS {
             public static LinecastAll($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $layerMask: number, $minDepth: number): System.Array$1<UnityEngine.RaycastHit2D>;
             public static LinecastAll($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $layerMask: number, $minDepth: number, $maxDepth: number): System.Array$1<UnityEngine.RaycastHit2D>;
             public static RaycastNonAlloc($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number): number;
+            /** @deprecated RaycastNonAlloc has been deprecated. Please use Raycast. */
+            public static RaycastNonAlloc($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
+            /** @deprecated RaycastNonAlloc has been deprecated. Please use Raycast. */
+            public static RaycastNonAlloc($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number): number;
+            /** @deprecated RaycastNonAlloc has been deprecated. Please use Raycast. */
+            public static RaycastNonAlloc($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number): number;
+            /** @deprecated RaycastNonAlloc has been deprecated. Please use Raycast. */
+            public static RaycastNonAlloc($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number, $maxDepth: number): number;
             public static Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2): UnityEngine.RaycastHit2D;
             public static Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $distance: number): UnityEngine.RaycastHit2D;
             public static Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $distance: number, $layerMask: number): UnityEngine.RaycastHit2D;
@@ -233,6 +241,10 @@ declare namespace CS {
             public static GetRayIntersectionAll($ray: UnityEngine.Ray, $distance: number): System.Array$1<UnityEngine.RaycastHit2D>;
             public static GetRayIntersectionAll($ray: UnityEngine.Ray, $distance: number, $layerMask?: number): System.Array$1<UnityEngine.RaycastHit2D>;
             public static GetRayIntersectionNonAlloc($ray: UnityEngine.Ray, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask?: number): number;
+            /** @deprecated GetRayIntersectionNonAlloc is deprecated. Please use GetRayIntersection. */
+            public static GetRayIntersectionNonAlloc($ray: UnityEngine.Ray, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
+            /** @deprecated GetRayIntersectionNonAlloc is deprecated. Please use GetRayIntersection. */
+            public static GetRayIntersectionNonAlloc($ray: UnityEngine.Ray, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number): number;
             public static OverlapPoint($point: UnityEngine.Vector2): UnityEngine.Collider2D;
             public static OverlapPoint($point: UnityEngine.Vector2, $layerMask: number): UnityEngine.Collider2D;
             public static OverlapPoint($point: UnityEngine.Vector2, $layerMask: number, $minDepth: number): UnityEngine.Collider2D;
@@ -324,14 +336,6 @@ declare namespace CS {
             public static LinecastNonAlloc($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $layerMask: number, $minDepth: number): number;
             /** @deprecated LinecastNonAlloc has been deprecated. Please use Linecast. */
             public static LinecastNonAlloc($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $layerMask: number, $minDepth: number, $maxDepth: number): number;
-            /** @deprecated RaycastNonAlloc has been deprecated. Please use Raycast. */
-            public static RaycastNonAlloc($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
-            /** @deprecated RaycastNonAlloc has been deprecated. Please use Raycast. */
-            public static RaycastNonAlloc($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number): number;
-            /** @deprecated RaycastNonAlloc has been deprecated. Please use Raycast. */
-            public static RaycastNonAlloc($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number): number;
-            /** @deprecated RaycastNonAlloc has been deprecated. Please use Raycast. */
-            public static RaycastNonAlloc($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number, $maxDepth: number): number;
             /** @deprecated CircleCastNonAlloc has been deprecated. Please use CircleCast instead. */
             public static CircleCastNonAlloc($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
             /** @deprecated CircleCastNonAlloc has been deprecated. Please use CircleCast instead. */
@@ -362,10 +366,6 @@ declare namespace CS {
             public static CapsuleCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number): number;
             /** @deprecated CapsuleCastNonAlloc has been deprecated. Please use CapsuleCast. */
             public static CapsuleCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number, $maxDepth: number): number;
-            /** @deprecated GetRayIntersectionNonAlloc is deprecated. Please use GetRayIntersection. */
-            public static GetRayIntersectionNonAlloc($ray: UnityEngine.Ray, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
-            /** @deprecated GetRayIntersectionNonAlloc is deprecated. Please use GetRayIntersection. */
-            public static GetRayIntersectionNonAlloc($ray: UnityEngine.Ray, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number): number;
             /** @deprecated OverlapPointNonAlloc has been deprecated. Please use OverlapPoint. */
             public static OverlapPointNonAlloc($point: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.Collider2D>): number;
             /** @deprecated OverlapPointNonAlloc has been deprecated. Please use OverlapPoint. */
@@ -955,9 +955,9 @@ declare namespace CS {
             public GetTotalPointCount(): number;
             public GetPath($index: number): System.Array$1<UnityEngine.Vector2>;
             public GetPath($index: number, $points: System.Collections.Generic.List$1<UnityEngine.Vector2>): number;
+            public GetPath($index?: number, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.Vector2>;
             public SetPath($index: number, $points: System.Array$1<UnityEngine.Vector2>): void;
             public SetPath($index: number, $points: System.Collections.Generic.List$1<UnityEngine.Vector2>): void;
-            public GetPath($index?: number, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.Vector2>;
             public SetPath($index: number, $points: System.ReadOnlySpan$1<UnityEngine.Vector2>): void;
             public CreatePrimitive($sides: number): void;
             public CreatePrimitive($sides: number, $scale: UnityEngine.Vector2): void;

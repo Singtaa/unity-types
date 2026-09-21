@@ -310,10 +310,10 @@ declare namespace CS {
                 public LoadFromJson($json: string): void;
                 public static FromJson($json: string): UnityEngine.InputSystem.InputActionAsset;
                 public FindAction($actionNameOrId: string, $throwIfNotFound?: boolean): UnityEngine.InputSystem.InputAction;
+                public FindAction($guid: System.Guid): UnityEngine.InputSystem.InputAction;
                 public FindBinding($mask: UnityEngine.InputSystem.InputBinding, $action: $Out<UnityEngine.InputSystem.InputAction>): number;
                 public FindActionMap($nameOrId: string, $throwIfNotFound?: boolean): UnityEngine.InputSystem.InputActionMap;
                 public FindActionMap($id: System.Guid): UnityEngine.InputSystem.InputActionMap;
-                public FindAction($guid: System.Guid): UnityEngine.InputSystem.InputAction;
                 public FindControlSchemeIndex($name: string): number;
                 public FindControlScheme($name: string): UnityEngine.InputSystem.InputControlScheme | null;
                 public IsUsableWithDevice($device: UnityEngine.InputSystem.InputDevice): boolean;
@@ -372,9 +372,9 @@ declare namespace CS {
 
             class InputActionRebindingExtensions {
                 protected [__keep_incompatibility]: never;
+                public static GetParameterValue<TObject, TValue>($expr: System.Linq.Expressions.Expression$1<System.Func$2<TObject, TValue>>, $bindingMask?: UnityEngine.InputSystem.InputBinding): TValue | null;
                 public static GetParameterValue($name: string, $bindingMask?: UnityEngine.InputSystem.InputBinding): UnityEngine.InputSystem.Utilities.PrimitiveValue | null;
                 public static GetParameterValue($name: string, $bindingIndex: number): UnityEngine.InputSystem.Utilities.PrimitiveValue | null;
-                public static GetParameterValue<TObject, TValue>($expr: System.Linq.Expressions.Expression$1<System.Func$2<TObject, TValue>>, $bindingMask?: UnityEngine.InputSystem.InputBinding): TValue | null;
                 public static ApplyParameterOverride<TObject, TValue>($expr: System.Linq.Expressions.Expression$1<System.Func$2<TObject, TValue>>, $value: TValue, $bindingMask?: UnityEngine.InputSystem.InputBinding): void;
                 public static ApplyParameterOverride<TObject, TValue>($expr: System.Linq.Expressions.Expression$1<System.Func$2<TObject, TValue>>, $value: TValue, $bindingMask?: UnityEngine.InputSystem.InputBinding): void;
                 public static ApplyParameterOverride<TObject, TValue>($expr: System.Linq.Expressions.Expression$1<System.Func$2<TObject, TValue>>, $value: TValue, $bindingMask?: UnityEngine.InputSystem.InputBinding): void;
@@ -432,9 +432,9 @@ declare namespace CS {
                     public WithMatchingEventsBeingSuppressed($value?: boolean): UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
                     public WithCancelingThrough($binding: string): UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
                     public WithCancelingThrough($control: UnityEngine.InputSystem.InputControl): UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
+                    public WithExpectedControlType<TControl extends UnityEngine.InputSystem.InputControl>(): UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
                     public WithExpectedControlType($layoutName: string): UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
                     public WithExpectedControlType($type: System.TypeLike): UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
-                    public WithExpectedControlType<TControl extends UnityEngine.InputSystem.InputControl>(): UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
                     public WithTargetBinding($bindingIndex: number): UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
                     public WithBindingMask($bindingMask: UnityEngine.InputSystem.InputBinding | null): UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
                     public WithBindingGroup($group: string): UnityEngine.InputSystem.InputActionRebindingExtensions.RebindingOperation;
@@ -517,11 +517,11 @@ declare namespace CS {
                 public static ChangeBinding($index: number): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
                 public static ChangeBinding($name: string): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
                 public static ChangeBinding($index: number): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
+                public static ChangeBinding($match: UnityEngine.InputSystem.InputBinding): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
                 public static ChangeBindingWithId($id: string): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
                 public static ChangeBindingWithId($id: System.Guid): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
                 public static ChangeBindingWithGroup($group: string): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
                 public static ChangeBindingWithPath($path: string): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
-                public static ChangeBinding($match: UnityEngine.InputSystem.InputBinding): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
                 public static ChangeCompositeBinding($compositeName: string): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
                 public static Rename($newName: string): void;
                 public static AddControlScheme($controlScheme: UnityEngine.InputSystem.InputControlScheme): void;
@@ -544,12 +544,12 @@ declare namespace CS {
                     public WithPath($path: string): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
                     public WithGroup($group: string): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
                     public WithGroups($groups: string): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
+                    public WithInteraction<TInteraction extends UnityEngine.InputSystem.IInputInteraction>(): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
                     public WithInteraction($interaction: string): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
                     public WithInteractions($interactions: string): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
-                    public WithInteraction<TInteraction extends UnityEngine.InputSystem.IInputInteraction>(): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
+                    public WithProcessor<TProcessor>(): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
                     public WithProcessor($processor: string): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
                     public WithProcessors($processors: string): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
-                    public WithProcessor<TProcessor>(): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
                     public Triggering($action: UnityEngine.InputSystem.InputAction): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
                     public To($binding: UnityEngine.InputSystem.InputBinding): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
                     public NextBinding(): UnityEngine.InputSystem.InputActionSetupExtensions.BindingSyntax;
@@ -572,12 +572,12 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                     public WithBindingGroup($bindingGroup: string): UnityEngine.InputSystem.InputActionSetupExtensions.ControlSchemeSyntax;
                     public WithRequiredDevice<TDevice extends UnityEngine.InputSystem.InputDevice>(): UnityEngine.InputSystem.InputActionSetupExtensions.ControlSchemeSyntax;
-                    public WithOptionalDevice<TDevice extends UnityEngine.InputSystem.InputDevice>(): UnityEngine.InputSystem.InputActionSetupExtensions.ControlSchemeSyntax;
-                    public OrWithRequiredDevice<TDevice extends UnityEngine.InputSystem.InputDevice>(): UnityEngine.InputSystem.InputActionSetupExtensions.ControlSchemeSyntax;
-                    public OrWithOptionalDevice<TDevice extends UnityEngine.InputSystem.InputDevice>(): UnityEngine.InputSystem.InputActionSetupExtensions.ControlSchemeSyntax;
                     public WithRequiredDevice($controlPath: string): UnityEngine.InputSystem.InputActionSetupExtensions.ControlSchemeSyntax;
+                    public WithOptionalDevice<TDevice extends UnityEngine.InputSystem.InputDevice>(): UnityEngine.InputSystem.InputActionSetupExtensions.ControlSchemeSyntax;
                     public WithOptionalDevice($controlPath: string): UnityEngine.InputSystem.InputActionSetupExtensions.ControlSchemeSyntax;
+                    public OrWithRequiredDevice<TDevice extends UnityEngine.InputSystem.InputDevice>(): UnityEngine.InputSystem.InputActionSetupExtensions.ControlSchemeSyntax;
                     public OrWithRequiredDevice($controlPath: string): UnityEngine.InputSystem.InputActionSetupExtensions.ControlSchemeSyntax;
+                    public OrWithOptionalDevice<TDevice extends UnityEngine.InputSystem.InputDevice>(): UnityEngine.InputSystem.InputActionSetupExtensions.ControlSchemeSyntax;
                     public OrWithOptionalDevice($controlPath: string): UnityEngine.InputSystem.InputActionSetupExtensions.ControlSchemeSyntax;
                     public Done(): UnityEngine.InputSystem.InputControlScheme;
                 }
@@ -759,37 +759,38 @@ declare namespace CS {
                 public static get version(): System.Version;
                 public static runInBackground: boolean;
                 public static get metrics(): UnityEngine.InputSystem.LowLevel.InputMetrics;
-                public static RegisterLayout($type: System.TypeLike, $name?: string, $matches?: UnityEngine.InputSystem.Layouts.InputDeviceMatcher | null): void;
                 public static RegisterLayout<T extends UnityEngine.InputSystem.InputControl>($name?: string, $matches?: UnityEngine.InputSystem.Layouts.InputDeviceMatcher | null): void;
+                public static RegisterLayout($type: System.TypeLike, $name?: string, $matches?: UnityEngine.InputSystem.Layouts.InputDeviceMatcher | null): void;
                 public static RegisterLayout($json: string, $name?: string, $matches?: UnityEngine.InputSystem.Layouts.InputDeviceMatcher | null): void;
                 public static RegisterLayoutOverride($json: string, $name?: string): void;
-                public static RegisterLayoutMatcher($layoutName: string, $matcher: UnityEngine.InputSystem.Layouts.InputDeviceMatcher): void;
                 public static RegisterLayoutMatcher<TDevice extends UnityEngine.InputSystem.InputDevice>($matcher: UnityEngine.InputSystem.Layouts.InputDeviceMatcher): void;
+                public static RegisterLayoutMatcher($layoutName: string, $matcher: UnityEngine.InputSystem.Layouts.InputDeviceMatcher): void;
                 public static RegisterLayoutBuilder($buildMethod: System.Func$1<UnityEngine.InputSystem.Layouts.InputControlLayout>, $name: string, $baseLayout?: string, $matches?: UnityEngine.InputSystem.Layouts.InputDeviceMatcher | null): void;
                 public static RegisterPrecompiledLayout<TDevice extends UnityEngine.InputSystem.InputDevice>($metadata: string): void;
                 public static RemoveLayout($name: string): void;
                 public static TryFindMatchingLayout($deviceDescription: UnityEngine.InputSystem.Layouts.InputDeviceDescription): string;
                 public static ListLayouts(): System.Collections.Generic.IEnumerable$1<string>;
                 public static ListLayoutsBasedOn($baseLayout: string): System.Collections.Generic.IEnumerable$1<string>;
-                public static LoadLayout($name: string): UnityEngine.InputSystem.Layouts.InputControlLayout;
                 public static LoadLayout<TControl extends UnityEngine.InputSystem.InputControl>(): UnityEngine.InputSystem.Layouts.InputControlLayout;
+                public static LoadLayout($name: string): UnityEngine.InputSystem.Layouts.InputControlLayout;
                 public static GetNameOfBaseLayout($layoutName: string): string;
                 public static IsFirstLayoutBasedOnSecond($firstLayoutName: string, $secondLayoutName: string): boolean;
-                public static RegisterProcessor($type: System.TypeLike, $name?: string): void;
                 public static RegisterProcessor<T>($name?: string): void;
+                public static RegisterProcessor($type: System.TypeLike, $name?: string): void;
                 public static TryGetProcessor($name: string): System.Type;
                 public static ListProcessors(): System.Collections.Generic.IEnumerable$1<string>;
-                public static AddDevice($layout: string, $name?: string, $variants?: string): UnityEngine.InputSystem.InputDevice;
                 public static AddDevice<TDevice extends UnityEngine.InputSystem.InputDevice>($name?: string): TDevice;
+                public static AddDevice($layout: string, $name?: string, $variants?: string): UnityEngine.InputSystem.InputDevice;
                 public static AddDevice($description: UnityEngine.InputSystem.Layouts.InputDeviceDescription): UnityEngine.InputSystem.InputDevice;
                 public static AddDevice($device: UnityEngine.InputSystem.InputDevice): void;
                 public static RemoveDevice($device: UnityEngine.InputSystem.InputDevice): void;
                 public static FlushDisconnectedDevices(): void;
-                public static GetDevice($nameOrLayout: string): UnityEngine.InputSystem.InputDevice;
                 public static GetDevice<TDevice extends UnityEngine.InputSystem.InputDevice>(): TDevice;
-                public static GetDevice($type: System.TypeLike): UnityEngine.InputSystem.InputDevice;
                 public static GetDevice<TDevice extends UnityEngine.InputSystem.InputDevice>($usage: UnityEngine.InputSystem.Utilities.InternedString): TDevice;
                 public static GetDevice<TDevice extends UnityEngine.InputSystem.InputDevice>($usage: string): TDevice;
+                public static GetDevice<T extends UnityEngine.InputSystem.InputDevice>($type: { new(...args: any[]): T }): T;
+                public static GetDevice($nameOrLayout: string): UnityEngine.InputSystem.InputDevice;
+                public static GetDevice($type: System.TypeLike): UnityEngine.InputSystem.InputDevice;
                 public static GetDeviceById($deviceId: number): UnityEngine.InputSystem.InputDevice;
                 public static GetUnsupportedDevices(): System.Collections.Generic.List$1<UnityEngine.InputSystem.Layouts.InputDeviceDescription>;
                 public static GetUnsupportedDevices($descriptions: System.Collections.Generic.List$1<UnityEngine.InputSystem.Layouts.InputDeviceDescription>): number;
@@ -809,22 +810,22 @@ declare namespace CS {
                 public static RemoveDeviceUsage($device: UnityEngine.InputSystem.InputDevice, $usage: string): void;
                 public static RemoveDeviceUsage($device: UnityEngine.InputSystem.InputDevice, $usage: UnityEngine.InputSystem.Utilities.InternedString): void;
                 public static FindControl($path: string): UnityEngine.InputSystem.InputControl;
-                public static FindControls($path: string): UnityEngine.InputSystem.InputControlList$1<UnityEngine.InputSystem.InputControl>;
                 public static FindControls<TControl extends UnityEngine.InputSystem.InputControl>($path: string): UnityEngine.InputSystem.InputControlList$1<TControl>;
                 public static FindControls<TControl extends UnityEngine.InputSystem.InputControl>($path: string, $controls: $Ref<UnityEngine.InputSystem.InputControlList$1<TControl>>): number;
-                public static QueueEvent($eventPtr: UnityEngine.InputSystem.LowLevel.InputEventPtr): void;
+                public static FindControls($path: string): UnityEngine.InputSystem.InputControlList$1<UnityEngine.InputSystem.InputControl>;
                 public static QueueEvent<TEvent extends UnityEngine.InputSystem.LowLevel.IInputEventTypeInfo>($inputEvent: $Ref<TEvent>): void;
+                public static QueueEvent($eventPtr: UnityEngine.InputSystem.LowLevel.InputEventPtr): void;
                 public static QueueStateEvent<TState extends UnityEngine.InputSystem.LowLevel.IInputStateTypeInfo>($device: UnityEngine.InputSystem.InputDevice, $state: TState, $time?: number): void;
                 public static QueueDeltaStateEvent<TDelta>($control: UnityEngine.InputSystem.InputControl, $delta: TDelta, $time?: number): void;
                 public static QueueConfigChangeEvent($device: UnityEngine.InputSystem.InputDevice, $time?: number): void;
                 public static QueueTextEvent($device: UnityEngine.InputSystem.InputDevice, $character: number, $time?: number): void;
                 public static Update(): void;
-                public static RegisterInteraction($type: System.TypeLike, $name?: string): void;
                 public static RegisterInteraction<T>($name?: string): void;
+                public static RegisterInteraction($type: System.TypeLike, $name?: string): void;
                 public static TryGetInteraction($name: string): System.Type;
                 public static ListInteractions(): System.Collections.Generic.IEnumerable$1<string>;
-                public static RegisterBindingComposite($type: System.TypeLike, $name: string): void;
                 public static RegisterBindingComposite<T>($name?: string): void;
+                public static RegisterBindingComposite($type: System.TypeLike, $name: string): void;
                 public static TryGetBindingComposite($name: string): System.Type;
                 public static DisableAllEnabledActions(): void;
                 public static ListEnabledActions(): System.Collections.Generic.List$1<UnityEngine.InputSystem.InputAction>;
@@ -905,10 +906,10 @@ declare namespace CS {
                 public get optimizedControlDataType(): UnityEngine.InputSystem.Utilities.FourCC;
                 public ToString(): string;
                 public EvaluateMagnitude(): number;
-                public TryGetChildControl($path: string): UnityEngine.InputSystem.InputControl;
                 public TryGetChildControl<TControl extends UnityEngine.InputSystem.InputControl>($path: string): TControl;
-                public GetChildControl($path: string): UnityEngine.InputSystem.InputControl;
+                public TryGetChildControl($path: string): UnityEngine.InputSystem.InputControl;
                 public GetChildControl<TControl extends UnityEngine.InputSystem.InputControl>($path: string): TControl;
+                public GetChildControl($path: string): UnityEngine.InputSystem.InputControl;
                 public ApplyParameterChanges(): void;
                 public get_Item($path: string): UnityEngine.InputSystem.InputControl;
             }
@@ -1070,13 +1071,13 @@ declare namespace CS {
                 public static TryGetDeviceUsages($path: string): System.Array$1<string>;
                 public static TryGetDeviceLayout($path: string): string;
                 public static TryGetControlLayout($path: string): string;
+                public static TryFindControl<TControl extends UnityEngine.InputSystem.InputControl>($control: UnityEngine.InputSystem.InputControl, $path: string, $indexInPath?: number): TControl;
                 public static TryFindControl($control: UnityEngine.InputSystem.InputControl, $path: string, $indexInPath?: number): UnityEngine.InputSystem.InputControl;
+                public static TryFindControls<TControl extends UnityEngine.InputSystem.InputControl>($control: UnityEngine.InputSystem.InputControl, $path: string, $indexInPath: number, $matches: $Ref<UnityEngine.InputSystem.InputControlList$1<TControl>>): number;
                 public static TryFindControls($control: UnityEngine.InputSystem.InputControl, $path: string, $indexInPath?: number): System.Array$1<UnityEngine.InputSystem.InputControl>;
                 public static TryFindControls($control: UnityEngine.InputSystem.InputControl, $path: string, $matches: $Ref<UnityEngine.InputSystem.InputControlList$1<UnityEngine.InputSystem.InputControl>>, $indexInPath?: number): number;
-                public static TryFindControl<TControl extends UnityEngine.InputSystem.InputControl>($control: UnityEngine.InputSystem.InputControl, $path: string, $indexInPath?: number): TControl;
-                public static TryFindControls<TControl extends UnityEngine.InputSystem.InputControl>($control: UnityEngine.InputSystem.InputControl, $path: string, $indexInPath: number, $matches: $Ref<UnityEngine.InputSystem.InputControlList$1<TControl>>): number;
-                public static TryFindChild($control: UnityEngine.InputSystem.InputControl, $path: string, $indexInPath?: number): UnityEngine.InputSystem.InputControl;
                 public static TryFindChild<TControl extends UnityEngine.InputSystem.InputControl>($control: UnityEngine.InputSystem.InputControl, $path: string, $indexInPath?: number): TControl;
+                public static TryFindChild($control: UnityEngine.InputSystem.InputControl, $path: string, $indexInPath?: number): UnityEngine.InputSystem.InputControl;
                 public static Matches($expected: string, $control: UnityEngine.InputSystem.InputControl): boolean;
                 public static MatchesPrefix($expected: string, $control: UnityEngine.InputSystem.InputControl): boolean;
                 public static Parse($path: string): System.Collections.Generic.IEnumerable$1<UnityEngine.InputSystem.InputControlPath.ParsedPathComponent>;
@@ -1879,8 +1880,8 @@ declare namespace CS {
                 protected [__keep_incompatibility]: never;
                 public get isPressed(): boolean;
                 constructor();
-                public Get(): any;
                 public Get<TValue>(): TValue;
+                public Get(): any;
             }
 
             class PlayerInput extends UnityEngine.MonoBehaviour {
@@ -2037,15 +2038,15 @@ declare namespace CS {
                 public static AssertStickValues($stick: UnityEngine.InputSystem.Controls.StickControl, $stickValue: UnityEngine.Vector2, $up: number, $down: number, $left: number, $right: number): void;
                 public SetKeyboardLayout($name: string, $keyboard?: UnityEngine.InputSystem.Keyboard): void;
                 public SetKeyInfo($key: UnityEngine.InputSystem.Key, $displayName: string, $scanCode?: number): void;
-                public Started($action: UnityEngine.InputSystem.InputAction, $control?: UnityEngine.InputSystem.InputControl, $time?: number | null, $value?: any): UnityEngine.InputSystem.InputTestFixture.ActionConstraint;
                 public Started<TValue>($action: UnityEngine.InputSystem.InputAction, $control: UnityEngine.InputSystem.InputControl$1<TValue>, $value: TValue, $time?: number | null): UnityEngine.InputSystem.InputTestFixture.ActionConstraint;
-                public Performed($action: UnityEngine.InputSystem.InputAction, $control?: UnityEngine.InputSystem.InputControl, $time?: number | null, $duration?: number | null, $value?: any): UnityEngine.InputSystem.InputTestFixture.ActionConstraint;
-                public Performed<TValue>($action: UnityEngine.InputSystem.InputAction, $control: UnityEngine.InputSystem.InputControl$1<TValue>, $value: TValue, $time?: number | null, $duration?: number | null): UnityEngine.InputSystem.InputTestFixture.ActionConstraint;
-                public Canceled($action: UnityEngine.InputSystem.InputAction, $control?: UnityEngine.InputSystem.InputControl, $time?: number | null, $duration?: number | null, $value?: any): UnityEngine.InputSystem.InputTestFixture.ActionConstraint;
-                public Canceled<TValue>($action: UnityEngine.InputSystem.InputAction, $control: UnityEngine.InputSystem.InputControl$1<TValue>, $value: TValue, $time?: number | null, $duration?: number | null): UnityEngine.InputSystem.InputTestFixture.ActionConstraint;
                 public Started<TInteraction extends UnityEngine.InputSystem.IInputInteraction>($action: UnityEngine.InputSystem.InputAction, $control?: UnityEngine.InputSystem.InputControl, $value?: any, $time?: number | null): UnityEngine.InputSystem.InputTestFixture.ActionConstraint;
+                public Started($action: UnityEngine.InputSystem.InputAction, $control?: UnityEngine.InputSystem.InputControl, $time?: number | null, $value?: any): UnityEngine.InputSystem.InputTestFixture.ActionConstraint;
+                public Performed<TValue>($action: UnityEngine.InputSystem.InputAction, $control: UnityEngine.InputSystem.InputControl$1<TValue>, $value: TValue, $time?: number | null, $duration?: number | null): UnityEngine.InputSystem.InputTestFixture.ActionConstraint;
                 public Performed<TInteraction extends UnityEngine.InputSystem.IInputInteraction>($action: UnityEngine.InputSystem.InputAction, $control?: UnityEngine.InputSystem.InputControl, $value?: any, $time?: number | null, $duration?: number | null): UnityEngine.InputSystem.InputTestFixture.ActionConstraint;
+                public Performed($action: UnityEngine.InputSystem.InputAction, $control?: UnityEngine.InputSystem.InputControl, $time?: number | null, $duration?: number | null, $value?: any): UnityEngine.InputSystem.InputTestFixture.ActionConstraint;
+                public Canceled<TValue>($action: UnityEngine.InputSystem.InputAction, $control: UnityEngine.InputSystem.InputControl$1<TValue>, $value: TValue, $time?: number | null, $duration?: number | null): UnityEngine.InputSystem.InputTestFixture.ActionConstraint;
                 public Canceled<TInteraction extends UnityEngine.InputSystem.IInputInteraction>($action: UnityEngine.InputSystem.InputAction, $control?: UnityEngine.InputSystem.InputControl, $value?: any, $time?: number | null, $duration?: number | null): UnityEngine.InputSystem.InputTestFixture.ActionConstraint;
+                public Canceled($action: UnityEngine.InputSystem.InputAction, $control?: UnityEngine.InputSystem.InputControl, $time?: number | null, $duration?: number | null, $value?: any): UnityEngine.InputSystem.InputTestFixture.ActionConstraint;
                 public Press($button: UnityEngine.InputSystem.Controls.ButtonControl, $time?: number, $timeOffset?: number, $queueEventOnly?: boolean): void;
                 public Release($button: UnityEngine.InputSystem.Controls.ButtonControl, $time?: number, $timeOffset?: number, $queueEventOnly?: boolean): void;
                 public PressAndRelease($button: UnityEngine.InputSystem.Controls.ButtonControl, $time?: number, $timeOffset?: number, $queueEventOnly?: boolean): void;
@@ -4267,9 +4268,9 @@ declare namespace CS {
                     public static get currentUpdateType(): UnityEngine.InputSystem.LowLevel.InputUpdateType;
                     public static get updateCount(): number;
                     public static get currentTime(): number;
-                    public static Change($device: UnityEngine.InputSystem.InputDevice, $eventPtr: UnityEngine.InputSystem.LowLevel.InputEventPtr, $updateType?: UnityEngine.InputSystem.LowLevel.InputUpdateType): void;
                     public static Change<TState>($control: UnityEngine.InputSystem.InputControl, $state: TState, $updateType?: UnityEngine.InputSystem.LowLevel.InputUpdateType, $eventPtr?: UnityEngine.InputSystem.LowLevel.InputEventPtr): void;
                     public static Change<TState>($control: UnityEngine.InputSystem.InputControl, $state: $Ref<TState>, $updateType?: UnityEngine.InputSystem.LowLevel.InputUpdateType, $eventPtr?: UnityEngine.InputSystem.LowLevel.InputEventPtr): void;
+                    public static Change($device: UnityEngine.InputSystem.InputDevice, $eventPtr: UnityEngine.InputSystem.LowLevel.InputEventPtr, $updateType?: UnityEngine.InputSystem.LowLevel.InputUpdateType): void;
                     public static IsIntegerFormat(): boolean;
                     public static AddChangeMonitor($control: UnityEngine.InputSystem.InputControl, $monitor: UnityEngine.InputSystem.LowLevel.IInputStateChangeMonitor, $monitorIndex?: bigint, $groupIndex?: number): void;
                     public static AddChangeMonitor($control: UnityEngine.InputSystem.InputControl, $valueChangeCallback: System.Action$4<UnityEngine.InputSystem.InputControl, number, UnityEngine.InputSystem.LowLevel.InputEventPtr, bigint>, $monitorIndex?: number, $timerExpiredCallback?: System.Action$4<UnityEngine.InputSystem.InputControl, number, bigint, number>): UnityEngine.InputSystem.LowLevel.IInputStateChangeMonitor;
@@ -4897,8 +4898,8 @@ declare namespace CS {
                     public static Select<TSource, TResult>($filter: System.Func$2<TSource, TResult>): System.IObservable$1<TResult>;
                     public static SelectMany<TSource, TResult>($filter: System.Func$2<TSource, System.Collections.Generic.IEnumerable$1<TResult>>): System.IObservable$1<TResult>;
                     public static Take<TValue>($count: number): System.IObservable$1<TValue>;
-                    public static ForDevice($device: UnityEngine.InputSystem.InputDevice): System.IObservable$1<UnityEngine.InputSystem.LowLevel.InputEventPtr>;
                     public static ForDevice<TDevice extends UnityEngine.InputSystem.InputDevice>(): System.IObservable$1<UnityEngine.InputSystem.LowLevel.InputEventPtr>;
+                    public static ForDevice($device: UnityEngine.InputSystem.InputDevice): System.IObservable$1<UnityEngine.InputSystem.LowLevel.InputEventPtr>;
                     public static CallOnce<TValue>($action: System.Action$1<TValue>): System.IDisposable;
                     public static Call<TValue>($action: System.Action$1<TValue>): System.IDisposable;
                 }
@@ -4924,6 +4925,7 @@ declare namespace CS {
                     public Equals($obj: any): boolean;
                     public GetHashCode(): number;
                     public ToString(): string;
+                    public ToString($provider: System.IFormatProvider): string;
                     public static FromString($value: string): UnityEngine.InputSystem.Utilities.PrimitiveValue;
                     public GetTypeCode(): System.TypeCode;
                     public ToBoolean($provider?: System.IFormatProvider): boolean;
@@ -4937,7 +4939,6 @@ declare namespace CS {
                     public ToInt64($provider?: System.IFormatProvider): bigint;
                     public ToSByte($provider?: System.IFormatProvider): number;
                     public ToSingle($provider?: System.IFormatProvider): number;
-                    public ToString($provider: System.IFormatProvider): string;
                     public ToType($conversionType: System.TypeLike, $provider: System.IFormatProvider): any;
                     public ToUInt16($provider?: System.IFormatProvider): number;
                     public ToUInt32($provider?: System.IFormatProvider): number;
