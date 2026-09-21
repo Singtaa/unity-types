@@ -177,8 +177,6 @@ declare namespace CS {
                 public static Post($uri: string, $postData: string): UnityEngine.Networking.UnityWebRequest;
                 /** @deprecated UnityWebRequest.Post with only a string data is obsolete. Use UnityWebRequest.Post with content type argument or UnityWebRequest.PostWwwForm instead (UnityUpgradable) -> [UnityEngine] UnityWebRequest.PostWwwForm(*) */
                 public static Post($uri: System.Uri, $postData: string): UnityEngine.Networking.UnityWebRequest;
-                public static PostWwwForm($uri: string, $form: string): UnityEngine.Networking.UnityWebRequest;
-                public static PostWwwForm($uri: System.Uri, $form: string): UnityEngine.Networking.UnityWebRequest;
                 public static Post($uri: string, $postData: string, $contentType: string): UnityEngine.Networking.UnityWebRequest;
                 public static Post($uri: System.Uri, $postData: string, $contentType: string): UnityEngine.Networking.UnityWebRequest;
                 public static Post($uri: string, $formData: UnityEngine.WWWForm): UnityEngine.Networking.UnityWebRequest;
@@ -189,6 +187,8 @@ declare namespace CS {
                 public static Post($uri: System.Uri, $multipartFormSections: System.Collections.Generic.List$1<UnityEngine.Networking.IMultipartFormSection>, $boundary: System.Array$1<number>): UnityEngine.Networking.UnityWebRequest;
                 public static Post($uri: string, $formFields: System.Collections.Generic.Dictionary$2<string, string>): UnityEngine.Networking.UnityWebRequest;
                 public static Post($uri: System.Uri, $formFields: System.Collections.Generic.Dictionary$2<string, string>): UnityEngine.Networking.UnityWebRequest;
+                public static PostWwwForm($uri: string, $form: string): UnityEngine.Networking.UnityWebRequest;
+                public static PostWwwForm($uri: System.Uri, $form: string): UnityEngine.Networking.UnityWebRequest;
                 public static EscapeURL($s: string): string;
                 public static EscapeURL($s: string, $e: System.Text.Encoding): string;
                 public static UnEscapeURL($s: string): string;

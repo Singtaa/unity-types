@@ -170,6 +170,7 @@ declare namespace CS {
             public get LastModifiedTime(): System.DateTime;
             public get LastReloadTime(): System.DateTime;
             public get IncludeSourceMap(): boolean;
+            public get ExcludeFromBuild(): boolean;
             public get PanelSettingsAsset(): UnityEngine.UIElements.PanelSettings;
             public get BundleAsset(): UnityEngine.TextAsset;
             public get SourceMapAsset(): UnityEngine.TextAsset;
@@ -207,6 +208,7 @@ declare namespace CS {
             public CreateDefaultVisualTreeAsset(): void;
             public EnsureProjectSetup(): boolean;
             public IsPanelSettingsInValidProjectFolder(): boolean;
+            public GetInvalidProjectFolderReason(): string;
             public GetCartridgePath($cartridge: OneJS.UICartridge): string;
             public ForceReload(): void;
             public PopulateDefaultFiles(): void;
@@ -513,8 +515,8 @@ declare namespace CS {
             public static GetPeakHandleCount(): number;
             public static ResetHandleMonitoring(): void;
             public static RegisterStructType<T>(): void;
-            public static RegisterStructType($type: System.TypeLike): void;
             public static RegisterStructType<T>($serializer: System.Func$2<T, string>, $deserializer: System.Func$2<System.Collections.Generic.Dictionary$2<string, any>, T>): void;
+            public static RegisterStructType($type: System.TypeLike): void;
             public static IsSerializableStruct($type: System.TypeLike): boolean;
             public static SerializeStruct($value: any): string;
             public static DeserializeStruct($json: string, $targetType: System.TypeLike): any;
@@ -529,7 +531,6 @@ declare namespace CS {
             public static RegisterZeroAllocBinding($handler: OneJS.QuickJSNative.ZeroAllocHandler): number;
             public static UnregisterZeroAllocBinding($bindingId: number): boolean;
             public static RegisterZeroAllocMethodBinding($typeName: string, $methodName: string, $argCount: number): number;
-            public static Bind($action: System.Action): number;
             public static Bind<TResult>($func: System.Func$1<TResult>): number;
             public static Bind<T0>($action: System.Action$1<T0>): number;
             public static Bind<T0, TResult>($func: System.Func$2<T0, TResult>): number;
@@ -543,6 +544,7 @@ declare namespace CS {
             public static Bind<T0, T1, T2, T3, T4, TResult>($func: System.Func$6<T0, T1, T2, T3, T4, TResult>): number;
             public static Bind<T0, T1, T2, T3, T4, T5>($action: System.Action$6<T0, T1, T2, T3, T4, T5>): number;
             public static Bind<T0, T1, T2, T3, T4, T5, TResult>($func: System.Func$7<T0, T1, T2, T3, T4, T5, TResult>): number;
+            public static Bind($action: System.Action): number;
         }
         namespace QuickJSNative {
             interface StructPacker<T> {
@@ -861,8 +863,8 @@ declare namespace CS {
                 public AddValue($value: number, $unit: OneJS.CustomStyleSheets.DimensionUnit): void;
                 public AddValue($keyword: OneJS.CustomStyleSheets.StyleKeyword): void;
                 public AddValue($value: string, $type: OneJS.CustomStyleSheets.StyleValueType): void;
-                public AddResourcePath($path: string): void;
                 public AddValue($function: OneJS.CustomStyleSheets.StyleFunction): void;
+                public AddResourcePath($path: string): void;
             }
 
             class SelectorPart {
@@ -1018,6 +1020,15 @@ declare namespace CS {
                 constructor();
                 public OnPreprocessBuild($report: UnityEditor.Build.Reporting.BuildReport): void;
                 public OnPostprocessBuild($report: UnityEditor.Build.Reporting.BuildReport): void;
+            }
+            namespace JSRunnerBuildProcessor {
+                class PrefabAppBaker extends UnityEditor.Build.BuildPlayerProcessor {
+                    protected [__keep_incompatibility]: never;
+                    public get callbackOrder(): number;
+                    constructor();
+                    public PrepareForBuild($buildPlayerContext: UnityEditor.Build.BuildPlayerContext): void;
+                }
+
             }
 
             class JSRunnerEditor extends UnityEditor.Editor {
@@ -2182,6 +2193,19 @@ declare namespace CS {
                 public Render_Aspect_StretchesQuadsHorizontally(): System.Collections.IEnumerator;
             }
 
+            class Physics2DBodyTests {
+                protected [__keep_incompatibility]: never;
+                constructor();
+                public SetUp(): void;
+                public TearDown(): void;
+                public EngineWarningsReachTheLog(): void;
+                public StaticBody_BuildsWithoutWarnings(): void;
+                public DynamicBody_BuildsWithoutWarnings(): void;
+                public DynamicSensor_BuildsWithoutWarnings(): void;
+                public MixedWorld_BuildsWithoutWarnings(): void;
+                public MassFollowsDensity(): void;
+            }
+
             class ProcNoisePlaymodeTests {
                 protected [__keep_incompatibility]: never;
                 constructor();
@@ -3120,6 +3144,86 @@ declare namespace CS {
                     public CopyDirectoryRecursive_PreservesContent(): void;
                     public CopyDirectoryRecursive_CreatesDestinationDirectory(): void;
                     public CopyDirectoryRecursive_SkipsMetaFiles(): void;
+                    public CommitAssets_TwoRunners_BothSurvive(): void;
+                    public CommitAssets_SamePathFromTwoRunners_FailsNamingBoth(): void;
+                    public CommitAssets_CaseOnlyCollision_Fails(): void;
+                    public CommitAssets_RunnerRemovedSinceLastBuild_LeavesNoStaleFile(): void;
+                    public CommitAssets_FailedBuild_LeavesThePreviousFolderIntact(): void;
+                    public CommitAssets_SameSourceTwice_IsNotACollision(): void;
+                    public CommitAssets_RunnerWithoutAssets_ErasesNothing(): void;
+                    public CommitAssets_DestinationCannotBeReplaced_FailsTheBuild(): void;
+                    public CommitAssets_ReadOnlySource_LeavesAWritableDestination(): void;
+                    public CommitAssets_StaleStaging_IsClearedEvenWhenTheBuildCollides(): void;
+                    public CommitAssets_SkipsMetaFiles(): void;
+                }
+
+                class JSRunnerBuildProcessorWindowsTests {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                    public SetUp(): void;
+                    public TearDown(): void;
+                    public CommitAssets_ReadOnlyDestination_IsReplacedRatherThanRefused(): void;
+                    public CommitAssets_UnreplaceableDestination_RaisesBuildFailedException(): void;
+                }
+
+                class JSRunnerBuildSceneListTests {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                    public SetUp(): void;
+                    public TearDown(): void;
+                    public RecordedSceneList_WinsOverBuildSettings(): void;
+                    public RecordedSceneList_KeepsOrderAndEveryEntry(): void;
+                    public RecordedSceneList_IsSpentAfterOneRead(): void;
+                    public NeverRecorded_IsNotTheSameAsRecordedEmpty(): void;
+                    public NoRecordedList_FallsBackToEnabledBuildSettingsScenes(): void;
+                    public NoRecordedList_SkipsDisabledBuildSettingsScenes(): void;
+                    public EmptyRecordedList_ResolvesEmptyBecauseUnityBuildsTheOpenScene(): void;
+                    public NothingAnywhere_ResolvesEmptySoTheOpenSceneIsUsed(): void;
+                }
+
+                class JSRunnerBundleAssignmentTests {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                    public SetUp(): void;
+                    public TearDown(): void;
+                    public TwoRunnersSharingAnApp_BothGetTheBundle(): void;
+                    public ThirdRunnerSharingAnApp_AlsoGetsTheBundle(): void;
+                    public ASingleRunner_StillGetsTheBundleAndSourceMap(): void;
+                    public ARunnerWithAPreassignedBundle_IsLeftAlone(): void;
+                }
+
+                class JSRunnerInitializeReportingTests {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                    public SetUp(): void;
+                    public TearDown(): void;
+                    public InitializeProject_WhenPanelSettingsFolderIsNotAProject_WarnsInsteadOfClaimingSuccess(): void;
+                }
+
+                class JSRunnerPrefabAppTests {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                    public SetUp(): void;
+                    public TearDown(): void;
+                    public APrefabOnlyRunner_GetsItsBundle(): void;
+                    public APrefabOnlyRunner_GetsItsAssets(): void;
+                    public TwoPrefabsSharingAnApp_BothGetTheBundle(): void;
+                    public AnExcludedPrefabRunner_GetsNothingAndWarnsNothing(): void;
+                    public AnExcludedRunnerCannotCollideWithOne_ThatShips(): void;
+                    public ADisabledPrefabRunner_IsSkipped(): void;
+                    public TwoPrefabAppsClaimingOnePath_WarnRatherThanFailTheBuild(): void;
+                    public TwoSceneAppsClaimingOnePath_StillFailTheBuild(): void;
+                    public ASceneAppAndAPrefabApp_WarnAndTheSceneAppKeepsThePath(): void;
+                }
+
+                class JSRunnerUIDocumentOwnershipTests {
+                    protected [__keep_incompatibility]: never;
+                    constructor();
+                    public SetUp(): void;
+                    public TearDown(): void;
+                    public ClearingPanelSettings_KeepsAUIDocumentTheUserAdded(): void;
+                    public InvalidPanelSettingsFolder_KeepsAUIDocumentTheUserAdded(): void;
+                    public ClearingPanelSettings_StillRemovesAUIDocumentJSRunnerAdded(): void;
                 }
 
                 class JsLogSeverityTests {
