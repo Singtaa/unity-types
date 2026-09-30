@@ -47,7 +47,7 @@ pos.x = 10
 const button = new CS.UnityEngine.UIElements.Button()
 button.text = "Click me"
 
-// Physics - generic overloads return the correct type directly
+// Physics: generic overloads return the correct type directly
 const rb = go.AddComponent(CS.UnityEngine.Rigidbody)  // Type: Rigidbody
 rb.mass = 5
 
@@ -59,18 +59,28 @@ audio.Play()
 const request = CS.UnityEngine.Networking.UnityWebRequest.Get("https://api.example.com")
 ```
 
+`index.d.ts` also declares ES6 modules for `UnityEngine`, `UnityEngine/UIElements`,
+`UnityEngine/SceneManagement`, `System` and `OneJS`, which onejs-unity's esbuild
+import transform rewrites to `CS.*`:
+
+```typescript
+import { GameObject } from "UnityEngine"
+import { Button } from "UnityEngine/UIElements"
+```
+
 ## Included Assemblies
 
 | Assembly | Size | Description |
 |----------|------|-------------|
 | `UnityEngine.CoreModule` | ~1 MB | GameObject, Transform, Vector3, Color, MonoBehaviour, etc. |
-| `UnityEngine.UIElementsModule` | ~350 KB | VisualElement, Button, Label, TextField, etc. |
+| `UnityEngine.UIElementsModule` | ~370 KB | VisualElement, Button, Label, TextField, etc. |
 | `UnityEngine.PhysicsModule` | ~88 KB | Rigidbody, Collider, Physics, RaycastHit, etc. |
-| `UnityEngine.Physics2DModule` | ~262 KB | Rigidbody2D, Collider2D, Physics2D, etc. |
-| `UnityEngine.AudioModule` | ~41 KB | AudioSource, AudioClip, AudioListener, etc. |
-| `UnityEngine.InputLegacyModule` | ~9 KB | Input, KeyCode, Touch, etc. |
+| `UnityEngine.Physics2DModule` | ~112 KB | Rigidbody2D, Collider2D, Physics2D, etc. |
+| `UnityEngine.AudioModule` | ~43 KB | AudioSource, AudioClip, AudioListener, etc. |
+| `UnityEngine.InputLegacyModule` | ~8 KB | Input, KeyCode, Touch, etc. |
 | `UnityEngine.UnityWebRequestModule` | ~14 KB | UnityWebRequest, DownloadHandler, etc. |
-| `Unity.InputSystem` | ~342 KB | InputAction, InputDevice, Keyboard, Mouse, etc. |
+| `Unity.InputSystem` | ~338 KB | InputAction, InputDevice, Keyboard, Mouse, etc. |
+| `OneJS` | ~215 KB | The OneJS runtime's public C# types |
 
 ## Helper Types
 
@@ -111,13 +121,13 @@ npm install -D unity-types@~6000.5.0
 If you need types for additional Unity assemblies or your own C# code, use the TypeGenerator in Unity:
 
 ```csharp
-// Via menu: OneJS > Type Generator
+// Via menu: Tools > OneJS > Type Generator
 
 // Or programmatically:
-TypeGenerator.GenerateFromAssembly("output.d.ts", "MyGame.Core");
+OneJS.Editor.TypeGenerator.TypeGenerator.GenerateFromAssembly("output.d.ts", "MyGame.Core");
 
 // Or use the fluent API:
-TypeGenerator.Create()
+OneJS.Editor.TypeGenerator.TypeGenerator.Create()
     .AddType<MyCustomClass>()
     .AddNamespace("MyGame.Systems")
     .Build()
@@ -146,6 +156,10 @@ open and the OneJS MCP bridge up:
 2. `node tools/strip-preamble.mjs`
 
 3. Bump `version` and `description` in `package.json`, and the table above.
+
+4. Commit, then push a `v<version>` tag matching `package.json`: `publish.yml`
+   publishes to npm from the tag (trusted publishing, no token). The registry
+   can lag a few minutes behind a green run.
 
 `index.d.ts` and `_system.d.ts` are hand written and are not regenerated. They
 hold the triple-slash references, the ES6 module declarations, and the `$Ref`,
