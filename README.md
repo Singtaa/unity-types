@@ -155,15 +155,21 @@ open and the OneJS MCP bridge up:
 
 2. `node tools/strip-preamble.mjs`
 
-3. Bump `version` and `description` in `package.json`, and the table above.
+3. `npm install && npm run typecheck`, which compiles `test/` against the
+   package: calls app code makes, so a declaration that loses an overload fails
+   here rather than in someone's project. The publish workflow runs it too.
 
-4. Commit, then push a `v<version>` tag matching `package.json`: `publish.yml`
+4. Bump `version` and `description` in `package.json`, and the table above.
+
+5. Commit, then push a `v<version>` tag matching `package.json`: `publish.yml`
    publishes to npm from the tag (trusted publishing, no token). The registry
    can lag a few minutes behind a green run.
 
 `index.d.ts` and `_system.d.ts` are hand written and are not regenerated. They
-hold the triple-slash references, the ES6 module declarations, and the `$Ref`,
-`$Out` and `$Task` helpers the generated files use.
+hold the triple-slash references, the ES6 module declarations, the `$Ref`,
+`$Out` and `$Task` helpers the generated files use, and the .NET base class
+library types app code reaches for (`System.IO` and the like). When you add an
+overload there, add a call to it in `test/` as well.
 
 Nothing else is hand edited. Earlier releases were: roughly 1300 array types
 and 118 `System.TypeLike` parameters were written in by hand over the

@@ -65,15 +65,13 @@ jobs:
           fi
           echo "Publishing $pkg_version"
 
-      # `npm install`, not `npm ci`: this package has no dependencies and so no
-      # package-lock.json, and npm ci refuses to run without one. Keeping an
-      # install step at all is what makes the gates below mean something the
-      # day this package grows a dependency or a script.
+      # Installs the TypeScript the typecheck below compiles with, the package's
+      # only dependency and a dev one, so nothing is added to what it ships.
       - run: npm install --no-audit --no-fund
 
-      # Every gate is --if-present. unity-types has no scripts object today, so
-      # all four are no-ops, and a script added later starts gating without
-      # anyone editing this file.
+      # Every gate is --if-present. typecheck compiles test/ against the
+      # declarations; the other three are no-ops until a script is added, and
+      # one added later starts gating without anyone editing this file.
       - run: npm run typecheck --if-present
 
       - run: npm run lint --if-present
