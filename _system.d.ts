@@ -581,6 +581,7 @@ declare namespace CS {
                 public static WriteAllBytes($path: string, $bytes: System.Array$1<number>): void;
                 public static Delete($path: string): void;
                 public static Copy($sourceFileName: string, $destFileName: string): void;
+                public static Copy($sourceFileName: string, $destFileName: string, $overwrite: boolean): void;
                 public static Move($sourceFileName: string, $destFileName: string): void;
             }
             class Directory {
@@ -589,7 +590,15 @@ declare namespace CS {
                 public static Delete($path: string): void;
                 public static Delete($path: string, $recursive: boolean): void;
                 public static GetFiles($path: string): System.Array$1<string>;
+                public static GetFiles($path: string, $searchPattern: string): System.Array$1<string>;
+                public static GetFiles($path: string, $searchPattern: string, $searchOption: System.IO.SearchOption): System.Array$1<string>;
                 public static GetDirectories($path: string): System.Array$1<string>;
+                public static GetDirectories($path: string, $searchPattern: string): System.Array$1<string>;
+                public static GetDirectories($path: string, $searchPattern: string, $searchOption: System.IO.SearchOption): System.Array$1<string>;
+            }
+            enum SearchOption {
+                TopDirectoryOnly = 0,
+                AllDirectories = 1
             }
             class DirectoryInfo {
                 public get Name(): string;
@@ -598,6 +607,8 @@ declare namespace CS {
             }
             class Path {
                 public static Combine($path1: string, $path2: string): string;
+                public static Combine($path1: string, $path2: string, $path3: string): string;
+                public static Combine($path1: string, $path2: string, $path3: string, $path4: string): string;
                 public static GetFileName($path: string): string;
                 public static GetDirectoryName($path: string): string;
                 public static GetExtension($path: string): string;
