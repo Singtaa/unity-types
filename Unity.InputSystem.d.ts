@@ -222,7 +222,7 @@ declare namespace CS {
                 Reset(): void;
             }
 
-            interface IInputInteraction<TValue> extends UnityEngine.InputSystem.IInputInteraction {
+            interface IInputInteraction$1<TValue> extends UnityEngine.InputSystem.IInputInteraction {
             }
 
             class InputAction implements System.ICloneable, System.IDisposable {
@@ -640,7 +640,7 @@ declare namespace CS {
                 public static GetExpectedControlLayoutName($composite: string, $part: string): string;
             }
 
-            class InputBindingComposite<TValue> extends UnityEngine.InputSystem.InputBindingComposite {
+            class InputBindingComposite$1<TValue> extends UnityEngine.InputSystem.InputBindingComposite {
                 protected [__keep_incompatibility]: never;
                 public get valueType(): System.Type;
                 public get valueSizeInBytes(): number;
@@ -914,7 +914,7 @@ declare namespace CS {
                 public get_Item($path: string): UnityEngine.InputSystem.InputControl;
             }
 
-            class InputControl<TValue> extends UnityEngine.InputSystem.InputControl {
+            class InputControl$1<TValue> extends UnityEngine.InputSystem.InputControl {
                 protected [__keep_incompatibility]: never;
                 public get valueType(): System.Type;
                 public get valueSizeInBytes(): number;
@@ -1029,7 +1029,7 @@ declare namespace CS {
                 Replaced = 2
             }
 
-            class InputControlList<TControl extends UnityEngine.InputSystem.InputControl> implements System.Collections.Generic.IEnumerable$1<TControl>, System.Collections.IEnumerable, System.Collections.Generic.IList$1<TControl>, System.Collections.Generic.IReadOnlyCollection$1<TControl>, System.Collections.Generic.ICollection$1<TControl>, System.Collections.Generic.IReadOnlyList$1<TControl>, System.IDisposable {
+            class InputControlList$1<TControl extends UnityEngine.InputSystem.InputControl> implements System.Collections.Generic.IEnumerable$1<TControl>, System.Collections.IEnumerable, System.Collections.Generic.IList$1<TControl>, System.Collections.Generic.IReadOnlyCollection$1<TControl>, System.Collections.Generic.ICollection$1<TControl>, System.Collections.Generic.IReadOnlyList$1<TControl>, System.IDisposable {
                 protected [__keep_incompatibility]: never;
                 public get Count(): number;
                 public Capacity: number;
@@ -1113,7 +1113,7 @@ declare namespace CS {
 
             }
 
-            class InputProcessor<TValue> extends UnityEngine.InputSystem.InputProcessor {
+            class InputProcessor$1<TValue> extends UnityEngine.InputSystem.InputProcessor {
                 protected [__keep_incompatibility]: never;
                 public Process($value: TValue, $control: UnityEngine.InputSystem.InputControl): TValue;
                 public ProcessAsObject($value: any, $control: UnityEngine.InputSystem.InputControl): any;
@@ -2968,7 +2968,7 @@ declare namespace CS {
                     public OnDrawVisualElements($root: UnityEngine.UIElements.VisualElement, $onChangedCallback: System.Action): void;
                 }
 
-                class InputParameterEditor<TObject extends object> extends UnityEngine.InputSystem.Editor.InputParameterEditor {
+                class InputParameterEditor$1<TObject extends object> extends UnityEngine.InputSystem.Editor.InputParameterEditor {
                     protected [__keep_incompatibility]: never;
                     public get target(): TObject;
                     public OnDrawVisualElements($root: UnityEngine.UIElements.VisualElement, $onChangedCallback: System.Action): void;
@@ -4359,7 +4359,7 @@ declare namespace CS {
 
                 }
 
-                class InputStateHistory<TValue> extends UnityEngine.InputSystem.LowLevel.InputStateHistory implements System.Collections.Generic.IEnumerable$1<UnityEngine.InputSystem.LowLevel.InputStateHistory$1.Record$1<TValue>>, System.Collections.Generic.IReadOnlyCollection$1<UnityEngine.InputSystem.LowLevel.InputStateHistory$1.Record$1<TValue>>, System.Collections.Generic.IReadOnlyList$1<UnityEngine.InputSystem.LowLevel.InputStateHistory$1.Record$1<TValue>> {
+                class InputStateHistory$1<TValue> extends UnityEngine.InputSystem.LowLevel.InputStateHistory implements System.Collections.Generic.IEnumerable$1<UnityEngine.InputSystem.LowLevel.InputStateHistory$1.Record$1<TValue>>, System.Collections.Generic.IReadOnlyCollection$1<UnityEngine.InputSystem.LowLevel.InputStateHistory$1.Record$1<TValue>>, System.Collections.Generic.IReadOnlyList$1<UnityEngine.InputSystem.LowLevel.InputStateHistory$1.Record$1<TValue>> {
                     protected [__keep_incompatibility]: never;
                     constructor($maxStateSizeInBytes?: number | null);
                     constructor($control: UnityEngine.InputSystem.InputControl$1<TValue>);
@@ -4370,8 +4370,8 @@ declare namespace CS {
                     public get_Item($index: number): UnityEngine.InputSystem.LowLevel.InputStateHistory$1.Record$1<TValue>;
                     public set_Item($index: number, value: UnityEngine.InputSystem.LowLevel.InputStateHistory$1.Record$1<TValue>): void;
                 }
-                namespace InputStateHistory {
-                    class Record<TValue> implements System.IEquatable$1<UnityEngine.InputSystem.LowLevel.InputStateHistory$1.Record$1<TValue>> {
+                namespace InputStateHistory$1 {
+                    class Record$1<TValue> implements System.IEquatable$1<UnityEngine.InputSystem.LowLevel.InputStateHistory$1.Record$1<TValue>> {
                         protected [__keep_incompatibility]: never;
                         public get valid(): boolean;
                         public get owner(): UnityEngine.InputSystem.LowLevel.InputStateHistory$1<TValue>;
@@ -4960,7 +4960,7 @@ declare namespace CS {
                     public static FromDouble($value: number): UnityEngine.InputSystem.Utilities.PrimitiveValue;
                 }
 
-                class ReadOnlyArray<TValue> implements System.Collections.Generic.IEnumerable$1<TValue>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<TValue>, System.Collections.Generic.IReadOnlyList$1<TValue> {
+                class ReadOnlyArray$1<TValue> implements System.Collections.Generic.IEnumerable$1<TValue>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<TValue>, System.Collections.Generic.IReadOnlyList$1<TValue> {
                     protected [__keep_incompatibility]: never;
                     public get Count(): number;
                     constructor($array: System.Array$1<TValue>);
@@ -4970,8 +4970,8 @@ declare namespace CS {
                     public GetEnumerator(): UnityEngine.InputSystem.Utilities.ReadOnlyArray$1.Enumerator$1<TValue>;
                     public get_Item($index: number): TValue;
                 }
-                namespace ReadOnlyArray {
-                    class Enumerator<TValue> implements System.Collections.Generic.IEnumerator$1<TValue>, System.Collections.IEnumerator, System.IDisposable {
+                namespace ReadOnlyArray$1 {
+                    class Enumerator$1<TValue> implements System.Collections.Generic.IEnumerator$1<TValue>, System.Collections.IEnumerator, System.IDisposable {
                         protected [__keep_incompatibility]: never;
                         public get Current(): TValue;
                         public Dispose(): void;

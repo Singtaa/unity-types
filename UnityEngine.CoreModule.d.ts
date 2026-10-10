@@ -311,7 +311,7 @@ declare namespace CS {
                 ClearMemory = 1
             }
 
-            class NativeArray<T> implements System.IEquatable$1<Unity.Collections.NativeArray$1<T>>, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.IDisposable {
+            class NativeArray$1<T> implements System.IEquatable$1<Unity.Collections.NativeArray$1<T>>, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.IDisposable {
                 protected [__keep_incompatibility]: never;
                 public get Length(): number;
                 public get IsCreated(): boolean;
@@ -358,8 +358,8 @@ declare namespace CS {
                 public get_Item($index: number): T;
                 public set_Item($index: number, value: T): void;
             }
-            namespace NativeArray {
-                class Enumerator<T> implements System.Collections.Generic.IEnumerator$1<T>, System.Collections.IEnumerator, System.IDisposable {
+            namespace NativeArray$1 {
+                class Enumerator$1<T> implements System.Collections.Generic.IEnumerator$1<T>, System.Collections.IEnumerator, System.IDisposable {
                     protected [__keep_incompatibility]: never;
                     public get Current(): T;
                     constructor($array: $Ref<Unity.Collections.NativeArray$1<T>>);
@@ -368,7 +368,7 @@ declare namespace CS {
                     public Reset(): void;
                 }
 
-                class ReadOnly<T> implements System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable {
+                class ReadOnly$1<T> implements System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable {
                     protected [__keep_incompatibility]: never;
                     public get Length(): number;
                     public get IsCreated(): boolean;
@@ -377,12 +377,12 @@ declare namespace CS {
                     public ToArray(): System.Array$1<T>;
                     public Reinterpret<U>(): Unity.Collections.NativeArray$1.ReadOnly$1<U>;
                     public UnsafeElementAt($index: number): $Ref<T>;
-                    public GetEnumerator(): Unity.Collections.NativeArray$1.ReadOnly.Enumerator$1<T>;
+                    public GetEnumerator(): Unity.Collections.NativeArray$1.ReadOnly$1.Enumerator$1<T>;
                     public AsReadOnlySpan(): System.ReadOnlySpan$1<T>;
                     public get_Item($index: number): T;
                 }
-                namespace ReadOnly {
-                    class Enumerator<T> implements System.Collections.Generic.IEnumerator$1<T>, System.Collections.IEnumerator, System.IDisposable {
+                namespace ReadOnly$1 {
+                    class Enumerator$1<T> implements System.Collections.Generic.IEnumerator$1<T>, System.Collections.IEnumerator, System.IDisposable {
                         protected [__keep_incompatibility]: never;
                         public get Current(): T;
                         constructor($array: $Ref<Unity.Collections.NativeArray$1.ReadOnly$1<T>>);
@@ -405,7 +405,7 @@ declare namespace CS {
                 public static Slice<T>($start: number, $length: number): Unity.Collections.NativeSlice$1<T>;
             }
 
-            class NativeSlice<T> implements System.IEquatable$1<Unity.Collections.NativeSlice$1<T>>, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable {
+            class NativeSlice$1<T> implements System.IEquatable$1<Unity.Collections.NativeSlice$1<T>>, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable {
                 protected [__keep_incompatibility]: never;
                 public get Stride(): number;
                 public get Length(): number;
@@ -429,8 +429,8 @@ declare namespace CS {
                 public get_Item($index: number): T;
                 public set_Item($index: number, value: T): void;
             }
-            namespace NativeSlice {
-                class Enumerator<T> implements System.Collections.Generic.IEnumerator$1<T>, System.Collections.IEnumerator, System.IDisposable {
+            namespace NativeSlice$1 {
+                class Enumerator$1<T> implements System.Collections.Generic.IEnumerator$1<T>, System.Collections.IEnumerator, System.IDisposable {
                     protected [__keep_incompatibility]: never;
                     public get Current(): T;
                     constructor($array: $Ref<Unity.Collections.NativeSlice$1<T>>);
@@ -1042,12 +1042,12 @@ declare namespace CS {
         namespace Jobs {
             namespace LowLevel {
                 namespace Unsafe {
-                    class BatchQueryJob<CommandT, ResultT> {
+                    class BatchQueryJob$2<CommandT, ResultT> {
                         protected [__keep_incompatibility]: never;
                         constructor($commands: Unity.Collections.NativeArray$1<CommandT>, $results: Unity.Collections.NativeArray$1<ResultT>);
                     }
 
-                    class BatchQueryJobStruct<T> {
+                    class BatchQueryJobStruct$1<T> {
                         protected [__keep_incompatibility]: never;
                         public static Initialize(): number;
                     }
@@ -2527,7 +2527,7 @@ declare namespace CS {
             protected [__keep_incompatibility]: never;
         }
 
-        class ExposedReference<T extends UnityEngine.Object> {
+        class ExposedReference$1<T extends UnityEngine.Object> {
             protected [__keep_incompatibility]: never;
             public exposedName: UnityEngine.PropertyName;
             public defaultValue: UnityEngine.Object;
@@ -7912,13 +7912,13 @@ declare namespace CS {
             public static SetIntegrationTimeMS($integrationTimeMS: number): void;
         }
 
-        class AsyncInstantiateOperation<T> extends UnityEngine.AsyncInstantiateOperation {
+        class AsyncInstantiateOperation$1<T> extends UnityEngine.AsyncInstantiateOperation {
             protected [__keep_incompatibility]: never;
             public get Result(): System.Array$1<T>;
             public GetAwaiter(): UnityEngine.AsyncInstantiateOperation$1.Awaiter$1<T>;
         }
-        namespace AsyncInstantiateOperation {
-            class Awaiter<T> implements System.Runtime.CompilerServices.INotifyCompletion {
+        namespace AsyncInstantiateOperation$1 {
+            class Awaiter$1<T> implements System.Runtime.CompilerServices.INotifyCompletion {
                 protected [__keep_incompatibility]: never;
                 public get IsCompleted(): boolean;
                 constructor($op: UnityEngine.AsyncInstantiateOperation$1<T>);
@@ -8049,7 +8049,7 @@ declare namespace CS {
                 public SetResult(): void;
             }
 
-            class AwaitableAsyncMethodBuilder<T> {
+            class AwaitableAsyncMethodBuilder$1<T> {
                 protected [__keep_incompatibility]: never;
                 public get Task(): UnityEngine.Awaitable$1<T>;
                 public static Create(): UnityEngine.Awaitable.AwaitableAsyncMethodBuilder$1<T>;
@@ -8113,7 +8113,7 @@ declare namespace CS {
             public Reset(): void;
         }
 
-        class AwaitableCompletionSource<T> {
+        class AwaitableCompletionSource$1<T> {
             protected [__keep_incompatibility]: never;
             public get Awaitable(): UnityEngine.Awaitable$1<T>;
             constructor();
@@ -8126,13 +8126,13 @@ declare namespace CS {
             public Reset(): void;
         }
 
-        class Awaitable<T> {
+        class Awaitable$1<T> {
             protected [__keep_incompatibility]: never;
             public Cancel(): void;
             public GetAwaiter(): UnityEngine.Awaitable$1.Awaiter$1<T>;
         }
-        namespace Awaitable {
-            class Awaiter<T> implements System.Runtime.CompilerServices.INotifyCompletion {
+        namespace Awaitable$1 {
+            class Awaiter$1<T> implements System.Runtime.CompilerServices.INotifyCompletion {
                 protected [__keep_incompatibility]: never;
                 public get IsCompleted(): boolean;
                 constructor($coroutine: UnityEngine.Awaitable$1<T>);
@@ -8346,7 +8346,7 @@ declare namespace CS {
             public static GetMask(...layerNames: string[]): number;
         }
 
-        class LazyLoadReference<T extends UnityEngine.Object> {
+        class LazyLoadReference$1<T extends UnityEngine.Object> {
             protected [__keep_incompatibility]: never;
             public get isSet(): boolean;
             public get isBroken(): boolean;
@@ -10038,12 +10038,12 @@ declare namespace CS {
                 public Invoke(): void;
             }
 
-            interface UnityAction<T0> {
+            interface UnityAction$1<T0> {
                 ($arg0: T0): void;
                 Invoke?: ($arg0: T0) => void;
             }
 
-            class UnityEvent<T0> extends UnityEngine.Events.UnityEventBase {
+            class UnityEvent$1<T0> extends UnityEngine.Events.UnityEventBase {
                 protected [__keep_incompatibility]: never;
                 constructor();
                 public AddListener($call: UnityEngine.Events.UnityAction$1<T0>): void;
@@ -10051,12 +10051,12 @@ declare namespace CS {
                 public Invoke($arg0: T0): void;
             }
 
-            interface UnityAction<T0, T1> {
+            interface UnityAction$2<T0, T1> {
                 ($arg0: T0, $arg1: T1): void;
                 Invoke?: ($arg0: T0, $arg1: T1) => void;
             }
 
-            class UnityEvent<T0, T1> extends UnityEngine.Events.UnityEventBase {
+            class UnityEvent$2<T0, T1> extends UnityEngine.Events.UnityEventBase {
                 protected [__keep_incompatibility]: never;
                 constructor();
                 public AddListener($call: UnityEngine.Events.UnityAction$2<T0, T1>): void;
@@ -10064,12 +10064,12 @@ declare namespace CS {
                 public Invoke($arg0: T0, $arg1: T1): void;
             }
 
-            interface UnityAction<T0, T1, T2> {
+            interface UnityAction$3<T0, T1, T2> {
                 ($arg0: T0, $arg1: T1, $arg2: T2): void;
                 Invoke?: ($arg0: T0, $arg1: T1, $arg2: T2) => void;
             }
 
-            class UnityEvent<T0, T1, T2> extends UnityEngine.Events.UnityEventBase {
+            class UnityEvent$3<T0, T1, T2> extends UnityEngine.Events.UnityEventBase {
                 protected [__keep_incompatibility]: never;
                 constructor();
                 public AddListener($call: UnityEngine.Events.UnityAction$3<T0, T1, T2>): void;
@@ -10077,12 +10077,12 @@ declare namespace CS {
                 public Invoke($arg0: T0, $arg1: T1, $arg2: T2): void;
             }
 
-            interface UnityAction<T0, T1, T2, T3> {
+            interface UnityAction$4<T0, T1, T2, T3> {
                 ($arg0: T0, $arg1: T1, $arg2: T2, $arg3: T3): void;
                 Invoke?: ($arg0: T0, $arg1: T1, $arg2: T2, $arg3: T3) => void;
             }
 
-            class UnityEvent<T0, T1, T2, T3> extends UnityEngine.Events.UnityEventBase {
+            class UnityEvent$4<T0, T1, T2, T3> extends UnityEngine.Events.UnityEventBase {
                 protected [__keep_incompatibility]: never;
                 constructor();
                 public AddListener($call: UnityEngine.Events.UnityAction$4<T0, T1, T2, T3>): void;
@@ -11069,7 +11069,7 @@ declare namespace CS {
                 public Equals($obj: any): boolean;
             }
 
-            class BufferSlice<T> implements System.IEquatable$1<UnityEngine.LightTransport.BufferSlice$1<T>> {
+            class BufferSlice$1<T> implements System.IEquatable$1<UnityEngine.LightTransport.BufferSlice$1<T>> {
                 protected [__keep_incompatibility]: never;
                 public Id: UnityEngine.LightTransport.BufferID;
                 public Offset: bigint;
@@ -11548,7 +11548,7 @@ declare namespace CS {
                 public Equals($other: UnityEngine.Playables.PlayableOutputHandle): boolean;
             }
 
-            class ScriptPlayable<T extends UnityEngine.Playables.IPlayableBehaviour> implements System.IEquatable$1<UnityEngine.Playables.ScriptPlayable$1<T>>, UnityEngine.Playables.IPlayable {
+            class ScriptPlayable$1<T extends UnityEngine.Playables.IPlayableBehaviour> implements System.IEquatable$1<UnityEngine.Playables.ScriptPlayable$1<T>>, UnityEngine.Playables.IPlayable {
                 protected [__keep_incompatibility]: never;
                 public static get Null(): UnityEngine.Playables.ScriptPlayable$1<T>;
                 public static Create($graph: UnityEngine.Playables.PlayableGraph, $inputCount?: number): UnityEngine.Playables.ScriptPlayable$1<T>;
@@ -12198,7 +12198,7 @@ declare namespace CS {
     }
     namespace UnityEngine {
         namespace Pool {
-            class CollectionPool<TCollection extends System.Collections.Generic.ICollection$1<TItem>, TItem> {
+            class CollectionPool$2<TCollection extends System.Collections.Generic.ICollection$1<TItem>, TItem> {
                 protected [__keep_incompatibility]: never;
                 constructor();
                 public static Get(): TCollection;
@@ -12206,22 +12206,22 @@ declare namespace CS {
                 public static Release($toRelease: TCollection): void;
             }
 
-            class ListPool<T> extends UnityEngine.Pool.CollectionPool$2<System.Collections.Generic.List$1<T>, T> {
+            class ListPool$1<T> extends UnityEngine.Pool.CollectionPool$2<System.Collections.Generic.List$1<T>, T> {
                 protected [__keep_incompatibility]: never;
                 constructor();
             }
 
-            class HashSetPool<T> extends UnityEngine.Pool.CollectionPool$2<System.Collections.Generic.HashSet$1<T>, T> {
+            class HashSetPool$1<T> extends UnityEngine.Pool.CollectionPool$2<System.Collections.Generic.HashSet$1<T>, T> {
                 protected [__keep_incompatibility]: never;
                 constructor();
             }
 
-            class DictionaryPool<TKey, TValue> extends UnityEngine.Pool.CollectionPool$2<System.Collections.Generic.Dictionary$2<TKey, TValue>, System.Collections.Generic.KeyValuePair$2<TKey, TValue>> {
+            class DictionaryPool$2<TKey, TValue> extends UnityEngine.Pool.CollectionPool$2<System.Collections.Generic.Dictionary$2<TKey, TValue>, System.Collections.Generic.KeyValuePair$2<TKey, TValue>> {
                 protected [__keep_incompatibility]: never;
                 constructor();
             }
 
-            class GenericPool<T extends object> {
+            class GenericPool$1<T extends object> {
                 protected [__keep_incompatibility]: never;
                 constructor();
                 public static Get(): T;
@@ -12229,7 +12229,7 @@ declare namespace CS {
                 public static Release($toRelease: T): void;
             }
 
-            interface IObjectPool<T extends object> {
+            interface IObjectPool$1<T extends object> {
                 get CountInactive(): number;
                 Get(): T;
                 Get($v: $Out<T>): UnityEngine.Pool.PooledObject$1<T>;
@@ -12237,7 +12237,7 @@ declare namespace CS {
                 Clear(): void;
             }
 
-            class LinkedPool<T extends object> implements UnityEngine.Pool.IObjectPool$1<T>, UnityEngine.Pool.IPool, System.IDisposable {
+            class LinkedPool$1<T extends object> implements UnityEngine.Pool.IObjectPool$1<T>, UnityEngine.Pool.IPool, System.IDisposable {
                 protected [__keep_incompatibility]: never;
                 public get CountInactive(): number;
                 constructor($createFunc: System.Func$1<T>, $actionOnGet?: System.Action$1<T>, $actionOnRelease?: System.Action$1<T>, $actionOnDestroy?: System.Action$1<T>, $collectionCheck?: boolean, $maxSize?: number);
@@ -12248,7 +12248,7 @@ declare namespace CS {
                 public Dispose(): void;
             }
 
-            class ObjectPool<T extends object> implements UnityEngine.Pool.IObjectPool$1<T>, UnityEngine.Pool.IPool, System.IDisposable {
+            class ObjectPool$1<T extends object> implements UnityEngine.Pool.IObjectPool$1<T>, UnityEngine.Pool.IPool, System.IDisposable {
                 protected [__keep_incompatibility]: never;
                 public get CountAll(): number;
                 public get CountActive(): number;
@@ -12261,12 +12261,12 @@ declare namespace CS {
                 public Dispose(): void;
             }
 
-            class PooledObject<T extends object> implements System.IDisposable {
+            class PooledObject$1<T extends object> implements System.IDisposable {
                 protected [__keep_incompatibility]: never;
                 constructor($value: T, $pool: UnityEngine.Pool.IObjectPool$1<T>);
             }
 
-            class UnsafeGenericPool<T extends object> {
+            class UnsafeGenericPool$1<T extends object> {
                 protected [__keep_incompatibility]: never;
                 public static Get(): T;
                 public static Get($value: $Out<T>): UnityEngine.Pool.PooledObject$1<T>;
@@ -15002,7 +15002,7 @@ declare namespace CS {
                 public get prefixedRenderingLayerMaskNames(): System.Array$1<string>;
             }
 
-            class RenderPipelineAsset<TRenderPipeline extends UnityEngine.Rendering.RenderPipeline> extends UnityEngine.Rendering.RenderPipelineAsset {
+            class RenderPipelineAsset$1<TRenderPipeline extends UnityEngine.Rendering.RenderPipeline> extends UnityEngine.Rendering.RenderPipelineAsset {
                 protected [__keep_incompatibility]: never;
                 public get pipelineType(): System.Type;
                 public get renderPipelineShaderTag(): string;
