@@ -563,7 +563,7 @@ declare namespace CS {
                     public get length(): Unity.IntegerTime.DiscreteTime | null;
                 }
 
-                interface IControl<TRealtime extends UnityEngine.Audio.ProcessorInstance.IRealtime> extends UnityEngine.Audio.ProcessorInstance.IControl$1<TRealtime> {
+                interface IControl$1<TRealtime extends UnityEngine.Audio.ProcessorInstance.IRealtime> extends UnityEngine.Audio.ProcessorInstance.IControl$1<TRealtime> {
                     Configure($context: UnityEngine.Audio.ControlContext, $realtime: $Ref<TRealtime>, $format: $Ref<UnityEngine.Audio.AudioFormat>, $setup: $Out<UnityEngine.Audio.GeneratorInstance.Setup>, $properties: $Ref<UnityEngine.Audio.GeneratorInstance.Properties>): void;
                 }
 
@@ -617,7 +617,7 @@ declare namespace CS {
                     Update($context: UnityEngine.Audio.ProcessorInstance.UpdatedDataContext, $pipe: UnityEngine.Audio.ProcessorInstance.Pipe): void;
                 }
 
-                interface IControl<TRealtime extends UnityEngine.Audio.ProcessorInstance.IRealtime> {
+                interface IControl$1<TRealtime extends UnityEngine.Audio.ProcessorInstance.IRealtime> {
                     Dispose($context: UnityEngine.Audio.ControlContext, $realtime: $Ref<TRealtime>): void;
                     Update($context: UnityEngine.Audio.ControlContext, $pipe: UnityEngine.Audio.ProcessorInstance.Pipe): void;
                     OnMessage($context: UnityEngine.Audio.ControlContext, $pipe: UnityEngine.Audio.ProcessorInstance.Pipe, $message: UnityEngine.Audio.ProcessorInstance.Message): UnityEngine.Audio.ProcessorInstance.Response;
@@ -655,7 +655,7 @@ declare namespace CS {
                 interface IProcessor {
                 }
 
-                interface IControl<TRealtime extends UnityEngine.Audio.ProcessorInstance.IRealtime> extends UnityEngine.Audio.ProcessorInstance.IControl$1<TRealtime> {
+                interface IControl$1<TRealtime extends UnityEngine.Audio.ProcessorInstance.IRealtime> extends UnityEngine.Audio.ProcessorInstance.IControl$1<TRealtime> {
                     Configure($context: UnityEngine.Audio.ControlContext, $realtime: $Ref<TRealtime>, $format: $Ref<UnityEngine.Audio.AudioFormat>): Unity.Jobs.JobHandle;
                 }
 

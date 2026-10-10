@@ -335,7 +335,7 @@ declare namespace CS {
                 public remove_itemIndexChanged(handler: System.Action$2<number, number>): void;
             }
 
-            class DefaultMultiColumnTreeViewController<T> extends UnityEngine.UIElements.MultiColumnTreeViewController implements UnityEngine.UIElements.IDefaultTreeViewController$1<T> {
+            class DefaultMultiColumnTreeViewController$1<T> extends UnityEngine.UIElements.MultiColumnTreeViewController implements UnityEngine.UIElements.IDefaultTreeViewController$1<T> {
                 protected [__keep_incompatibility]: never;
                 public itemsSource: System.Collections.IList;
                 constructor($columns: UnityEngine.UIElements.Columns, $sortDescriptions: UnityEngine.UIElements.SortColumnDescriptions, $sortedColumns: System.Collections.Generic.List$1<UnityEngine.UIElements.SortColumnDescription>);
@@ -350,7 +350,7 @@ declare namespace CS {
                 public GetItemForIndex($index: number): any;
             }
 
-            class DefaultTreeViewController<T> extends UnityEngine.UIElements.TreeViewController implements UnityEngine.UIElements.IDefaultTreeViewController$1<T> {
+            class DefaultTreeViewController$1<T> extends UnityEngine.UIElements.TreeViewController implements UnityEngine.UIElements.IDefaultTreeViewController$1<T> {
                 protected [__keep_incompatibility]: never;
                 public itemsSource: System.Collections.IList;
                 constructor();
@@ -419,7 +419,7 @@ declare namespace CS {
 
             }
 
-            class BaseCompositeField<TValueType, TField extends UnityEngine.UIElements.TextValueField$1<TFieldValue>, TFieldValue> extends UnityEngine.UIElements.BaseField$1<TValueType> implements UnityEngine.UIElements.IDelayedField {
+            class BaseCompositeField$3<TValueType, TField extends UnityEngine.UIElements.TextValueField$1<TFieldValue>, TFieldValue> extends UnityEngine.UIElements.BaseField$1<TValueType> implements UnityEngine.UIElements.IDelayedField {
                 protected [__keep_incompatibility]: never;
                 public static readonly ussClassName: string;
                 public static readonly labelUssClassName: string;
@@ -433,8 +433,8 @@ declare namespace CS {
                 public isDelayed: boolean;
                 public SetValueWithoutNotify($newValue: TValueType): void;
             }
-            namespace BaseCompositeField {
-                class UxmlSerializedData<TValueType, TField extends UnityEngine.UIElements.TextValueField$1<TFieldValue>, TFieldValue> extends UnityEngine.UIElements.BaseField$1.UxmlSerializedData$1<TValueType> {
+            namespace BaseCompositeField$3 {
+                class UxmlSerializedData$3<TValueType, TField extends UnityEngine.UIElements.TextValueField$1<TFieldValue>, TFieldValue> extends UnityEngine.UIElements.BaseField$1.UxmlSerializedData$1<TValueType> {
                     protected [__keep_incompatibility]: never;
                     public static Register(): void;
                     public Deserialize($obj: any): void;
@@ -505,7 +505,7 @@ declare namespace CS {
 
             }
 
-            class BasePopupField<TValueType, TValueChoice> extends UnityEngine.UIElements.BaseField$1<TValueType> {
+            class BasePopupField$2<TValueType, TValueChoice> extends UnityEngine.UIElements.BaseField$1<TValueType> {
                 protected [__keep_incompatibility]: never;
                 public static readonly ussClassName: string;
                 public static readonly textUssClassName: string;
@@ -522,7 +522,7 @@ declare namespace CS {
                 Vertical = 1
             }
 
-            class BaseSlider<TValueType extends System.IComparable$1<TValueType>> extends UnityEngine.UIElements.BaseField$1<TValueType> implements UnityEngine.UIElements.IValueField$1<TValueType> {
+            class BaseSlider$1<TValueType extends System.IComparable$1<TValueType>> extends UnityEngine.UIElements.BaseField$1<TValueType> implements UnityEngine.UIElements.IValueField$1<TValueType> {
                 protected [__keep_incompatibility]: never;
                 public static readonly ussClassName: string;
                 public static readonly labelUssClassName: string;
@@ -549,21 +549,21 @@ declare namespace CS {
                 public SetValueWithoutNotify($newValue: TValueType): void;
                 public AdjustDragElement($factor: number): void;
             }
-            namespace BaseSlider {
-                class UxmlSerializedData<TValueType extends System.IComparable$1<TValueType>> extends UnityEngine.UIElements.BaseField$1.UxmlSerializedData$1<TValueType> {
+            namespace BaseSlider$1 {
+                class UxmlSerializedData$1<TValueType extends System.IComparable$1<TValueType>> extends UnityEngine.UIElements.BaseField$1.UxmlSerializedData$1<TValueType> {
                     protected [__keep_incompatibility]: never;
                     public static Register(): void;
                     public Deserialize($obj: any): void;
                 }
 
                 /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
-                class UxmlTraits<TValueType extends System.IComparable$1<TValueType>> extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<TValueType> {
+                class UxmlTraits$1<TValueType extends System.IComparable$1<TValueType>> extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<TValueType> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
 
                 /** @deprecated UxmlTraits<TValueUxmlAttributeType> is deprecated and will be removed. Use UxmlElementAttribute instead. */
-                class UxmlTraits<TValueType extends System.IComparable$1<TValueType>, TValueUxmlAttributeType extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<TValueType>> extends UnityEngine.UIElements.BaseFieldTraits$2<TValueType, TValueUxmlAttributeType> {
+                class UxmlTraits$2<TValueType extends System.IComparable$1<TValueType>, TValueUxmlAttributeType extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<TValueType>> extends UnityEngine.UIElements.BaseFieldTraits$2<TValueType, TValueUxmlAttributeType> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
@@ -1486,7 +1486,7 @@ declare namespace CS {
                 showMixedValue: boolean;
             }
 
-            interface INotifyValueChanged<T> {
+            interface INotifyValueChanged$1<T> {
                 value: T;
                 SetValueWithoutNotify($newValue: T): void;
             }
@@ -1497,7 +1497,7 @@ declare namespace CS {
                 public static UnregisterValueChangedCallback<T>($callback: UnityEngine.UIElements.EventCallback$1<UnityEngine.UIElements.ChangeEvent$1<T>>): boolean;
             }
 
-            class BaseField<TValueType> extends UnityEngine.UIElements.BindableElement implements UnityEngine.UIElements.IMixedValueSupport, UnityEngine.UIElements.INotifyValueChanged$1<TValueType>, UnityEngine.UIElements.IPrefixLabel, UnityEngine.UIElements.IEditableElement {
+            class BaseField$1<TValueType> extends UnityEngine.UIElements.BindableElement implements UnityEngine.UIElements.IMixedValueSupport, UnityEngine.UIElements.INotifyValueChanged$1<TValueType>, UnityEngine.UIElements.IPrefixLabel, UnityEngine.UIElements.IEditableElement {
                 protected [__keep_incompatibility]: never;
                 public static readonly ussClassName: string;
                 public static readonly labelUssClassName: string;
@@ -1512,15 +1512,15 @@ declare namespace CS {
                 public showMixedValue: boolean;
                 public SetValueWithoutNotify($newValue: TValueType): void;
             }
-            namespace BaseField {
-                class UxmlSerializedData<TValueType> extends UnityEngine.UIElements.BindableElement.UxmlSerializedData {
+            namespace BaseField$1 {
+                class UxmlSerializedData$1<TValueType> extends UnityEngine.UIElements.BindableElement.UxmlSerializedData {
                     protected [__keep_incompatibility]: never;
                     public static Register(): void;
                     public Deserialize($obj: any): void;
                 }
 
                 /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
-                class UxmlTraits<TValueType> extends UnityEngine.UIElements.BindableElement.UxmlTraits {
+                class UxmlTraits$1<TValueType> extends UnityEngine.UIElements.BindableElement.UxmlTraits {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
@@ -1563,7 +1563,7 @@ declare namespace CS {
 
             }
 
-            class TextInputBaseField<TValueType> extends UnityEngine.UIElements.BaseField$1<TValueType> implements UnityEngine.UIElements.IDelayedField {
+            class TextInputBaseField$1<TValueType> extends UnityEngine.UIElements.BaseField$1<TValueType> implements UnityEngine.UIElements.IDelayedField {
                 protected [__keep_incompatibility]: never;
                 public static readonly ussClassName: string;
                 public static readonly labelUssClassName: string;
@@ -1604,8 +1604,8 @@ declare namespace CS {
                 public MeasureTextSize($textToMeasure: string, $width: number, $widthMode: UnityEngine.UIElements.VisualElement.MeasureMode, $height: number, $heightMode: UnityEngine.UIElements.VisualElement.MeasureMode): UnityEngine.Vector2;
                 public SetValueWithoutNotify($newValue: TValueType): void;
             }
-            namespace TextInputBaseField {
-                class UxmlSerializedData<TValueType> extends UnityEngine.UIElements.BaseField$1.UxmlSerializedData$1<TValueType> {
+            namespace TextInputBaseField$1 {
+                class UxmlSerializedData$1<TValueType> extends UnityEngine.UIElements.BaseField$1.UxmlSerializedData$1<TValueType> {
                     protected [__keep_incompatibility]: never;
                     public static Register(): void;
                     public CreateInstance(): any;
@@ -1613,7 +1613,7 @@ declare namespace CS {
                 }
 
                 /** @deprecated UxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */
-                class UxmlTraits<TValueType> extends UnityEngine.UIElements.BaseFieldTraits$2<string, UnityEngine.UIElements.UxmlStringAttributeDescription> {
+                class UxmlTraits$1<TValueType> extends UnityEngine.UIElements.BaseFieldTraits$2<string, UnityEngine.UIElements.UxmlStringAttributeDescription> {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
@@ -1775,7 +1775,7 @@ declare namespace CS {
 
             }
 
-            class BaseMaskField<TChoice> extends UnityEngine.UIElements.BasePopupField$2<TChoice, string> {
+            class BaseMaskField$1<TChoice> extends UnityEngine.UIElements.BasePopupField$2<TChoice, string> {
                 protected [__keep_incompatibility]: never;
                 public choices: System.Collections.Generic.List$1<string>;
                 public choicesMasks: System.Collections.Generic.List$1<number>;
@@ -2092,7 +2092,7 @@ declare namespace CS {
 
             }
 
-            class PopupField<T> extends UnityEngine.UIElements.BasePopupField$2<T, T> {
+            class PopupField$1<T> extends UnityEngine.UIElements.BasePopupField$2<T, T> {
                 protected [__keep_incompatibility]: never;
                 public static readonly ussClassName: string;
                 public static readonly labelUssClassName: string;
@@ -2604,14 +2604,14 @@ declare namespace CS {
                 Slow = 2
             }
 
-            interface IValueField<T> {
+            interface IValueField$1<T> {
                 value: T;
                 ApplyInputDeviceDelta($delta: UnityEngine.Vector3, $speed: UnityEngine.UIElements.DeltaSpeed, $startValue: T): void;
                 StartDragging(): void;
                 StopDragging(): void;
             }
 
-            class TextValueField<TValueType> extends UnityEngine.UIElements.TextInputBaseField$1<TValueType> implements UnityEngine.UIElements.IValueField$1<TValueType> {
+            class TextValueField$1<TValueType> extends UnityEngine.UIElements.TextInputBaseField$1<TValueType> implements UnityEngine.UIElements.IValueField$1<TValueType> {
                 protected [__keep_incompatibility]: never;
                 public supportExpressions: boolean;
                 public formatString: string;
@@ -2621,8 +2621,8 @@ declare namespace CS {
                 public SetValueWithoutNotify($newValue: TValueType): void;
                 public ClearValue(): void;
             }
-            namespace TextValueField {
-                class UxmlSerializedData<TValueType> extends UnityEngine.UIElements.TextInputBaseField$1.UxmlSerializedData$1<TValueType> {
+            namespace TextValueField$1 {
+                class UxmlSerializedData$1<TValueType> extends UnityEngine.UIElements.TextInputBaseField$1.UxmlSerializedData$1<TValueType> {
                     protected [__keep_incompatibility]: never;
                     public static Register(): void;
                     public Deserialize($obj: any): void;
@@ -2774,7 +2774,7 @@ declare namespace CS {
 
             }
 
-            class TreeViewItemData<T> {
+            class TreeViewItemData$1<T> {
                 protected [__keep_incompatibility]: never;
                 public get id(): number;
                 public get data(): T;
@@ -3033,7 +3033,7 @@ declare namespace CS {
             interface IPointerCaptureEvent {
             }
 
-            class PointerCaptureEventBase<T extends UnityEngine.UIElements.PointerCaptureEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.IPointerCaptureEventInternal, UnityEngine.UIElements.IPointerCaptureEvent {
+            class PointerCaptureEventBase$1<T extends UnityEngine.UIElements.PointerCaptureEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.IPointerCaptureEventInternal, UnityEngine.UIElements.IPointerCaptureEvent {
                 protected [__keep_incompatibility]: never;
                 public get relatedTarget(): UnityEngine.UIElements.IEventHandler;
                 public get pointerId(): number;
@@ -3053,7 +3053,7 @@ declare namespace CS {
             interface IMouseCaptureEvent {
             }
 
-            class MouseCaptureEventBase<T extends UnityEngine.UIElements.MouseCaptureEventBase$1<T>> extends UnityEngine.UIElements.PointerCaptureEventBase$1<T> implements UnityEngine.UIElements.IMouseCaptureEvent {
+            class MouseCaptureEventBase$1<T extends UnityEngine.UIElements.MouseCaptureEventBase$1<T>> extends UnityEngine.UIElements.PointerCaptureEventBase$1<T> implements UnityEngine.UIElements.IMouseCaptureEvent {
                 protected [__keep_incompatibility]: never;
                 public get relatedTarget(): UnityEngine.UIElements.IEventHandler;
                 public static GetPooled($target: UnityEngine.UIElements.IEventHandler, $relatedTarget: UnityEngine.UIElements.IEventHandler): T;
@@ -3072,7 +3072,7 @@ declare namespace CS {
             interface IChangeEvent {
             }
 
-            class ChangeEvent<T> extends UnityEngine.UIElements.EventBase$1<UnityEngine.UIElements.ChangeEvent$1<T>> implements UnityEngine.UIElements.IChangeEvent {
+            class ChangeEvent$1<T> extends UnityEngine.UIElements.EventBase$1<UnityEngine.UIElements.ChangeEvent$1<T>> implements UnityEngine.UIElements.IChangeEvent {
                 protected [__keep_incompatibility]: never;
                 public get previousValue(): T;
                 public get newValue(): T;
@@ -3084,7 +3084,7 @@ declare namespace CS {
                 get commandName(): string;
             }
 
-            class CommandEventBase<T extends UnityEngine.UIElements.CommandEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.ICommandEvent {
+            class CommandEventBase$1<T extends UnityEngine.UIElements.CommandEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.ICommandEvent {
                 protected [__keep_incompatibility]: never;
                 public get commandName(): string;
                 public static GetPooled($systemEvent: UnityEngine.Event): T;
@@ -3104,7 +3104,7 @@ declare namespace CS {
             interface IDragAndDropEvent {
             }
 
-            class DragAndDropEventBase<T extends UnityEngine.UIElements.DragAndDropEventBase$1<T>> extends UnityEngine.UIElements.MouseEventBase$1<T> implements UnityEngine.UIElements.IDragAndDropEvent {
+            class DragAndDropEventBase$1<T extends UnityEngine.UIElements.DragAndDropEventBase$1<T>> extends UnityEngine.UIElements.MouseEventBase$1<T> implements UnityEngine.UIElements.IDragAndDropEvent {
                 protected [__keep_incompatibility]: never;
             }
 
@@ -3158,7 +3158,7 @@ declare namespace CS {
                 public Dispose(): void;
             }
 
-            class EventBase<T extends UnityEngine.UIElements.EventBase$1<T>> extends UnityEngine.UIElements.EventBase {
+            class EventBase$1<T extends UnityEngine.UIElements.EventBase$1<T>> extends UnityEngine.UIElements.EventBase {
                 protected [__keep_incompatibility]: never;
                 public get eventTypeId(): bigint;
                 public static TypeId(): bigint;
@@ -3166,12 +3166,12 @@ declare namespace CS {
                 public Dispose(): void;
             }
 
-            interface EventCallback<TEventType> {
+            interface EventCallback$1<TEventType> {
                 ($evt: TEventType): void;
                 Invoke?: ($evt: TEventType) => void;
             }
 
-            interface EventCallback<TEventType, TCallbackArgs> {
+            interface EventCallback$2<TEventType, TCallbackArgs> {
                 ($evt: TEventType, $userArgs: TCallbackArgs): void;
                 Invoke?: ($evt: TEventType, $userArgs: TCallbackArgs) => void;
             }
@@ -3228,7 +3228,7 @@ declare namespace CS {
                 get direction(): UnityEngine.UIElements.FocusChangeDirection;
             }
 
-            class FocusEventBase<T extends UnityEngine.UIElements.FocusEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.IFocusEvent {
+            class FocusEventBase$1<T extends UnityEngine.UIElements.FocusEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.IFocusEvent {
                 protected [__keep_incompatibility]: never;
                 public get relatedTarget(): UnityEngine.UIElements.Focusable;
                 public get direction(): UnityEngine.UIElements.FocusChangeDirection;
@@ -3274,7 +3274,7 @@ declare namespace CS {
                 get actionKey(): boolean;
             }
 
-            class KeyboardEventBase<T extends UnityEngine.UIElements.KeyboardEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.IKeyboardEvent {
+            class KeyboardEventBase$1<T extends UnityEngine.UIElements.KeyboardEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.IKeyboardEvent {
                 protected [__keep_incompatibility]: never;
                 public get modifiers(): UnityEngine.EventModifiers;
                 public get character(): number;
@@ -3321,7 +3321,7 @@ declare namespace CS {
                 get actionKey(): boolean;
             }
 
-            class MouseEventBase<T extends UnityEngine.UIElements.MouseEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.IMouseEvent, UnityEngine.UIElements.IMouseEventInternal, UnityEngine.UIElements.IPointerOrMouseEvent {
+            class MouseEventBase$1<T extends UnityEngine.UIElements.MouseEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.IMouseEvent, UnityEngine.UIElements.IMouseEventInternal, UnityEngine.UIElements.IPointerOrMouseEvent {
                 protected [__keep_incompatibility]: never;
                 public get modifiers(): UnityEngine.EventModifiers;
                 public get mousePosition(): UnityEngine.Vector2;
@@ -3420,7 +3420,7 @@ declare namespace CS {
                 get actionKey(): boolean;
             }
 
-            class NavigationEventBase<T extends UnityEngine.UIElements.NavigationEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.INavigationEvent {
+            class NavigationEventBase$1<T extends UnityEngine.UIElements.NavigationEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.INavigationEvent {
                 protected [__keep_incompatibility]: never;
                 public get modifiers(): UnityEngine.EventModifiers;
                 public get shiftKey(): boolean;
@@ -3465,7 +3465,7 @@ declare namespace CS {
             interface IPanelChangedEvent {
             }
 
-            class PanelChangedEventBase<T extends UnityEngine.UIElements.PanelChangedEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.IPanelChangedEvent {
+            class PanelChangedEventBase$1<T extends UnityEngine.UIElements.PanelChangedEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.IPanelChangedEvent {
                 protected [__keep_incompatibility]: never;
                 public get originPanel(): UnityEngine.UIElements.IPanel;
                 public get destinationPanel(): UnityEngine.UIElements.IPanel;
@@ -3532,7 +3532,7 @@ declare namespace CS {
                 get actionKey(): boolean;
             }
 
-            class PointerEventBase<T extends UnityEngine.UIElements.PointerEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.IPointerEvent, UnityEngine.UIElements.IPointerEventInternal, UnityEngine.UIElements.IPointerOrMouseEvent {
+            class PointerEventBase$1<T extends UnityEngine.UIElements.PointerEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.IPointerEvent, UnityEngine.UIElements.IPointerEventInternal, UnityEngine.UIElements.IPointerOrMouseEvent {
                 protected [__keep_incompatibility]: never;
                 public get pointerId(): number;
                 public get pointerType(): string;
@@ -3651,7 +3651,7 @@ declare namespace CS {
 
             }
 
-            class TransitionEventBase<T extends UnityEngine.UIElements.TransitionEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.ITransitionEvent {
+            class TransitionEventBase$1<T extends UnityEngine.UIElements.TransitionEventBase$1<T>> extends UnityEngine.UIElements.EventBase$1<T> implements UnityEngine.UIElements.ITransitionEvent {
                 protected [__keep_incompatibility]: never;
                 public get stylePropertyNames(): UnityEngine.UIElements.StylePropertyNameCollection;
                 public get elapsedTime(): number;
@@ -3691,7 +3691,7 @@ declare namespace CS {
                 public SetDragZone($dragElement: UnityEngine.UIElements.VisualElement, $hotZone: UnityEngine.Rect): void;
             }
 
-            class FieldMouseDragger<T> extends UnityEngine.UIElements.BaseFieldMouseDragger {
+            class FieldMouseDragger$1<T> extends UnityEngine.UIElements.BaseFieldMouseDragger {
                 protected [__keep_incompatibility]: never;
                 public dragging: boolean;
                 public startValue: T;
@@ -4263,7 +4263,7 @@ declare namespace CS {
                 public Equals($other: UnityEngine.UIElements.VisualElementReference): boolean;
             }
 
-            class VisualElementReference<T extends UnityEngine.UIElements.VisualElement> extends UnityEngine.UIElements.VisualElementReference {
+            class VisualElementReference$1<T extends UnityEngine.UIElements.VisualElement> extends UnityEngine.UIElements.VisualElementReference {
                 protected [__keep_incompatibility]: never;
                 constructor();
                 constructor($renderer: UnityEngine.UIElements.PanelRenderer, $path: UnityEngine.UIElements.AuthoringIdPath);
@@ -4417,7 +4417,7 @@ declare namespace CS {
                 public ToString(): string;
             }
 
-            class CustomStyleProperty<T> implements System.IEquatable$1<UnityEngine.UIElements.CustomStyleProperty$1<T>> {
+            class CustomStyleProperty$1<T> implements System.IEquatable$1<UnityEngine.UIElements.CustomStyleProperty$1<T>> {
                 protected [__keep_incompatibility]: never;
                 public get name(): string;
                 constructor($propertyName: string);
@@ -5024,7 +5024,7 @@ declare namespace CS {
                 public ToString(): string;
             }
 
-            class StyleEnum<T extends System.IConvertible> implements System.IEquatable$1<UnityEngine.UIElements.StyleEnum$1<T>>, UnityEngine.UIElements.IStyleValue$1<T> {
+            class StyleEnum$1<T extends System.IConvertible> implements System.IEquatable$1<UnityEngine.UIElements.StyleEnum$1<T>>, UnityEngine.UIElements.IStyleValue$1<T> {
                 protected [__keep_incompatibility]: never;
                 public value: T;
                 public keyword: UnityEngine.UIElements.StyleKeyword;
@@ -5098,7 +5098,7 @@ declare namespace CS {
                 public ToString(): string;
             }
 
-            class StyleList<T> implements System.IEquatable$1<UnityEngine.UIElements.StyleList$1<T>>, UnityEngine.UIElements.IStyleValue$1<System.Collections.Generic.List$1<T>> {
+            class StyleList$1<T> implements System.IEquatable$1<UnityEngine.UIElements.StyleList$1<T>>, UnityEngine.UIElements.IStyleValue$1<System.Collections.Generic.List$1<T>> {
                 protected [__keep_incompatibility]: never;
                 public value: System.Collections.Generic.List$1<T>;
                 public keyword: UnityEngine.UIElements.StyleKeyword;
@@ -5198,7 +5198,7 @@ declare namespace CS {
                 public ToString(): string;
             }
 
-            interface IStyleValue<T> {
+            interface IStyleValue$1<T> {
                 value: T;
                 keyword: UnityEngine.UIElements.StyleKeyword;
             }
@@ -5614,7 +5614,7 @@ declare namespace CS {
                 protected [__keep_incompatibility]: never;
             }
 
-            class UQueryState<T extends UnityEngine.UIElements.VisualElement> implements System.IEquatable$1<UnityEngine.UIElements.UQueryState$1<T>>, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable {
+            class UQueryState$1<T extends UnityEngine.UIElements.VisualElement> implements System.IEquatable$1<UnityEngine.UIElements.UQueryState$1<T>>, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable {
                 protected [__keep_incompatibility]: never;
                 public RebuildOn($element: UnityEngine.UIElements.VisualElement): UnityEngine.UIElements.UQueryState$1<T>;
                 public First(): T;
@@ -5630,8 +5630,8 @@ declare namespace CS {
                 public Equals($obj: any): boolean;
                 public GetHashCode(): number;
             }
-            namespace UQueryState {
-                class Enumerator<T extends UnityEngine.UIElements.VisualElement> implements System.Collections.Generic.IEnumerator$1<T>, System.Collections.IEnumerator, System.IDisposable {
+            namespace UQueryState$1 {
+                class Enumerator$1<T extends UnityEngine.UIElements.VisualElement> implements System.Collections.Generic.IEnumerator$1<T>, System.Collections.IEnumerator, System.IDisposable {
                     protected [__keep_incompatibility]: never;
                     public get Current(): T;
                     public MoveNext(): boolean;
@@ -5641,7 +5641,7 @@ declare namespace CS {
 
             }
 
-            class UQueryBuilder<T extends UnityEngine.UIElements.VisualElement> implements System.IEquatable$1<UnityEngine.UIElements.UQueryBuilder$1<T>> {
+            class UQueryBuilder$1<T extends UnityEngine.UIElements.VisualElement> implements System.IEquatable$1<UnityEngine.UIElements.UQueryBuilder$1<T>> {
                 protected [__keep_incompatibility]: never;
                 constructor($visualElement: UnityEngine.UIElements.VisualElement);
                 public Class($classname: string): UnityEngine.UIElements.UQueryBuilder$1<T>;
@@ -5777,19 +5777,19 @@ declare namespace CS {
             }
 
             /** @deprecated BaseFieldTraits<TValueType, TValueUxmlAttributeType> is deprecated and will be removed. Use UxmlElementAttribute instead. */
-            class BaseFieldTraits<TValueType, TValueUxmlAttributeType extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<TValueType>> extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<TValueType> {
+            class BaseFieldTraits$2<TValueType, TValueUxmlAttributeType extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<TValueType>> extends UnityEngine.UIElements.BaseField$1.UxmlTraits$1<TValueType> {
                 protected [__keep_incompatibility]: never;
                 constructor();
             }
 
             /** @deprecated TextValueFieldTraits<TValueType, TValueUxmlAttributeType> is deprecated and will be removed. Use UxmlElementAttribute instead. */
-            class TextValueFieldTraits<TValueType, TValueUxmlAttributeType extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<TValueType>> extends UnityEngine.UIElements.BaseFieldTraits$2<TValueType, TValueUxmlAttributeType> {
+            class TextValueFieldTraits$2<TValueType, TValueUxmlAttributeType extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<TValueType>> extends UnityEngine.UIElements.BaseFieldTraits$2<TValueType, TValueUxmlAttributeType> {
                 protected [__keep_incompatibility]: never;
                 constructor();
             }
 
             /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
-            class UxmlAssetAttributeDescription<T extends UnityEngine.Object> extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<T> implements UnityEngine.UIElements.IUxmlAssetAttributeDescription {
+            class UxmlAssetAttributeDescription$1<T extends UnityEngine.Object> extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<T> implements UnityEngine.UIElements.IUxmlAssetAttributeDescription {
                 protected [__keep_incompatibility]: never;
                 public get defaultValueAsString(): string;
                 constructor();
@@ -5819,7 +5819,7 @@ declare namespace CS {
             }
 
             /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
-            class TypedUxmlAttributeDescription<T> extends UnityEngine.UIElements.UxmlAttributeDescription {
+            class TypedUxmlAttributeDescription$1<T> extends UnityEngine.UIElements.UxmlAttributeDescription {
                 protected [__keep_incompatibility]: never;
                 public defaultValue: T;
                 public get defaultValueAsString(): string;
@@ -5908,7 +5908,7 @@ declare namespace CS {
             }
 
             /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
-            class UxmlTypeAttributeDescription<TBase> extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<System.Type> {
+            class UxmlTypeAttributeDescription$1<TBase> extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<System.Type> {
                 protected [__keep_incompatibility]: never;
                 public get defaultValueAsString(): string;
                 constructor();
@@ -5917,7 +5917,7 @@ declare namespace CS {
             }
 
             /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
-            class UxmlEnumAttributeDescription<T extends System.IConvertible> extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<T> {
+            class UxmlEnumAttributeDescription$1<T extends System.IConvertible> extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<T> {
                 protected [__keep_incompatibility]: never;
                 public get defaultValueAsString(): string;
                 constructor();
@@ -6051,7 +6051,7 @@ declare namespace CS {
             }
 
             /** @deprecated BaseUxmlFactory<TCreatedType, TTraits> is deprecated and will be removed. Use UxmlElementAttribute instead. */
-            class BaseUxmlFactory<TCreatedType, TTraits extends UnityEngine.UIElements.BaseUxmlTraits> {
+            class BaseUxmlFactory$2<TCreatedType, TTraits extends UnityEngine.UIElements.BaseUxmlTraits> {
                 protected [__keep_incompatibility]: never;
                 public get uxmlName(): string;
                 public get uxmlNamespace(): string;
@@ -6067,14 +6067,14 @@ declare namespace CS {
             }
 
             /** @deprecated UxmlFactory<TCreatedType, TTraits> is deprecated and will be removed. Use UxmlElementAttribute instead. */
-            class UxmlFactory<TCreatedType extends UnityEngine.UIElements.VisualElement, TTraits extends UnityEngine.UIElements.UxmlTraits> extends UnityEngine.UIElements.BaseUxmlFactory$2<TCreatedType, TTraits> implements UnityEngine.UIElements.IBaseUxmlFactory, UnityEngine.UIElements.IUxmlFactory {
+            class UxmlFactory$2<TCreatedType extends UnityEngine.UIElements.VisualElement, TTraits extends UnityEngine.UIElements.UxmlTraits> extends UnityEngine.UIElements.BaseUxmlFactory$2<TCreatedType, TTraits> implements UnityEngine.UIElements.IBaseUxmlFactory, UnityEngine.UIElements.IUxmlFactory {
                 protected [__keep_incompatibility]: never;
                 constructor();
                 public Create($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): UnityEngine.UIElements.VisualElement;
             }
 
             /** @deprecated UxmlFactory<TCreatedType> is deprecated and will be removed. Use UxmlElementAttribute instead. */
-            class UxmlFactory<TCreatedType extends UnityEngine.UIElements.VisualElement> extends UnityEngine.UIElements.UxmlFactory$2<TCreatedType, UnityEngine.UIElements.VisualElement.UxmlTraits> {
+            class UxmlFactory$1<TCreatedType extends UnityEngine.UIElements.VisualElement> extends UnityEngine.UIElements.UxmlFactory$2<TCreatedType, UnityEngine.UIElements.VisualElement.UxmlTraits> {
                 protected [__keep_incompatibility]: never;
                 constructor();
             }
@@ -6432,7 +6432,7 @@ declare namespace CS {
                     Recycle(): void;
                 }
 
-                class ValueAnimation<T> implements UnityEngine.UIElements.Experimental.IValueAnimationUpdate, UnityEngine.UIElements.Experimental.IValueAnimation {
+                class ValueAnimation$1<T> implements UnityEngine.UIElements.Experimental.IValueAnimationUpdate, UnityEngine.UIElements.Experimental.IValueAnimation {
                     protected [__keep_incompatibility]: never;
                     public durationMs: number;
                     public easingCurve: System.Func$2<number, number>;
