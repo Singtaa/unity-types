@@ -148,10 +148,12 @@ open and the OneJS MCP bridge up:
        .WriteTo("<repo>/JSModules/unity-types/UnityEngine.CoreModule.d.ts", false);
    ```
 
-   The nine: `UnityEngine.CoreModule`, `UnityEngine.UIElementsModule`,
+   The eight: `UnityEngine.CoreModule`, `UnityEngine.UIElementsModule`,
    `UnityEngine.InputLegacyModule`, `Unity.InputSystem`,
    `UnityEngine.PhysicsModule`, `UnityEngine.Physics2DModule`,
-   `UnityEngine.AudioModule`, `UnityEngine.UnityWebRequestModule`, `OneJS`.
+   `UnityEngine.AudioModule`, `UnityEngine.UnityWebRequestModule`. `OneJS.d.ts`
+   is the `OneJS` namespace and the namespaces under it, `OneJS.Tests` aside,
+   from every assembly that is not a test assembly.
 
 2. `node tools/strip-preamble.mjs`
 
