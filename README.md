@@ -170,7 +170,8 @@ open and the OneJS MCP bridge up:
 `index.d.ts` and `_system.d.ts` are hand written and are not regenerated. They
 hold the triple-slash references, the ES6 module declarations, the `$Ref`,
 `$Out` and `$Task` helpers the generated files use, and the .NET base class
-library types app code reaches for (`System.IO` and the like). When you add an
+library types app code reaches for (`System.IO`, and the primitives such as
+`Int32` and `Single` that bind a generic type, `List(Int32)`). When you add an
 overload there, add a call to it in `test/` as well.
 
 Nothing else is hand edited. Earlier releases were: roughly 1300 array types
