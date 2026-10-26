@@ -939,7 +939,7 @@ declare namespace CS {
 
         class TreeViewBridge {
             protected [__keep_incompatibility]: never;
-            public static SetRootItems($treeView: UnityEngine.UIElements.BaseTreeView, $ids: System.Array$1<number>, $parentIds: System.Array$1<number>): void;
+            public static SetRootItems($treeView: UnityEngine.UIElements.BaseTreeView, $ids: System.ArrayInput<number>, $parentIds: System.ArrayInput<number>): void;
             public static GetSelectedIds($treeView: UnityEngine.UIElements.BaseTreeView): System.Array$1<number>;
             public static GetSelectedIndices($view: UnityEngine.UIElements.BaseVerticalCollectionView): System.Array$1<number>;
         }
@@ -1021,7 +1021,7 @@ declare namespace CS {
                 public BeginRule($line: number): void;
                 public EndRule(): void;
                 public BeginComplexSelector($specificity: number): System.IDisposable;
-                public AddSimpleSelector($parts: System.Array$1<OneJS.CustomStyleSheets.SelectorPart>, $relationship: OneJS.CustomStyleSheets.SelectorRelationship): void;
+                public AddSimpleSelector($parts: System.ArrayInput<OneJS.CustomStyleSheets.SelectorPart>, $relationship: OneJS.CustomStyleSheets.SelectorRelationship): void;
                 public BeginProperty($name: string, $line: number): void;
                 public EndProperty(): void;
                 public AddCommaSeparator(): void;
@@ -1432,7 +1432,7 @@ declare namespace CS {
             class CursorOverlay {
                 protected [__keep_incompatibility]: never;
                 constructor($heightPx: number);
-                public Composite($frame: System.Array$1<number>, $frameW: number, $frameH: number, $pos: UnityEngine.Vector2, $pressed: boolean, $timeSincePress: number): void;
+                public Composite($frame: System.ArrayInput<number>, $frameW: number, $frameH: number, $pos: UnityEngine.Vector2, $pressed: boolean, $timeSincePress: number): void;
             }
 
             class FfmpegLocator {
@@ -1512,15 +1512,15 @@ declare namespace CS {
                 public static RecordManifest($manifestPath: string): number;
                 public static FlushRecorded(): number;
                 public static MigrateRecorded(): boolean;
-                public static MigrateRecorded($to: string, $from: System.Array$1<string>): boolean;
+                public static MigrateRecorded($to: string, $from: System.ArrayInput<string>): boolean;
                 public static SchemeOf($hlsl: string): number;
-                public static AppManifests($manifests: System.Array$1<string>): System.Array$1<string>;
+                public static AppManifests($manifests: System.ArrayInput<string>): System.Array$1<string>;
                 public static ProducedSchemes($appManifests: System.Collections.Generic.IEnumerable$1<string>): System.Collections.Generic.HashSet$1<number>;
                 public static StaleRecorded($recordedFile: string, $appManifests: System.Collections.Generic.IEnumerable$1<string>): System.Collections.Generic.SortedDictionary$2<string, number>;
-                public static MergeRecorded($recordedFile: string, $pending: System.Collections.Generic.Dictionary$2<string, string>, $appManifests: System.Array$1<string>): number;
+                public static MergeRecorded($recordedFile: string, $pending: System.Collections.Generic.Dictionary$2<string, string>, $appManifests: System.ArrayInput<string>): number;
                 public static FindManifests(): System.Array$1<string>;
-                public static Generate($manifestPaths: System.Array$1<string>): number;
-                public static GenerateHashes($manifestPaths: System.Array$1<string>): System.Array$1<string>;
+                public static Generate($manifestPaths: System.ArrayInput<string>): number;
+                public static GenerateHashes($manifestPaths: System.ArrayInput<string>): System.Array$1<string>;
                 public static WriteRegistry($hashes: System.Collections.Generic.IEnumerable$1<string>): number;
                 public static DeleteRegistry(): void;
             }
@@ -1531,7 +1531,7 @@ declare namespace CS {
                 constructor();
                 public OnPreprocessBuild($report: UnityEditor.Build.Reporting.BuildReport): void;
                 public static Prepare($target: UnityEditor.BuildTarget): number;
-                public static CheckRecorded($recordedFile: string, $appManifests: System.Array$1<string>): void;
+                public static CheckRecorded($recordedFile: string, $appManifests: System.ArrayInput<string>): void;
             }
 
             class SLShaderPostprocessor extends UnityEditor.AssetPostprocessor {
@@ -1660,7 +1660,7 @@ declare namespace CS {
                     public DefaultValue: string;
                     public OriginalParameter: System.Reflection.ParameterInfo;
                     constructor();
-                    public ToTypeScript($useFullTypeName?: boolean): string;
+                    public ToTypeScript($useFullTypeName?: boolean, $widen?: boolean): string;
                     public ToString(): string;
                 }
 
@@ -2257,7 +2257,7 @@ declare namespace CS {
                 public static DisposeOwnedBy($contextId: number): void;
                 public static DisposeAll(): void;
                 public static GetBuiltinTexture($name: string): UnityEngine.Texture2D;
-                public static BuildRamp($rgba: System.Array$1<number>): UnityEngine.Texture2D;
+                public static BuildRamp($rgba: System.ArrayInput<number>): UnityEngine.Texture2D;
             }
 
             class ShaderEffectElement extends UnityEngine.UIElements.VisualElement {
@@ -2288,7 +2288,7 @@ declare namespace CS {
                 public SetTexture($name: string, $tex: UnityEngine.Texture): void;
                 public SetVectorArray($name: string, $flatObj: any): void;
                 public SetBuiltinTexture($name: string, $builtin: string): void;
-                public SetRamp($name: string, $rgba: System.Array$1<number>): void;
+                public SetRamp($name: string, $rgba: System.ArrayInput<number>): void;
                 public SetResolution($w: number, $h: number): void;
                 public Pause(): void;
                 public Resume(): void;
@@ -2331,7 +2331,7 @@ declare namespace CS {
                 public SetTexture($name: string, $tex: UnityEngine.Texture): void;
                 public SetVectorArray($name: string, $flatObj: any): void;
                 public SetBuiltinTexture($name: string, $builtin: string): void;
-                public SetRamp($name: string, $rgba: System.Array$1<number>): void;
+                public SetRamp($name: string, $rgba: System.ArrayInput<number>): void;
                 public SetResolution($w: number, $h: number): void;
                 public Pause(): void;
                 public Resume(): void;
@@ -2359,8 +2359,8 @@ declare namespace CS {
                 public static WantsSource($hash: string): boolean;
                 public static RecordSource($hash: string, $hlsl: string): void;
                 public static AdoptGenerated(): number;
-                public static CreateMaterial($hash: string, $native: $Out<boolean>, $handle: $Out<number>, $uniformNames?: System.Array$1<string>): UnityEngine.Material;
-                public static Upload($hash: string, $uniformNames?: System.Array$1<string>): number;
+                public static CreateMaterial($hash: string, $native: $Out<boolean>, $handle: $Out<number>, $uniformNames?: System.ArrayInput<string>): UnityEngine.Material;
+                public static Upload($hash: string, $uniformNames?: System.ArrayInput<string>): number;
                 public static SetUniform($handle: number, $slot: number, $x: number, $y: number, $z: number, $w: number): void;
                 public static SetTexture($handle: number, $slot: number, $tex: UnityEngine.Texture): void;
                 public static SetWebSource($handle: number, $wgsl: string, $glsl: string): void;
@@ -2384,7 +2384,7 @@ declare namespace CS {
                 public get Entries(): System.Collections.Generic.IReadOnlyList$1<OneJS.SL.SLShaderRegistry.Entry>;
                 constructor();
                 public Find($hash: string): UnityEngine.Shader;
-                public SetEntries($entries: System.Array$1<OneJS.SL.SLShaderRegistry.Entry>): void;
+                public SetEntries($entries: System.ArrayInput<OneJS.SL.SLShaderRegistry.Entry>): void;
             }
             namespace SLShaderRegistry {
                 class Entry {

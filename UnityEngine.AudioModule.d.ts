@@ -99,10 +99,10 @@ declare namespace CS {
             public GetCustomCurve($type: UnityEngine.AudioSourceCurveType): UnityEngine.AnimationCurve;
             /** @deprecated GetOutputData returning a float[] is deprecated, use GetOutputData and pass a pre allocated array instead. */
             public GetOutputData($numSamples: number, $channel: number): System.Array$1<number>;
-            public GetOutputData($samples: System.Array$1<number>, $channel: number): void;
+            public GetOutputData($samples: System.ArrayInput<number>, $channel: number): void;
             /** @deprecated GetSpectrumData returning a float[] is deprecated, use GetSpectrumData and pass a pre allocated array instead. */
             public GetSpectrumData($numSamples: number, $channel: number, $window: UnityEngine.FFTWindow): System.Array$1<number>;
-            public GetSpectrumData($samples: System.Array$1<number>, $channel: number, $window: UnityEngine.FFTWindow): void;
+            public GetSpectrumData($samples: System.ArrayInput<number>, $channel: number, $window: UnityEngine.FFTWindow): void;
             public SetSpatializerFloat($index: number, $value: number): boolean;
             public GetSpatializerFloat($index: number, $value: $Out<number>): boolean;
             public GetAmbisonicDecoderFloat($index: number, $value: $Out<number>): boolean;
@@ -282,8 +282,8 @@ declare namespace CS {
             public LoadAudioData(): boolean;
             public UnloadAudioData(): boolean;
             public GetData($data: System.Span$1<number>, $offsetSamples: number): boolean;
-            public GetData($data: System.Array$1<number>, $offsetSamples: number): boolean;
-            public SetData($data: System.Array$1<number>, $offsetSamples: number): boolean;
+            public GetData($data: System.ArrayInput<number>, $offsetSamples: number): boolean;
+            public SetData($data: System.ArrayInput<number>, $offsetSamples: number): boolean;
             public SetData($data: System.ReadOnlySpan$1<number>, $offsetSamples: number): boolean;
             /** @deprecated The _3D argument of AudioClip is deprecated. Use the spatialBlend property of AudioSource instead to morph between 2D and 3D playback. */
             public static Create($name: string, $lengthSamples: number, $channels: number, $frequency: number, $_3D: boolean, $stream: boolean): UnityEngine.AudioClip;
@@ -299,7 +299,7 @@ declare namespace CS {
         namespace AudioClip {
             interface PCMReaderCallback {
                 ($data: System.Array$1<number>): void;
-                Invoke?: ($data: System.Array$1<number>) => void;
+                Invoke?: ($data: System.ArrayInput<number>) => void;
             }
             var PCMReaderCallback: { new (func: ($data: System.Array$1<number>) => void): PCMReaderCallback; };
 
@@ -324,10 +324,10 @@ declare namespace CS {
             constructor();
             /** @deprecated GetOutputData returning a float[] is deprecated, use GetOutputData and pass a pre allocated array instead. */
             public static GetOutputData($numSamples: number, $channel: number): System.Array$1<number>;
-            public static GetOutputData($samples: System.Array$1<number>, $channel: number): void;
+            public static GetOutputData($samples: System.ArrayInput<number>, $channel: number): void;
             /** @deprecated GetSpectrumData returning a float[] is deprecated, use GetSpectrumData and pass a pre allocated array instead. */
             public static GetSpectrumData($numSamples: number, $channel: number, $window: UnityEngine.FFTWindow): System.Array$1<number>;
-            public static GetSpectrumData($samples: System.Array$1<number>, $channel: number, $window: UnityEngine.FFTWindow): void;
+            public static GetSpectrumData($samples: System.ArrayInput<number>, $channel: number, $window: UnityEngine.FFTWindow): void;
         }
 
         class AudioReverbZone extends UnityEngine.Behaviour {
@@ -454,7 +454,7 @@ declare namespace CS {
             public GetPixels(): System.Array$1<UnityEngine.Color>;
             public GetPixels($x: number, $y: number, $blockWidth: number, $blockHeight: number): System.Array$1<UnityEngine.Color>;
             public GetPixels32(): System.Array$1<UnityEngine.Color32>;
-            public GetPixels32($colors: System.Array$1<UnityEngine.Color32>): System.Array$1<UnityEngine.Color32>;
+            public GetPixels32($colors: System.ArrayInput<UnityEngine.Color32>): System.Array$1<UnityEngine.Color32>;
         }
 
     }
@@ -720,7 +720,7 @@ declare namespace CS {
                 public updateMode: UnityEngine.Audio.AudioMixerUpdateMode;
                 public FindSnapshot($name: string): UnityEngine.Audio.AudioMixerSnapshot;
                 public FindMatchingGroups($subPath: string): System.Array$1<UnityEngine.Audio.AudioMixerGroup>;
-                public TransitionToSnapshots($snapshots: System.Array$1<UnityEngine.Audio.AudioMixerSnapshot>, $weights: System.Array$1<number>, $timeToReach: number): void;
+                public TransitionToSnapshots($snapshots: System.ArrayInput<UnityEngine.Audio.AudioMixerSnapshot>, $weights: System.ArrayInput<number>, $timeToReach: number): void;
                 public SetFloat($name: string, $value: number): boolean;
                 public ClearFloat($name: string): boolean;
                 public GetFloat($name: string, $value: $Out<number>): boolean;

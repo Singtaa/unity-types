@@ -1018,8 +1018,8 @@ declare namespace CS {
                     public IsNoisy($value: boolean): UnityEngine.InputSystem.InputControlExtensions.DeviceBuilder;
                     public WithControlUsage($controlIndex: number, $usage: UnityEngine.InputSystem.Utilities.InternedString, $control: UnityEngine.InputSystem.InputControl): UnityEngine.InputSystem.InputControlExtensions.DeviceBuilder;
                     public WithControlAlias($controlIndex: number, $alias: UnityEngine.InputSystem.Utilities.InternedString): UnityEngine.InputSystem.InputControlExtensions.DeviceBuilder;
-                    public WithStateOffsetToControlIndexMap($map: System.Array$1<number>): UnityEngine.InputSystem.InputControlExtensions.DeviceBuilder;
-                    public WithControlTree($controlTreeNodes: System.Array$1<number>, $controlTreeIndicies: System.Array$1<number>): UnityEngine.InputSystem.InputControlExtensions.DeviceBuilder;
+                    public WithStateOffsetToControlIndexMap($map: System.ArrayInput<number>): UnityEngine.InputSystem.InputControlExtensions.DeviceBuilder;
+                    public WithControlTree($controlTreeNodes: System.ArrayInput<number>, $controlTreeIndicies: System.ArrayInput<number>): UnityEngine.InputSystem.InputControlExtensions.DeviceBuilder;
                     public Finish(): void;
                 }
 
@@ -1045,7 +1045,7 @@ declare namespace CS {
                 public AddRange($list: System.Collections.Generic.IEnumerable$1<TControl>, $count?: number, $destinationIndex?: number): void;
                 public Remove($item: TControl): boolean;
                 public RemoveAt($index: number): void;
-                public CopyTo($array: System.Array$1<TControl>, $arrayIndex: number): void;
+                public CopyTo($array: System.ArrayInput<TControl>, $arrayIndex: number): void;
                 public IndexOf($item: TControl): number;
                 public IndexOf($item: TControl, $startIndex: number, $count?: number): number;
                 public Insert($index: number, $item: TControl): void;
@@ -4902,8 +4902,8 @@ declare namespace CS {
                 class ReadOnlyArray$1<TValue> implements System.Collections.Generic.IEnumerable$1<TValue>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<TValue>, System.Collections.Generic.IReadOnlyList$1<TValue> {
                     protected [__keep_incompatibility]: never;
                     public get Count(): number;
-                    constructor($array: System.Array$1<TValue>);
-                    constructor($array: System.Array$1<TValue>, $index: number, $length: number);
+                    constructor($array: System.ArrayInput<TValue>);
+                    constructor($array: System.ArrayInput<TValue>, $index: number, $length: number);
                     public ToArray(): System.Array$1<TValue>;
                     public IndexOf($predicate: System.Predicate$1<TValue>): number;
                     public GetEnumerator(): UnityEngine.InputSystem.Utilities.ReadOnlyArray$1.Enumerator$1<TValue>;
@@ -5192,7 +5192,7 @@ declare namespace CS {
                         protected [__keep_incompatibility]: never;
                         public get capabilities(): UnityEngine.InputSystem.XR.Haptics.HapticCapabilities;
                         constructor($device: UnityEngine.InputSystem.InputDevice);
-                        public EnqueueRumble($samples: System.Array$1<number>): void;
+                        public EnqueueRumble($samples: System.ArrayInput<number>): void;
                     }
 
                     class HapticState {
@@ -5239,7 +5239,7 @@ declare namespace CS {
                     class SendBufferedHapticCommand implements UnityEngine.InputSystem.LowLevel.IInputDeviceCommandInfo {
                         protected [__keep_incompatibility]: never;
                         public get typeStatic(): UnityEngine.InputSystem.Utilities.FourCC;
-                        public static Create($rumbleBuffer: System.Array$1<number>): UnityEngine.InputSystem.XR.Haptics.SendBufferedHapticCommand;
+                        public static Create($rumbleBuffer: System.ArrayInput<number>): UnityEngine.InputSystem.XR.Haptics.SendBufferedHapticCommand;
                     }
                     namespace SendBufferedHapticCommand {
                         type _buffer_e__FixedBuffer = any;

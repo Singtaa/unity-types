@@ -1916,7 +1916,7 @@ declare namespace CS {
                 public Clear(): void;
                 public Contains($item: UnityEngine.UIElements.Column): boolean;
                 public Contains($name: string): boolean;
-                public CopyTo($array: System.Array$1<UnityEngine.UIElements.Column>, $arrayIndex: number): void;
+                public CopyTo($array: System.ArrayInput<UnityEngine.UIElements.Column>, $arrayIndex: number): void;
                 public Remove($column: UnityEngine.UIElements.Column): boolean;
                 public IndexOf($column: UnityEngine.UIElements.Column): number;
                 public Insert($index: number, $column: UnityEngine.UIElements.Column): void;
@@ -2083,7 +2083,7 @@ declare namespace CS {
                 public Add($item: UnityEngine.UIElements.SortColumnDescription): void;
                 public Clear(): void;
                 public Contains($item: UnityEngine.UIElements.SortColumnDescription): boolean;
-                public CopyTo($array: System.Array$1<UnityEngine.UIElements.SortColumnDescription>, $arrayIndex: number): void;
+                public CopyTo($array: System.ArrayInput<UnityEngine.UIElements.SortColumnDescription>, $arrayIndex: number): void;
                 public Remove($desc: UnityEngine.UIElements.SortColumnDescription): boolean;
                 public IndexOf($desc: UnityEngine.UIElements.SortColumnDescription): number;
                 public Insert($index: number, $desc: UnityEngine.UIElements.SortColumnDescription): void;
@@ -2969,7 +2969,7 @@ declare namespace CS {
                 /** @deprecated Use SetEntityIds instead, and call Object.GetEntityId() if you really need to convert from a Unity object to an EntityId. */
                 public SetUnityObjectReferences($references: System.Collections.Generic.IEnumerable$1<UnityEngine.Object>): void;
                 public SetEntityIds($ids: System.Collections.Generic.IReadOnlyList$1<UnityEngine.EntityId>): void;
-                public SetPaths($paths: System.Array$1<string>): void;
+                public SetPaths($paths: System.ArrayInput<string>): void;
             }
 
             class DropdownMenuEventInfo {
@@ -4321,9 +4321,9 @@ declare namespace CS {
                 public get uvRegion(): UnityEngine.Rect;
                 public SetNextVertex($vertex: UnityEngine.UIElements.Vertex): void;
                 public SetNextIndex($index: number): void;
-                public SetAllVertices($vertices: System.Array$1<UnityEngine.UIElements.Vertex>): void;
+                public SetAllVertices($vertices: System.ArrayInput<UnityEngine.UIElements.Vertex>): void;
                 public SetAllVertices($vertices: Unity.Collections.NativeSlice$1<UnityEngine.UIElements.Vertex>): void;
-                public SetAllIndices($indices: System.Array$1<number>): void;
+                public SetAllIndices($indices: System.ArrayInput<number>): void;
                 public SetAllIndices($indices: Unity.Collections.NativeSlice$1<number>): void;
             }
 
@@ -6051,7 +6051,7 @@ declare namespace CS {
 
             class UxmlDescriptionCache {
                 protected [__keep_incompatibility]: never;
-                public static RegisterType($type: System.TypeLike, $attributeNames: System.Array$1<UnityEngine.UIElements.UxmlAttributeNames>, $isEditorOnly?: boolean): void;
+                public static RegisterType($type: System.TypeLike, $attributeNames: System.ArrayInput<UnityEngine.UIElements.UxmlAttributeNames>, $isEditorOnly?: boolean): void;
             }
 
             /** @deprecated BaseUxmlTraits is deprecated and will be removed. Use UxmlElementAttribute instead. */

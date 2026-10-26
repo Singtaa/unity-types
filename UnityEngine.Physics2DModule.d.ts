@@ -24,70 +24,70 @@ declare namespace CS {
             public Simulate($deltaTime: number, $simulationLayers?: number): boolean;
             public Linecast($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $layerMask?: number): UnityEngine.RaycastHit2D;
             public Linecast($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D): UnityEngine.RaycastHit2D;
-            public Linecast($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $layerMask?: number): number;
-            public Linecast($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
+            public Linecast($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $layerMask?: number): number;
+            public Linecast($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
             public Linecast($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.RaycastHit2D>): number;
             public Linecast($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.RaycastHit2D>;
             public Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $distance: number, $layerMask?: number): UnityEngine.RaycastHit2D;
             public Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $distance: number, $contactFilter: UnityEngine.ContactFilter2D): UnityEngine.RaycastHit2D;
-            public Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $distance: number, $results: System.Array$1<UnityEngine.RaycastHit2D>, $layerMask?: number): number;
-            public Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $distance: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
+            public Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $distance: number, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $layerMask?: number): number;
+            public Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $distance: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
             public Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $distance: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.RaycastHit2D>): number;
             public Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $distance: number, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.RaycastHit2D>;
             public CircleCast($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $distance: number, $layerMask?: number): UnityEngine.RaycastHit2D;
             public CircleCast($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $distance: number, $contactFilter: UnityEngine.ContactFilter2D): UnityEngine.RaycastHit2D;
-            public CircleCast($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $distance: number, $results: System.Array$1<UnityEngine.RaycastHit2D>, $layerMask?: number): number;
-            public CircleCast($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $distance: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
+            public CircleCast($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $distance: number, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $layerMask?: number): number;
+            public CircleCast($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $distance: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
             public CircleCast($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $distance: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.RaycastHit2D>): number;
             public CircleCast($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $distance: number, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.RaycastHit2D>;
             public BoxCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $layerMask?: number): UnityEngine.RaycastHit2D;
             public BoxCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $contactFilter: UnityEngine.ContactFilter2D): UnityEngine.RaycastHit2D;
-            public BoxCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $results: System.Array$1<UnityEngine.RaycastHit2D>, $layerMask?: number): number;
-            public BoxCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
+            public BoxCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $layerMask?: number): number;
+            public BoxCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
             public BoxCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.RaycastHit2D>): number;
             public BoxCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.RaycastHit2D>;
             public CapsuleCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $layerMask?: number): UnityEngine.RaycastHit2D;
             public CapsuleCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $contactFilter: UnityEngine.ContactFilter2D): UnityEngine.RaycastHit2D;
-            public CapsuleCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $results: System.Array$1<UnityEngine.RaycastHit2D>, $layerMask?: number): number;
-            public CapsuleCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
+            public CapsuleCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $layerMask?: number): number;
+            public CapsuleCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
             public CapsuleCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.RaycastHit2D>): number;
             public CapsuleCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.RaycastHit2D>;
             public GetRayIntersection($ray: UnityEngine.Ray, $distance: number, $layerMask?: number): UnityEngine.RaycastHit2D;
-            public GetRayIntersection($ray: UnityEngine.Ray, $distance: number, $results: System.Array$1<UnityEngine.RaycastHit2D>, $layerMask?: number): number;
+            public GetRayIntersection($ray: UnityEngine.Ray, $distance: number, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $layerMask?: number): number;
             public GetRayIntersection($ray: UnityEngine.Ray, $distance: number, $results: System.Collections.Generic.List$1<UnityEngine.RaycastHit2D>, $layerMask?: number): number;
             public GetRayIntersection($ray: UnityEngine.Ray, $distance: number, $layerMask?: number, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.RaycastHit2D>;
             public OverlapPoint($point: UnityEngine.Vector2, $layerMask?: number): UnityEngine.Collider2D;
             public OverlapPoint($point: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D): UnityEngine.Collider2D;
-            public OverlapPoint($point: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask?: number): number;
-            public OverlapPoint($point: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.Collider2D>): number;
+            public OverlapPoint($point: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask?: number): number;
+            public OverlapPoint($point: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.Collider2D>): number;
             public OverlapPoint($point: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public OverlapPoint($point: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): UnityEngine.ColliderArray2D;
             public OverlapCircle($point: UnityEngine.Vector2, $radius: number, $layerMask?: number): UnityEngine.Collider2D;
             public OverlapCircle($point: UnityEngine.Vector2, $radius: number, $contactFilter: UnityEngine.ContactFilter2D): UnityEngine.Collider2D;
-            public OverlapCircle($point: UnityEngine.Vector2, $radius: number, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask?: number): number;
-            public OverlapCircle($point: UnityEngine.Vector2, $radius: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.Collider2D>): number;
+            public OverlapCircle($point: UnityEngine.Vector2, $radius: number, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask?: number): number;
+            public OverlapCircle($point: UnityEngine.Vector2, $radius: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.Collider2D>): number;
             public OverlapCircle($point: UnityEngine.Vector2, $radius: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public OverlapCircle($point: UnityEngine.Vector2, $radius: number, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): UnityEngine.ColliderArray2D;
             public OverlapBox($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $layerMask?: number): UnityEngine.Collider2D;
             public OverlapBox($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $contactFilter: UnityEngine.ContactFilter2D): UnityEngine.Collider2D;
-            public OverlapBox($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask?: number): number;
-            public OverlapBox($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.Collider2D>): number;
+            public OverlapBox($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask?: number): number;
+            public OverlapBox($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.Collider2D>): number;
             public OverlapBox($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public OverlapBox($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): UnityEngine.ColliderArray2D;
             public OverlapArea($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $layerMask?: number): UnityEngine.Collider2D;
             public OverlapArea($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D): UnityEngine.Collider2D;
-            public OverlapArea($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask?: number): number;
-            public OverlapArea($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.Collider2D>): number;
+            public OverlapArea($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask?: number): number;
+            public OverlapArea($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.Collider2D>): number;
             public OverlapArea($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public OverlapArea($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): UnityEngine.ColliderArray2D;
             public OverlapCapsule($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $layerMask?: number): UnityEngine.Collider2D;
             public OverlapCapsule($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $contactFilter: UnityEngine.ContactFilter2D): UnityEngine.Collider2D;
-            public OverlapCapsule($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask?: number): number;
-            public OverlapCapsule($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.Collider2D>): number;
+            public OverlapCapsule($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask?: number): number;
+            public OverlapCapsule($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.Collider2D>): number;
             public OverlapCapsule($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public OverlapCapsule($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): UnityEngine.ColliderArray2D;
-            public static OverlapCollider($collider: UnityEngine.Collider2D, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask?: number): number;
-            public static OverlapCollider($collider: UnityEngine.Collider2D, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.Collider2D>): number;
+            public static OverlapCollider($collider: UnityEngine.Collider2D, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask?: number): number;
+            public static OverlapCollider($collider: UnityEngine.Collider2D, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.Collider2D>): number;
             public static OverlapCollider($collider: UnityEngine.Collider2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public static OverlapCollider($collider: UnityEngine.Collider2D, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public static OverlapCollider($position: UnityEngine.Vector2, $angle: number, $collider: UnityEngine.Collider2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
@@ -160,29 +160,29 @@ declare namespace CS {
             public static Linecast($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $layerMask: number): UnityEngine.RaycastHit2D;
             public static Linecast($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $layerMask: number, $minDepth: number): UnityEngine.RaycastHit2D;
             public static Linecast($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $layerMask: number, $minDepth: number, $maxDepth: number): UnityEngine.RaycastHit2D;
-            public static Linecast($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
+            public static Linecast($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
             public static Linecast($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.RaycastHit2D>): number;
             public static Linecast($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.RaycastHit2D>;
             public static LinecastAll($start: UnityEngine.Vector2, $end: UnityEngine.Vector2): System.Array$1<UnityEngine.RaycastHit2D>;
             public static LinecastAll($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $layerMask: number): System.Array$1<UnityEngine.RaycastHit2D>;
             public static LinecastAll($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $layerMask: number, $minDepth: number): System.Array$1<UnityEngine.RaycastHit2D>;
             public static LinecastAll($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $layerMask: number, $minDepth: number, $maxDepth: number): System.Array$1<UnityEngine.RaycastHit2D>;
-            public static RaycastNonAlloc($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number): number;
+            public static RaycastNonAlloc($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number): number;
             /** @deprecated RaycastNonAlloc has been deprecated. Please use Raycast. */
-            public static RaycastNonAlloc($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
+            public static RaycastNonAlloc($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
             /** @deprecated RaycastNonAlloc has been deprecated. Please use Raycast. */
-            public static RaycastNonAlloc($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number): number;
+            public static RaycastNonAlloc($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number): number;
             /** @deprecated RaycastNonAlloc has been deprecated. Please use Raycast. */
-            public static RaycastNonAlloc($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number): number;
+            public static RaycastNonAlloc($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number): number;
             /** @deprecated RaycastNonAlloc has been deprecated. Please use Raycast. */
-            public static RaycastNonAlloc($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number, $maxDepth: number): number;
+            public static RaycastNonAlloc($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number, $maxDepth: number): number;
             public static Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2): UnityEngine.RaycastHit2D;
             public static Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $distance: number): UnityEngine.RaycastHit2D;
             public static Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $distance: number, $layerMask: number): UnityEngine.RaycastHit2D;
             public static Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $distance: number, $layerMask: number, $minDepth: number): UnityEngine.RaycastHit2D;
             public static Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $distance: number, $layerMask: number, $minDepth: number, $maxDepth: number): UnityEngine.RaycastHit2D;
-            public static Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
-            public static Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number): number;
+            public static Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
+            public static Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number): number;
             public static Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.RaycastHit2D>, $distance?: number): number;
             public static Raycast($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $distance?: number, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.RaycastHit2D>;
             public static RaycastAll($origin: UnityEngine.Vector2, $direction: UnityEngine.Vector2): System.Array$1<UnityEngine.RaycastHit2D>;
@@ -195,8 +195,8 @@ declare namespace CS {
             public static CircleCast($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $distance: number, $layerMask: number): UnityEngine.RaycastHit2D;
             public static CircleCast($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $distance: number, $layerMask: number, $minDepth: number): UnityEngine.RaycastHit2D;
             public static CircleCast($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $distance: number, $layerMask: number, $minDepth: number, $maxDepth: number): UnityEngine.RaycastHit2D;
-            public static CircleCast($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
-            public static CircleCast($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number): number;
+            public static CircleCast($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
+            public static CircleCast($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number): number;
             public static CircleCast($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.RaycastHit2D>, $distance?: number): number;
             public static CircleCast($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $distance?: number, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.RaycastHit2D>;
             public static CircleCastAll($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2): System.Array$1<UnityEngine.RaycastHit2D>;
@@ -209,8 +209,8 @@ declare namespace CS {
             public static BoxCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $layerMask: number): UnityEngine.RaycastHit2D;
             public static BoxCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $layerMask: number, $minDepth: number): UnityEngine.RaycastHit2D;
             public static BoxCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $layerMask: number, $minDepth: number, $maxDepth: number): UnityEngine.RaycastHit2D;
-            public static BoxCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
-            public static BoxCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number): number;
+            public static BoxCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
+            public static BoxCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number): number;
             public static BoxCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.RaycastHit2D>, $distance?: number): number;
             public static BoxCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $distance?: number, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.RaycastHit2D>;
             public static BoxCastAll($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2): System.Array$1<UnityEngine.RaycastHit2D>;
@@ -223,8 +223,8 @@ declare namespace CS {
             public static CapsuleCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $layerMask: number): UnityEngine.RaycastHit2D;
             public static CapsuleCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $layerMask: number, $minDepth: number): UnityEngine.RaycastHit2D;
             public static CapsuleCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $distance: number, $layerMask: number, $minDepth: number, $maxDepth: number): UnityEngine.RaycastHit2D;
-            public static CapsuleCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
-            public static CapsuleCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number): number;
+            public static CapsuleCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
+            public static CapsuleCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number): number;
             public static CapsuleCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.RaycastHit2D>, $distance?: number): number;
             public static CapsuleCast($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $distance?: number, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.RaycastHit2D>;
             public static CapsuleCastAll($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2): System.Array$1<UnityEngine.RaycastHit2D>;
@@ -240,16 +240,16 @@ declare namespace CS {
             public static GetRayIntersectionAll($ray: UnityEngine.Ray): System.Array$1<UnityEngine.RaycastHit2D>;
             public static GetRayIntersectionAll($ray: UnityEngine.Ray, $distance: number): System.Array$1<UnityEngine.RaycastHit2D>;
             public static GetRayIntersectionAll($ray: UnityEngine.Ray, $distance: number, $layerMask?: number): System.Array$1<UnityEngine.RaycastHit2D>;
-            public static GetRayIntersectionNonAlloc($ray: UnityEngine.Ray, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask?: number): number;
+            public static GetRayIntersectionNonAlloc($ray: UnityEngine.Ray, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number, $layerMask?: number): number;
             /** @deprecated GetRayIntersectionNonAlloc is deprecated. Please use GetRayIntersection. */
-            public static GetRayIntersectionNonAlloc($ray: UnityEngine.Ray, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
+            public static GetRayIntersectionNonAlloc($ray: UnityEngine.Ray, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
             /** @deprecated GetRayIntersectionNonAlloc is deprecated. Please use GetRayIntersection. */
-            public static GetRayIntersectionNonAlloc($ray: UnityEngine.Ray, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number): number;
+            public static GetRayIntersectionNonAlloc($ray: UnityEngine.Ray, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number): number;
             public static OverlapPoint($point: UnityEngine.Vector2): UnityEngine.Collider2D;
             public static OverlapPoint($point: UnityEngine.Vector2, $layerMask: number): UnityEngine.Collider2D;
             public static OverlapPoint($point: UnityEngine.Vector2, $layerMask: number, $minDepth: number): UnityEngine.Collider2D;
             public static OverlapPoint($point: UnityEngine.Vector2, $layerMask: number, $minDepth: number, $maxDepth: number): UnityEngine.Collider2D;
-            public static OverlapPoint($point: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.Collider2D>): number;
+            public static OverlapPoint($point: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.Collider2D>): number;
             public static OverlapPoint($point: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public static OverlapPoint($point: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): UnityEngine.ColliderArray2D;
             public static OverlapPointAll($point: UnityEngine.Vector2): System.Array$1<UnityEngine.Collider2D>;
@@ -260,7 +260,7 @@ declare namespace CS {
             public static OverlapCircle($point: UnityEngine.Vector2, $radius: number, $layerMask: number): UnityEngine.Collider2D;
             public static OverlapCircle($point: UnityEngine.Vector2, $radius: number, $layerMask: number, $minDepth: number): UnityEngine.Collider2D;
             public static OverlapCircle($point: UnityEngine.Vector2, $radius: number, $layerMask: number, $minDepth: number, $maxDepth: number): UnityEngine.Collider2D;
-            public static OverlapCircle($point: UnityEngine.Vector2, $radius: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.Collider2D>): number;
+            public static OverlapCircle($point: UnityEngine.Vector2, $radius: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.Collider2D>): number;
             public static OverlapCircle($point: UnityEngine.Vector2, $radius: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public static OverlapCircle($point: UnityEngine.Vector2, $radius: number, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): UnityEngine.ColliderArray2D;
             public static OverlapCircleAll($point: UnityEngine.Vector2, $radius: number): System.Array$1<UnityEngine.Collider2D>;
@@ -271,7 +271,7 @@ declare namespace CS {
             public static OverlapBox($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $layerMask: number): UnityEngine.Collider2D;
             public static OverlapBox($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $layerMask: number, $minDepth: number): UnityEngine.Collider2D;
             public static OverlapBox($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $layerMask: number, $minDepth: number, $maxDepth: number): UnityEngine.Collider2D;
-            public static OverlapBox($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.Collider2D>): number;
+            public static OverlapBox($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.Collider2D>): number;
             public static OverlapBox($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public static OverlapBox($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): UnityEngine.ColliderArray2D;
             public static OverlapBoxAll($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number): System.Array$1<UnityEngine.Collider2D>;
@@ -282,7 +282,7 @@ declare namespace CS {
             public static OverlapArea($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $layerMask: number): UnityEngine.Collider2D;
             public static OverlapArea($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $layerMask: number, $minDepth: number): UnityEngine.Collider2D;
             public static OverlapArea($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $layerMask: number, $minDepth: number, $maxDepth: number): UnityEngine.Collider2D;
-            public static OverlapArea($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.Collider2D>): number;
+            public static OverlapArea($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.Collider2D>): number;
             public static OverlapArea($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public static OverlapArea($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): UnityEngine.ColliderArray2D;
             public static OverlapAreaAll($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2): System.Array$1<UnityEngine.Collider2D>;
@@ -293,27 +293,27 @@ declare namespace CS {
             public static OverlapCapsule($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $layerMask: number): UnityEngine.Collider2D;
             public static OverlapCapsule($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $layerMask: number, $minDepth: number): UnityEngine.Collider2D;
             public static OverlapCapsule($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $layerMask: number, $minDepth: number, $maxDepth: number): UnityEngine.Collider2D;
-            public static OverlapCapsule($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.Collider2D>): number;
+            public static OverlapCapsule($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.Collider2D>): number;
             public static OverlapCapsule($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public static OverlapCapsule($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): UnityEngine.ColliderArray2D;
             public static OverlapCapsuleAll($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number): System.Array$1<UnityEngine.Collider2D>;
             public static OverlapCapsuleAll($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $layerMask: number): System.Array$1<UnityEngine.Collider2D>;
             public static OverlapCapsuleAll($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $layerMask: number, $minDepth: number): System.Array$1<UnityEngine.Collider2D>;
             public static OverlapCapsuleAll($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $layerMask: number, $minDepth: number, $maxDepth: number): System.Array$1<UnityEngine.Collider2D>;
-            public static OverlapCollider($collider: UnityEngine.Collider2D, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.Collider2D>): number;
+            public static OverlapCollider($collider: UnityEngine.Collider2D, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.Collider2D>): number;
             public static OverlapCollider($collider: UnityEngine.Collider2D, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public static OverlapCollider($collider: UnityEngine.Collider2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public static OverlapCollider($collider: UnityEngine.Collider2D, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): UnityEngine.ColliderArray2D;
             public static OverlapCollider($position: UnityEngine.Vector2, $angle: number, $collider: UnityEngine.Collider2D, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): UnityEngine.ColliderArray2D;
-            public static GetContacts($collider1: UnityEngine.Collider2D, $collider2: UnityEngine.Collider2D, $contactFilter: UnityEngine.ContactFilter2D, $contacts: System.Array$1<UnityEngine.ContactPoint2D>): number;
-            public static GetContacts($collider: UnityEngine.Collider2D, $contacts: System.Array$1<UnityEngine.ContactPoint2D>): number;
-            public static GetContacts($collider: UnityEngine.Collider2D, $contactFilter: UnityEngine.ContactFilter2D, $contacts: System.Array$1<UnityEngine.ContactPoint2D>): number;
-            public static GetContacts($collider: UnityEngine.Collider2D, $colliders: System.Array$1<UnityEngine.Collider2D>): number;
-            public static GetContacts($collider: UnityEngine.Collider2D, $contactFilter: UnityEngine.ContactFilter2D, $colliders: System.Array$1<UnityEngine.Collider2D>): number;
-            public static GetContacts($rigidbody: UnityEngine.Rigidbody2D, $contacts: System.Array$1<UnityEngine.ContactPoint2D>): number;
-            public static GetContacts($rigidbody: UnityEngine.Rigidbody2D, $contactFilter: UnityEngine.ContactFilter2D, $contacts: System.Array$1<UnityEngine.ContactPoint2D>): number;
-            public static GetContacts($rigidbody: UnityEngine.Rigidbody2D, $colliders: System.Array$1<UnityEngine.Collider2D>): number;
-            public static GetContacts($rigidbody: UnityEngine.Rigidbody2D, $contactFilter: UnityEngine.ContactFilter2D, $colliders: System.Array$1<UnityEngine.Collider2D>): number;
+            public static GetContacts($collider1: UnityEngine.Collider2D, $collider2: UnityEngine.Collider2D, $contactFilter: UnityEngine.ContactFilter2D, $contacts: System.ArrayInput<UnityEngine.ContactPoint2D>): number;
+            public static GetContacts($collider: UnityEngine.Collider2D, $contacts: System.ArrayInput<UnityEngine.ContactPoint2D>): number;
+            public static GetContacts($collider: UnityEngine.Collider2D, $contactFilter: UnityEngine.ContactFilter2D, $contacts: System.ArrayInput<UnityEngine.ContactPoint2D>): number;
+            public static GetContacts($collider: UnityEngine.Collider2D, $colliders: System.ArrayInput<UnityEngine.Collider2D>): number;
+            public static GetContacts($collider: UnityEngine.Collider2D, $contactFilter: UnityEngine.ContactFilter2D, $colliders: System.ArrayInput<UnityEngine.Collider2D>): number;
+            public static GetContacts($rigidbody: UnityEngine.Rigidbody2D, $contacts: System.ArrayInput<UnityEngine.ContactPoint2D>): number;
+            public static GetContacts($rigidbody: UnityEngine.Rigidbody2D, $contactFilter: UnityEngine.ContactFilter2D, $contacts: System.ArrayInput<UnityEngine.ContactPoint2D>): number;
+            public static GetContacts($rigidbody: UnityEngine.Rigidbody2D, $colliders: System.ArrayInput<UnityEngine.Collider2D>): number;
+            public static GetContacts($rigidbody: UnityEngine.Rigidbody2D, $contactFilter: UnityEngine.ContactFilter2D, $colliders: System.ArrayInput<UnityEngine.Collider2D>): number;
             public static GetContacts($collider1: UnityEngine.Collider2D, $collider2: UnityEngine.Collider2D, $contactFilter: UnityEngine.ContactFilter2D, $contacts: System.Collections.Generic.List$1<UnityEngine.ContactPoint2D>): number;
             public static GetContacts($collider: UnityEngine.Collider2D, $contacts: System.Collections.Generic.List$1<UnityEngine.ContactPoint2D>): number;
             public static GetContacts($collider: UnityEngine.Collider2D, $contactFilter: UnityEngine.ContactFilter2D, $contacts: System.Collections.Generic.List$1<UnityEngine.ContactPoint2D>): number;
@@ -329,83 +329,83 @@ declare namespace CS {
             public static GetContactColliders($collider: UnityEngine.Collider2D, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): UnityEngine.ColliderArray2D;
             public static GetContactColliders($rigidbody: UnityEngine.Rigidbody2D, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): UnityEngine.ColliderArray2D;
             /** @deprecated LinecastNonAlloc has neen deprecated. Please use Linecast. */
-            public static LinecastNonAlloc($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
+            public static LinecastNonAlloc($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
             /** @deprecated LinecastNonAlloc has been deprecated. Please use Linecast. */
-            public static LinecastNonAlloc($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $layerMask: number): number;
+            public static LinecastNonAlloc($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $layerMask: number): number;
             /** @deprecated LinecastNonAlloc has been deprecated. Please use Linecast. */
-            public static LinecastNonAlloc($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $layerMask: number, $minDepth: number): number;
+            public static LinecastNonAlloc($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $layerMask: number, $minDepth: number): number;
             /** @deprecated LinecastNonAlloc has been deprecated. Please use Linecast. */
-            public static LinecastNonAlloc($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $layerMask: number, $minDepth: number, $maxDepth: number): number;
+            public static LinecastNonAlloc($start: UnityEngine.Vector2, $end: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $layerMask: number, $minDepth: number, $maxDepth: number): number;
             /** @deprecated CircleCastNonAlloc has been deprecated. Please use CircleCast instead. */
-            public static CircleCastNonAlloc($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
+            public static CircleCastNonAlloc($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
             /** @deprecated CircleCastNonAlloc has been deprecated. Please use CircleCast instead. */
-            public static CircleCastNonAlloc($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number): number;
+            public static CircleCastNonAlloc($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number): number;
             /** @deprecated CircleCastNonAlloc has been deprecated. Please use CircleCast instead. */
-            public static CircleCastNonAlloc($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number): number;
+            public static CircleCastNonAlloc($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number): number;
             /** @deprecated CircleCastNonAlloc has been deprecated. Please use CircleCast instead. */
-            public static CircleCastNonAlloc($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number): number;
+            public static CircleCastNonAlloc($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number): number;
             /** @deprecated CircleCastNonAlloc has been deprecated. Please use CircleCast instead. */
-            public static CircleCastNonAlloc($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number, $maxDepth: number): number;
+            public static CircleCastNonAlloc($origin: UnityEngine.Vector2, $radius: number, $direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number, $maxDepth: number): number;
             /** @deprecated BoxCastNonAlloc has been deprecated. Please use BoxCast. */
-            public static BoxCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
+            public static BoxCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
             /** @deprecated BoxCastNonAlloc has been deprecated. Please use BoxCast. */
-            public static BoxCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number): number;
+            public static BoxCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number): number;
             /** @deprecated BoxCastNonAlloc has been deprecated. Please use BoxCast. */
-            public static BoxCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number): number;
+            public static BoxCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number): number;
             /** @deprecated BoxCastNonAlloc has been deprecated. Please use BoxCast. */
-            public static BoxCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number): number;
+            public static BoxCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number): number;
             /** @deprecated BoxCastNonAlloc has been deprecated. Please use BoxCast. */
-            public static BoxCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number, $maxDepth: number): number;
+            public static BoxCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number, $maxDepth: number): number;
             /** @deprecated CapsuleCastNonAlloc has been deprecated. Please use CapsuleCast. */
-            public static CapsuleCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
+            public static CapsuleCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
             /** @deprecated CapsuleCastNonAlloc has been deprecated. Please use CapsuleCast. */
-            public static CapsuleCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number): number;
+            public static CapsuleCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number): number;
             /** @deprecated CapsuleCastNonAlloc has been deprecated. Please use CapsuleCast. */
-            public static CapsuleCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number): number;
+            public static CapsuleCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number): number;
             /** @deprecated CapsuleCastNonAlloc has been deprecated. Please use CapsuleCast. */
-            public static CapsuleCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number): number;
+            public static CapsuleCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number): number;
             /** @deprecated CapsuleCastNonAlloc has been deprecated. Please use CapsuleCast. */
-            public static CapsuleCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number, $maxDepth: number): number;
+            public static CapsuleCastNonAlloc($origin: UnityEngine.Vector2, $size: UnityEngine.Vector2, $capsuleDirection: UnityEngine.CapsuleDirection2D, $angle: number, $direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number, $maxDepth: number): number;
             /** @deprecated OverlapPointNonAlloc has been deprecated. Please use OverlapPoint. */
-            public static OverlapPointNonAlloc($point: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.Collider2D>): number;
+            public static OverlapPointNonAlloc($point: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.Collider2D>): number;
             /** @deprecated OverlapPointNonAlloc has been deprecated. Please use OverlapPoint. */
-            public static OverlapPointNonAlloc($point: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask: number): number;
+            public static OverlapPointNonAlloc($point: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask: number): number;
             /** @deprecated OverlapPointNonAlloc has been deprecated. Please use OverlapPoint. */
-            public static OverlapPointNonAlloc($point: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask: number, $minDepth: number): number;
+            public static OverlapPointNonAlloc($point: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask: number, $minDepth: number): number;
             /** @deprecated OverlapPointNonAlloc has been deprecated. Please use OverlapPoint. */
-            public static OverlapPointNonAlloc($point: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask: number, $minDepth: number, $maxDepth: number): number;
+            public static OverlapPointNonAlloc($point: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask: number, $minDepth: number, $maxDepth: number): number;
             /** @deprecated OverlapCircleNonAlloc has been deprecated. Please use OverlapCircle. */
-            public static OverlapCircleNonAlloc($point: UnityEngine.Vector2, $radius: number, $results: System.Array$1<UnityEngine.Collider2D>): number;
+            public static OverlapCircleNonAlloc($point: UnityEngine.Vector2, $radius: number, $results: System.ArrayInput<UnityEngine.Collider2D>): number;
             /** @deprecated OverlapCircleNonAlloc has been deprecated. Please use OverlapCircle. */
-            public static OverlapCircleNonAlloc($point: UnityEngine.Vector2, $radius: number, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask: number): number;
+            public static OverlapCircleNonAlloc($point: UnityEngine.Vector2, $radius: number, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask: number): number;
             /** @deprecated OverlapCircleNonAlloc has been deprecated. Please use OverlapCircle. */
-            public static OverlapCircleNonAlloc($point: UnityEngine.Vector2, $radius: number, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask: number, $minDepth: number): number;
+            public static OverlapCircleNonAlloc($point: UnityEngine.Vector2, $radius: number, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask: number, $minDepth: number): number;
             /** @deprecated OverlapCircleNonAlloc has been deprecated. Please use OverlapCircle. */
-            public static OverlapCircleNonAlloc($point: UnityEngine.Vector2, $radius: number, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask: number, $minDepth: number, $maxDepth: number): number;
+            public static OverlapCircleNonAlloc($point: UnityEngine.Vector2, $radius: number, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask: number, $minDepth: number, $maxDepth: number): number;
             /** @deprecated OverlapBoxNonAlloc has been deprecated. Please use OverlapBox. */
-            public static OverlapBoxNonAlloc($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $results: System.Array$1<UnityEngine.Collider2D>): number;
+            public static OverlapBoxNonAlloc($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $results: System.ArrayInput<UnityEngine.Collider2D>): number;
             /** @deprecated OverlapBoxNonAlloc has been deprecated. Please use OverlapBox. */
-            public static OverlapBoxNonAlloc($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask: number): number;
+            public static OverlapBoxNonAlloc($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask: number): number;
             /** @deprecated OverlapBoxNonAlloc has been deprecated. Please use OverlapBox. */
-            public static OverlapBoxNonAlloc($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask: number, $minDepth: number): number;
+            public static OverlapBoxNonAlloc($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask: number, $minDepth: number): number;
             /** @deprecated OverlapBoxNonAlloc has been deprecated. Please use OverlapBox. */
-            public static OverlapBoxNonAlloc($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask: number, $minDepth: number, $maxDepth: number): number;
+            public static OverlapBoxNonAlloc($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $angle: number, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask: number, $minDepth: number, $maxDepth: number): number;
             /** @deprecated OverlapAreaNonAlloc has been deprecated. Please use OverlapArea. */
-            public static OverlapAreaNonAlloc($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.Collider2D>): number;
+            public static OverlapAreaNonAlloc($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.Collider2D>): number;
             /** @deprecated OverlapAreaNonAlloc has been deprecated. Please use OverlapArea. */
-            public static OverlapAreaNonAlloc($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask: number): number;
+            public static OverlapAreaNonAlloc($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask: number): number;
             /** @deprecated OverlapAreaNonAlloc has been deprecated. Please use OverlapArea. */
-            public static OverlapAreaNonAlloc($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask: number, $minDepth: number): number;
+            public static OverlapAreaNonAlloc($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask: number, $minDepth: number): number;
             /** @deprecated OverlapAreaNonAlloc has been deprecated. Please use OverlapArea. */
-            public static OverlapAreaNonAlloc($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask: number, $minDepth: number, $maxDepth: number): number;
+            public static OverlapAreaNonAlloc($pointA: UnityEngine.Vector2, $pointB: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask: number, $minDepth: number, $maxDepth: number): number;
             /** @deprecated OverlapCapsuleNonAlloc has been deprecated. Please use OverlapCapsule. */
-            public static OverlapCapsuleNonAlloc($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $results: System.Array$1<UnityEngine.Collider2D>): number;
+            public static OverlapCapsuleNonAlloc($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $results: System.ArrayInput<UnityEngine.Collider2D>): number;
             /** @deprecated OverlapCapsuleNonAlloc has been deprecated. Please use OverlapCapsule. */
-            public static OverlapCapsuleNonAlloc($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask: number): number;
+            public static OverlapCapsuleNonAlloc($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask: number): number;
             /** @deprecated OverlapCapsuleNonAlloc has been deprecated. Please use OverlapCapsule. */
-            public static OverlapCapsuleNonAlloc($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask: number, $minDepth: number): number;
+            public static OverlapCapsuleNonAlloc($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask: number, $minDepth: number): number;
             /** @deprecated OverlapCapsuleNonAlloc has been deprecated. Please use OverlapCapsule. */
-            public static OverlapCapsuleNonAlloc($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $results: System.Array$1<UnityEngine.Collider2D>, $layerMask: number, $minDepth: number, $maxDepth: number): number;
+            public static OverlapCapsuleNonAlloc($point: UnityEngine.Vector2, $size: UnityEngine.Vector2, $direction: UnityEngine.CapsuleDirection2D, $angle: number, $results: System.ArrayInput<UnityEngine.Collider2D>, $layerMask: number, $minDepth: number, $maxDepth: number): number;
         }
 
         enum CapsuleDirection2D {
@@ -566,7 +566,7 @@ declare namespace CS {
             public get contactCount(): number;
             constructor();
             public GetContact($index: number): UnityEngine.ContactPoint2D;
-            public GetContacts($contacts: System.Array$1<UnityEngine.ContactPoint2D>): number;
+            public GetContacts($contacts: System.ArrayInput<UnityEngine.ContactPoint2D>): number;
             public GetContacts($contacts: System.Collections.Generic.List$1<UnityEngine.ContactPoint2D>): number;
         }
 
@@ -723,13 +723,13 @@ declare namespace CS {
             public GetRelativeVector($relativeVector: UnityEngine.Vector2): UnityEngine.Vector2;
             public GetPointVelocity($point: UnityEngine.Vector2): UnityEngine.Vector2;
             public GetRelativePointVelocity($relativePoint: UnityEngine.Vector2): UnityEngine.Vector2;
-            public GetContacts($contacts: System.Array$1<UnityEngine.ContactPoint2D>): number;
+            public GetContacts($contacts: System.ArrayInput<UnityEngine.ContactPoint2D>): number;
             public GetContacts($contacts: System.Collections.Generic.List$1<UnityEngine.ContactPoint2D>): number;
-            public GetContacts($contactFilter: UnityEngine.ContactFilter2D, $contacts: System.Array$1<UnityEngine.ContactPoint2D>): number;
+            public GetContacts($contactFilter: UnityEngine.ContactFilter2D, $contacts: System.ArrayInput<UnityEngine.ContactPoint2D>): number;
             public GetContacts($contactFilter: UnityEngine.ContactFilter2D, $contacts: System.Collections.Generic.List$1<UnityEngine.ContactPoint2D>): number;
-            public GetContacts($colliders: System.Array$1<UnityEngine.Collider2D>): number;
+            public GetContacts($colliders: System.ArrayInput<UnityEngine.Collider2D>): number;
             public GetContacts($colliders: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
-            public GetContacts($contactFilter: UnityEngine.ContactFilter2D, $colliders: System.Array$1<UnityEngine.Collider2D>): number;
+            public GetContacts($contactFilter: UnityEngine.ContactFilter2D, $colliders: System.ArrayInput<UnityEngine.Collider2D>): number;
             public GetContacts($contactFilter: UnityEngine.ContactFilter2D, $colliders: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public GetContacts($contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.ContactPoint2D>;
             public GetContactColliders($contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): UnityEngine.ColliderArray2D;
@@ -739,11 +739,11 @@ declare namespace CS {
             public GetAttachedColliders($results: System.Collections.Generic.List$1<UnityEngine.Collider2D>, $findTriggers?: boolean): number;
             public GetAttachedColliders($findTriggers: boolean, $allocator?: Unity.Collections.Allocator): UnityEngine.ColliderArray2D;
             public GetShapes($physicsShapeGroup: UnityEngine.PhysicsShapeGroup2D): number;
-            public Cast($direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
-            public Cast($direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number): number;
+            public Cast($direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
+            public Cast($direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number): number;
             public Cast($direction: UnityEngine.Vector2, $results: System.Collections.Generic.List$1<UnityEngine.RaycastHit2D>, $distance?: number): number;
-            public Cast($direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
-            public Cast($direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance?: number): number;
+            public Cast($direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
+            public Cast($direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance?: number): number;
             public Cast($direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.RaycastHit2D>, $distance?: number): number;
             public Cast($position: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $results: System.Collections.Generic.List$1<UnityEngine.RaycastHit2D>, $distance?: number): number;
             public Cast($position: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.RaycastHit2D>, $distance?: number): number;
@@ -835,49 +835,49 @@ declare namespace CS {
             public IsTouchingLayers(): boolean;
             public IsTouchingLayers($layerMask: number): boolean;
             public OverlapPoint($point: UnityEngine.Vector2): boolean;
-            public Overlap($contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.Collider2D>): number;
+            public Overlap($contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.Collider2D>): number;
             public Overlap($results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public Overlap($contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public Overlap($position: UnityEngine.Vector2, $angle: number, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public Overlap($position: UnityEngine.Vector2, $angle: number, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public Overlap($contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): UnityEngine.ColliderArray2D;
             public Overlap($position: UnityEngine.Vector2, $angle: number, $contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): UnityEngine.ColliderArray2D;
-            public Cast($direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
-            public Cast($direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number): number;
-            public Cast($direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $ignoreSiblingColliders: boolean): number;
-            public Cast($direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
-            public Cast($direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number): number;
-            public Cast($direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $ignoreSiblingColliders: boolean): number;
+            public Cast($direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
+            public Cast($direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number): number;
+            public Cast($direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number, $ignoreSiblingColliders: boolean): number;
+            public Cast($direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
+            public Cast($direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number): number;
+            public Cast($direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number, $ignoreSiblingColliders: boolean): number;
             public Cast($direction: UnityEngine.Vector2, $results: System.Collections.Generic.List$1<UnityEngine.RaycastHit2D>, $distance?: number, $ignoreSiblingColliders?: boolean): number;
             public Cast($direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.RaycastHit2D>, $distance?: number, $ignoreSiblingColliders?: boolean): number;
             public Cast($position: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $results: System.Collections.Generic.List$1<UnityEngine.RaycastHit2D>, $distance?: number, $ignoreSiblingColliders?: boolean): number;
             public Cast($position: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.RaycastHit2D>, $distance?: number, $ignoreSiblingColliders?: boolean): number;
             public Cast($direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $distance?: number, $ignoreSiblingColliders?: boolean, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.RaycastHit2D>;
             public Cast($position: UnityEngine.Vector2, $angle: number, $direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $distance?: number, $ignoreSiblingColliders?: boolean, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.RaycastHit2D>;
-            public Raycast($direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
-            public Raycast($direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number): number;
-            public Raycast($direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number): number;
-            public Raycast($direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number): number;
-            public Raycast($direction: UnityEngine.Vector2, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number, $maxDepth: number): number;
-            public Raycast($direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>): number;
-            public Raycast($direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.RaycastHit2D>, $distance: number): number;
+            public Raycast($direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
+            public Raycast($direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number): number;
+            public Raycast($direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number): number;
+            public Raycast($direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number): number;
+            public Raycast($direction: UnityEngine.Vector2, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number, $layerMask: number, $minDepth: number, $maxDepth: number): number;
+            public Raycast($direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>): number;
+            public Raycast($direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.RaycastHit2D>, $distance: number): number;
             public Raycast($direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.RaycastHit2D>, $distance?: number): number;
             public Raycast($direction: UnityEngine.Vector2, $contactFilter: UnityEngine.ContactFilter2D, $distance?: number, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.RaycastHit2D>;
             public Distance($collider: UnityEngine.Collider2D): UnityEngine.ColliderDistance2D;
             public Distance($thisPosition: UnityEngine.Vector2, $thisAngle: number, $collider: UnityEngine.Collider2D, $position: UnityEngine.Vector2, $angle: number): UnityEngine.ColliderDistance2D;
             public ClosestPoint($position: UnityEngine.Vector2): UnityEngine.Vector2;
-            public GetContacts($contacts: System.Array$1<UnityEngine.ContactPoint2D>): number;
+            public GetContacts($contacts: System.ArrayInput<UnityEngine.ContactPoint2D>): number;
             public GetContacts($contacts: System.Collections.Generic.List$1<UnityEngine.ContactPoint2D>): number;
-            public GetContacts($contactFilter: UnityEngine.ContactFilter2D, $contacts: System.Array$1<UnityEngine.ContactPoint2D>): number;
+            public GetContacts($contactFilter: UnityEngine.ContactFilter2D, $contacts: System.ArrayInput<UnityEngine.ContactPoint2D>): number;
             public GetContacts($contactFilter: UnityEngine.ContactFilter2D, $contacts: System.Collections.Generic.List$1<UnityEngine.ContactPoint2D>): number;
-            public GetContacts($colliders: System.Array$1<UnityEngine.Collider2D>): number;
+            public GetContacts($colliders: System.ArrayInput<UnityEngine.Collider2D>): number;
             public GetContacts($colliders: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
-            public GetContacts($contactFilter: UnityEngine.ContactFilter2D, $colliders: System.Array$1<UnityEngine.Collider2D>): number;
+            public GetContacts($contactFilter: UnityEngine.ContactFilter2D, $colliders: System.ArrayInput<UnityEngine.Collider2D>): number;
             public GetContacts($contactFilter: UnityEngine.ContactFilter2D, $colliders: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
             public GetContacts($contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.ContactPoint2D>;
             public GetContactColliders($contactFilter: UnityEngine.ContactFilter2D, $allocator?: Unity.Collections.Allocator): UnityEngine.ColliderArray2D;
             /** @deprecated OverlapCollider has been deprecated. Please use Overlap. (UnityUpgradable) -> Overlap(*) */
-            public OverlapCollider($contactFilter: UnityEngine.ContactFilter2D, $results: System.Array$1<UnityEngine.Collider2D>): number;
+            public OverlapCollider($contactFilter: UnityEngine.ContactFilter2D, $results: System.ArrayInput<UnityEngine.Collider2D>): number;
             /** @deprecated OverlapCollider has been deprecated. Please use Overlap. (UnityUpgradable) -> Overlap(*) */
             public OverlapCollider($contactFilter: UnityEngine.ContactFilter2D, $results: System.Collections.Generic.List$1<UnityEngine.Collider2D>): number;
         }
@@ -956,7 +956,7 @@ declare namespace CS {
             public GetPath($index: number): System.Array$1<UnityEngine.Vector2>;
             public GetPath($index: number, $points: System.Collections.Generic.List$1<UnityEngine.Vector2>): number;
             public GetPath($index?: number, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.Vector2>;
-            public SetPath($index: number, $points: System.Array$1<UnityEngine.Vector2>): void;
+            public SetPath($index: number, $points: System.ArrayInput<UnityEngine.Vector2>): void;
             public SetPath($index: number, $points: System.Collections.Generic.List$1<UnityEngine.Vector2>): void;
             public SetPath($index: number, $points: System.ReadOnlySpan$1<UnityEngine.Vector2>): void;
             public CreatePrimitive($sides: number): void;
@@ -981,7 +981,7 @@ declare namespace CS {
             public GetCompositedColliders($colliders: $Out<System.Collections.Generic.List$1<UnityEngine.Collider2D>>): number;
             public GetCompositedColliders($allocator?: Unity.Collections.Allocator): UnityEngine.ColliderArray2D;
             public GetPathPointCount($index: number): number;
-            public GetPath($index: number, $points: System.Array$1<UnityEngine.Vector2>): number;
+            public GetPath($index: number, $points: System.ArrayInput<UnityEngine.Vector2>): number;
             public GetPath($index: number, $points: System.Collections.Generic.List$1<UnityEngine.Vector2>): number;
             public GetPath($index: number, $allocator?: Unity.Collections.Allocator): Unity.Collections.NativeArray$1<UnityEngine.Vector2>;
         }

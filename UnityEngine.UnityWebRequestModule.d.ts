@@ -10,9 +10,9 @@ declare namespace CS {
             public AddField($fieldName: string, $value: string): void;
             public AddField($fieldName: string, $value: string, $e: System.Text.Encoding): void;
             public AddField($fieldName: string, $i: number): void;
-            public AddBinaryData($fieldName: string, $contents: System.Array$1<number>): void;
-            public AddBinaryData($fieldName: string, $contents: System.Array$1<number>, $fileName: string): void;
-            public AddBinaryData($fieldName: string, $contents: System.Array$1<number>, $fileName: string, $mimeType: string): void;
+            public AddBinaryData($fieldName: string, $contents: System.ArrayInput<number>): void;
+            public AddBinaryData($fieldName: string, $contents: System.ArrayInput<number>, $fileName: string): void;
+            public AddBinaryData($fieldName: string, $contents: System.ArrayInput<number>, $fileName: string, $mimeType: string): void;
         }
 
     }
@@ -43,7 +43,7 @@ declare namespace CS {
             class DownloadHandlerScript extends UnityEngine.Networking.DownloadHandler {
                 protected [__keep_incompatibility]: never;
                 constructor();
-                constructor($preallocatedBuffer: System.Array$1<number>);
+                constructor($preallocatedBuffer: System.ArrayInput<number>);
             }
 
             class DownloadHandlerFile extends UnityEngine.Networking.DownloadHandler {
@@ -66,9 +66,9 @@ declare namespace CS {
                 public get sectionData(): System.Array$1<number>;
                 public get fileName(): string;
                 public get contentType(): string;
-                constructor($name: string, $data: System.Array$1<number>, $contentType: string);
-                constructor($name: string, $data: System.Array$1<number>);
-                constructor($data: System.Array$1<number>);
+                constructor($name: string, $data: System.ArrayInput<number>, $contentType: string);
+                constructor($name: string, $data: System.ArrayInput<number>);
+                constructor($data: System.ArrayInput<number>);
                 constructor($name: string, $data: string, $encoding: System.Text.Encoding, $contentType: string);
                 constructor($name: string, $data: string, $contentType: string);
                 constructor($name: string, $data: string);
@@ -81,9 +81,9 @@ declare namespace CS {
                 public get sectionData(): System.Array$1<number>;
                 public get fileName(): string;
                 public get contentType(): string;
-                constructor($name: string, $data: System.Array$1<number>, $fileName: string, $contentType: string);
-                constructor($data: System.Array$1<number>);
-                constructor($fileName: string, $data: System.Array$1<number>);
+                constructor($name: string, $data: System.ArrayInput<number>, $fileName: string, $contentType: string);
+                constructor($data: System.ArrayInput<number>);
+                constructor($fileName: string, $data: System.ArrayInput<number>);
                 constructor($name: string, $data: string, $dataEncoding: System.Text.Encoding, $fileName: string);
                 constructor($data: string, $dataEncoding: System.Text.Encoding, $fileName: string);
                 constructor($data: string, $fileName: string);
@@ -169,8 +169,8 @@ declare namespace CS {
                 public static Delete($uri: System.Uri): UnityEngine.Networking.UnityWebRequest;
                 public static Head($uri: string): UnityEngine.Networking.UnityWebRequest;
                 public static Head($uri: System.Uri): UnityEngine.Networking.UnityWebRequest;
-                public static Put($uri: string, $bodyData: System.Array$1<number>): UnityEngine.Networking.UnityWebRequest;
-                public static Put($uri: System.Uri, $bodyData: System.Array$1<number>): UnityEngine.Networking.UnityWebRequest;
+                public static Put($uri: string, $bodyData: System.ArrayInput<number>): UnityEngine.Networking.UnityWebRequest;
+                public static Put($uri: System.Uri, $bodyData: System.ArrayInput<number>): UnityEngine.Networking.UnityWebRequest;
                 public static Put($uri: string, $bodyData: string): UnityEngine.Networking.UnityWebRequest;
                 public static Put($uri: System.Uri, $bodyData: string): UnityEngine.Networking.UnityWebRequest;
                 /** @deprecated UnityWebRequest.Post with only a string data is obsolete. Use UnityWebRequest.Post with content type argument or UnityWebRequest.PostWwwForm instead (UnityUpgradable) -> [UnityEngine] UnityWebRequest.PostWwwForm(*) */
@@ -183,8 +183,8 @@ declare namespace CS {
                 public static Post($uri: System.Uri, $formData: UnityEngine.WWWForm): UnityEngine.Networking.UnityWebRequest;
                 public static Post($uri: string, $multipartFormSections: System.Collections.Generic.List$1<UnityEngine.Networking.IMultipartFormSection>): UnityEngine.Networking.UnityWebRequest;
                 public static Post($uri: System.Uri, $multipartFormSections: System.Collections.Generic.List$1<UnityEngine.Networking.IMultipartFormSection>): UnityEngine.Networking.UnityWebRequest;
-                public static Post($uri: string, $multipartFormSections: System.Collections.Generic.List$1<UnityEngine.Networking.IMultipartFormSection>, $boundary: System.Array$1<number>): UnityEngine.Networking.UnityWebRequest;
-                public static Post($uri: System.Uri, $multipartFormSections: System.Collections.Generic.List$1<UnityEngine.Networking.IMultipartFormSection>, $boundary: System.Array$1<number>): UnityEngine.Networking.UnityWebRequest;
+                public static Post($uri: string, $multipartFormSections: System.Collections.Generic.List$1<UnityEngine.Networking.IMultipartFormSection>, $boundary: System.ArrayInput<number>): UnityEngine.Networking.UnityWebRequest;
+                public static Post($uri: System.Uri, $multipartFormSections: System.Collections.Generic.List$1<UnityEngine.Networking.IMultipartFormSection>, $boundary: System.ArrayInput<number>): UnityEngine.Networking.UnityWebRequest;
                 public static Post($uri: string, $formFields: System.Collections.Generic.Dictionary$2<string, string>): UnityEngine.Networking.UnityWebRequest;
                 public static Post($uri: System.Uri, $formFields: System.Collections.Generic.Dictionary$2<string, string>): UnityEngine.Networking.UnityWebRequest;
                 public static PostWwwForm($uri: string, $form: string): UnityEngine.Networking.UnityWebRequest;
@@ -193,7 +193,7 @@ declare namespace CS {
                 public static EscapeURL($s: string, $e: System.Text.Encoding): string;
                 public static UnEscapeURL($s: string): string;
                 public static UnEscapeURL($s: string, $e: System.Text.Encoding): string;
-                public static SerializeFormSections($multipartFormSections: System.Collections.Generic.List$1<UnityEngine.Networking.IMultipartFormSection>, $boundary: System.Array$1<number>): System.Array$1<number>;
+                public static SerializeFormSections($multipartFormSections: System.Collections.Generic.List$1<UnityEngine.Networking.IMultipartFormSection>, $boundary: System.ArrayInput<number>): System.Array$1<number>;
                 public static GenerateBoundary(): System.Array$1<number>;
                 public static SerializeSimpleForm($formFields: System.Collections.Generic.Dictionary$2<string, string>): System.Array$1<number>;
             }
@@ -218,7 +218,7 @@ declare namespace CS {
 
             class UploadHandlerRaw extends UnityEngine.Networking.UploadHandler {
                 protected [__keep_incompatibility]: never;
-                constructor($data: System.Array$1<number>);
+                constructor($data: System.ArrayInput<number>);
                 constructor($data: Unity.Collections.NativeArray$1<number>, $transferOwnership: boolean);
                 constructor($data: Unity.Collections.NativeArray$1.ReadOnly$1<number>);
                 public Dispose(): void;
