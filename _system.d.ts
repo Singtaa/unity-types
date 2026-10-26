@@ -42,6 +42,19 @@ declare namespace CS {
          */
         type TypeLike = Type | (abstract new (...args: any[]) => any);
 
+        /**
+         * The TypeScript type a C# type argument stands for, when a generic type
+         * is bound by calling it: List(Int32) is a List$1<number>. The numeric
+         * primitives are numbers, String and Char strings, Boolean a boolean, and
+         * any other class its instance.
+         */
+        type BoundType<T> =
+            T extends typeof Boolean ? boolean :
+            T extends typeof Byte | typeof SByte | typeof Int16 | typeof UInt16 | typeof Int32 | typeof UInt32 |
+                typeof Int64 | typeof UInt64 | typeof Single | typeof Double | typeof Decimal ? number :
+            T extends typeof Char | typeof String ? string :
+            T extends abstract new (...args: any[]) => infer I ? I : any
+
         class Attribute {}
         class Exception {
             public get Message(): string;
@@ -56,21 +69,22 @@ declare namespace CS {
 
         // Primitives. Their values cross the bridge as JS numbers, strings and
         // booleans; the classes name the types, for binding a generic type,
-        // List(Int32), and for a parameter that takes a System.Type.
-        class Boolean extends ValueType {}
-        class Byte extends ValueType {}
-        class SByte extends ValueType {}
-        class Char extends ValueType {}
-        class Int16 extends ValueType {}
-        class UInt16 extends ValueType {}
-        class Int32 extends ValueType {}
-        class UInt32 extends ValueType {}
-        class Int64 extends ValueType {}
-        class UInt64 extends ValueType {}
-        class Single extends ValueType {}
-        class Double extends ValueType {}
-        class Decimal extends ValueType {}
-        class String extends Object {}
+        // List(Int32), and for a parameter that takes a System.Type. Each is
+        // branded, since empty classes are one shape to TypeScript.
+        class Boolean extends ValueType { protected readonly $type: "Boolean" }
+        class Byte extends ValueType { protected readonly $type: "Byte" }
+        class SByte extends ValueType { protected readonly $type: "SByte" }
+        class Char extends ValueType { protected readonly $type: "Char" }
+        class Int16 extends ValueType { protected readonly $type: "Int16" }
+        class UInt16 extends ValueType { protected readonly $type: "UInt16" }
+        class Int32 extends ValueType { protected readonly $type: "Int32" }
+        class UInt32 extends ValueType { protected readonly $type: "UInt32" }
+        class Int64 extends ValueType { protected readonly $type: "Int64" }
+        class UInt64 extends ValueType { protected readonly $type: "UInt64" }
+        class Single extends ValueType { protected readonly $type: "Single" }
+        class Double extends ValueType { protected readonly $type: "Double" }
+        class Decimal extends ValueType { protected readonly $type: "Decimal" }
+        class String extends Object { protected readonly $type: "String" }
 
         // Interfaces
         interface IDisposable {
@@ -243,6 +257,11 @@ declare namespace CS {
             public Item3: T3;
             public Item4: T4;
         }
+        // Binders: a generic type is bound by calling it with its type arguments,
+        // as OneJS does at runtime, ValueTuple(Int32, String), List(Int32).
+        function ValueTuple<T1 extends System.TypeLike, T2 extends System.TypeLike>($T1: T1, $T2: T2): typeof ValueTuple$2<System.BoundType<T1>, System.BoundType<T2>>;
+        function ValueTuple<T1 extends System.TypeLike, T2 extends System.TypeLike, T3 extends System.TypeLike>($T1: T1, $T2: T2, $T3: T3): typeof ValueTuple$3<System.BoundType<T1>, System.BoundType<T2>, System.BoundType<T3>>;
+        function ValueTuple<T1 extends System.TypeLike, T2 extends System.TypeLike, T3 extends System.TypeLike, T4 extends System.TypeLike>($T1: T1, $T2: T2, $T3: T3, $T4: T4): typeof ValueTuple$4<System.BoundType<T1>, System.BoundType<T2>, System.BoundType<T3>, System.BoundType<T4>>;
 
         // Date/Time
         class DateTime {
@@ -303,6 +322,7 @@ declare namespace CS {
             public GetValueOrDefault(): T;
             public GetValueOrDefault($defaultValue: T): T;
         }
+        function Nullable<T extends System.TypeLike>($T: T): typeof Nullable$1<System.BoundType<T>>;
 
         // Collections
         namespace Collections {
@@ -469,6 +489,13 @@ declare namespace CS {
                     public ToArray(): System.Array$1<T>;
                     public GetEnumerator(): System.Collections.Generic.IEnumerator$1<T>;
                 }
+
+                function KeyValuePair<TKey extends System.TypeLike, TValue extends System.TypeLike>($TKey: TKey, $TValue: TValue): typeof KeyValuePair$2<System.BoundType<TKey>, System.BoundType<TValue>>;
+                function List<T extends System.TypeLike>($T: T): typeof List$1<System.BoundType<T>>;
+                function Dictionary<TKey extends System.TypeLike, TValue extends System.TypeLike>($TKey: TKey, $TValue: TValue): typeof Dictionary$2<System.BoundType<TKey>, System.BoundType<TValue>>;
+                function HashSet<T extends System.TypeLike>($T: T): typeof HashSet$1<System.BoundType<T>>;
+                function Queue<T extends System.TypeLike>($T: T): typeof Queue$1<System.BoundType<T>>;
+                function Stack<T extends System.TypeLike>($T: T): typeof Stack$1<System.BoundType<T>>;
             }
         }
 

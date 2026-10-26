@@ -52,6 +52,10 @@ declare module "System" {
     export = CS.System;
 }
 
+declare module "System/Collections/Generic" {
+    export = CS.System.Collections.Generic;
+}
+
 declare module "OneJS" {
     export = CS.OneJS;
 }
