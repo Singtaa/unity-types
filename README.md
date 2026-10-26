@@ -171,8 +171,11 @@ open and the OneJS MCP bridge up:
 hold the triple-slash references, the ES6 module declarations, the `$Ref`,
 `$Out` and `$Task` helpers the generated files use, and the .NET base class
 library types app code reaches for (`System.IO`, and the primitives such as
-`Int32` and `Single` that bind a generic type, `List(Int32)`). When you add an
-overload there, add a call to it in `test/` as well.
+`Int32` and `Single` that bind a generic type, `List(Int32)`). Each generic class
+there has a binder beside it, `function List<T>($T: T): typeof List$1<...>`, the
+same declaration the generator emits for a generated generic class, and
+`System.BoundType` maps a type argument to what its values are in JS. When you
+add an overload there, add a call to it in `test/` as well.
 
 Nothing else is hand edited. Earlier releases were: roughly 1300 array types
 and 118 `System.TypeLike` parameters were written in by hand over the

@@ -7,5 +7,5 @@
         "skipLibCheck": true,
         "types": []
     },
-    "files": ["../index.d.ts", "system-io.ts", "generics.ts", "primitives.ts"]
+    "files": ["../index.d.ts", "system-io.ts", "generics.ts", "primitives.ts", "binders.ts"]
 }
