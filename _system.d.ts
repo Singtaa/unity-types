@@ -55,6 +55,17 @@ declare namespace CS {
             T extends typeof Char | typeof String ? string :
             T extends abstract new (...args: any[]) => infer I ? I : any
 
+        /**
+         * What a C# array parameter takes. The runtime converts a JS array or a
+         * typed array to the parameter's T[] element by element, so a
+         * Float32Array goes where a float[] is declared (OneJS #150). What comes
+         * back from C# is always a C# array, Array$1.
+         */
+        type ArrayInput<T> = Array$1<T> | readonly T[] |
+            ([T] extends [number] ? Int8Array | Uint8Array | Int16Array | Uint16Array | Int32Array | Uint32Array |
+                Float32Array | Float64Array : never) |
+            ([T] extends [bigint] ? BigInt64Array | BigUint64Array : never)
+
         class Attribute {}
         class Exception {
             public get Message(): string;
@@ -588,14 +599,14 @@ declare namespace CS {
                 public get Length(): bigint;
                 public get Position(): bigint;
                 public Read($buffer: System.Array$1<number>, $offset: number, $count: number): number;
-                public Write($buffer: System.Array$1<number>, $offset: number, $count: number): void;
+                public Write($buffer: System.ArrayInput<number>, $offset: number, $count: number): void;
                 public Flush(): void;
                 public Close(): void;
                 public Dispose(): void;
             }
             class MemoryStream extends Stream {
                 constructor();
-                constructor($buffer: System.Array$1<number>);
+                constructor($buffer: System.ArrayInput<number>);
                 public ToArray(): System.Array$1<number>;
             }
             class FileStream extends Stream {
@@ -623,7 +634,7 @@ declare namespace CS {
                 public static ReadAllText($path: string): string;
                 public static ReadAllBytes($path: string): System.Array$1<number>;
                 public static WriteAllText($path: string, $contents: string): void;
-                public static WriteAllBytes($path: string, $bytes: System.Array$1<number>): void;
+                public static WriteAllBytes($path: string, $bytes: System.ArrayInput<number>): void;
                 public static Delete($path: string): void;
                 public static Copy($sourceFileName: string, $destFileName: string): void;
                 public static Copy($sourceFileName: string, $destFileName: string, $overwrite: boolean): void;
@@ -684,7 +695,7 @@ declare namespace CS {
                 public static get ASCII(): System.Text.Encoding;
                 public static get Unicode(): System.Text.Encoding;
                 public GetBytes($s: string): System.Array$1<number>;
-                public GetString($bytes: System.Array$1<number>): string;
+                public GetString($bytes: System.ArrayInput<number>): string;
             }
         }
 
