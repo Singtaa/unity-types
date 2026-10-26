@@ -54,6 +54,24 @@ declare namespace CS {
         class ValueType extends Object {}
         class Enum extends ValueType {}
 
+        // Primitives. Their values cross the bridge as JS numbers, strings and
+        // booleans; the classes name the types, for binding a generic type,
+        // List(Int32), and for a parameter that takes a System.Type.
+        class Boolean extends ValueType {}
+        class Byte extends ValueType {}
+        class SByte extends ValueType {}
+        class Char extends ValueType {}
+        class Int16 extends ValueType {}
+        class UInt16 extends ValueType {}
+        class Int32 extends ValueType {}
+        class UInt32 extends ValueType {}
+        class Int64 extends ValueType {}
+        class UInt64 extends ValueType {}
+        class Single extends ValueType {}
+        class Double extends ValueType {}
+        class Decimal extends ValueType {}
+        class String extends Object {}
+
         // Interfaces
         interface IDisposable {
             Dispose(): void;
