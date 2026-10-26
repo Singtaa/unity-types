@@ -892,7 +892,7 @@ declare namespace CS {
 
         class PhysicsSceneExtensions {
             protected [__keep_incompatibility]: never;
-            public static GetPhysicsScene(): UnityEngine.PhysicsScene;
+            public static GetPhysicsScene($scene: UnityEngine.SceneManagement.Scene): UnityEngine.PhysicsScene;
         }
 
         class QueryParameters {

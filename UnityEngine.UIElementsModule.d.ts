@@ -5,9 +5,9 @@ declare namespace CS {
         namespace UIElements {
             class AlignmentUtils {
                 protected [__keep_incompatibility]: never;
-                public static RoundToPanelPixelSize($v: number): number;
-                public static CeilToPanelPixelSize($v: number): number;
-                public static FloorToPanelPixelSize($v: number): number;
+                public static RoundToPanelPixelSize($ve: UnityEngine.UIElements.VisualElement, $v: number): number;
+                public static CeilToPanelPixelSize($ve: UnityEngine.UIElements.VisualElement, $v: number): number;
+                public static FloorToPanelPixelSize($ve: UnityEngine.UIElements.VisualElement, $v: number): number;
             }
 
             enum DynamicAtlasFilters {
@@ -349,6 +349,7 @@ declare namespace CS {
                 public GetDataForIndex($index: number): T;
                 public GetItemForIndex($index: number): any;
             }
+            function DefaultMultiColumnTreeViewController<T extends System.TypeLike>($T: T): typeof DefaultMultiColumnTreeViewController$1<System.BoundType<T>>;
 
             class DefaultTreeViewController$1<T> extends UnityEngine.UIElements.TreeViewController implements UnityEngine.UIElements.IDefaultTreeViewController$1<T> {
                 protected [__keep_incompatibility]: never;
@@ -364,6 +365,7 @@ declare namespace CS {
                 public GetDataForIndex($index: number): T;
                 public GetItemForIndex($index: number): any;
             }
+            function DefaultTreeViewController<T extends System.TypeLike>($T: T): typeof DefaultTreeViewController$1<System.BoundType<T>>;
 
             class ListViewController extends UnityEngine.UIElements.BaseListViewController {
                 protected [__keep_incompatibility]: never;
@@ -441,6 +443,7 @@ declare namespace CS {
                 }
 
             }
+            function BaseCompositeField<TValueType extends System.TypeLike, TField extends System.TypeLike, TFieldValue extends System.TypeLike>($TValueType: TValueType, $TField: TField, $TFieldValue: TFieldValue): typeof BaseCompositeField$3;
 
             enum ListViewReorderMode {
                 Simple = 0,
@@ -516,6 +519,7 @@ declare namespace CS {
                 public get text(): string;
                 public SetValueWithoutNotify($newValue: TValueType): void;
             }
+            function BasePopupField<TValueType extends System.TypeLike, TValueChoice extends System.TypeLike>($TValueType: TValueType, $TValueChoice: TValueChoice): typeof BasePopupField$2<System.BoundType<TValueType>, System.BoundType<TValueChoice>>;
 
             enum SliderDirection {
                 Horizontal = 0,
@@ -567,8 +571,10 @@ declare namespace CS {
                     protected [__keep_incompatibility]: never;
                     constructor();
                 }
+                function UxmlTraits<TValueType extends System.TypeLike, TValueUxmlAttributeType extends System.TypeLike>($TValueType: TValueType, $TValueUxmlAttributeType: TValueUxmlAttributeType): typeof UxmlTraits$2;
 
             }
+            function BaseSlider<TValueType extends System.TypeLike>($TValueType: TValueType): typeof BaseSlider$1;
 
             class TreeViewExpansionChangedArgs {
                 protected [__keep_incompatibility]: never;
@@ -752,7 +758,7 @@ declare namespace CS {
 
             class IBindingExtensions {
                 protected [__keep_incompatibility]: never;
-                public static IsBound(): boolean;
+                public static IsBound($control: UnityEngine.UIElements.IBindable): boolean;
             }
 
             class BoundsField extends UnityEngine.UIElements.BaseField$1<UnityEngine.Bounds> {
@@ -1493,8 +1499,8 @@ declare namespace CS {
 
             class INotifyValueChangedExtensions {
                 protected [__keep_incompatibility]: never;
-                public static RegisterValueChangedCallback<T>($callback: UnityEngine.UIElements.EventCallback$1<UnityEngine.UIElements.ChangeEvent$1<T>>): boolean;
-                public static UnregisterValueChangedCallback<T>($callback: UnityEngine.UIElements.EventCallback$1<UnityEngine.UIElements.ChangeEvent$1<T>>): boolean;
+                public static RegisterValueChangedCallback<T>($control: UnityEngine.UIElements.INotifyValueChanged$1<T>, $callback: UnityEngine.UIElements.EventCallback$1<UnityEngine.UIElements.ChangeEvent$1<T>>): boolean;
+                public static UnregisterValueChangedCallback<T>($control: UnityEngine.UIElements.INotifyValueChanged$1<T>, $callback: UnityEngine.UIElements.EventCallback$1<UnityEngine.UIElements.ChangeEvent$1<T>>): boolean;
             }
 
             class BaseField$1<TValueType> extends UnityEngine.UIElements.BindableElement implements UnityEngine.UIElements.IMixedValueSupport, UnityEngine.UIElements.INotifyValueChanged$1<TValueType>, UnityEngine.UIElements.IPrefixLabel, UnityEngine.UIElements.IEditableElement {
@@ -1526,6 +1532,7 @@ declare namespace CS {
                 }
 
             }
+            function BaseField<TValueType extends System.TypeLike>($TValueType: TValueType): typeof BaseField$1<System.BoundType<TValueType>>;
 
             class TextField extends UnityEngine.UIElements.TextInputBaseField$1<string> {
                 protected [__keep_incompatibility]: never;
@@ -1619,6 +1626,7 @@ declare namespace CS {
                 }
 
             }
+            function TextInputBaseField<TValueType extends System.TypeLike>($TValueType: TValueType): typeof TextInputBaseField$1<System.BoundType<TValueType>>;
 
             class IntegerField extends UnityEngine.UIElements.TextValueField$1<number> {
                 protected [__keep_incompatibility]: never;
@@ -1782,6 +1790,7 @@ declare namespace CS {
                 public value: TChoice;
                 public SetValueWithoutNotify($newValue: TChoice): void;
             }
+            function BaseMaskField<TChoice extends System.TypeLike>($TChoice: TChoice): typeof BaseMaskField$1<System.BoundType<TChoice>>;
 
             class MaskField extends UnityEngine.UIElements.BaseMaskField$1<number> {
                 protected [__keep_incompatibility]: never;
@@ -2110,6 +2119,7 @@ declare namespace CS {
                 constructor($label: string, $choices: System.Collections.Generic.List$1<T>, $defaultIndex: number, $formatSelectedValueCallback?: System.Func$2<T, string>, $formatListItemCallback?: System.Func$2<T, string>);
                 public SetValueWithoutNotify($newValue: T): void;
             }
+            function PopupField<T extends System.TypeLike>($T: T): typeof PopupField$1<System.BoundType<T>>;
 
             class PopupWindow extends UnityEngine.UIElements.TextElement {
                 protected [__keep_incompatibility]: never;
@@ -2629,6 +2639,7 @@ declare namespace CS {
                 }
 
             }
+            function TextValueField<TValueType extends System.TypeLike>($TValueType: TValueType): typeof TextValueField$1<System.BoundType<TValueType>>;
 
             class Toggle extends UnityEngine.UIElements.BaseBoolField {
                 protected [__keep_incompatibility]: never;
@@ -2782,6 +2793,7 @@ declare namespace CS {
                 public get hasChildren(): boolean;
                 constructor($id: number, $data: T, $children?: System.Collections.Generic.List$1<UnityEngine.UIElements.TreeViewItemData$1<T>>);
             }
+            function TreeViewItemData<T extends System.TypeLike>($T: T): typeof TreeViewItemData$1<System.BoundType<T>>;
 
             class TwoPaneSplitView extends UnityEngine.UIElements.VisualElement {
                 protected [__keep_incompatibility]: never;
@@ -3039,6 +3051,7 @@ declare namespace CS {
                 public get pointerId(): number;
                 public static GetPooled($target: UnityEngine.UIElements.IEventHandler, $relatedTarget: UnityEngine.UIElements.IEventHandler, $pointerId: number): T;
             }
+            function PointerCaptureEventBase<T extends System.TypeLike>($T: T): typeof PointerCaptureEventBase$1;
 
             class PointerCaptureOutEvent extends UnityEngine.UIElements.PointerCaptureEventBase$1<UnityEngine.UIElements.PointerCaptureOutEvent> {
                 protected [__keep_incompatibility]: never;
@@ -3058,6 +3071,7 @@ declare namespace CS {
                 public get relatedTarget(): UnityEngine.UIElements.IEventHandler;
                 public static GetPooled($target: UnityEngine.UIElements.IEventHandler, $relatedTarget: UnityEngine.UIElements.IEventHandler): T;
             }
+            function MouseCaptureEventBase<T extends System.TypeLike>($T: T): typeof MouseCaptureEventBase$1;
 
             class MouseCaptureOutEvent extends UnityEngine.UIElements.MouseCaptureEventBase$1<UnityEngine.UIElements.MouseCaptureOutEvent> {
                 protected [__keep_incompatibility]: never;
@@ -3079,6 +3093,7 @@ declare namespace CS {
                 constructor();
                 public static GetPooled($previousValue: T, $newValue: T): UnityEngine.UIElements.ChangeEvent$1<T>;
             }
+            function ChangeEvent<T extends System.TypeLike>($T: T): typeof ChangeEvent$1<System.BoundType<T>>;
 
             interface ICommandEvent {
                 get commandName(): string;
@@ -3090,6 +3105,7 @@ declare namespace CS {
                 public static GetPooled($systemEvent: UnityEngine.Event): T;
                 public static GetPooled($commandName: string): T;
             }
+            function CommandEventBase<T extends System.TypeLike>($T: T): typeof CommandEventBase$1;
 
             class ValidateCommandEvent extends UnityEngine.UIElements.CommandEventBase$1<UnityEngine.UIElements.ValidateCommandEvent> {
                 protected [__keep_incompatibility]: never;
@@ -3107,6 +3123,7 @@ declare namespace CS {
             class DragAndDropEventBase$1<T extends UnityEngine.UIElements.DragAndDropEventBase$1<T>> extends UnityEngine.UIElements.MouseEventBase$1<T> implements UnityEngine.UIElements.IDragAndDropEvent {
                 protected [__keep_incompatibility]: never;
             }
+            function DragAndDropEventBase<T extends System.TypeLike>($T: T): typeof DragAndDropEventBase$1;
 
             class DragExitedEvent extends UnityEngine.UIElements.DragAndDropEventBase$1<UnityEngine.UIElements.DragExitedEvent> {
                 protected [__keep_incompatibility]: never;
@@ -3165,6 +3182,7 @@ declare namespace CS {
                 public static GetPooled(): T;
                 public Dispose(): void;
             }
+            function EventBase<T extends System.TypeLike>($T: T): typeof EventBase$1;
 
             interface EventCallback$1<TEventType> {
                 ($evt: TEventType): void;
@@ -3234,6 +3252,7 @@ declare namespace CS {
                 public get direction(): UnityEngine.UIElements.FocusChangeDirection;
                 public static GetPooled($target: UnityEngine.UIElements.IEventHandler, $relatedTarget: UnityEngine.UIElements.Focusable, $direction: UnityEngine.UIElements.FocusChangeDirection, $focusController: UnityEngine.UIElements.FocusController, $bIsFocusDelegated?: boolean): T;
             }
+            function FocusEventBase<T extends System.TypeLike>($T: T): typeof FocusEventBase$1;
 
             class FocusOutEvent extends UnityEngine.UIElements.FocusEventBase$1<UnityEngine.UIElements.FocusOutEvent> {
                 protected [__keep_incompatibility]: never;
@@ -3287,6 +3306,7 @@ declare namespace CS {
                 public static GetPooled($c: number, $keyCode: UnityEngine.KeyCode, $modifiers: UnityEngine.EventModifiers): T;
                 public static GetPooled($systemEvent: UnityEngine.Event): T;
             }
+            function KeyboardEventBase<T extends System.TypeLike>($T: T): typeof KeyboardEventBase$1;
 
             class KeyDownEvent extends UnityEngine.UIElements.KeyboardEventBase$1<UnityEngine.UIElements.KeyDownEvent> {
                 protected [__keep_incompatibility]: never;
@@ -3340,6 +3360,7 @@ declare namespace CS {
                 public static GetPooled($position: UnityEngine.Vector2, $button: number, $clickCount: number, $delta: UnityEngine.Vector2, $modifiers?: UnityEngine.EventModifiers): T;
                 public static GetPooled($triggerEvent: UnityEngine.UIElements.IMouseEvent): T;
             }
+            function MouseEventBase<T extends System.TypeLike>($T: T): typeof MouseEventBase$1;
 
             class MouseDownEvent extends UnityEngine.UIElements.MouseEventBase$1<UnityEngine.UIElements.MouseDownEvent> {
                 protected [__keep_incompatibility]: never;
@@ -3430,6 +3451,7 @@ declare namespace CS {
                 public get actionKey(): boolean;
                 public static GetPooled($modifiers?: UnityEngine.EventModifiers): T;
             }
+            function NavigationEventBase<T extends System.TypeLike>($T: T): typeof NavigationEventBase$1;
 
             class NavigationMoveEvent extends UnityEngine.UIElements.NavigationEventBase$1<UnityEngine.UIElements.NavigationMoveEvent> {
                 protected [__keep_incompatibility]: never;
@@ -3471,6 +3493,7 @@ declare namespace CS {
                 public get destinationPanel(): UnityEngine.UIElements.IPanel;
                 public static GetPooled($originPanel: UnityEngine.UIElements.IPanel, $destinationPanel: UnityEngine.UIElements.IPanel): T;
             }
+            function PanelChangedEventBase<T extends System.TypeLike>($T: T): typeof PanelChangedEventBase$1;
 
             class AttachToPanelEvent extends UnityEngine.UIElements.PanelChangedEventBase$1<UnityEngine.UIElements.AttachToPanelEvent> {
                 protected [__keep_incompatibility]: never;
@@ -3565,6 +3588,7 @@ declare namespace CS {
                 public static GetPooled($pen: UnityEngine.PenData, $modifiers?: UnityEngine.EventModifiers): T;
                 public static GetPooled($triggerEvent: UnityEngine.UIElements.IPointerEvent): T;
             }
+            function PointerEventBase<T extends System.TypeLike>($T: T): typeof PointerEventBase$1;
 
             class PointerDownEvent extends UnityEngine.UIElements.PointerEventBase$1<UnityEngine.UIElements.PointerDownEvent> {
                 protected [__keep_incompatibility]: never;
@@ -3658,6 +3682,7 @@ declare namespace CS {
                 public static GetPooled($stylePropertyName: UnityEngine.UIElements.StylePropertyName, $elapsedTime: number): T;
                 public AffectsProperty($stylePropertyName: UnityEngine.UIElements.StylePropertyName): boolean;
             }
+            function TransitionEventBase<T extends System.TypeLike>($T: T): typeof TransitionEventBase$1;
 
             class TransitionRunEvent extends UnityEngine.UIElements.TransitionEventBase$1<UnityEngine.UIElements.TransitionRunEvent> {
                 protected [__keep_incompatibility]: never;
@@ -3698,6 +3723,7 @@ declare namespace CS {
                 constructor($drivenField: UnityEngine.UIElements.IValueField$1<T>);
                 public SetDragZone($dragElement: UnityEngine.UIElements.VisualElement, $hotZone: UnityEngine.Rect): void;
             }
+            function FieldMouseDragger<T extends System.TypeLike>($T: T): typeof FieldMouseDragger$1<System.BoundType<T>>;
 
             class FilterParameterDeclaration {
                 protected [__keep_incompatibility]: never;
@@ -3880,9 +3906,9 @@ declare namespace CS {
                 public static ScreenToPanel($panel: UnityEngine.UIElements.IPanel, $screenPosition: UnityEngine.Vector2): UnityEngine.Vector2;
                 public static CameraTransformWorldToPanel($panel: UnityEngine.UIElements.IPanel, $worldPosition: UnityEngine.Vector3, $camera: UnityEngine.Camera): UnityEngine.Vector2;
                 public static CameraTransformWorldToPanelRect($panel: UnityEngine.UIElements.IPanel, $worldPosition: UnityEngine.Vector3, $worldSize: UnityEngine.Vector2, $camera: UnityEngine.Camera): UnityEngine.Rect;
-                public static ResetDynamicAtlas(): void;
-                public static ResetRenderer(): void;
-                public static SetTextureDirty($texture: UnityEngine.Texture2D): void;
+                public static ResetDynamicAtlas($panel: UnityEngine.UIElements.IPanel): void;
+                public static ResetRenderer($panel: UnityEngine.UIElements.IPanel): void;
+                public static SetTextureDirty($panel: UnityEngine.UIElements.IPanel, $texture: UnityEngine.Texture2D): void;
             }
 
             enum WorldSpaceSizeMode {
@@ -4039,9 +4065,9 @@ declare namespace CS {
             class MouseCaptureController {
                 protected [__keep_incompatibility]: never;
                 public static IsMouseCaptured(): boolean;
-                public static HasMouseCapture(): boolean;
-                public static CaptureMouse(): void;
-                public static ReleaseMouse(): void;
+                public static HasMouseCapture($handler: UnityEngine.UIElements.IEventHandler): boolean;
+                public static CaptureMouse($handler: UnityEngine.UIElements.IEventHandler): void;
+                public static ReleaseMouse($handler: UnityEngine.UIElements.IEventHandler): void;
                 public static ReleaseMouse(): void;
             }
 
@@ -4191,7 +4217,7 @@ declare namespace CS {
 
             class PanelExtensions {
                 protected [__keep_incompatibility]: never;
-                public static CreateMenu(): UnityEngine.UIElements.AbstractGenericMenu;
+                public static CreateMenu($panel: UnityEngine.UIElements.IPanel): UnityEngine.UIElements.AbstractGenericMenu;
             }
 
             interface IDebugPanelChangeReceiver {
@@ -4206,11 +4232,11 @@ declare namespace CS {
 
             class PointerCaptureHelper {
                 protected [__keep_incompatibility]: never;
-                public static HasPointerCapture($pointerId: number): boolean;
-                public static CapturePointer($pointerId: number): void;
-                public static ReleasePointer($pointerId: number): void;
-                public static ReleasePointer($pointerId: number): void;
-                public static GetCapturingElement($pointerId: number): UnityEngine.UIElements.IEventHandler;
+                public static HasPointerCapture($handler: UnityEngine.UIElements.IEventHandler, $pointerId: number): boolean;
+                public static CapturePointer($handler: UnityEngine.UIElements.IEventHandler, $pointerId: number): void;
+                public static ReleasePointer($handler: UnityEngine.UIElements.IEventHandler, $pointerId: number): void;
+                public static ReleasePointer($panel: UnityEngine.UIElements.IPanel, $pointerId: number): void;
+                public static GetCapturingElement($panel: UnityEngine.UIElements.IPanel, $pointerId: number): UnityEngine.UIElements.IEventHandler;
             }
 
             class PointerManipulator extends UnityEngine.UIElements.MouseManipulator {
@@ -4272,6 +4298,7 @@ declare namespace CS {
                 public RegisterReferenceUnloadedCallback($callback: System.Action$1<T>): void;
                 public UnregisterReferenceUnloadedCallback($callback: System.Action$1<T>): void;
             }
+            function VisualElementReference<T extends System.TypeLike>($T: T): typeof VisualElementReference$1;
 
             class Vertex {
                 protected [__keep_incompatibility]: never;
@@ -4425,6 +4452,7 @@ declare namespace CS {
                 public Equals($other: UnityEngine.UIElements.CustomStyleProperty$1<T>): boolean;
                 public GetHashCode(): number;
             }
+            function CustomStyleProperty<T extends System.TypeLike>($T: T): typeof CustomStyleProperty$1<System.BoundType<T>>;
 
             interface ICustomStyle {
                 TryGetValue<T extends UnityEngine.Object>($property: UnityEngine.UIElements.CustomStyleProperty$1<T>, $value: $Out<T>): boolean;
@@ -5035,6 +5063,7 @@ declare namespace CS {
                 public GetHashCode(): number;
                 public ToString(): string;
             }
+            function StyleEnum<T extends System.TypeLike>($T: T): typeof StyleEnum$1;
 
             class StyleFloat implements System.IEquatable$1<UnityEngine.UIElements.StyleFloat>, UnityEngine.UIElements.IStyleValue$1<number> {
                 protected [__keep_incompatibility]: never;
@@ -5109,6 +5138,7 @@ declare namespace CS {
                 public GetHashCode(): number;
                 public ToString(): string;
             }
+            function StyleList<T extends System.TypeLike>($T: T): typeof StyleList$1<System.BoundType<T>>;
 
             class StyleMaterialDefinition implements System.IEquatable$1<UnityEngine.UIElements.StyleMaterialDefinition>, UnityEngine.UIElements.IStyleValue$1<UnityEngine.UIElements.MaterialDefinition> {
                 protected [__keep_incompatibility]: never;
@@ -5640,6 +5670,7 @@ declare namespace CS {
                 }
 
             }
+            function UQueryState<T extends System.TypeLike>($T: T): typeof UQueryState$1;
 
             class UQueryBuilder$1<T extends UnityEngine.UIElements.VisualElement> implements System.IEquatable$1<UnityEngine.UIElements.UQueryBuilder$1<T>> {
                 protected [__keep_incompatibility]: never;
@@ -5682,18 +5713,19 @@ declare namespace CS {
                 public Equals($obj: any): boolean;
                 public GetHashCode(): number;
             }
+            function UQueryBuilder<T extends System.TypeLike>($T: T): typeof UQueryBuilder$1;
 
             class UQueryExtensions {
                 protected [__keep_incompatibility]: never;
-                public static Q<T extends UnityEngine.UIElements.VisualElement>($name?: string, ...classes: string[]): T;
-                public static Q<T extends UnityEngine.UIElements.VisualElement>($name?: string, $className?: string): T;
-                public static Q($name?: string, ...classes: string[]): UnityEngine.UIElements.VisualElement;
-                public static Q($name?: string, $className?: string): UnityEngine.UIElements.VisualElement;
-                public static Query<T extends UnityEngine.UIElements.VisualElement>($name?: string, ...classes: string[]): UnityEngine.UIElements.UQueryBuilder$1<T>;
-                public static Query<T extends UnityEngine.UIElements.VisualElement>($name?: string, $className?: string): UnityEngine.UIElements.UQueryBuilder$1<T>;
-                public static Query($name?: string, ...classes: string[]): UnityEngine.UIElements.UQueryBuilder$1<UnityEngine.UIElements.VisualElement>;
-                public static Query($name?: string, $className?: string): UnityEngine.UIElements.UQueryBuilder$1<UnityEngine.UIElements.VisualElement>;
-                public static Query(): UnityEngine.UIElements.UQueryBuilder$1<UnityEngine.UIElements.VisualElement>;
+                public static Q<T extends UnityEngine.UIElements.VisualElement>($e: UnityEngine.UIElements.VisualElement, $name?: string, ...classes: string[]): T;
+                public static Q<T extends UnityEngine.UIElements.VisualElement>($e: UnityEngine.UIElements.VisualElement, $name?: string, $className?: string): T;
+                public static Q($e: UnityEngine.UIElements.VisualElement, $name?: string, ...classes: string[]): UnityEngine.UIElements.VisualElement;
+                public static Q($e: UnityEngine.UIElements.VisualElement, $name?: string, $className?: string): UnityEngine.UIElements.VisualElement;
+                public static Query<T extends UnityEngine.UIElements.VisualElement>($e: UnityEngine.UIElements.VisualElement, $name?: string, ...classes: string[]): UnityEngine.UIElements.UQueryBuilder$1<T>;
+                public static Query<T extends UnityEngine.UIElements.VisualElement>($e: UnityEngine.UIElements.VisualElement, $name?: string, $className?: string): UnityEngine.UIElements.UQueryBuilder$1<T>;
+                public static Query($e: UnityEngine.UIElements.VisualElement, $name?: string, ...classes: string[]): UnityEngine.UIElements.UQueryBuilder$1<UnityEngine.UIElements.VisualElement>;
+                public static Query($e: UnityEngine.UIElements.VisualElement, $name?: string, $className?: string): UnityEngine.UIElements.UQueryBuilder$1<UnityEngine.UIElements.VisualElement>;
+                public static Query($e: UnityEngine.UIElements.VisualElement): UnityEngine.UIElements.UQueryBuilder$1<UnityEngine.UIElements.VisualElement>;
             }
 
             interface IUxmlAttributes {
@@ -5781,12 +5813,14 @@ declare namespace CS {
                 protected [__keep_incompatibility]: never;
                 constructor();
             }
+            function BaseFieldTraits<TValueType extends System.TypeLike, TValueUxmlAttributeType extends System.TypeLike>($TValueType: TValueType, $TValueUxmlAttributeType: TValueUxmlAttributeType): typeof BaseFieldTraits$2;
 
             /** @deprecated TextValueFieldTraits<TValueType, TValueUxmlAttributeType> is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class TextValueFieldTraits$2<TValueType, TValueUxmlAttributeType extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<TValueType>> extends UnityEngine.UIElements.BaseFieldTraits$2<TValueType, TValueUxmlAttributeType> {
                 protected [__keep_incompatibility]: never;
                 constructor();
             }
+            function TextValueFieldTraits<TValueType extends System.TypeLike, TValueUxmlAttributeType extends System.TypeLike>($TValueType: TValueType, $TValueUxmlAttributeType: TValueUxmlAttributeType): typeof TextValueFieldTraits$2;
 
             /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlAssetAttributeDescription$1<T extends UnityEngine.Object> extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<T> implements UnityEngine.UIElements.IUxmlAssetAttributeDescription {
@@ -5796,6 +5830,7 @@ declare namespace CS {
                 public GetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): T;
                 public TryGetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext, $value: $Out<T>): boolean;
             }
+            function UxmlAssetAttributeDescription<T extends System.TypeLike>($T: T): typeof UxmlAssetAttributeDescription$1;
 
             /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlAttributeDescription {
@@ -5825,6 +5860,7 @@ declare namespace CS {
                 public get defaultValueAsString(): string;
                 public GetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): T;
             }
+            function TypedUxmlAttributeDescription<T extends System.TypeLike>($T: T): typeof TypedUxmlAttributeDescription$1<System.BoundType<T>>;
 
             /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlStringAttributeDescription extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<string> {
@@ -5915,6 +5951,7 @@ declare namespace CS {
                 public GetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): System.Type;
                 public TryGetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext, $value: System.TypeLike): boolean;
             }
+            function UxmlTypeAttributeDescription<TBase extends System.TypeLike>($TBase: TBase): typeof UxmlTypeAttributeDescription$1<System.BoundType<TBase>>;
 
             /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlEnumAttributeDescription$1<T extends System.IConvertible> extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<T> {
@@ -5924,6 +5961,7 @@ declare namespace CS {
                 public GetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): T;
                 public TryGetValueFromBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext, $value: $Ref<T>): boolean;
             }
+            function UxmlEnumAttributeDescription<T extends System.TypeLike>($T: T): typeof UxmlEnumAttributeDescription$1;
 
             /** @deprecated UxmlTraits system is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlHash128AttributeDescription extends UnityEngine.UIElements.TypedUxmlAttributeDescription$1<UnityEngine.Hash128> {
@@ -6065,6 +6103,7 @@ declare namespace CS {
                 public get substituteForTypeQualifiedName(): string;
                 public AcceptsAttributeBag($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): boolean;
             }
+            function BaseUxmlFactory<TCreatedType extends System.TypeLike, TTraits extends System.TypeLike>($TCreatedType: TCreatedType, $TTraits: TTraits): typeof BaseUxmlFactory$2;
 
             /** @deprecated UxmlFactory<TCreatedType, TTraits> is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlFactory$2<TCreatedType extends UnityEngine.UIElements.VisualElement, TTraits extends UnityEngine.UIElements.UxmlTraits> extends UnityEngine.UIElements.BaseUxmlFactory$2<TCreatedType, TTraits> implements UnityEngine.UIElements.IBaseUxmlFactory, UnityEngine.UIElements.IUxmlFactory {
@@ -6072,12 +6111,14 @@ declare namespace CS {
                 constructor();
                 public Create($bag: UnityEngine.UIElements.IUxmlAttributes, $cc: UnityEngine.UIElements.CreationContext): UnityEngine.UIElements.VisualElement;
             }
+            function UxmlFactory<TCreatedType extends System.TypeLike, TTraits extends System.TypeLike>($TCreatedType: TCreatedType, $TTraits: TTraits): typeof UxmlFactory$2;
 
             /** @deprecated UxmlFactory<TCreatedType> is deprecated and will be removed. Use UxmlElementAttribute instead. */
             class UxmlFactory$1<TCreatedType extends UnityEngine.UIElements.VisualElement> extends UnityEngine.UIElements.UxmlFactory$2<TCreatedType, UnityEngine.UIElements.VisualElement.UxmlTraits> {
                 protected [__keep_incompatibility]: never;
                 constructor();
             }
+            function UxmlFactory<TCreatedType extends System.TypeLike>($TCreatedType: TCreatedType): typeof UxmlFactory$1;
 
             class UxmlSerializedData {
                 protected [__keep_incompatibility]: never;
@@ -6189,17 +6230,17 @@ declare namespace CS {
 
             class VisualElementExtensions {
                 protected [__keep_incompatibility]: never;
-                public static StretchToParentSize(): void;
-                public static StretchToParentWidth(): void;
-                public static AddManipulator($manipulator: UnityEngine.UIElements.IManipulator): void;
-                public static RemoveManipulator($manipulator: UnityEngine.UIElements.IManipulator): void;
-                public static WorldToLocal($p: UnityEngine.Vector2): UnityEngine.Vector2;
-                public static WorldToLocal($r: UnityEngine.Rect): UnityEngine.Rect;
-                public static LocalToWorld($p: UnityEngine.Vector2): UnityEngine.Vector2;
-                public static LocalToWorld($r: UnityEngine.Rect): UnityEngine.Rect;
-                public static ChangeCoordinatesTo($dest: UnityEngine.UIElements.VisualElement, $point: UnityEngine.Vector2): UnityEngine.Vector2;
-                public static ChangeCoordinatesTo($dest: UnityEngine.UIElements.VisualElement, $rect: UnityEngine.Rect): UnityEngine.Rect;
-                public static FindRootPanelComponent(): UnityEngine.UIElements.IPanelComponent;
+                public static StretchToParentSize($elem: UnityEngine.UIElements.VisualElement): void;
+                public static StretchToParentWidth($elem: UnityEngine.UIElements.VisualElement): void;
+                public static AddManipulator($ele: UnityEngine.UIElements.VisualElement, $manipulator: UnityEngine.UIElements.IManipulator): void;
+                public static RemoveManipulator($ele: UnityEngine.UIElements.VisualElement, $manipulator: UnityEngine.UIElements.IManipulator): void;
+                public static WorldToLocal($ele: UnityEngine.UIElements.VisualElement, $p: UnityEngine.Vector2): UnityEngine.Vector2;
+                public static WorldToLocal($ele: UnityEngine.UIElements.VisualElement, $r: UnityEngine.Rect): UnityEngine.Rect;
+                public static LocalToWorld($ele: UnityEngine.UIElements.VisualElement, $p: UnityEngine.Vector2): UnityEngine.Vector2;
+                public static LocalToWorld($ele: UnityEngine.UIElements.VisualElement, $r: UnityEngine.Rect): UnityEngine.Rect;
+                public static ChangeCoordinatesTo($src: UnityEngine.UIElements.VisualElement, $dest: UnityEngine.UIElements.VisualElement, $point: UnityEngine.Vector2): UnityEngine.Vector2;
+                public static ChangeCoordinatesTo($src: UnityEngine.UIElements.VisualElement, $dest: UnityEngine.UIElements.VisualElement, $rect: UnityEngine.Rect): UnityEngine.Rect;
+                public static FindRootPanelComponent($element: UnityEngine.UIElements.VisualElement): UnityEngine.UIElements.IPanelComponent;
             }
 
             class VisualElementDebugExtensions {
@@ -6453,6 +6494,7 @@ declare namespace CS {
                     public OnCompleted($callback: System.Action): UnityEngine.UIElements.Experimental.ValueAnimation$1<T>;
                     public KeepAlive(): UnityEngine.UIElements.Experimental.ValueAnimation$1<T>;
                 }
+                function ValueAnimation<T extends System.TypeLike>($T: T): typeof ValueAnimation$1<System.BoundType<T>>;
 
             }
         }

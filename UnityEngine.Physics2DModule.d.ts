@@ -98,7 +98,7 @@ declare namespace CS {
 
         class PhysicsSceneExtensions2D {
             protected [__keep_incompatibility]: never;
-            public static GetPhysicsScene2D(): UnityEngine.PhysicsScene2D;
+            public static GetPhysicsScene2D($scene: UnityEngine.SceneManagement.Scene): UnityEngine.PhysicsScene2D;
         }
 
         class Physics2D {

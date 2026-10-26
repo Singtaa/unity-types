@@ -394,15 +394,16 @@ declare namespace CS {
                 }
 
             }
+            function NativeArray<T extends System.TypeLike>($T: T): typeof NativeArray$1<System.BoundType<T>>;
 
             class NativeSliceExtensions {
                 protected [__keep_incompatibility]: never;
-                public static Slice<T>(): Unity.Collections.NativeSlice$1<T>;
-                public static Slice<T>($start: number): Unity.Collections.NativeSlice$1<T>;
-                public static Slice<T>($start: number, $length: number): Unity.Collections.NativeSlice$1<T>;
-                public static Slice<T>(): Unity.Collections.NativeSlice$1<T>;
-                public static Slice<T>($start: number): Unity.Collections.NativeSlice$1<T>;
-                public static Slice<T>($start: number, $length: number): Unity.Collections.NativeSlice$1<T>;
+                public static Slice<T>($thisArray: Unity.Collections.NativeArray$1<T>): Unity.Collections.NativeSlice$1<T>;
+                public static Slice<T>($thisArray: Unity.Collections.NativeArray$1<T>, $start: number): Unity.Collections.NativeSlice$1<T>;
+                public static Slice<T>($thisArray: Unity.Collections.NativeArray$1<T>, $start: number, $length: number): Unity.Collections.NativeSlice$1<T>;
+                public static Slice<T>($thisSlice: Unity.Collections.NativeSlice$1<T>): Unity.Collections.NativeSlice$1<T>;
+                public static Slice<T>($thisSlice: Unity.Collections.NativeSlice$1<T>, $start: number): Unity.Collections.NativeSlice$1<T>;
+                public static Slice<T>($thisSlice: Unity.Collections.NativeSlice$1<T>, $start: number, $length: number): Unity.Collections.NativeSlice$1<T>;
             }
 
             class NativeSlice$1<T> implements System.IEquatable$1<Unity.Collections.NativeSlice$1<T>>, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable {
@@ -440,6 +441,7 @@ declare namespace CS {
                 }
 
             }
+            function NativeSlice<T extends System.TypeLike>($T: T): typeof NativeSlice$1<System.BoundType<T>>;
 
         }
     }
@@ -673,12 +675,12 @@ declare namespace CS {
 
             class DiscreteTimeTimeExtensions {
                 protected [__keep_incompatibility]: never;
-                public static Abs(): Unity.IntegerTime.DiscreteTime;
-                public static Min($rhs: Unity.IntegerTime.DiscreteTime): Unity.IntegerTime.DiscreteTime;
-                public static Max($rhs: Unity.IntegerTime.DiscreteTime): Unity.IntegerTime.DiscreteTime;
-                public static Clamp($a: Unity.IntegerTime.DiscreteTime, $b: Unity.IntegerTime.DiscreteTime): Unity.IntegerTime.DiscreteTime;
-                public static Floor(): Unity.IntegerTime.DiscreteTime;
-                public static Select($b: Unity.IntegerTime.DiscreteTime, $c: boolean): Unity.IntegerTime.DiscreteTime;
+                public static Abs($lhs: Unity.IntegerTime.DiscreteTime): Unity.IntegerTime.DiscreteTime;
+                public static Min($lhs: Unity.IntegerTime.DiscreteTime, $rhs: Unity.IntegerTime.DiscreteTime): Unity.IntegerTime.DiscreteTime;
+                public static Max($lhs: Unity.IntegerTime.DiscreteTime, $rhs: Unity.IntegerTime.DiscreteTime): Unity.IntegerTime.DiscreteTime;
+                public static Clamp($x: Unity.IntegerTime.DiscreteTime, $a: Unity.IntegerTime.DiscreteTime, $b: Unity.IntegerTime.DiscreteTime): Unity.IntegerTime.DiscreteTime;
+                public static Floor($x: Unity.IntegerTime.DiscreteTime): Unity.IntegerTime.DiscreteTime;
+                public static Select($a: Unity.IntegerTime.DiscreteTime, $b: Unity.IntegerTime.DiscreteTime, $c: boolean): Unity.IntegerTime.DiscreteTime;
             }
 
             class RationalTime {
@@ -716,13 +718,13 @@ declare namespace CS {
 
             class RationalTimeExtensions {
                 protected [__keep_incompatibility]: never;
-                public static ToDouble(): number;
-                public static IsValid(): boolean;
-                public static Convert($rate: Unity.IntegerTime.RationalTime.TicksPerSecond): Unity.IntegerTime.RationalTime;
-                public static Add($rhs: Unity.IntegerTime.RationalTime): Unity.IntegerTime.RationalTime;
-                public static Subtract($rhs: Unity.IntegerTime.RationalTime): Unity.IntegerTime.RationalTime;
-                public static Multiply($rhs: Unity.IntegerTime.RationalTime): Unity.IntegerTime.RationalTime;
-                public static Divide($rhs: Unity.IntegerTime.RationalTime): Unity.IntegerTime.RationalTime;
+                public static ToDouble($value: Unity.IntegerTime.RationalTime): number;
+                public static IsValid($value: Unity.IntegerTime.RationalTime): boolean;
+                public static Convert($time: Unity.IntegerTime.RationalTime, $rate: Unity.IntegerTime.RationalTime.TicksPerSecond): Unity.IntegerTime.RationalTime;
+                public static Add($lhs: Unity.IntegerTime.RationalTime, $rhs: Unity.IntegerTime.RationalTime): Unity.IntegerTime.RationalTime;
+                public static Subtract($lhs: Unity.IntegerTime.RationalTime, $rhs: Unity.IntegerTime.RationalTime): Unity.IntegerTime.RationalTime;
+                public static Multiply($lhs: Unity.IntegerTime.RationalTime, $rhs: Unity.IntegerTime.RationalTime): Unity.IntegerTime.RationalTime;
+                public static Divide($lhs: Unity.IntegerTime.RationalTime, $rhs: Unity.IntegerTime.RationalTime): Unity.IntegerTime.RationalTime;
             }
 
         }
@@ -984,10 +986,10 @@ declare namespace CS {
             class IJobExtensions {
                 protected [__keep_incompatibility]: never;
                 public static EarlyJobInit<T extends Unity.Jobs.IJob>(): void;
-                public static Schedule<T extends Unity.Jobs.IJob>($dependsOn?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
-                public static Run<T extends Unity.Jobs.IJob>(): void;
-                public static ScheduleByRef<T extends Unity.Jobs.IJob>($dependsOn?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
-                public static RunByRef<T extends Unity.Jobs.IJob>(): void;
+                public static Schedule<T extends Unity.Jobs.IJob>($jobData: T, $dependsOn?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
+                public static Run<T extends Unity.Jobs.IJob>($jobData: T): void;
+                public static ScheduleByRef<T extends Unity.Jobs.IJob>($jobData: $Ref<T>, $dependsOn?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
+                public static RunByRef<T extends Unity.Jobs.IJob>($jobData: $Ref<T>): void;
             }
 
             interface IJobFor {
@@ -997,12 +999,12 @@ declare namespace CS {
             class IJobForExtensions {
                 protected [__keep_incompatibility]: never;
                 public static EarlyJobInit<T extends Unity.Jobs.IJobFor>(): void;
-                public static Schedule<T extends Unity.Jobs.IJobFor>($arrayLength: number, $dependency: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
-                public static ScheduleParallel<T extends Unity.Jobs.IJobFor>($arrayLength: number, $innerloopBatchCount: number, $dependency: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
-                public static Run<T extends Unity.Jobs.IJobFor>($arrayLength: number): void;
-                public static ScheduleByRef<T extends Unity.Jobs.IJobFor>($arrayLength: number, $dependency: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
-                public static ScheduleParallelByRef<T extends Unity.Jobs.IJobFor>($arrayLength: number, $innerloopBatchCount: number, $dependency: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
-                public static RunByRef<T extends Unity.Jobs.IJobFor>($arrayLength: number): void;
+                public static Schedule<T extends Unity.Jobs.IJobFor>($jobData: T, $arrayLength: number, $dependency: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
+                public static ScheduleParallel<T extends Unity.Jobs.IJobFor>($jobData: T, $arrayLength: number, $innerloopBatchCount: number, $dependency: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
+                public static Run<T extends Unity.Jobs.IJobFor>($jobData: T, $arrayLength: number): void;
+                public static ScheduleByRef<T extends Unity.Jobs.IJobFor>($jobData: $Ref<T>, $arrayLength: number, $dependency: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
+                public static ScheduleParallelByRef<T extends Unity.Jobs.IJobFor>($jobData: $Ref<T>, $arrayLength: number, $innerloopBatchCount: number, $dependency: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
+                public static RunByRef<T extends Unity.Jobs.IJobFor>($jobData: $Ref<T>, $arrayLength: number): void;
             }
 
             interface IJobParallelFor {
@@ -1012,10 +1014,10 @@ declare namespace CS {
             class IJobParallelForExtensions {
                 protected [__keep_incompatibility]: never;
                 public static EarlyJobInit<T extends Unity.Jobs.IJobParallelFor>(): void;
-                public static Schedule<T extends Unity.Jobs.IJobParallelFor>($arrayLength: number, $innerloopBatchCount: number, $dependsOn?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
-                public static Run<T extends Unity.Jobs.IJobParallelFor>($arrayLength: number): void;
-                public static ScheduleByRef<T extends Unity.Jobs.IJobParallelFor>($arrayLength: number, $innerloopBatchCount: number, $dependsOn?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
-                public static RunByRef<T extends Unity.Jobs.IJobParallelFor>($arrayLength: number): void;
+                public static Schedule<T extends Unity.Jobs.IJobParallelFor>($jobData: T, $arrayLength: number, $innerloopBatchCount: number, $dependsOn?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
+                public static Run<T extends Unity.Jobs.IJobParallelFor>($jobData: T, $arrayLength: number): void;
+                public static ScheduleByRef<T extends Unity.Jobs.IJobParallelFor>($jobData: $Ref<T>, $arrayLength: number, $innerloopBatchCount: number, $dependsOn?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
+                public static RunByRef<T extends Unity.Jobs.IJobParallelFor>($jobData: $Ref<T>, $arrayLength: number): void;
             }
 
             class JobHandle implements System.IEquatable$1<Unity.Jobs.JobHandle> {
@@ -1046,11 +1048,13 @@ declare namespace CS {
                         protected [__keep_incompatibility]: never;
                         constructor($commands: Unity.Collections.NativeArray$1<CommandT>, $results: Unity.Collections.NativeArray$1<ResultT>);
                     }
+                    function BatchQueryJob<CommandT extends System.TypeLike, ResultT extends System.TypeLike>($CommandT: CommandT, $ResultT: ResultT): typeof BatchQueryJob$2<System.BoundType<CommandT>, System.BoundType<ResultT>>;
 
                     class BatchQueryJobStruct$1<T> {
                         protected [__keep_incompatibility]: never;
                         public static Initialize(): number;
                     }
+                    function BatchQueryJobStruct<T extends System.TypeLike>($T: T): typeof BatchQueryJobStruct$1<System.BoundType<T>>;
 
                     class JobHandleUnsafeUtility {
                         protected [__keep_incompatibility]: never;
@@ -2533,6 +2537,7 @@ declare namespace CS {
             public defaultValue: UnityEngine.Object;
             public Resolve($resolver: UnityEngine.IExposedPropertyTable): T;
         }
+        function ExposedReference<T extends System.TypeLike>($T: T): typeof ExposedReference$1;
 
         interface IExposedPropertyTable {
             SetReferenceValue($id: UnityEngine.PropertyName, $value: UnityEngine.Object): void;
@@ -3736,7 +3741,7 @@ declare namespace CS {
 
         class RendererExtensions {
             protected [__keep_incompatibility]: never;
-            public static UpdateGIMaterials(): void;
+            public static UpdateGIMaterials($renderer: UnityEngine.Renderer): void;
         }
 
         class ImageEffectTransformsToLDR extends System.Attribute {
@@ -7898,7 +7903,7 @@ declare namespace CS {
 
         class AssemblyExtension {
             protected [__keep_incompatibility]: never;
-            public static GetLoadedAssemblyPath(): string;
+            public static GetLoadedAssemblyPath($assembly: System.Reflection.Assembly): string;
         }
 
         class AsyncInstantiateOperation extends UnityEngine.AsyncOperation {
@@ -7927,6 +7932,7 @@ declare namespace CS {
             }
 
         }
+        function AsyncInstantiateOperation<T extends System.TypeLike>($T: T): typeof AsyncInstantiateOperation$1<System.BoundType<T>>;
 
         class AsyncOperation extends UnityEngine.YieldInstruction {
             protected [__keep_incompatibility]: never;
@@ -8060,6 +8066,7 @@ declare namespace CS {
                 public AwaitOnCompleted<TAwaiter extends System.Runtime.CompilerServices.INotifyCompletion, TStateMachine extends System.Runtime.CompilerServices.IAsyncStateMachine>($awaiter: $Ref<TAwaiter>, $stateMachine: $Ref<TStateMachine>): void;
                 public AwaitUnsafeOnCompleted<TAwaiter extends System.Runtime.CompilerServices.ICriticalNotifyCompletion, TStateMachine extends System.Runtime.CompilerServices.IAsyncStateMachine>($awaiter: $Ref<TAwaiter>, $stateMachine: $Ref<TStateMachine>): void;
             }
+            function AwaitableAsyncMethodBuilder<T extends System.TypeLike>($T: T): typeof AwaitableAsyncMethodBuilder$1<System.BoundType<T>>;
 
             class Awaiter implements System.Runtime.CompilerServices.INotifyCompletion {
                 protected [__keep_incompatibility]: never;
@@ -8072,7 +8079,7 @@ declare namespace CS {
 
         class AsyncOperationAwaitableExtensions {
             protected [__keep_incompatibility]: never;
-            public static GetAwaiter(): UnityEngine.Awaitable.Awaiter;
+            public static GetAwaiter($op: UnityEngine.AsyncOperation): UnityEngine.Awaitable.Awaiter;
         }
 
         class MainThreadAwaitable implements System.Runtime.CompilerServices.INotifyCompletion {
@@ -8093,11 +8100,11 @@ declare namespace CS {
 
         class UnityEventAwaitableExtensions {
             protected [__keep_incompatibility]: never;
-            public static GetAwaiter<T>(): UnityEngine.Awaitable$1.Awaiter$1<T>;
-            public static GetAwaiter<T0, T1>(): UnityEngine.Awaitable$1.Awaiter$1<System.ValueTuple$2<T0, T1>>;
-            public static GetAwaiter<T0, T1, T2>(): UnityEngine.Awaitable$1.Awaiter$1<System.ValueTuple$3<T0, T1, T2>>;
-            public static GetAwaiter<T0, T1, T2, T3>(): UnityEngine.Awaitable$1.Awaiter$1<System.ValueTuple$4<T0, T1, T2, T3>>;
-            public static GetAwaiter(): UnityEngine.Awaitable.Awaiter;
+            public static GetAwaiter<T>($ev: UnityEngine.Events.UnityEvent$1<T>): UnityEngine.Awaitable$1.Awaiter$1<T>;
+            public static GetAwaiter<T0, T1>($ev: UnityEngine.Events.UnityEvent$2<T0, T1>): UnityEngine.Awaitable$1.Awaiter$1<System.ValueTuple$2<T0, T1>>;
+            public static GetAwaiter<T0, T1, T2>($ev: UnityEngine.Events.UnityEvent$3<T0, T1, T2>): UnityEngine.Awaitable$1.Awaiter$1<System.ValueTuple$3<T0, T1, T2>>;
+            public static GetAwaiter<T0, T1, T2, T3>($ev: UnityEngine.Events.UnityEvent$4<T0, T1, T2, T3>): UnityEngine.Awaitable$1.Awaiter$1<System.ValueTuple$4<T0, T1, T2, T3>>;
+            public static GetAwaiter($ev: UnityEngine.Events.UnityEvent): UnityEngine.Awaitable.Awaiter;
         }
 
         class AwaitableCompletionSource {
@@ -8125,6 +8132,7 @@ declare namespace CS {
             public TrySetException($exception: System.Exception): boolean;
             public Reset(): void;
         }
+        function AwaitableCompletionSource<T extends System.TypeLike>($T: T): typeof AwaitableCompletionSource$1<System.BoundType<T>>;
 
         class Awaitable$1<T> {
             protected [__keep_incompatibility]: never;
@@ -8141,6 +8149,7 @@ declare namespace CS {
             }
 
         }
+        function Awaitable<T extends System.TypeLike>($T: T): typeof Awaitable$1<System.BoundType<T>>;
 
         class Behaviour extends UnityEngine.Component {
             protected [__keep_incompatibility]: never;
@@ -8355,6 +8364,7 @@ declare namespace CS {
             constructor($asset: T);
             constructor($entityId: UnityEngine.EntityId);
         }
+        function LazyLoadReference<T extends System.TypeLike>($T: T): typeof LazyLoadReference$1;
 
         class MonoBehaviour extends UnityEngine.Behaviour {
             protected [__keep_incompatibility]: never;
@@ -9641,45 +9651,45 @@ declare namespace CS {
                 class MustExtensions {
                     protected [__keep_incompatibility]: never;
                     /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
-                    public static MustBeTrue(): void;
+                    public static MustBeTrue($value: boolean): void;
                     /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
-                    public static MustBeTrue($message: string): void;
+                    public static MustBeTrue($value: boolean, $message: string): void;
                     /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
-                    public static MustBeFalse(): void;
+                    public static MustBeFalse($value: boolean): void;
                     /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
-                    public static MustBeFalse($message: string): void;
+                    public static MustBeFalse($value: boolean, $message: string): void;
                     /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
-                    public static MustBeApproximatelyEqual($expected: number): void;
+                    public static MustBeApproximatelyEqual($actual: number, $expected: number): void;
                     /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
-                    public static MustBeApproximatelyEqual($expected: number, $message: string): void;
+                    public static MustBeApproximatelyEqual($actual: number, $expected: number, $message: string): void;
                     /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
-                    public static MustBeApproximatelyEqual($expected: number, $tolerance: number): void;
+                    public static MustBeApproximatelyEqual($actual: number, $expected: number, $tolerance: number): void;
                     /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
-                    public static MustBeApproximatelyEqual($expected: number, $tolerance: number, $message: string): void;
+                    public static MustBeApproximatelyEqual($actual: number, $expected: number, $tolerance: number, $message: string): void;
                     /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
-                    public static MustNotBeApproximatelyEqual($expected: number): void;
+                    public static MustNotBeApproximatelyEqual($actual: number, $expected: number): void;
                     /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
-                    public static MustNotBeApproximatelyEqual($expected: number, $message: string): void;
+                    public static MustNotBeApproximatelyEqual($actual: number, $expected: number, $message: string): void;
                     /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
-                    public static MustNotBeApproximatelyEqual($expected: number, $tolerance: number): void;
+                    public static MustNotBeApproximatelyEqual($actual: number, $expected: number, $tolerance: number): void;
                     /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
-                    public static MustNotBeApproximatelyEqual($expected: number, $tolerance: number, $message: string): void;
+                    public static MustNotBeApproximatelyEqual($actual: number, $expected: number, $tolerance: number, $message: string): void;
                     /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
-                    public static MustBeEqual<T>($expected: T): void;
+                    public static MustBeEqual<T>($actual: T, $expected: T): void;
                     /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
-                    public static MustBeEqual<T>($expected: T, $message: string): void;
+                    public static MustBeEqual<T>($actual: T, $expected: T, $message: string): void;
                     /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
-                    public static MustNotBeEqual<T>($expected: T): void;
+                    public static MustNotBeEqual<T>($actual: T, $expected: T): void;
                     /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
-                    public static MustNotBeEqual<T>($expected: T, $message: string): void;
+                    public static MustNotBeEqual<T>($actual: T, $expected: T, $message: string): void;
                     /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
-                    public static MustBeNull<T extends object>(): void;
+                    public static MustBeNull<T extends object>($expected: T): void;
                     /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
-                    public static MustBeNull<T extends object>($message: string): void;
+                    public static MustBeNull<T extends object>($expected: T, $message: string): void;
                     /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
-                    public static MustNotBeNull<T extends object>(): void;
+                    public static MustNotBeNull<T extends object>($expected: T): void;
                     /** @deprecated Must extensions are deprecated. Use UnityEngine.Assertions.Assert instead */
-                    public static MustNotBeNull<T extends object>($message: string): void;
+                    public static MustNotBeNull<T extends object>($expected: T, $message: string): void;
                 }
 
             }
@@ -10050,6 +10060,7 @@ declare namespace CS {
                 public RemoveListener($call: UnityEngine.Events.UnityAction$1<T0>): void;
                 public Invoke($arg0: T0): void;
             }
+            function UnityEvent<T0 extends System.TypeLike>($T0: T0): typeof UnityEvent$1<System.BoundType<T0>>;
 
             interface UnityAction$2<T0, T1> {
                 ($arg0: T0, $arg1: T1): void;
@@ -10063,6 +10074,7 @@ declare namespace CS {
                 public RemoveListener($call: UnityEngine.Events.UnityAction$2<T0, T1>): void;
                 public Invoke($arg0: T0, $arg1: T1): void;
             }
+            function UnityEvent<T0 extends System.TypeLike, T1 extends System.TypeLike>($T0: T0, $T1: T1): typeof UnityEvent$2<System.BoundType<T0>, System.BoundType<T1>>;
 
             interface UnityAction$3<T0, T1, T2> {
                 ($arg0: T0, $arg1: T1, $arg2: T2): void;
@@ -10076,6 +10088,7 @@ declare namespace CS {
                 public RemoveListener($call: UnityEngine.Events.UnityAction$3<T0, T1, T2>): void;
                 public Invoke($arg0: T0, $arg1: T1, $arg2: T2): void;
             }
+            function UnityEvent<T0 extends System.TypeLike, T1 extends System.TypeLike, T2 extends System.TypeLike>($T0: T0, $T1: T1, $T2: T2): typeof UnityEvent$3<System.BoundType<T0>, System.BoundType<T1>, System.BoundType<T2>>;
 
             interface UnityAction$4<T0, T1, T2, T3> {
                 ($arg0: T0, $arg1: T1, $arg2: T2, $arg3: T3): void;
@@ -10089,6 +10102,7 @@ declare namespace CS {
                 public RemoveListener($call: UnityEngine.Events.UnityAction$4<T0, T1, T2, T3>): void;
                 public Invoke($arg0: T0, $arg1: T1, $arg2: T2, $arg3: T3): void;
             }
+            function UnityEvent<T0 extends System.TypeLike, T1 extends System.TypeLike, T2 extends System.TypeLike, T3 extends System.TypeLike>($T0: T0, $T1: T1, $T2: T2, $T3: T3): typeof UnityEvent$4<System.BoundType<T0>, System.BoundType<T1>, System.BoundType<T2>, System.BoundType<T3>>;
 
         }
     }
@@ -10998,12 +11012,12 @@ declare namespace CS {
             class IJobParallelForTransformExtensions {
                 protected [__keep_incompatibility]: never;
                 public static EarlyJobInit<T extends UnityEngine.Jobs.IJobParallelForTransform>(): void;
-                public static Schedule<T extends UnityEngine.Jobs.IJobParallelForTransform>($transforms: UnityEngine.Jobs.TransformAccessArray, $dependsOn?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
-                public static ScheduleReadOnly<T extends UnityEngine.Jobs.IJobParallelForTransform>($transforms: UnityEngine.Jobs.TransformAccessArray, $batchSize: number, $dependsOn?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
-                public static RunReadOnly<T extends UnityEngine.Jobs.IJobParallelForTransform>($transforms: UnityEngine.Jobs.TransformAccessArray): void;
-                public static ScheduleByRef<T extends UnityEngine.Jobs.IJobParallelForTransform>($transforms: UnityEngine.Jobs.TransformAccessArray, $dependsOn?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
-                public static ScheduleReadOnlyByRef<T extends UnityEngine.Jobs.IJobParallelForTransform>($transforms: UnityEngine.Jobs.TransformAccessArray, $batchSize: number, $dependsOn?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
-                public static RunReadOnlyByRef<T extends UnityEngine.Jobs.IJobParallelForTransform>($transforms: UnityEngine.Jobs.TransformAccessArray): void;
+                public static Schedule<T extends UnityEngine.Jobs.IJobParallelForTransform>($jobData: T, $transforms: UnityEngine.Jobs.TransformAccessArray, $dependsOn?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
+                public static ScheduleReadOnly<T extends UnityEngine.Jobs.IJobParallelForTransform>($jobData: T, $transforms: UnityEngine.Jobs.TransformAccessArray, $batchSize: number, $dependsOn?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
+                public static RunReadOnly<T extends UnityEngine.Jobs.IJobParallelForTransform>($jobData: T, $transforms: UnityEngine.Jobs.TransformAccessArray): void;
+                public static ScheduleByRef<T extends UnityEngine.Jobs.IJobParallelForTransform>($jobData: $Ref<T>, $transforms: UnityEngine.Jobs.TransformAccessArray, $dependsOn?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
+                public static ScheduleReadOnlyByRef<T extends UnityEngine.Jobs.IJobParallelForTransform>($jobData: $Ref<T>, $transforms: UnityEngine.Jobs.TransformAccessArray, $batchSize: number, $dependsOn?: Unity.Jobs.JobHandle): Unity.Jobs.JobHandle;
+                public static RunReadOnlyByRef<T extends UnityEngine.Jobs.IJobParallelForTransform>($jobData: $Ref<T>, $transforms: UnityEngine.Jobs.TransformAccessArray): void;
             }
 
             class TransformAccess {
@@ -11080,6 +11094,7 @@ declare namespace CS {
                 public Equals($other: UnityEngine.LightTransport.BufferSlice$1<T>): boolean;
                 public Equals($obj: any): boolean;
             }
+            function BufferSlice<T extends System.TypeLike>($T: T): typeof BufferSlice$1<System.BoundType<T>>;
 
             class EventID implements System.IEquatable$1<UnityEngine.LightTransport.EventID> {
                 protected [__keep_incompatibility]: never;
@@ -11405,52 +11420,52 @@ declare namespace CS {
 
             class PlayableExtensions {
                 protected [__keep_incompatibility]: never;
-                public static IsNull<U extends UnityEngine.Playables.IPlayable>(): boolean;
-                public static IsValid<U extends UnityEngine.Playables.IPlayable>(): boolean;
-                public static Destroy<U extends UnityEngine.Playables.IPlayable>(): void;
-                public static GetGraph<U extends UnityEngine.Playables.IPlayable>(): UnityEngine.Playables.PlayableGraph;
+                public static IsNull<U extends UnityEngine.Playables.IPlayable>($playable: U): boolean;
+                public static IsValid<U extends UnityEngine.Playables.IPlayable>($playable: U): boolean;
+                public static Destroy<U extends UnityEngine.Playables.IPlayable>($playable: U): void;
+                public static GetGraph<U extends UnityEngine.Playables.IPlayable>($playable: U): UnityEngine.Playables.PlayableGraph;
                 /** @deprecated SetPlayState() has been deprecated. Use Play(), Pause() or SetDelay() instead */
-                public static SetPlayState<U extends UnityEngine.Playables.IPlayable>($value: UnityEngine.Playables.PlayState): void;
-                public static GetPlayState<U extends UnityEngine.Playables.IPlayable>(): UnityEngine.Playables.PlayState;
-                public static Play<U extends UnityEngine.Playables.IPlayable>(): void;
-                public static Pause<U extends UnityEngine.Playables.IPlayable>(): void;
-                public static SetSpeed<U extends UnityEngine.Playables.IPlayable>($value: number): void;
-                public static GetSpeed<U extends UnityEngine.Playables.IPlayable>(): number;
-                public static SetDuration<U extends UnityEngine.Playables.IPlayable>($value: number): void;
-                public static GetDuration<U extends UnityEngine.Playables.IPlayable>(): number;
-                public static SetTime<U extends UnityEngine.Playables.IPlayable>($value: number): void;
-                public static GetTime<U extends UnityEngine.Playables.IPlayable>(): number;
-                public static GetPreviousTime<U extends UnityEngine.Playables.IPlayable>(): number;
-                public static SetDone<U extends UnityEngine.Playables.IPlayable>($value: boolean): void;
-                public static IsDone<U extends UnityEngine.Playables.IPlayable>(): boolean;
-                public static SetPropagateSetTime<U extends UnityEngine.Playables.IPlayable>($value: boolean): void;
-                public static GetPropagateSetTime<U extends UnityEngine.Playables.IPlayable>(): boolean;
-                public static CanChangeInputs<U extends UnityEngine.Playables.IPlayable>(): boolean;
-                public static CanSetWeights<U extends UnityEngine.Playables.IPlayable>(): boolean;
-                public static CanDestroy<U extends UnityEngine.Playables.IPlayable>(): boolean;
-                public static SetInputCount<U extends UnityEngine.Playables.IPlayable>($value: number): void;
-                public static GetInputCount<U extends UnityEngine.Playables.IPlayable>(): number;
-                public static SetOutputCount<U extends UnityEngine.Playables.IPlayable>($value: number): void;
-                public static GetOutputCount<U extends UnityEngine.Playables.IPlayable>(): number;
-                public static GetInput<U extends UnityEngine.Playables.IPlayable>($inputPort: number): UnityEngine.Playables.Playable;
-                public static GetOutput<U extends UnityEngine.Playables.IPlayable>($outputPort: number): UnityEngine.Playables.Playable;
-                public static SetInputWeight<U extends UnityEngine.Playables.IPlayable>($inputIndex: number, $weight: number): void;
-                public static SetInputWeight<U extends UnityEngine.Playables.IPlayable, V extends UnityEngine.Playables.IPlayable>($input: V, $weight: number): void;
-                public static GetInputWeight<U extends UnityEngine.Playables.IPlayable>($inputIndex: number): number;
-                public static ConnectInput<U extends UnityEngine.Playables.IPlayable, V extends UnityEngine.Playables.IPlayable>($inputIndex: number, $sourcePlayable: V, $sourceOutputIndex: number): void;
-                public static ConnectInput<U extends UnityEngine.Playables.IPlayable, V extends UnityEngine.Playables.IPlayable>($inputIndex: number, $sourcePlayable: V, $sourceOutputIndex: number, $weight: number): void;
-                public static DisconnectInput<U extends UnityEngine.Playables.IPlayable>($inputPort: number): void;
-                public static AddInput<U extends UnityEngine.Playables.IPlayable, V extends UnityEngine.Playables.IPlayable>($sourcePlayable: V, $sourceOutputIndex: number, $weight?: number): number;
+                public static SetPlayState<U extends UnityEngine.Playables.IPlayable>($playable: U, $value: UnityEngine.Playables.PlayState): void;
+                public static GetPlayState<U extends UnityEngine.Playables.IPlayable>($playable: U): UnityEngine.Playables.PlayState;
+                public static Play<U extends UnityEngine.Playables.IPlayable>($playable: U): void;
+                public static Pause<U extends UnityEngine.Playables.IPlayable>($playable: U): void;
+                public static SetSpeed<U extends UnityEngine.Playables.IPlayable>($playable: U, $value: number): void;
+                public static GetSpeed<U extends UnityEngine.Playables.IPlayable>($playable: U): number;
+                public static SetDuration<U extends UnityEngine.Playables.IPlayable>($playable: U, $value: number): void;
+                public static GetDuration<U extends UnityEngine.Playables.IPlayable>($playable: U): number;
+                public static SetTime<U extends UnityEngine.Playables.IPlayable>($playable: U, $value: number): void;
+                public static GetTime<U extends UnityEngine.Playables.IPlayable>($playable: U): number;
+                public static GetPreviousTime<U extends UnityEngine.Playables.IPlayable>($playable: U): number;
+                public static SetDone<U extends UnityEngine.Playables.IPlayable>($playable: U, $value: boolean): void;
+                public static IsDone<U extends UnityEngine.Playables.IPlayable>($playable: U): boolean;
+                public static SetPropagateSetTime<U extends UnityEngine.Playables.IPlayable>($playable: U, $value: boolean): void;
+                public static GetPropagateSetTime<U extends UnityEngine.Playables.IPlayable>($playable: U): boolean;
+                public static CanChangeInputs<U extends UnityEngine.Playables.IPlayable>($playable: U): boolean;
+                public static CanSetWeights<U extends UnityEngine.Playables.IPlayable>($playable: U): boolean;
+                public static CanDestroy<U extends UnityEngine.Playables.IPlayable>($playable: U): boolean;
+                public static SetInputCount<U extends UnityEngine.Playables.IPlayable>($playable: U, $value: number): void;
+                public static GetInputCount<U extends UnityEngine.Playables.IPlayable>($playable: U): number;
+                public static SetOutputCount<U extends UnityEngine.Playables.IPlayable>($playable: U, $value: number): void;
+                public static GetOutputCount<U extends UnityEngine.Playables.IPlayable>($playable: U): number;
+                public static GetInput<U extends UnityEngine.Playables.IPlayable>($playable: U, $inputPort: number): UnityEngine.Playables.Playable;
+                public static GetOutput<U extends UnityEngine.Playables.IPlayable>($playable: U, $outputPort: number): UnityEngine.Playables.Playable;
+                public static SetInputWeight<U extends UnityEngine.Playables.IPlayable>($playable: U, $inputIndex: number, $weight: number): void;
+                public static SetInputWeight<U extends UnityEngine.Playables.IPlayable, V extends UnityEngine.Playables.IPlayable>($playable: U, $input: V, $weight: number): void;
+                public static GetInputWeight<U extends UnityEngine.Playables.IPlayable>($playable: U, $inputIndex: number): number;
+                public static ConnectInput<U extends UnityEngine.Playables.IPlayable, V extends UnityEngine.Playables.IPlayable>($playable: U, $inputIndex: number, $sourcePlayable: V, $sourceOutputIndex: number): void;
+                public static ConnectInput<U extends UnityEngine.Playables.IPlayable, V extends UnityEngine.Playables.IPlayable>($playable: U, $inputIndex: number, $sourcePlayable: V, $sourceOutputIndex: number, $weight: number): void;
+                public static DisconnectInput<U extends UnityEngine.Playables.IPlayable>($playable: U, $inputPort: number): void;
+                public static AddInput<U extends UnityEngine.Playables.IPlayable, V extends UnityEngine.Playables.IPlayable>($playable: U, $sourcePlayable: V, $sourceOutputIndex: number, $weight?: number): number;
                 /** @deprecated SetDelay is obsolete; use a custom ScriptPlayable to implement this feature */
-                public static SetDelay<U extends UnityEngine.Playables.IPlayable>($delay: number): void;
+                public static SetDelay<U extends UnityEngine.Playables.IPlayable>($playable: U, $delay: number): void;
                 /** @deprecated GetDelay is obsolete; use a custom ScriptPlayable to implement this feature */
-                public static GetDelay<U extends UnityEngine.Playables.IPlayable>(): number;
+                public static GetDelay<U extends UnityEngine.Playables.IPlayable>($playable: U): number;
                 /** @deprecated IsDelayed is obsolete; use a custom ScriptPlayable to implement this feature */
-                public static IsDelayed<U extends UnityEngine.Playables.IPlayable>(): boolean;
-                public static SetLeadTime<U extends UnityEngine.Playables.IPlayable>($value: number): void;
-                public static GetLeadTime<U extends UnityEngine.Playables.IPlayable>(): number;
-                public static GetTraversalMode<U extends UnityEngine.Playables.IPlayable>(): UnityEngine.Playables.PlayableTraversalMode;
-                public static SetTraversalMode<U extends UnityEngine.Playables.IPlayable>($mode: UnityEngine.Playables.PlayableTraversalMode): void;
+                public static IsDelayed<U extends UnityEngine.Playables.IPlayable>($playable: U): boolean;
+                public static SetLeadTime<U extends UnityEngine.Playables.IPlayable>($playable: U, $value: number): void;
+                public static GetLeadTime<U extends UnityEngine.Playables.IPlayable>($playable: U): number;
+                public static GetTraversalMode<U extends UnityEngine.Playables.IPlayable>($playable: U): UnityEngine.Playables.PlayableTraversalMode;
+                public static SetTraversalMode<U extends UnityEngine.Playables.IPlayable>($playable: U, $mode: UnityEngine.Playables.PlayableTraversalMode): void;
             }
 
             enum DirectorUpdateMode {
@@ -11516,28 +11531,28 @@ declare namespace CS {
 
             class PlayableOutputExtensions {
                 protected [__keep_incompatibility]: never;
-                public static IsOutputNull<U extends UnityEngine.Playables.IPlayableOutput>(): boolean;
-                public static IsOutputValid<U extends UnityEngine.Playables.IPlayableOutput>(): boolean;
-                public static GetReferenceObject<U extends UnityEngine.Playables.IPlayableOutput>(): UnityEngine.Object;
-                public static SetReferenceObject<U extends UnityEngine.Playables.IPlayableOutput>($value: UnityEngine.Object): void;
-                public static GetUserData<U extends UnityEngine.Playables.IPlayableOutput>(): UnityEngine.Object;
-                public static SetUserData<U extends UnityEngine.Playables.IPlayableOutput>($value: UnityEngine.Object): void;
-                public static GetSourcePlayable<U extends UnityEngine.Playables.IPlayableOutput>(): UnityEngine.Playables.Playable;
-                public static SetSourcePlayable<U extends UnityEngine.Playables.IPlayableOutput, V extends UnityEngine.Playables.IPlayable>($value: V): void;
-                public static SetSourcePlayable<U extends UnityEngine.Playables.IPlayableOutput, V extends UnityEngine.Playables.IPlayable>($value: V, $port: number): void;
-                public static GetSourceOutputPort<U extends UnityEngine.Playables.IPlayableOutput>(): number;
-                public static GetWeight<U extends UnityEngine.Playables.IPlayableOutput>(): number;
-                public static SetWeight<U extends UnityEngine.Playables.IPlayableOutput>($value: number): void;
-                public static PushNotification<U extends UnityEngine.Playables.IPlayableOutput>($origin: UnityEngine.Playables.Playable, $notification: UnityEngine.Playables.INotification, $context?: any): void;
-                public static GetNotificationReceivers<U extends UnityEngine.Playables.IPlayableOutput>(): System.Array$1<UnityEngine.Playables.INotificationReceiver>;
-                public static AddNotificationReceiver<U extends UnityEngine.Playables.IPlayableOutput>($receiver: UnityEngine.Playables.INotificationReceiver): void;
-                public static RemoveNotificationReceiver<U extends UnityEngine.Playables.IPlayableOutput>($receiver: UnityEngine.Playables.INotificationReceiver): void;
+                public static IsOutputNull<U extends UnityEngine.Playables.IPlayableOutput>($output: U): boolean;
+                public static IsOutputValid<U extends UnityEngine.Playables.IPlayableOutput>($output: U): boolean;
+                public static GetReferenceObject<U extends UnityEngine.Playables.IPlayableOutput>($output: U): UnityEngine.Object;
+                public static SetReferenceObject<U extends UnityEngine.Playables.IPlayableOutput>($output: U, $value: UnityEngine.Object): void;
+                public static GetUserData<U extends UnityEngine.Playables.IPlayableOutput>($output: U): UnityEngine.Object;
+                public static SetUserData<U extends UnityEngine.Playables.IPlayableOutput>($output: U, $value: UnityEngine.Object): void;
+                public static GetSourcePlayable<U extends UnityEngine.Playables.IPlayableOutput>($output: U): UnityEngine.Playables.Playable;
+                public static SetSourcePlayable<U extends UnityEngine.Playables.IPlayableOutput, V extends UnityEngine.Playables.IPlayable>($output: U, $value: V): void;
+                public static SetSourcePlayable<U extends UnityEngine.Playables.IPlayableOutput, V extends UnityEngine.Playables.IPlayable>($output: U, $value: V, $port: number): void;
+                public static GetSourceOutputPort<U extends UnityEngine.Playables.IPlayableOutput>($output: U): number;
+                public static GetWeight<U extends UnityEngine.Playables.IPlayableOutput>($output: U): number;
+                public static SetWeight<U extends UnityEngine.Playables.IPlayableOutput>($output: U, $value: number): void;
+                public static PushNotification<U extends UnityEngine.Playables.IPlayableOutput>($output: U, $origin: UnityEngine.Playables.Playable, $notification: UnityEngine.Playables.INotification, $context?: any): void;
+                public static GetNotificationReceivers<U extends UnityEngine.Playables.IPlayableOutput>($output: U): System.Array$1<UnityEngine.Playables.INotificationReceiver>;
+                public static AddNotificationReceiver<U extends UnityEngine.Playables.IPlayableOutput>($output: U, $receiver: UnityEngine.Playables.INotificationReceiver): void;
+                public static RemoveNotificationReceiver<U extends UnityEngine.Playables.IPlayableOutput>($output: U, $receiver: UnityEngine.Playables.INotificationReceiver): void;
                 /** @deprecated Method GetSourceInputPort has been renamed to GetSourceOutputPort (UnityUpgradable) -> GetSourceOutputPort<U>(*) */
-                public static GetSourceInputPort<U extends UnityEngine.Playables.IPlayableOutput>(): number;
+                public static GetSourceInputPort<U extends UnityEngine.Playables.IPlayableOutput>($output: U): number;
                 /** @deprecated Method SetSourceInputPort has been deprecated. Use SetSourcePlayable(Playable, Port) instead. */
-                public static SetSourceInputPort<U extends UnityEngine.Playables.IPlayableOutput>($value: number): void;
+                public static SetSourceInputPort<U extends UnityEngine.Playables.IPlayableOutput>($output: U, $value: number): void;
                 /** @deprecated Method SetSourceOutputPort has been deprecated. Use SetSourcePlayable(Playable, Port) instead. */
-                public static SetSourceOutputPort<U extends UnityEngine.Playables.IPlayableOutput>($value: number): void;
+                public static SetSourceOutputPort<U extends UnityEngine.Playables.IPlayableOutput>($output: U, $value: number): void;
             }
 
             class PlayableOutputHandle implements System.IEquatable$1<UnityEngine.Playables.PlayableOutputHandle> {
@@ -11557,6 +11572,7 @@ declare namespace CS {
                 public GetBehaviour(): T;
                 public Equals($other: UnityEngine.Playables.ScriptPlayable$1<T>): boolean;
             }
+            function ScriptPlayable<T extends System.TypeLike>($T: T): typeof ScriptPlayable$1;
 
             class ScriptPlayableBinding {
                 protected [__keep_incompatibility]: never;
@@ -12205,21 +12221,25 @@ declare namespace CS {
                 public static Get($value: $Out<TCollection>): UnityEngine.Pool.PooledObject$1<TCollection>;
                 public static Release($toRelease: TCollection): void;
             }
+            function CollectionPool<TCollection extends System.TypeLike, TItem extends System.TypeLike>($TCollection: TCollection, $TItem: TItem): typeof CollectionPool$2;
 
             class ListPool$1<T> extends UnityEngine.Pool.CollectionPool$2<System.Collections.Generic.List$1<T>, T> {
                 protected [__keep_incompatibility]: never;
                 constructor();
             }
+            function ListPool<T extends System.TypeLike>($T: T): typeof ListPool$1<System.BoundType<T>>;
 
             class HashSetPool$1<T> extends UnityEngine.Pool.CollectionPool$2<System.Collections.Generic.HashSet$1<T>, T> {
                 protected [__keep_incompatibility]: never;
                 constructor();
             }
+            function HashSetPool<T extends System.TypeLike>($T: T): typeof HashSetPool$1<System.BoundType<T>>;
 
             class DictionaryPool$2<TKey, TValue> extends UnityEngine.Pool.CollectionPool$2<System.Collections.Generic.Dictionary$2<TKey, TValue>, System.Collections.Generic.KeyValuePair$2<TKey, TValue>> {
                 protected [__keep_incompatibility]: never;
                 constructor();
             }
+            function DictionaryPool<TKey extends System.TypeLike, TValue extends System.TypeLike>($TKey: TKey, $TValue: TValue): typeof DictionaryPool$2<System.BoundType<TKey>, System.BoundType<TValue>>;
 
             class GenericPool$1<T extends object> {
                 protected [__keep_incompatibility]: never;
@@ -12228,6 +12248,7 @@ declare namespace CS {
                 public static Get($value: $Out<T>): UnityEngine.Pool.PooledObject$1<T>;
                 public static Release($toRelease: T): void;
             }
+            function GenericPool<T extends System.TypeLike>($T: T): typeof GenericPool$1;
 
             interface IObjectPool$1<T extends object> {
                 get CountInactive(): number;
@@ -12247,6 +12268,7 @@ declare namespace CS {
                 public Clear(): void;
                 public Dispose(): void;
             }
+            function LinkedPool<T extends System.TypeLike>($T: T): typeof LinkedPool$1;
 
             class ObjectPool$1<T extends object> implements UnityEngine.Pool.IObjectPool$1<T>, UnityEngine.Pool.IPool, System.IDisposable {
                 protected [__keep_incompatibility]: never;
@@ -12260,11 +12282,13 @@ declare namespace CS {
                 public Clear(): void;
                 public Dispose(): void;
             }
+            function ObjectPool<T extends System.TypeLike>($T: T): typeof ObjectPool$1;
 
             class PooledObject$1<T extends object> implements System.IDisposable {
                 protected [__keep_incompatibility]: never;
                 constructor($value: T, $pool: UnityEngine.Pool.IObjectPool$1<T>);
             }
+            function PooledObject<T extends System.TypeLike>($T: T): typeof PooledObject$1;
 
             class UnsafeGenericPool$1<T extends object> {
                 protected [__keep_incompatibility]: never;
@@ -12272,6 +12296,7 @@ declare namespace CS {
                 public static Get($value: $Out<T>): UnityEngine.Pool.PooledObject$1<T>;
                 public static Release($toRelease: T): void;
             }
+            function UnsafeGenericPool<T extends System.TypeLike>($T: T): typeof UnsafeGenericPool$1;
 
         }
     }
@@ -14245,8 +14270,8 @@ declare namespace CS {
 
             class CommandBufferExtensions {
                 protected [__keep_incompatibility]: never;
-                public static SwitchIntoFastMemory($rid: UnityEngine.Rendering.RenderTargetIdentifier, $fastMemoryFlags: UnityEngine.Rendering.FastMemoryFlags, $residency: number, $copyContents: boolean): void;
-                public static SwitchOutOfFastMemory($rid: UnityEngine.Rendering.RenderTargetIdentifier, $copyContents: boolean): void;
+                public static SwitchIntoFastMemory($cmd: UnityEngine.Rendering.CommandBuffer, $rid: UnityEngine.Rendering.RenderTargetIdentifier, $fastMemoryFlags: UnityEngine.Rendering.FastMemoryFlags, $residency: number, $copyContents: boolean): void;
+                public static SwitchOutOfFastMemory($cmd: UnityEngine.Rendering.CommandBuffer, $rid: UnityEngine.Rendering.RenderTargetIdentifier, $copyContents: boolean): void;
             }
 
             class RenderPipelineGraphicsSettingsCollection {
@@ -14257,8 +14282,8 @@ declare namespace CS {
 
             class RenderPipelineGraphicsSettingsExtensions {
                 protected [__keep_incompatibility]: never;
-                public static SetValueAndNotify<T>($currentPropertyValue: $Ref<T>, $newValue: T, $propertyName?: string): void;
-                public static NotifyValueChanged($propertyName?: string): void;
+                public static SetValueAndNotify<T>($settings: UnityEngine.Rendering.IRenderPipelineGraphicsSettings, $currentPropertyValue: $Ref<T>, $newValue: T, $propertyName?: string): void;
+                public static NotifyValueChanged($settings: UnityEngine.Rendering.IRenderPipelineGraphicsSettings, $propertyName?: string): void;
             }
 
             class RecreatePipelineOnChangeAttribute extends System.Attribute {
@@ -15007,6 +15032,7 @@ declare namespace CS {
                 public get pipelineType(): System.Type;
                 public get renderPipelineShaderTag(): string;
             }
+            function RenderPipelineAsset<TRenderPipeline extends System.TypeLike>($TRenderPipeline: TRenderPipeline): typeof RenderPipelineAsset$1;
 
             class RenderPipelineGlobalSettings extends UnityEngine.ScriptableObject implements UnityEngine.ISerializationCallbackReceiver {
                 protected [__keep_incompatibility]: never;
@@ -16043,24 +16069,24 @@ declare namespace CS {
 
             class SpriteDataAccessExtensions {
                 protected [__keep_incompatibility]: never;
-                public static GetVertexAttribute<T>($channel: UnityEngine.Rendering.VertexAttribute): Unity.Collections.NativeSlice$1<T>;
-                public static SetVertexAttribute<T>($channel: UnityEngine.Rendering.VertexAttribute, $src: Unity.Collections.NativeArray$1<T>): void;
-                public static GetBindPoses(): Unity.Collections.NativeArray$1<UnityEngine.Matrix4x4>;
-                public static SetBindPoses($src: Unity.Collections.NativeArray$1<UnityEngine.Matrix4x4>): void;
-                public static GetIndices(): Unity.Collections.NativeArray$1<number>;
-                public static SetIndices($src: Unity.Collections.NativeArray$1<number>): void;
-                public static GetBones(): System.Array$1<UnityEngine.U2D.SpriteBone>;
-                public static SetBones($src: System.Array$1<UnityEngine.U2D.SpriteBone>): void;
-                public static HasVertexAttribute($channel: UnityEngine.Rendering.VertexAttribute): boolean;
-                public static SetVertexCount($count: number): void;
-                public static GetVertexCount(): number;
+                public static GetVertexAttribute<T>($sprite: UnityEngine.Sprite, $channel: UnityEngine.Rendering.VertexAttribute): Unity.Collections.NativeSlice$1<T>;
+                public static SetVertexAttribute<T>($sprite: UnityEngine.Sprite, $channel: UnityEngine.Rendering.VertexAttribute, $src: Unity.Collections.NativeArray$1<T>): void;
+                public static GetBindPoses($sprite: UnityEngine.Sprite): Unity.Collections.NativeArray$1<UnityEngine.Matrix4x4>;
+                public static SetBindPoses($sprite: UnityEngine.Sprite, $src: Unity.Collections.NativeArray$1<UnityEngine.Matrix4x4>): void;
+                public static GetIndices($sprite: UnityEngine.Sprite): Unity.Collections.NativeArray$1<number>;
+                public static SetIndices($sprite: UnityEngine.Sprite, $src: Unity.Collections.NativeArray$1<number>): void;
+                public static GetBones($sprite: UnityEngine.Sprite): System.Array$1<UnityEngine.U2D.SpriteBone>;
+                public static SetBones($sprite: UnityEngine.Sprite, $src: System.Array$1<UnityEngine.U2D.SpriteBone>): void;
+                public static HasVertexAttribute($sprite: UnityEngine.Sprite, $channel: UnityEngine.Rendering.VertexAttribute): boolean;
+                public static SetVertexCount($sprite: UnityEngine.Sprite, $count: number): void;
+                public static GetVertexCount($sprite: UnityEngine.Sprite): number;
             }
 
             class SpriteRendererDataAccessExtensions {
                 protected [__keep_incompatibility]: never;
-                public static DeactivateDeformableBuffer(): void;
-                public static SetShaderUserValue($v: number): void;
-                public static GetShaderUserValue(): number;
+                public static DeactivateDeformableBuffer($renderer: UnityEngine.SpriteRenderer): void;
+                public static SetShaderUserValue($spriteRenderer: UnityEngine.SpriteRenderer, $v: number): void;
+                public static GetShaderUserValue($spriteRenderer: UnityEngine.SpriteRenderer): number;
             }
 
             class SpriteBlendShapeVertex {

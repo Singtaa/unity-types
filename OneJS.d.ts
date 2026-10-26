@@ -186,12 +186,15 @@ declare namespace CS {
             public get Bridge(): OneJS.QuickJSUIBridge;
             public get IsRunning(): boolean;
             public get IsLiveReloadEnabled(): boolean;
+            public get PollInterval(): number;
             public get ReloadCount(): number;
             public get LastModifiedTime(): System.DateTime;
             public get LastReloadTime(): System.DateTime;
             public get IncludeSourceMap(): boolean;
             public get ExcludeFromBuild(): boolean;
             public get PanelSettingsAsset(): UnityEngine.UIElements.PanelSettings;
+            public get Cart(): string;
+            public get IsCart(): boolean;
             public get BundleAsset(): UnityEngine.TextAsset;
             public get SourceMapAsset(): UnityEngine.TextAsset;
             public get IsEditModePreviewActive(): boolean;
@@ -210,6 +213,7 @@ declare namespace CS {
             public get HasBundle(): boolean;
             public get HasNodeModules(): boolean;
             public get HasPackageJson(): boolean;
+            public get CartFolder(): OneJS.RootCarts.Cart;
             public get TypingAssemblies(): System.Collections.Generic.IReadOnlyList$1<string>;
             public get AutoGenerateTypings(): boolean;
             public get TypingsOutputPath(): string;
@@ -228,10 +232,15 @@ declare namespace CS {
             public SetSourceMapAsset($asset: UnityEngine.TextAsset): void;
             public ClearGeneratedAssets(): void;
             public EnsureProjectFolderAndAssets($useSceneNameAsRootFolder?: boolean): void;
+            public CreateCartPanelSettings(): UnityEngine.UIElements.PanelSettings;
             public CreateDefaultVisualTreeAsset(): void;
             public EnsureProjectSetup(): boolean;
             public IsPanelSettingsInValidProjectFolder(): boolean;
             public GetInvalidProjectFolderReason(): string;
+            public ResolveCart(): OneJS.RootCarts.Resolution;
+            public SetCart($name: string): void;
+            public RestartEditModePreview(): void;
+            public StartEditModePreviewIfReady(): void;
             public GetPackPath($pack: OneJS.Pack): string;
             /** @deprecated GetCartridgePath is now GetPackPath. */
             public GetCartridgePath($cartridge: OneJS.UICartridge): string;
@@ -823,6 +832,60 @@ declare namespace CS {
             public Tick(): void;
         }
 
+        class RootCarts {
+            protected [__keep_incompatibility]: never;
+            public static readonly EditorBuildRoot: string;
+            public static readonly PlayerBuildRoot: string;
+            public static readonly PlayerFilesRoot: string;
+            public static readonly MinOjplayVersion: string;
+            public static readonly SeenFile: string;
+            public static get All(): System.Collections.Generic.IReadOnlyList$1<OneJS.RootCarts.Cart>;
+            public static IsSkipped($folder: string): boolean;
+            public static Invalidate(): void;
+            public static Scan($root: string): System.Collections.Generic.List$1<OneJS.RootCarts.Cart>;
+            public static ReadAt($dir: string, $shown: string): OneJS.RootCarts.Cart;
+            public static SameName($a: string, $b: string): boolean;
+            public static Resolve($name: string): OneJS.RootCarts.Resolution;
+            public static Resolve($name: string, $carts: System.Collections.Generic.IReadOnlyList$1<OneJS.RootCarts.Cart>): OneJS.RootCarts.Resolution;
+            public static EditorBuildDir($cart: OneJS.RootCarts.Cart): string;
+            public static PlayerBuildAssetDir($cart: OneJS.RootCarts.Cart): string;
+            public static InstalledOjplay($cart: OneJS.RootCarts.Cart): string;
+            public static IsSetUp($cart: OneJS.RootCarts.Cart): boolean;
+            public static CompareVersions($a: string, $b: string): number;
+        }
+        namespace RootCarts {
+            class Cart {
+                protected [__keep_incompatibility]: never;
+                public Name: string;
+                public Folder: string;
+                public FullPath: string;
+                public Version: string;
+                public Entry: string;
+                public Problem: string;
+                public get Usable(): boolean;
+                public get OjJson(): string;
+                constructor();
+            }
+
+            enum Outcome {
+                Found = 0,
+                Missing = 1,
+                Duplicate = 2
+            }
+
+            class Resolution {
+                protected [__keep_incompatibility]: never;
+                public readonly Outcome: OneJS.RootCarts.Outcome;
+                public readonly Cart: OneJS.RootCarts.Cart;
+                public readonly Matches: System.Collections.Generic.IReadOnlyList$1<OneJS.RootCarts.Cart>;
+                public readonly RenamedTo: OneJS.RootCarts.Cart;
+                public readonly Name: string;
+                public get Problem(): string;
+                constructor($name: string, $outcome: OneJS.RootCarts.Outcome, $cart: OneJS.RootCarts.Cart, $matches: System.Collections.Generic.IReadOnlyList$1<OneJS.RootCarts.Cart>, $renamedTo: OneJS.RootCarts.Cart);
+            }
+
+        }
+
         class RunnerUtils {
             protected [__keep_incompatibility]: never;
             public static EscapeJsString($s: string): string;
@@ -1089,6 +1152,19 @@ declare namespace CS {
 
             }
 
+            class CartRunners {
+                protected [__keep_incompatibility]: never;
+                public static IsBusy($cart: OneJS.RootCarts.Cart): boolean;
+                public static AwaitsCleanup($cart: OneJS.RootCarts.Cart): boolean;
+                public static NeedsSetUp($cart: OneJS.RootCarts.Cart): boolean;
+                public static BuildArguments($outDir: string, $watch: boolean, $production: boolean): string;
+                public static EnsureWatcher($cart: OneJS.RootCarts.Cart): boolean;
+                public static SetUp($cart: OneJS.RootCarts.Cart, $onDone?: System.Action$1<boolean>): void;
+                public static SetUpMoved($cart: OneJS.RootCarts.Cart, $onDone?: System.Action$1<boolean>): void;
+                public static SetUpProblem($cart: OneJS.RootCarts.Cart): string;
+                public static BuildOnce($cart: OneJS.RootCarts.Cart, $onDone?: System.Action$1<boolean>): void;
+            }
+
             class DefaultFileEntryDrawer extends UnityEditor.PropertyDrawer {
                 protected [__keep_incompatibility]: never;
                 constructor();
@@ -1142,6 +1218,27 @@ declare namespace CS {
                 public static Strips($shader: UnityEngine.Shader, $subshader: number, $scriptableOnly: boolean): boolean;
             }
 
+            class MoveToProjectRoot {
+                protected [__keep_incompatibility]: never;
+                public static readonly Ojplay: string;
+                public static PlanFor($runner: OneJS.JSRunner): OneJS.Editor.MoveToProjectRoot.Plan;
+                public static Move($runner: OneJS.JSRunner, $onDone?: System.Action$1<boolean>): boolean;
+            }
+            namespace MoveToProjectRoot {
+                class Plan {
+                    protected [__keep_incompatibility]: never;
+                    public Name: string;
+                    public From: string;
+                    public To: string;
+                    public Folder: string;
+                    public AssetFolder: string;
+                    public Problem: string;
+                    public get Shown(): string;
+                    constructor();
+                }
+
+            }
+
             class NodeWatcherManager {
                 protected [__keep_incompatibility]: never;
                 public static IsRunning($workingDir: string): boolean;
@@ -1149,6 +1246,7 @@ declare namespace CS {
                 public static GetOutput($workingDir: string): string;
                 public static TryReattach($workingDir: string): boolean;
                 public static StartWatcher($workingDir: string): boolean;
+                public static StartWatcher($workingDir: string, $npmArguments: string): boolean;
                 public static StopWatcher($workingDir: string): void;
                 public static StopAll(): void;
                 public static add_OnWatcherStarted(handler: System.Action$1<string>): void;
@@ -1250,6 +1348,27 @@ declare namespace CS {
                     public static readonly Outdated: string;
                     public static readonly NoSlug: string;
                     public static readonly NotGenerated: string;
+                    public static readonly KeepUIDocument: string;
+                    public static readonly TabCart: string;
+                    public static readonly Cart: string;
+                    public static readonly CartsAtRoot: string;
+                    public static readonly NoCart: string;
+                    public static readonly TwoCarts: string;
+                    public static readonly NotSetUp: string;
+                    public static readonly NoPanelSettings: string;
+                    public static readonly SetUp: string;
+                    public static readonly SettingUp: string;
+                    public static readonly CreatePanelSettings: string;
+                    public static readonly CartWatcherCommand: string;
+                    public static readonly PickCartOrInitialize: string;
+                    public static readonly CartPanelSettingsNote: string;
+                    public static readonly CartBuildNote: string;
+                    public static readonly CartBuildEditor: string;
+                    public static readonly CartBuildPlayer: string;
+                    public static readonly CartBuildFiles: string;
+                    public static readonly MoveToProjectRoot: string;
+                    public static readonly Moving: string;
+                    public static readonly MoveOffer: string;
                     public static readonly Processing: string;
                     public static readonly Ready: string;
                     public static readonly NotBuilt: string;
@@ -2133,6 +2252,7 @@ declare namespace CS {
             class ShaderEffectBridge {
                 protected [__keep_incompatibility]: never;
                 public static get LiveEffectCount(): number;
+                public static get LivePassCount(): number;
                 public static TickAll(): void;
                 public static DisposeOwnedBy($contextId: number): void;
                 public static DisposeAll(): void;
@@ -2144,8 +2264,10 @@ declare namespace CS {
                 protected [__keep_incompatibility]: never;
                 public get AcceptsCompiledPrograms(): boolean;
                 public get AcceptsSteppedPrograms(): boolean;
+                public get AcceptsPasses(): boolean;
                 public get WantsWebSource(): boolean;
                 public get IsCompiled(): boolean;
+                public Pixelated: boolean;
                 public get Frame(): number;
                 public get IsReady(): boolean;
                 public get RenderWidth(): number;
@@ -2159,6 +2281,7 @@ declare namespace CS {
                 public SetUniform($slot: number, $x: number, $y: number, $z: number, $w: number): void;
                 public SetProgramTexture($slot: number, $tex: UnityEngine.Texture): void;
                 public SetProgramBuiltinTexture($slot: number, $builtin: string): void;
+                public SetProgramPass($slot: number, $pass: OneJS.ShaderFX.ShaderPass): boolean;
                 public SetFloat($name: string, $value: number): void;
                 public SetVector($name: string, $x: number, $y: number, $z: number, $w: number): void;
                 public SetColor($name: string, $r: number, $g: number, $b: number, $a: number): void;
@@ -2179,12 +2302,53 @@ declare namespace CS {
 
             }
 
+            class ShaderPass implements System.IDisposable {
+                protected [__keep_incompatibility]: never;
+                public get AcceptsCompiledPrograms(): boolean;
+                public get AcceptsSteppedPrograms(): boolean;
+                public get AcceptsPasses(): boolean;
+                public get WantsWebSource(): boolean;
+                public get IsCompiled(): boolean;
+                public Scale: number;
+                public get Frame(): number;
+                public get IsReady(): boolean;
+                public get RenderWidth(): number;
+                public get RenderHeight(): number;
+                public get Output(): UnityEngine.Texture;
+                constructor();
+                public SetShader($shaderName: string): void;
+                public SetProgram($dataObj: any, $instructionCount: number, $resultRegister: number, $hash: string, $uniformNamesObj?: any, $wire?: number): boolean;
+                public RecordProgram($hash: string, $hlsl: string): void;
+                public SetProgramWeb($wgsl: string, $glsl: string): void;
+                public SetCompiled($allowed: boolean): void;
+                public SetUniform($slot: number, $x: number, $y: number, $z: number, $w: number): void;
+                public SetProgramTexture($slot: number, $tex: UnityEngine.Texture): void;
+                public SetProgramBuiltinTexture($slot: number, $builtin: string): void;
+                public SetProgramPass($slot: number, $pass: OneJS.ShaderFX.ShaderPass): boolean;
+                public SetFloat($name: string, $value: number): void;
+                public SetVector($name: string, $x: number, $y: number, $z: number, $w: number): void;
+                public SetColor($name: string, $r: number, $g: number, $b: number, $a: number): void;
+                public SetTexture($name: string, $tex: UnityEngine.Texture): void;
+                public SetVectorArray($name: string, $flatObj: any): void;
+                public SetBuiltinTexture($name: string, $builtin: string): void;
+                public SetRamp($name: string, $rgba: System.Array$1<number>): void;
+                public SetResolution($w: number, $h: number): void;
+                public Pause(): void;
+                public Resume(): void;
+                public ResetTime(): void;
+                public SetTime($seconds: number): void;
+                public Step($dt: number): void;
+                public Dispose(): void;
+            }
+
         }
     }
     namespace OneJS {
         namespace SL {
             class SLProgramBridge {
                 protected [__keep_incompatibility]: never;
+                public static readonly MaxUniforms: number;
+                public static readonly MaxTextures: number;
                 public static SourceRecorder: System.Action$2<string, string>;
                 public static get CompiledOnly(): boolean;
                 public static get LiveProgramCount(): number;

@@ -158,7 +158,7 @@ declare namespace CS {
 
         class AudioExtensions {
             protected [__keep_incompatibility]: never;
-            public static ChannelCount(): number;
+            public static ChannelCount($speakerMode: UnityEngine.AudioSpeakerMode): number;
         }
 
         enum AudioDataLoadState {
@@ -472,8 +472,8 @@ declare namespace CS {
 
             class MessageExtensions {
                 protected [__keep_incompatibility]: never;
-                public static Get<T extends object>(): T;
-                public static SendMessage<T extends object>($processorInstance: UnityEngine.Audio.ProcessorInstance, $message: T): UnityEngine.Audio.ProcessorInstance.Response;
+                public static Get<T extends object>($message: $Ref<UnityEngine.Audio.ProcessorInstance.Message>): T;
+                public static SendMessage<T extends object>($context: UnityEngine.Audio.ControlContext, $processorInstance: UnityEngine.Audio.ProcessorInstance, $message: T): UnityEngine.Audio.ProcessorInstance.Response;
             }
 
             class ControlContext implements UnityEngine.Audio.ProcessorInstance.IContext {
